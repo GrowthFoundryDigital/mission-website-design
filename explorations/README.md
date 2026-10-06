@@ -2,6 +2,15 @@
 
 Standing rules for the MISSION homepage explorations, agreed with Growth Foundry on 6 Oct 2026. They apply to every lane and every round.
 
+## Canvas
+
+All lanes live on one Design canvas: https://claude.ai/artifact/3vmvJuakcT7WR5rU2gbeLw
+
+| Lane | Round | Status |
+|---|---|---|
+| A | 1 | Homepage desktop, mobile and style sheet published 6 Oct 2026 |
+| B | 1 | Waiting for the second inspiration |
+
 ## The inspirations lead the design
 
 - **The layouts and design of the inspiration screenshots are the point.** Each lane should feel like its inspiration: its grid, rhythm, density, typography and section shapes.
