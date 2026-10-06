@@ -16,9 +16,16 @@ Standing rules for the MISSION homepage explorations, agreed with Growth Foundry
 | A | First screenshot supplied | Relume structure and copy, minus the invented facts flagged in `reviews/relume-wireframe-review.md` |
 | B | Second screenshot supplied | Brief and Business DNA only. Relume ignored. Free to restructure |
 
+## Color
+
+- **The blues are fixed in every lane, whatever the inspiration uses.** Mission Blue #0087C0 and Action Blue #1E73BE carry the brand. Where an inspiration uses another main color, the blues take its place.
+- **Other colors are allowed when they make groups read better.** Examples include telling service tiers apart, marking the Partner Program, or separating sections. Growth Green, Partner Amber and the neutral greys come first. A color from the inspiration is fine if it does the job better.
+- **Supporting colors support.** They never replace blue as the brand color.
+- **Contrast still applies.** White text goes on Action Blue, not on Mission Blue, Green or Amber. Green and Amber carry dark text, or work as fills and accents.
+
 ## Constants across lanes
 
-- The MISSION wordmark and the brand palette: Mission Blue, Growth Green, Action Blue, Partner Amber and the neutral greys.
+- The MISSION wordmark and the color rules above.
 - Typefaces come from each inspiration, matched with a similar web font.
 - The CTA label "Schedule a free consultation", with the phone number beside it.
 - Real testimonials only, word for word.
