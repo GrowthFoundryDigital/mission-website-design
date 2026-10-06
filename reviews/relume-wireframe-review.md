@@ -2,26 +2,26 @@
 
 Prepared by Growth Foundry · 6 Oct 2026
 Reviewed against: the Website Brief (Oct 2026), MISSION's Business DNA, and the Migration Overview discovery artifact.
-Sources: `relume/relume-export-part-1.md`, `-part-2.md`, `-part-3.md`
+Sources: `relume/relume-export-part-1.md` to `relume/relume-export-part-4.md`
 
-> **Status: draft, Parts 1–3 of 4 reviewed.** Reviewed in full: sitemap, navbar, footer, Home, About, Services index and all seven service pages. **Not yet received:** Products, Partner Program and its four subpages, Blog, Contact, Legal. Those sections are marked **PENDING** and are judged from section names only.
+> **Status: complete.** All 23 pages, the navbar, the footer and the Relume style guide are reviewed. 34 of the 103 content sections are empty placeholders in Relume: the Partner Program and its four subpages, the Blog, and the Legal pages. Those are reviewed against what they need to contain.
 
-Relume copy is placeholder. This review judges structure, intent, facts and tone, not final wording. Growth Foundry's copywriter writes the final copy.
+Relume copy is placeholder. This review judges structure, intent, facts and tone, not final wording. Growth Foundry's copywriter writes the final copy. Nothing here is a design decision.
 
 ---
 
-## Summary: the biggest gaps so far
+## Summary: the biggest gaps
 
-1. **Invented facts.** Several claims appear in no source: MISSION founded in 2007, "three principals" owning every file, Bernard as a CFO "since the 1990s", a fixed-fee cleanup model, and specific start times and timelines. The full list is in section 5.
-2. **The copy contradicts how MISSION actually delivers.** "Not a junior with your file" and "every file is owned by one of the three of us" clash with the Business DNA. Account managers do the recurring work, and growing them into advisory is a stated goal.
-3. **A geography filter crept in.** Bookkeeping & Accounting says "established Connecticut businesses" and About says "established local businesses". Discovery says plainly that the ICP is a revenue and maturity filter, not a geography filter.
-4. **The tier-1 page is the weakest page.** Bookkeeping & Accounting sits outside Services, at a URL that collides with a legacy blog path. Its hero is service-first rather than trigger-first. It carries no proof, no team and no "bench".
-5. **Setup doesn't qualify on maturity.** The page never mentions spreadsheets or NetSuite, the two entry routes the brief names. The "established businesses, not startups" line appears only in the meta description.
-6. **Fractional CFO never says it's limited.** The Services index and Advisory pages say "limited capacity". The CFO page itself doesn't.
-7. **Service pages share one thin template.** Every service page is hero, what's included, process, FAQ and CTA. None has proof, a "who this is for, and who it isn't" block, related articles, or a link to the next step in the client journey.
-8. **"Which service do I need?" sends nobody to Bookkeeping & Accounting.** It also leaves out "our bookkeeper left", the strongest trigger in six years of testimonials.
-9. **The homepage services block is a seven-card carousel.** That flattens the confirmed tiers.
-10. **Missing depth proof.** The named extended network, Bernard's full credentials, Google reviews and the three "beliefs" sections are absent.
+1. **Invented facts.** Several claims appear in no source. They include MISSION founded in 2007, "three principals" owning every file, Bernard as a CFO "since the 1990s", a fixed-fee cleanup, office hours, a one-business-day reply promise, and a range of timelines. The full list is in section 5.
+2. **The copy contradicts how MISSION delivers.** "Not a junior with your file", "every file is owned by one of the three of us" and "you will reach one of the partners" all clash with the Business DNA. Account managers do the recurring work, and growing them into advisory is a stated goal.
+3. **Products is an advice page, not a catalog.** The brief calls for a browsable display-only catalog of the 22 products in 7 categories, with a quote request. Relume has a six-item lineup, no product pages, no categories, and no quote form. It also omits hosting and POS. One FAQ answer says MISSION doesn't earn more from bigger versions, which sits awkwardly beside the Partner Program's published Intuit commission.
+4. **A third of the site has no wireframe.** The Partner Program and its four subpages, the Blog, and Legal are empty placeholders. The Partner Program is a live revenue line the brief says to keep working.
+5. **Contact doesn't do the one job the brief gives it.** The brief makes Contact the "Schedule a free consultation" page. The page never uses that phrase, the submit button says "Send message", and the form doesn't qualify on revenue, complexity or trigger.
+6. **The tier-1 page is the weakest page.** Bookkeeping & Accounting sits outside Services, at a URL that collides with a legacy blog path. Its hero is service-first, it adds a Connecticut-only filter the ICP rules out, and it carries no proof.
+7. **Qualification is uneven.** Setup never mentions spreadsheets or NetSuite. Fractional CFO never says it's limited. "Which service do I need?" sends nobody to Bookkeeping & Accounting and omits the strongest trigger, "our bookkeeper left".
+8. **Every service page lacks proof.** None has a testimonial, a case study, a "who this is for" block, related articles, or a link to the next step in the client journey.
+9. **The style guide isn't the brand palette.** Relume built a blue-only scheme, adding Cerulean and Navy and dropping Growth Green, Action Blue, Partner Amber and the neutral greys. Its primary button color fails AA contrast for normal-size text. Typefaces are still undecided.
+10. **Depth proof is missing everywhere.** The named extended network, Bernard's full credentials, Google reviews and the three "beliefs" sections are absent.
 
 ---
 
@@ -41,15 +41,15 @@ Relume copy is placeholder. This review judges structure, intent, facts and tone
 | Fractional CFO | `/services/fractional-cfo` | ✅ |
 | Custom Reporting | `/services/custom-reporting` | ✅ |
 | Point-of-Sale Support | `/services/point-of-sale-support` | ✅ |
-| Products index | `/products` | ✅ PENDING content |
+| Products index | `/products` | ⚠️ Exists, but isn't a catalog |
 | Single product (display-only) | Missing | ❌ Needed for the 22 products |
 | Product category | Missing | ❌ Needed for the 7 categories, or a filter on the index |
-| Partner Program + 4 subpages | `/partner-program` + 4 | ✅ All four kept |
-| Blog index | `/blog` | ✅ |
+| Partner Program + 4 subpages | `/partner-program` + 4 | ⚠️ All four kept, all empty |
+| Blog index | `/blog` | ⚠️ Empty |
 | Single post | Missing | ❌ Template, carries the article CTAs and related-service blocks |
 | Blog category | Missing | ❌ Template |
-| Contact | `/contact` | ⚠️ Reads as a general contact page. See page notes |
-| Legal: Terms, Privacy, Cookies, Returns | `/legal/*` | ✅ |
+| Contact | `/contact` | ⚠️ General contact page rather than the consultation page |
+| Legal: Terms, Privacy, Cookies, Returns | `/legal/*` | ✅ Structure fine, content empty |
 | Legal index | `/legal` | Extra. Harmless, optional |
 | 404 | Missing | ❌ Template, in the brief and the SEO plan |
 | Industry pages, Join Our Team | Not present | ✅ Correctly deferred to later phases |
@@ -63,15 +63,16 @@ Relume models pages, not templates. Single post, blog category, single product, 
 
 ### URL issues to settle before design
 
-- **`/bookkeeping-accounting` collides with a legacy path.** The current site has a `/bookkeeping-accounting/` blog category holding about ten duplicate articles. Those need to redirect to their canonical posts. A new service page at the same path will clash with those redirects.
+- **`/bookkeeping-accounting` collides with a legacy path.** The current site has a `/bookkeeping-accounting/` blog category holding about ten duplicate articles. Those need to redirect to their canonical posts, and a new service page at the same path would clash with those redirects.
 - **The old service URLs need mapping.** The current pages are `/services/bookkeeping`, `/services/quickbooks-setup-services`, `/services/quickbooks-reports`, `/services/point-of-sale-software` and `/services/fractional-cfo-services`. Each needs a 301 to its new page.
 - **The Partner Program moves from `/partners` to `/partner-program`.** Either keep `/partners` or add it to the redirect map.
 - **The partner subpage slugs repeat themselves.** `/partner-program/partner-program-faq` and `/partner-program/apply-to-partner-program` would read better as `/partner-program/faq` and `/partner-program/apply`.
+- **Product URLs.** A few `/product/` pages carry backlinks. The single product template needs URLs that those pages can redirect to cleanly.
 - **Pages from the current site with no new home:** Testimonials and QuickBooks Enterprise Features. Testimonials could redirect to About. Enterprise Features could redirect to Products or a blog post.
 
 ### QuickBooks Training
 
-The brief's offer table lists QuickBooks Training. It has no page in either the approved sitemap or Relume. That's consistent, because Setup now covers training well. The Bookkeeping & Accounting page should mention it too, since the Business DNA lists training as part of that service.
+The brief's offer table lists QuickBooks Training. It has no page in either the approved sitemap or Relume. That's consistent, because Setup and Products both cover training. The Bookkeeping & Accounting page should mention it too, since the Business DNA lists training as part of that service.
 
 ---
 
@@ -92,6 +93,7 @@ The brief's offer table lists QuickBooks Training. It has no page in either the 
 
 - **Add a phone number to the navbar.** Calling the office is a secondary conversion, and this audience calls. A visible number in a utility bar or beside the CTA supports that.
 - **Consider a grouped dropdown.** A flat list of seven gives every service equal weight. Grouping them as core services and specialist services would reflect the tiers without changing the order.
+- **Align the Products label.** The nav says "Products" and the footer says "QuickBooks Products". The footer label is clearer. Use one in both places.
 
 ### Footer
 
@@ -107,6 +109,7 @@ The brief's offer table lists QuickBooks Training. It has no page in either the 
 | Social links | Hidden | ❓ Confirm which profiles exist. Google Business Profile at least, for reviews |
 | Copyright | No © and no year | ⚠️ Add both |
 | Email address | Missing | ❓ Only phone and address. Confirm whether a public email exists |
+| Dark logo | Not uploaded | ⚠️ A reversed wordmark is needed for the dark color schemes |
 
 ---
 
@@ -130,12 +133,12 @@ The brief's offer table lists QuickBooks Training. It has no page in either the 
 
 - **Hero.** Keep the trigger headline, the three proof bullets and the phone button. The body quotes "$1M to $10M a year", but the brief calls that range a guide, not a cutoff. In the hero it reads as a hard filter. Lead with maturity and complexity, and keep the number for the fit sections.
 - **Credibility strip.** It shows Logoipsum placeholders. Keep it only with the real ProAdvisor Elite, Advanced Certified and Intuit reseller badges, used under Intuit's rules. Otherwise cut it and put the credentials into the team section.
-- **Services.** Replace the carousel with a tiered layout. Bookkeeping & Accounting gets the largest card, with Cleanup beside it as the entry point. Setup and Advisory form a second row. Fractional CFO appears as a smaller card marked as limited. Custom Reporting and POS become compact links. The Setup card must qualify on maturity, for example "for established businesses moving off spreadsheets or down from NetSuite".
-- **Tenure.** "Still on the books today" about the 2007 client is not verified, since the testimonial comes from a page last updated in 2020. Say "one since 2007" without claiming it's current, or confirm with MISSION. "29 reviews" will date quickly, so plan for it to be updated or pulled live.
-- **Testimonials.** Merge the tenure stats into this section as the brief suggests. Add the Google rating, a link to the Google profile, and two or three short review excerpts if MISSION approves. The rating isn't in our materials, so don't design around a star figure until we have it.
-- **Industries.** Nonprofits are the highest-volume industry and the first industry page to come, so list them first. Design each card so it can link out later without a layout change. "Labour" should be "labor".
+- **Services.** The seven-card carousel hides most services behind arrows and gives every tier equal weight. The brief's tiers need a layout where Bookkeeping & Accounting leads and Fractional CFO reads as limited. The Setup card must qualify on maturity, for example "for established businesses moving off spreadsheets or down from NetSuite".
+- **Tenure.** "Still on the books today" about the 2007 client is not verified, since the testimonial comes from a page last updated in 2020. Say "one since 2007" without claiming it's current, or confirm with MISSION. "29 reviews" will date quickly, so it needs to be easy to update or pulled live.
+- **Testimonials.** The brief pairs tenure with testimonials and says to lead with Google reviews. Add the Google rating, a link to the Google profile, and two or three short review excerpts if MISSION approves. The rating isn't in our materials yet.
+- **Industries.** Nonprofits are the highest-volume industry and the first industry page to come, so list them first. The cards will need to link out to industry pages later. "Labour" should be "labor".
 - **Team.** "MISSION is a small core team on purpose" leans small. The brief says to read as established without claiming to be large. Lead with the bench instead. Confirm Rob's public title, since the Business DNA gives his responsibilities but no title.
-- **Latest articles.** "More than 300 articles" will be wrong after triage, which keeps about 170 pages. Use a number that stays true, or none. The card titles will come from the live feed.
+- **Latest articles.** "More than 300 articles" will be wrong after triage, which keeps about 170 pages. The same claim appears on About and in the Blog meta description. Use a number that stays true, or none.
 - **Final CTA.** Keep it. "A free consultation with Bernard or Rob" matches how onboarding actually works.
 
 ---
@@ -183,7 +186,7 @@ Covered in section 3.
 - **Testimonials.** These are the same three as the homepage. Use different ones. Jane Didona's "Bernard and Gina have been a great team" is the best proof of the bench, since Gina Palacio is in the network.
 
 **Missing**
-- **The named extended network.** The brief calls the fifteen specialists, named on the current About page with headshots, the main depth proof. Add a network grid with names, firms and credentials.
+- **The named extended network.** The brief calls the fifteen specialists, named on the current About page with headshots, the main depth proof. A network section with names, firms and credentials is needed.
 - **"Why MISSION", the three beliefs.** Complicated work is worth doing, the right team beats the biggest firm, and a bookkeeper leaving is a chance to upgrade. None appear on any page.
 - **Bernard's full credentials.** École Polytechnique, the manufacturing and defense background, and his specialties.
 - **Real certification badges** in place of the Logoipsum placeholders.
@@ -197,8 +200,8 @@ Covered in section 3.
 - **FAQ 5 on minimum size.** It qualifies cleanly and politely, exactly as the brief asks. FAQ 1, "A conversation, not a pitch", also works.
 
 **Change**
-- **The hero's three situations leave out the biggest one.** "Our bookkeeper left, someone has to take over" maps to Bookkeeping & Accounting and is the strongest trigger. Add it as a fourth situation or swap it in.
-- **"Which service do I need?" sends nobody to Bookkeeping & Accounting.** Add a "We need someone to take over the books" column that starts at Bookkeeping & Accounting, with Cleanup first if the books are behind.
+- **The hero's three situations leave out the biggest one.** "Our bookkeeper left, someone has to take over" maps to Bookkeeping & Accounting and is the strongest trigger.
+- **"Which service do I need?" sends nobody to Bookkeeping & Accounting.** Add a situation that starts there, with Cleanup first if the books are behind.
 - **The "software is the problem" column describes fixing a bad setup.** The brief's Setup entry routes are spreadsheets and NetSuite. Name both.
 - **Unconfirmed specifics:** "Weeks, not months" for setup, "usually within a week or two" to start, "most accountants we deal with prefer it", and the file-review step before the scope. Confirm them with Rob, who runs onboarding.
 
@@ -216,12 +219,12 @@ Covered in section 3.
 - **Move it to `/services/bookkeeping-accounting`.** See section 1.
 - **The hero is service-first.** "Your books closed on schedule, by a team that knows QuickBooks" names the service, not the moment. The brief says lead with the trigger. The Business DNA's "built for" line gives the angle: books that are more than one bookkeeper can handle, or a bookkeeper who just left.
 - **"Established Connecticut businesses."** Drop the geography.
-- **"Senior certified people, not a junior with your file."** This contradicts the account-manager model. Replace it with the bench promise, for example "A team of ProAdvisors, with specialists when the work needs them."
+- **"Senior certified people, not a junior with your file."** This contradicts the account-manager model. The bench promise is the accurate version of this claim.
 - **Check the included list against the Business DNA.** Chart of accounts, revenue and expense analysis, tax-information preparation, and QuickBooks setup and training are in the DNA but missing here. Payroll coordination, sales tax by jurisdiction, a fixed close calendar and statements "on the same date each month" are here but not in the DNA. Confirm the added items before they become promises.
 - **"A handful of minutes a month."** This is an unverified claim. Soften it or confirm it.
 
 **Missing**
-- **Anything that shows "Accounting".** Tier 1 is bookkeeping and accounting equally, but the page reads as bookkeeping only. Add a block on the accounting side, such as financial statements, year-end, analysis and lender-ready numbers.
+- **Anything that shows "Accounting".** Tier 1 is bookkeeping and accounting equally, but the page reads as bookkeeping only. The accounting side, such as financial statements, year-end, analysis and lender-ready numbers, needs its own block.
 - **The bench differentiator, testimonials, and the industries served.** This is the page most referrals will land on after the homepage. It needs the most proof, and today it has none.
 
 ### QuickBooks Cleanup
@@ -233,15 +236,15 @@ Covered in section 3.
 - **The CTA**, "scope, fee and timeline, in writing, before anything starts".
 
 **Change**
-- **The process stops at step 3.** It has no ending. Add step 4: the CPA-ready handoff and the move to monthly bookkeeping.
+- **The process stops at step 3.** It has no ending. A step 4 is needed: the CPA-ready handoff and the move to monthly bookkeeping.
 - **"No lecture about how it happened" sits awkwardly beside FAQ 4,** which promises to show where the process broke. Both can be true. Say it without blame, but keep the root-cause promise.
-- **Unconfirmed pricing and timing:** "a fixed project fee… not an open hourly meter", "usually a matter of weeks", and "six months… three years". Pricing model is a commercial decision. Confirm it before it's published.
+- **Unconfirmed pricing and timing:** "a fixed project fee… not an open hourly meter", "usually a matter of weeks", and "six months… three years". The pricing model is a commercial decision, so confirm it before it's published.
 
 **Missing**
 - **"Who it's for."** The brief asks for it explicitly. Name the bookkeeper-left and inherited-books situations, plus the overdue-taxes and lender angles.
 - **A timeline section.** The brief asks for process and timeline. Timing appears only inside an FAQ.
 - **Proof.**
-- **Landing-page treatment.** This is the most likely destination for ads and search, so it should work as a standalone landing page. That means a stronger hero, proof near the top, and a repeated CTA, all within the standard template.
+- **Landing-page strength.** This is the most likely destination for ads and search, so it has to convert on its own: proof near the top and the CTA repeated.
 
 ### QuickBooks Setup & Integration
 
@@ -268,10 +271,10 @@ Covered in section 3.
 - **The CTA**, "sometimes the books come first".
 
 **Change**
-- **"A senior advisor / Who runs it."** The Business DNA says advisory is increasingly delivered by account managers. Confirm how MISSION wants this described. "Your account team, with Bernard's oversight" may be more accurate.
+- **"A senior advisor / Who runs it."** The Business DNA says advisory is increasingly delivered by account managers. Confirm how MISSION wants this described.
 - **The CFO column in the comparison should say "Limited availability".**
 - **"Several days a month" for the CFO here, but "a few days a month" on the CFO page.** Pick one, and confirm it.
-- **"Tax and structure questions"** should stay clearly framed as questions to take to the CPA, as the copy does now. Keep that boundary when the copy is rewritten.
+- **"Tax and structure questions"** should stay clearly framed as questions to take to the CPA, as the copy does now.
 
 **Missing**
 - **Who it's for.** The Business DNA says advisory is built for existing bookkeeping and accounting clients. State that clean, current books come first, and link to Bookkeeping and Cleanup.
@@ -292,8 +295,8 @@ Covered in section 3.
 - **British spellings:** "reorganisation" and "judgement".
 
 **Missing**
-- **Limited availability, stated on the page.** The brief and the Business DNA both say it's offered to a limited number of clients, and the page never says so. Put it in the hero.
-- **Bernard's credentials block.** This service is Bernard, so the page should show him: headshot, Harvard MBA, École Polytechnique, manufacturing and defense, 20+ years of consulting, ProAdvisor Elite.
+- **Limited availability, stated on the page.** The brief and the Business DNA both say it's offered to a limited number of clients, and the page never says so. It belongs in the hero.
+- **Bernard's credentials.** This service is Bernard, so the page should show him: Harvard MBA, École Polytechnique, manufacturing and defense, 20+ years of consulting, ProAdvisor Elite.
 - **Proof.**
 
 ### Custom Reporting
@@ -318,32 +321,99 @@ Covered in section 3.
 
 **Change**
 - **"Till" appears in the H1, a section heading, an item and the FAQ intro.** It's British. Use "register" or "point of sale".
-- **FAQ 4, "We stay independent of the hardware".** MISSION resells Intuit products, and POS appears in the reseller list in the brief. Confirm what MISSION sells before claiming independence. Also check the POS products in the current catalog: Intuit has retired QuickBooks Desktop Point of Sale, so those listings may be out of date.
+- **FAQ 4, "We stay independent of the hardware".** The brief lists POS among the Intuit products MISSION resells. Confirm what MISSION sells before claiming independence.
 - **FAQ 1, "the major retail and restaurant systems".** It's vague. Naming the systems MISSION actually supports would be stronger and better for search.
 
 **Missing**
 - **Proof,** and a link to the Restaurants industry content.
 
 ### Products
-**PENDING.** No single product page or category page exists yet. Check for no prices, no cart, "call for pricing" and a quote request form. "Talk to us before you buy" needs to resolve to a quote request, not the consultation form. Check the POS listings against what Intuit still sells.
+
+**Keep**
+- **The hero idea**, "Buy the QuickBooks that fits, not the one that is easiest to sell". It turns the reseller relationship into advice, which suits the voice.
+- **"Why buy it through the people who keep your books"**, especially "One call for software and books". This is differentiator 2 from the brief, stated well.
+- **FAQ 1, "Can we buy it ourselves…? Of course"** and **FAQ 4** on owning the wrong version. Balanced, and they say when MISSION isn't needed.
+- **No prices and no cart,** as the brief and Intuit's reseller rules require.
+
+**Change**
+- **"Independent advice, not a push toward a cheaper tier."** The logic is inverted. A reseller's conflict would push toward a more expensive tier.
+- **FAQ 2, "Do you make money by recommending a bigger version? No."** MISSION earns an Intuit commission, and the Partner Program publishes that it shares 50% of it. If the commission scales with the order, this answer is inaccurate. Reword it around putting the right fit ahead of the commission, and confirm with MISSION.
+- **The lineup must be checked against Intuit's current range.** Intuit stopped selling new QuickBooks Desktop Pro and Premier subscriptions in the US in 2024, and it retired QuickBooks Desktop Point of Sale in 2023. Enterprise is still sold. Verify the Desktop line and the POS items in today's 22-product catalog before any of them is published.
+- **Simple Start is described as "the right starting point for a very small operation".** That's fine for a catalog entry, but it shouldn't be featured. It speaks to the startups the brief wants to filter out.
+- **The CTA goes to the consultation.** The brief's secondary conversion here is "request a QuickBooks quote". Both have a place, but the quote request is the page's primary action.
+- **"Call for pricing" appears only in the meta description.** It needs to be visible on the page and on every product.
+
+**Missing**
+- **The catalog itself.** The brief calls for today's 22 products in 7 categories as a browsable, display-only catalog with titles, images and "call for pricing".
+- **Hosting, POS and payroll as categories.** The brief lists Online, Desktop, Enterprise, hosting, POS and payroll. Relume covers Online, Desktop and payroll only.
+- **The single product and category templates.** See section 1.
+- **A quote request form,** with product, number of users and a contact field at minimum.
+- **A link to the Returns Policy.** It exists specifically for Intuit products.
 
 ### Partner Program (overview + 4 pages)
-**PENDING.** All four required pages exist. Check that the terms are exactly 50% of MISSION's Intuit commission per order, 25% on a referred colleague's first order, paid monthly, free to join with approval.
+
+All five pages are empty placeholders. Only the section names and SEO fields exist. The SEO descriptions state the terms correctly: 50% of MISSION's Intuit commission on referred orders, 25% on a referred colleague's first order, paid monthly, free to join with approval.
+
+**What the pages need, per the brief and the current `/partners` pages:**
+- **Overview:** who the program is for, the terms stated plainly, how a referral works, an FAQ, and the apply CTA.
+- **How It Works:** the steps from introduction to monthly payment, and what a partner is responsible for.
+- **Commission Examples:** worked examples on real order types. The figures must come from MISSION, since product prices aren't published. One option is to show percentages on an example order value rather than real prices.
+- **FAQ:** joining, approval, payment timing and method, tracking.
+- **Apply:** the application form and what happens after applying.
+
+**Issues to settle before these are wireframed**
+- **What does the program pay for?** The terms cover Intuit software orders. The How It Works SEO description says "referring a client to MISSION", which suggests bookkeeping clients too. Referrals are MISSION's main source of new clients, so this distinction matters.
+- **Who are the partners?** The audience changes the tone and the form. It could be other accountants, IT consultants, or existing clients.
+- **Tracking arrives in Phase 4.** Until then, referrals are tracked by hand. The application and referral forms should capture what Phase 4 will need, such as a partner ID or referral source.
+- **Copy source.** The current four pages already hold the terms, examples and FAQ. Use them as the starting point rather than writing from scratch.
 
 ### Blog
-**PENDING.** "Get the monthly email" conflicts with the weekly newsletter. A podcast block is missing. "Browse by the problem you have" is a good idea, since it maps the blog to the triggers.
+
+All four content sections are empty placeholders.
+
+**What the page needs**
+- **"Browse by the problem you have"** is a good idea and should stay. It maps the blog to the six triggers instead of the old taxonomy.
+- **Categories.** The current site uses technology, planning, customers, expenses and staffing, plus duplicates under bookkeeping-accounting, quickbooks and cfo. The triage should settle the new category set before the category template is designed.
+- **Podcast.** The feed is preserved, and the brief lists subscribing as a secondary conversion. The Blog has no podcast block.
+- **Newsletter.** "Get the monthly email" conflicts with the weekly newsletter in discovery.
+- **The SEO description says "300+ articles… written by our team".** The count will be about 170 after triage, and most articles are bylined by Bernard.
+- **Single post template.** The brief says every article needs contextual CTAs and related-service blocks. The template also needs an author block for Bernard, breadcrumbs, and Article schema.
 
 ### Contact
-**PENDING.** The brief says Contact is the "Schedule a free consultation" page. "Send us a message" suggests a general enquiry form. Lead with the consultation request, with phone and address second.
+
+**Keep**
+- **The SEO title, "Schedule a Free Consultation".** It's the right framing.
+- **The H1 "Tell us where your books stand".** It's situation-led.
+- **The FAQ.** "Who will I actually speak to? Bernard or Rob" matches onboarding. "A recent profit and loss statement helps" is practical.
+- **The error state that offers the phone number.** Good fallback.
+
+**Change**
+- **The page never says "Schedule a free consultation".** The brief makes Contact the consultation page, and every CTA on the site points here. The H2 says "Send us a message" and the button says "Send message". Both should name the consultation.
+- **The form doesn't qualify.** It asks for name, email, a service topic and a message. The brief says to qualify on maturity and complexity. Phone, company and annual revenue band are missing, and so is the trigger, the "what's going on" question.
+- **The topic options are service-led.** The brief says to lead with the trigger. Options such as "Our bookkeeper left" or "We're behind" would match the site's own homepage.
+- **"You will reach one of the partners, not a call centre."** Only Bernard is a partner. "Centre" is British.
+- **Office hours, visits by appointment, longer hours in tax season, and "within one business day".** All unconfirmed. A published response time becomes a promise, so confirm it with Rob.
+- **"Office: Westport, Connecticut."** Use the full address, 36 Cross Highway, Westport, CT 06880, since it's already public in the footer.
+- **"We use your details only to reply to your enquiry."** This stops being true in Phase 2, when leads go into a CRM with email and SMS follow-up. "Enquiry" is British.
+
+**Missing**
+- **The consultation slot.** See section 6.
+- **A separate route for product quotes and partner applications,** so those don't land in the consultation pipeline.
 
 ### Legal
-**PENDING.** Structure is fine.
+
+The index and all four policy pages are empty placeholders. The structure is right, and the SEO descriptions are accurate.
+
+- **The Returns Policy is specific to Intuit products.** It should link from Products and from every product page.
+- **The Cookie Policy must match the consent tool.** Discovery lists CookieYes.
+- **The Privacy Policy must cover Phase 2.** It needs to describe CRM storage, email and SMS follow-up, and SMS consent before GoHighLevel goes live.
+- **The policy text comes from MISSION or its counsel.** It isn't placeholder copy for the copywriter.
 
 ---
 
 ## 5. Voice
 
-Checked so far: navbar, footer, Home, About, Services and all seven service pages.
+Checked: all 23 pages, the navbar and the footer.
 
 | Check | Result |
 |---|---|
@@ -351,8 +421,8 @@ Checked so far: navbar, footer, Home, About, Services and all seven service page
 | "I" instead of "we" | None outside client quotes |
 | Startup-SaaS tone | None. Consultative and plain throughout |
 | Fake testimonials or names | None. All testimonials are verbatim and correctly attributed |
-| Spelling | British usage to correct: labour, authorised, "trading", till, reorganisation, judgement, categorised |
-| Register | Home and some service pages use contractions; About, Bookkeeping and Fractional CFO mostly don't. Pick one |
+| Spelling | British usage to correct: labour, authorised, "trading", till, reorganisation, judgement, categorised, centre, enquiry |
+| Register | Home and some service pages use contractions; About, Bookkeeping, Fractional CFO, Products and Contact mostly don't. Pick one |
 | Size signal | "Small core team on purpose" and "Small on purpose" lean against "read as more established" |
 
 ### Invented or unconfirmed claims
@@ -364,10 +434,13 @@ Each of these needs confirming with MISSION or cutting before the copy is final.
 | Founded in 2007, "closing books since 2007" | About | ❌ Not in any source. 2007 is the longest client relationship |
 | Three "principals" own every file; "not passed down to a junior" | About | ❌ Contradicts the account-manager model |
 | "Senior certified people, not a junior with your file" | Bookkeeping | ❌ Same contradiction |
+| "You will reach one of the partners" | Contact | ❌ Only Bernard is a partner |
 | Bernard has been a CFO "since the 1990s" | Fractional CFO | ❌ Source says 20+ years of consulting |
-| The 2007 client is "still on the books today" | Home | ⚠️ Testimonial is from a page last updated in 2020 |
 | "CFOs on the bench" | About | ❌ No CFOs in the network list |
 | "Connecticut" / "local" businesses | Bookkeeping, About | ❌ The ICP isn't a geography filter |
+| "300+ articles" | Home, About, Blog meta | ❌ About 170 survive triage |
+| No extra money from bigger versions | Products | ❌ Likely inaccurate given the Intuit commission |
+| The 2007 client is "still on the books today" | Home | ⚠️ Testimonial is from a page last updated in 2020 |
 | MISSION doesn't prepare taxes; "we prepare, they file" | About, Services, Bookkeeping, CFO | ⚠️ Unconfirmed. DNA lists tax-information preparation |
 | Cleanup is a fixed project fee | Cleanup | ⚠️ Pricing model unconfirmed |
 | Start "within a week or two"; setup "two to three weeks"; cleanup "a matter of weeks"; reports "a couple of weeks"; "weeks, not months" | Services, Setup, Cleanup, Reporting | ⚠️ Unconfirmed timelines |
@@ -375,38 +448,87 @@ Each of these needs confirming with MISSION or cutting before the copy is final.
 | "A handful of minutes a month" | Bookkeeping | ⚠️ Unconfirmed |
 | "Most accountants we deal with prefer it" | Services | ⚠️ Unconfirmed |
 | Independent of POS hardware | POS | ⚠️ May conflict with the reseller catalog |
-| "300+ articles" | Home, About | ❌ About 170 survive triage |
+| Office hours 9 to 5, longer in tax season; visits by appointment; reply within one business day | Contact | ⚠️ Unconfirmed |
+| QuickBooks Desktop Pro and Premier on sale | Products | ⚠️ Check against Intuit's current lineup |
 
-What works and should carry into final copy: the six trigger cards; "That's the work we prefer"; "If your operation is simple, a good solo bookkeeper will serve you well"; "We're built to be the last bookkeeper change a business has to make"; "Standard reports answer the accountant's questions. Custom reporting answers yours"; and "Your file stays yours… nothing holding you in". These match the brief's voice: specific, balanced, and willing to say "you don't need us".
+What works and should carry into final copy: the six trigger cards; "That's the work we prefer"; "If your operation is simple, a good solo bookkeeper will serve you well"; "We're built to be the last bookkeeper change a business has to make"; "Standard reports answer the accountant's questions. Custom reporting answers yours"; "Your file stays yours… nothing holding you in"; and "Buy the QuickBooks that fits, not the one that is easiest to sell". These match the brief's voice: specific, balanced, and willing to say "you don't need us".
 
 ---
 
 ## 6. Phase 2 readiness (GoHighLevel booking)
 
-Phase 1 launches on native forms. Phase 2 replaces them with GoHighLevel forms and a booking calendar. To make that swap cheap:
+Phase 1 launches on native forms. Phase 2 replaces them with GoHighLevel forms and a booking calendar. These are the requirements the wireframe has to meet for that swap to be cheap.
 
-- **One destination for every consultation CTA.** The navbar, the heroes, the final CTA bands and the service pages should all point to one place, such as `/contact#schedule` or a dedicated `/schedule` page. Every page uses the same two buttons today, so this is easy to enforce.
-- **Design the consultation block as a slot.** At launch it holds a short form: name, email, phone, company, annual revenue band, and "what's going on". In Phase 2 the same slot holds a GoHighLevel calendar embed, which needs roughly 650–750px of height on desktop and full width on mobile. Design both states now.
-- **Carry the source page into the form.** Each service CTA should pass which page it came from, for example as a hidden field or a URL parameter. At launch that tells Rob why the person is calling. In Phase 2 it becomes a GoHighLevel custom field for routing and follow-up.
-- **Keep the revenue band and trigger fields.** They qualify leads at launch and become GoHighLevel custom fields later.
+- **One destination for every consultation CTA.** The navbar, the heroes, the final CTA bands and the service pages all use the same two buttons today. They should all point to one place on Contact. Then the swap happens once, not on 23 pages.
+- **The consultation area on Contact has to hold either a form or a calendar.** At launch it's a short qualifying form. In Phase 2 the same area holds a GoHighLevel calendar embed, which needs roughly 650–750px of height on desktop and full width on mobile. Both states need to be planned now.
+- **The launch form should collect what GoHighLevel will need.** Name, email, phone, company, annual revenue band, and the trigger. Those map directly to CRM custom fields later. Today's form collects only name, email, topic and message.
+- **Carry the source page into the form.** Each service CTA should pass which page it came from. At launch that tells Rob why the person is calling. In Phase 2 it becomes a field for routing and follow-up.
+- **SMS consent.** Phase 2 adds SMS follow-up, and A2P registration requires explicit consent language at the point of capture. Leave room for a consent checkbox and short disclosure under the phone field.
 - **Keep the phone button beside every booking CTA.** It's the fallback when the embed fails to load, and a secondary conversion either way.
-- **Treat other forms the same way.** The footer newsletter, the Products quote request and the Partner application all move to GoHighLevel later. Use one form component so each replacement is a swap, not a redesign.
+- **Treat the other forms the same way.** The footer newsletter, the Products quote request and the Partner application all move to GoHighLevel later. If they share one form pattern, each replacement is a swap rather than a redesign.
 - **Keep the final CTA bands verbal.** The "Single Path Verbal" CTA has buttons only and no inline form. That pattern survives the swap untouched.
+- **Update the privacy line with the swap.** "We use your details only to reply" has to change when leads enter the CRM.
 
 ---
 
 ## 7. Open questions that change the design
 
 1. **Bookkeeping & Accounting URL.** Move it to `/services/bookkeeping-accounting`? This is the recommendation, and it avoids the legacy category path.
-2. **Founding year and team framing.** When was MISSION founded? Can we say "account managers" publicly, or does MISSION prefer another term? This decides the About hero, the stats, and the "who does the work" lines on every service page.
+2. **Founding year and team framing.** When was MISSION founded? Can we say "account managers" publicly, or does MISSION prefer another term? This decides the About hero, the stats, and the "who does the work" lines on every page.
 3. **Taxes.** Does MISSION prepare or file any returns, or is it strictly books plus a hand-off to the CPA? This claim appears on four pages and shapes the overdue-taxes messaging.
-4. **Pricing and timelines.** Is cleanup quoted as a fixed fee? Which timelines is MISSION willing to publish? This decides whether the process sections show durations.
-5. **Newsletter and podcast.** Weekly or monthly? Is the podcast active enough to promote, or is the feed only preserved for SEO?
-6. **Intuit badges.** Do we have the ProAdvisor Elite, Advanced and reseller badge files, and permission to use them? If not, the credibility strip goes.
-7. **Google reviews.** What's the current rating, and can we quote reviews on the site? This decides whether testimonials lead with Google or with the on-site quotes.
-8. **Extended network.** Can all fifteen names, firms and headshots from the current About page be reused?
-9. **POS.** Which POS systems does MISSION support, and does it sell any POS products? This decides the POS FAQ and the POS listings in the catalog.
+4. **Pricing and timelines.** Is cleanup quoted as a fixed fee? Which timelines, office hours and response times is MISSION willing to publish? This decides whether process and contact sections show durations.
+5. **Products catalog.** Which of the 22 products are still current under Intuit's lineup? Should the page lead with the catalog and a quote request, or with advice and a consultation?
+6. **Partner Program scope.** Does it pay only on Intuit software orders, or also on referred bookkeeping clients? Who is it for? This decides the content of all five partner pages.
+7. **Brand palette and type.** Should the site use the provided palette, with Growth Green, Action Blue and Partner Amber, rather than Relume's blue-only scheme? Is Navy an approved addition? Which typefaces does Growth Foundry's brand kit specify?
+8. **Newsletter and podcast.** Weekly or monthly? Is the podcast active enough to promote, or is the feed only preserved for SEO?
+9. **Intuit badges.** Do we have the ProAdvisor Elite, Advanced and reseller badge files, and permission to use them?
+10. **Google reviews.** What's the current rating, and can we quote reviews on the site?
+11. **Extended network.** Can all fifteen names, firms and headshots from the current About page be reused?
+12. **POS.** Which POS systems does MISSION support, and does it sell any POS products?
 
 ---
 
-*Part 4 of the export will complete Products, Partner Program, Blog, Contact and Legal.*
+## Appendix: Relume style guide vs the brand palette
+
+This records what Relume set up. It is not a design recommendation.
+
+### Colors
+
+| Brand palette (provided) | In Relume |
+|---|---|
+| Mission Blue #0087C0, primary | ✅ As "Neutral", and as the base of the neutral ramp |
+| Growth Green #66B653, secondary | ❌ Absent |
+| Action Blue #1E73BE, accent | ❌ Absent. Relume uses Cerulean #0082C1, a near-duplicate of Mission Blue |
+| Partner Amber #E09506 | ❌ Absent |
+| Headline Black #111111, Ink #333333, Slate #666666 | ❌ Replaced by blue-tinted darks: headings #00141D, text #004866 |
+| Mist #F4F4F4, Hairline #EEEEEE, White | ⚠️ White kept. Greys replaced by pale blues #EFF7FB and #EDF7FB |
+| — | ➕ Navy #0A3352 added. Not in the brand palette |
+
+The result is a single-hue blue scheme. The brand palette is a blue primary with a green secondary, a separate action blue, amber, and true neutral greys.
+
+### Contrast, measured with WCAG 2 ratios
+
+| Pair | Ratio | Normal text (4.5:1) |
+|---|---|---|
+| White on Relume Cerulean #0082C1, the primary button | 4.23 | ❌ Fails |
+| White on Mission Blue #0087C0 | 4.02 | ❌ Fails |
+| White on Action Blue #1E73BE | 4.94 | ✅ Passes |
+| Cerulean #0082C1 link text on white | 4.23 | ❌ Fails |
+| Relume accent #006798 on white | 6.19 | ✅ Passes |
+| Relume body text #004866 on white | 9.91 | ✅ Passes |
+| Ink #333333 on white | 12.63 | ✅ Passes |
+| Growth Green #66B653 on white | 2.51 | ❌ Fails |
+| Partner Amber #E09506 on white | 2.48 | ❌ Fails |
+| Headline Black #111111 on Growth Green | 7.54 | ✅ Passes |
+| Headline Black #111111 on Partner Amber | 7.62 | ✅ Passes |
+
+Relume's button is 16px at weight 500, which counts as normal text, so its primary button and link color fail AA. Action Blue passes AA for normal text with white, at 4.94:1. That corrects my earlier note, which said it passed only for large text. Growth Green and Partner Amber can't carry white or colored text on white, but dark text on them passes comfortably.
+
+### Typography
+
+- **Relume assigned Open Sans at weight 800 for headings and Source Sans 3 for body.** Source Serif 4 is loaded but unused.
+- **These are Relume's choices.** The brief says Growth Foundry holds the brand typography, and it hasn't been supplied yet. Treat these as unconfirmed.
+
+### Logo
+
+- **Only the light, blue wordmark is uploaded.** Relume's dark schemes 3 and 4 and any dark footer need a reversed white version. The supplied SVG is single-color, so a white version is straightforward to produce.
