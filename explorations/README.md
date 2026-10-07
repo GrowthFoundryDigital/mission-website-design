@@ -77,3 +77,15 @@ Agreed on the canvas, to carry into later rounds of Lane C:
 - **Hero typing animation:** "We handle" stays fixed. The highlighted line types and deletes through "the messy work.", "the hard part.", "the backlog.", "the cleanup." and "the numbers.", with a blinking Action Blue caret. Screen readers get the static first phrase, and so does anyone with reduced motion turned on. The eyebrow above it is now "Accounting for complicated businesses" (Growth Foundry's edit).
 - **Certifications section:** Growth Foundry moved it to sit right after "You didn't build a business…". On desktop, the badges are in padded white tiles in the wider left column (four across), and the text is on the right: the eyebrow "Certified by Intuit", the heading "QuickBooks credentials you can check." and a link to Intuit's ProAdvisor directory (Bernard's profile, new tab). On mobile, the tiles are three across. There are eight badges: 4 × 2 on desktop, 3 × 3 on mobile.
 - **Footer social links:** three round outline icon buttons under the address, opening in a new tab. Facebook (MissionAccounting) and LinkedIn (company/mission-quickbooks) are company pages. X (twitter.com/BernardRoesch) is Bernard's personal profile, and its label says so.
+
+## Lane D decisions (7 Oct 2026)
+
+Built from `content-baseline.md` on inspiration 3. Content only carried from Lane C; the look comes from the inspiration.
+
+- **Type:** DM Sans for everything, with one Instrument Serif Italic line in each heading, as the inspiration pairs a sans with an italic serif. Stat numbers and row numbers are also Instrument Serif Italic.
+- **Color:** Mission Navy stands in for the inspiration's forest green (dark panels, tiles, headings). Action Blue is the italic line on light grounds, the buttons, links and icons. Sky #7CB8F0 stands in for the inspiration's lime on navy. The cream ground #F6F5F0 is kept.
+- **Buttons:** pills with a white circled arrow, as in the inspiration. Lane C's 10 px radius was a Lane C decision only.
+- **Section order:** hero → stats band → value proposition (three numbered rows) → certifications (badges in the white card, industries row below) → the six triggers as glass cards on a navy-tinted photo banner → services as six numbered rows with service tags → team card with two testimonials → contact form on navy with the FAQ beside it → blog as the inspiration's four-column strip with diagonal photo wedges → footer. The stats moved up under the hero and the FAQ moved beside the form because the inspiration's layouts fit them there.
+- **Second testimonial:** Jacquie Herz, Jornik Manufacturing, from the Relume export. Initials circles stand in for reviewer photos, since the three headshots aren't identified.
+- **Photos:** hero at the right of the hero; the old laptop hero in the stats band; reviewing-papers tinted behind the triggers; the team photo in the team card; consultation desk, thinking-at-laptop and construction crew as the blog wedges.
+- **Not carried:** the green highlighter, the typing animation, the mesh gradients and the carousel.
