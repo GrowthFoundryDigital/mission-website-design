@@ -56,3 +56,7 @@ Agreed on the canvas, to carry into later rounds of Lane C:
 - **Buttons:** Action Blue with a 10 px corner radius, not pills. Tags and chips stay pill-shaped.
 - **Headings and stat numbers:** Source Serif 4 Bold.
 - **Navy:** kept only for the first journey step card and the avatar circle.
+- **Hero headline:** "We handle *the messy work.*", all in near-black (#111111), with the italic phrase kept. Tight line height: 0.84 on desktop, 0.86 on mobile.
+- **Hero overlay:** a white gradient that runs from solid white over the bottom 20% to transparent at the top.
+- **Trust strip:** a plain white background, with no gradient.
+- **Highlighter:** a hand-drawn Growth Green swipe (#B6E2BC) behind the lower half of the words. It's used on the hero phrase and on one phrase in every other section heading: "manage its books", "long clients stay", "complicated operations" and "Plain-English answers". It's never used on dark backgrounds, and never on more than one phrase per section.
