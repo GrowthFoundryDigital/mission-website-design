@@ -60,3 +60,6 @@ Agreed on the canvas, to carry into later rounds of Lane C:
 - **Hero overlay:** a white gradient that runs from solid white over the bottom 20% to transparent at the top.
 - **Trust strip:** a plain white background, with no gradient.
 - **Highlighter:** a hand-drawn Growth Green swipe (#B6E2BC) behind the lower half of the words. It's used on the hero phrase and on one phrase in every other section heading: "manage its books", "long clients stay", "complicated operations" and "Plain-English answers". It's never used on dark backgrounds, and never on more than one phrase per section.
+- **Google reviews:** show the 5.0 average, never the total. In the hero, three overlapping headshots replace the star icon, with the starred headshot last, on top, at the right. The proof stat tile reads "5.0 · Average rating across our Google reviews".
+- **Hero photo:** no quote card over it.
+- **Section backgrounds:** the trust strip, From behind to ahead, the stats, the team story and the blog are plain white. Value proposition fades to white over the bottom 20%. Clear books, How it works and the FAQ fade to white at the top and bottom edges. How it works and the FAQ keep a 50% white veil in the middle, and the FAQ gradient is mirrored left to right.
