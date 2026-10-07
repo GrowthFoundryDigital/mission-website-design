@@ -9,7 +9,7 @@ All lanes live on one Design canvas: https://claude.ai/artifact/3vmvJuakcT7WR5rU
 | Lane | Round | Status |
 |---|---|---|
 | A | 1 | Homepage desktop, mobile and style sheet published 6 Oct 2026 |
-| B | 1 | Waiting for the second inspiration |
+| B | 1 | Homepage desktop and mobile published 7 Oct 2026. Same inspiration as Lane A, so the lanes isolate the content variable |
 
 ## The inspirations lead the design
 
@@ -23,7 +23,7 @@ All lanes live on one Design canvas: https://claude.ai/artifact/3vmvJuakcT7WR5rU
 | Lane | Inspiration | Content source |
 |---|---|---|
 | A | First screenshot supplied | Relume structure and copy, minus the invented facts flagged in `reviews/relume-wireframe-review.md` |
-| B | Second screenshot supplied | Brief and Business DNA only. Relume ignored. Free to restructure |
+| B | Same first screenshot (decided 7 Oct 2026) | Brief and Business DNA only. Relume ignored. Free to restructure. Shares Lane A's type and color so only content changes |
 
 ## Color
 
