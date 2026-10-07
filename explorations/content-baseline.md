@@ -78,7 +78,6 @@ These are content and order decisions, not visual style.
 - Who holds each ProAdvisor badge: Bernard alone, or the team. The copy says "our ProAdvisors".
 - Who the three review headshots are: real reviewers, or team members.
 - Whether MISSION has a company X account.
-- Whether MISSION serves retail, wholesale and distribution, and franchise groups. Lane D added these as predictions, with drafted one-line descriptors.
 - Rob's title, permission to name clients, and the newsletter cadence. These are still open from the review's 12 questions.
 
 ## How the next lane (Lane D) uses this
