@@ -92,7 +92,7 @@ Built from `content-baseline.md` on inspiration 3. Content only carried from Lan
 - **Industries row:** rebalanced after Mobbin research into six equal cards: the five industries plus a navy CTA card, "Schedule a free consultation". Each industry card has an icon, the name and the Relume one-line descriptor, with "labor" spelled the US way. Nonprofits comes first, labeled "Our largest industry". The "Not on the list?" consultation link sits directly under the paragraph. Desktop is a 3 by 2 grid, and mobile stacks the cards in one column. Three predicted industries (retail, wholesale and distribution, franchise groups) were tried and removed. The twin-chevron marks above the triggers banner and the contact section were removed.
 - **Hero:** dark mode at the user's request, on desktop and mobile. It has a Mission Navy ground, white headline, light body text, and sky-blue eyebrow and checks. The header stays cream for now.
 - **Hover effects (7 Oct):** every clickable element responds on hover, keyboard focus and tap, with motion off for reduced-motion users.
-  - Cut buttons brighten, and their arrow square nudges up and right.
+  - Cut buttons brighten, and their arrow nudges up and right. Button arrows are plain white with no square behind them, at the user's request. The CTA card keeps its icon square to match the industry cards.
   - The CTA card brightens and its arrow moves.
   - Service tags fill sky tint with a blue edge.
   - Footer social squares turn navy.
