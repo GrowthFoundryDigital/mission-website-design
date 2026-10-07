@@ -99,6 +99,7 @@ On every lane, A to F, each solid button that says Schedule and carried an icon 
 The first Lane F, built on inspiration 5 (a fintech homepage on cream with a ringed gradient and pill buttons), was rejected and replaced. The current Lane F is built from `content-baseline.md` on inspiration 6, a mobile wallet homepage that alternates near-black and white sections. Content only; the look comes from the inspiration. Lane D's refinements stay out, as with Lane E. The button color review toggle is on desktop and both mobile boards.
 
 - **Not used, on request:** the inspiration's angled section dividers. Every section edge is straight.
+- **Call button:** the hero's outline button shows a phone icon and the number, without "Or call", by request. The line beside the form's submit button still reads "Or call".
 - **Logo:** the MISSION blue logo (#0087C0) in the header and the footer, on the navy, by request. The white logo is not used in this lane.
 - **Buttons:** sky with a plain navy arrow after the label. The navy square the inspiration puts behind the arrow was removed on request, in both toggle modes.
 - **Dark sections:** Deep Navy #081E3A replaces the near-black, as chosen. Sky #7CB8F0 takes the place of the inspiration's lime: buttons, the floating cards, the checks and the eyebrows on navy. Mission Navy is the button text and arrow, the dark cards and the phone-shaped frames.
