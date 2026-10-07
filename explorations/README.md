@@ -90,6 +90,18 @@ Lanes C, D and E each have a review bar at the top of the desktop homepage: "Rev
 - **Mobile heights, measured:** C 10,465 px, D 11,943 px, E 11,457 px including the bar. The continuation boards are 2,625 px (C), 4,103 px (D) and 3,617 px (E). Lane C's continuation board had been sized from an estimate of about 13,240 px and showed roughly 2,800 px of blank space below the footer; it now fits.
 - **Before launch:** the bar is a review control, not part of the design. Remove it, or hide it, for any client-facing build.
 
+## Lane F decisions (7 Oct 2026)
+
+Built from `content-baseline.md` on inspiration 5, a fintech homepage on cream. Content only; the look comes from the inspiration. Lane D's refinements stay out, as with Lane E. Lane F carries the button color review toggle from the start, on desktop and both mobile boards.
+
+- **Type:** Instrument Sans, after the inspiration's grotesk. Headings are Medium weight, one color, centered in the hero and the value section, left-aligned elsewhere.
+- **Color:** a ringed sky gradient (Action Blue to Sky to pale blue, with white rings) replaces the inspiration's lime and cyan, behind the hero, inside the service cards and rising into the footer. Mission Navy replaces the black on pill buttons, the announcement bar and the industries panel. The footer is deep navy. The cream ground #F7F5EF is kept.
+- **Shapes:** pill buttons, as in the inspiration. Hairline white cards at 14 px radius.
+- **Section order:** announcement bar (5.0 Google rating and Certified by Intuit) → header and centered hero with one button → the eight badges where the inspiration has its logo strip → services in four tier cards with gradient panels holding the service chips, Fractional CFO tagged limited → software chips converging into one point, then the value statement with its three columns → the six triggers as photo cards, using the seven photos as mood images → team and proof as customer-style cards: team photo with the bench copy, 5.0 with headshots, 10+, 2007, two quotes → how we work, with the industries in a dark panel where the inspiration shows code → FAQ in two columns → blog cards → call to action on a glow rising into the footer, with the phone as an outline pill → footer.
+- **Judgment calls to check:** the trigger photos are mood images and don't depict the triggers. The hero has one button, per the baseline's removal of the second. Industries are shown in a dark panel with the Relume descriptors.
+- **Heights, measured:** desktop 7,188 px. Mobile 11,367 px; the continuation board is 3,527 px including its 40 px toggle bar.
+- **Fix found on the way:** full-width mobile buttons overflowed the 390 px board by their side padding, in Lane F and in Lane E. A box-sizing rule fixes both. Lane E's mobile page now measures 11,445 px, and its continuation board is 3,605 px.
+
 ## Lane E decisions (7 Oct 2026)
 
 Built from `content-baseline.md` on inspiration 4, a fintech homepage. Content only carried from the baseline; the look comes from the inspiration. Lane D's later refinements (six industry cards, the removed stats band, the dark hero, the angle system) were left out so each lane stays a clean comparison.
