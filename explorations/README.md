@@ -46,3 +46,13 @@ All lanes live on one Design canvas: https://claude.ai/artifact/3vmvJuakcT7WR5rU
 ## Round one scope
 
 Homepage at desktop and mobile width, plus a small style sheet per lane.
+
+## Lane C decisions (7 Oct 2026)
+
+Agreed on the canvas, to carry into later rounds of Lane C:
+
+- **Hero photo:** the man working on a laptop, matching the inspiration's hero.
+- **Call to action:** merged into the dark footer, which has rounded top corners, as in the inspiration. The light call-to-action background is unused.
+- **Buttons:** Action Blue with a 10 px corner radius, not pills. Tags and chips stay pill-shaped.
+- **Headings and stat numbers:** Source Serif 4 Bold.
+- **Navy:** kept only for the first journey step card and the avatar circle.
