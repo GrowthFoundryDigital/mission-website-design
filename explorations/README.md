@@ -84,7 +84,10 @@ Lanes C, D and E each have a review bar at the top of the desktop homepage: "Rev
 
 - **Covered buttons:** every filled button. That's 9 in Lane C (including the white "Read all articles" and "Subscribe"), 7 in Lane D and 8 in Lane E. Carousel arrows, text links, tags and cards don't change.
 - **Default:** Blue, which is each lane's original.
-- **Scope:** desktop only, as chosen. The bar adds 40 px, so the desktop boards are now 7,008 px (C), 7,736 px (D) and 7,996 px (E).
+- **Scope:** desktop and mobile. The bar adds 40 px, so the desktop boards are now 7,008 px (C), 7,736 px (D) and 7,996 px (E).
+- **Mobile:** the first mobile board and the continuation board each have their own bar. The boards of one lane stay in step through a browser broadcast channel, so a click on any of them switches that lane's desktop and both mobile boards. If the canvas blocks the channel, each board still toggles on its own. The mobile boards are now interactive so the bar can be clicked.
+- **Green hover:** the same #C1F432 at 90% opacity, with no brightening.
+- **Mobile heights, measured:** C 10,465 px, D 11,943 px, E 11,457 px including the bar. The continuation boards are 2,625 px (C), 4,103 px (D) and 3,617 px (E). Lane C's continuation board had been sized from an estimate of about 13,240 px and showed roughly 2,800 px of blank space below the footer; it now fits.
 - **Before launch:** the bar is a review control, not part of the design. Remove it, or hide it, for any client-facing build.
 
 ## Lane E decisions (7 Oct 2026)
