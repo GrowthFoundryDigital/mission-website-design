@@ -78,6 +78,15 @@ Agreed on the canvas, to carry into later rounds of Lane C:
 - **Certifications section:** Growth Foundry moved it to sit right after "You didn't build a business…". On desktop, the badges are in padded white tiles in the wider left column (four across), and the text is on the right: the eyebrow "Certified by Intuit", the heading "QuickBooks credentials you can check." and a link to Intuit's ProAdvisor directory (Bernard's profile, new tab). On mobile, the tiles are three across. There are eight badges: 4 × 2 on desktop, 3 × 3 on mobile.
 - **Footer social links:** three round outline icon buttons under the address, opening in a new tab. Facebook (MissionAccounting) and LinkedIn (company/mission-quickbooks) are company pages. X (twitter.com/BernardRoesch) is Bernard's personal profile, and its label says so.
 
+## Button color review toggle (7 Oct 2026)
+
+Lanes C, D and E each have a review bar at the top of the desktop homepage: "Review · button color" with Blue and Green #C1F432. It switches every solid button between its original color and the inspiration's green, with navy text. Growth Foundry chose a toggle over duplicate boards, so the client can switch it themselves once there's a way for them to review.
+
+- **Covered buttons:** every filled button. That's 9 in Lane C (including the white "Read all articles" and "Subscribe"), 7 in Lane D and 8 in Lane E. Carousel arrows, text links, tags and cards don't change.
+- **Default:** Blue, which is each lane's original.
+- **Scope:** desktop only, as chosen. The bar adds 40 px, so the desktop boards are now 7,008 px (C), 7,736 px (D) and 7,996 px (E).
+- **Before launch:** the bar is a review control, not part of the design. Remove it, or hide it, for any client-facing build.
+
 ## Lane E decisions (7 Oct 2026)
 
 Built from `content-baseline.md` on inspiration 4, a fintech homepage. Content only carried from the baseline; the look comes from the inspiration. Lane D's later refinements (six industry cards, the removed stats band, the dark hero, the angle system) were left out so each lane stays a clean comparison.
