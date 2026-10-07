@@ -16,3 +16,7 @@ Supplied by Growth Foundry on 6 Oct 2026 for the design explorations. These are 
 - **The wide consultation photo has horizontal light streaks** across it. They work as atmosphere but may need a crop so they don't cut through headline text.
 - **None of the photos show the client industries.** The brief asks for construction, restaurant and nonprofit settings. Those will still need images or labelled placeholders.
 - **The cast skews young and casually dressed.** The ICP is owners of established businesses. Pair the photos with the real team headshots so the site doesn't read as a startup.
+
+## Added 7 Oct 2026
+
+- `thinking-at-laptop.webp`: a man thinking at a laptop in a sunlit open office, with a colleague walking past in motion blur. Supplied by Growth Foundry. It's the featured image for the blog post "Is automated accounting software the future of financial accounting?" in Lane C. It's not MISSION staff, so don't caption it as the team.
