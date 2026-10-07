@@ -79,3 +79,11 @@ These are content and order decisions, not visual style.
 - Who the three review headshots are: real reviewers, or team members.
 - Whether MISSION has a company X account.
 - Rob's title, permission to name clients, and the newsletter cadence. These are still open from the review's 12 questions.
+
+## How the next lane (Lane D) uses this
+
+Decided 7 Oct 2026:
+
+- **Carry content only.** The copy, imagery, badges, links and removals above carry over. The new inspiration screenshot sets the layout, type and visual style. The blue brand colors stay, as with every lane.
+- **Section order:** start from the order above, but reorder, merge or add sections where the inspiration suggests a better flow. Never add invented facts.
+- **Canvas:** a new Lane D row below Lane C, with the inspiration, desktop, mobile and a style sheet. Lane C stays unchanged for comparison.
