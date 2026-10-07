@@ -91,6 +91,17 @@ Built from `content-baseline.md` on inspiration 3. Content only carried from Lan
 - **Stats band:** removed at the user's request, on desktop and mobile. It had held 10+, the laptop photo, 2007 and 5.0. The 5.0 Google rating stays in the hero, and the tenure proof now lives only in Jacquie Herz's testimonial.
 - **Industries row:** rebalanced after Mobbin research into six equal cards: the five industries plus a navy CTA card, "Schedule a free consultation". Each industry card has an icon, the name and the Relume one-line descriptor, with "labor" spelled the US way. Nonprofits comes first, labeled "Our largest industry". The "Not on the list?" consultation link sits directly under the paragraph. Desktop is a 3 by 2 grid, and mobile stacks the cards in one column. Three predicted industries (retail, wholesale and distribution, franchise groups) were tried and removed. The twin-chevron marks above the triggers banner and the contact section were removed.
 - **Hero:** dark mode at the user's request, on desktop and mobile. It has a Mission Navy ground, white headline, light body text, and sky-blue eyebrow and checks. The header stays cream for now.
+- **Hover effects (7 Oct):** every clickable element responds on hover, keyboard focus and tap, with motion off for reduced-motion users.
+  - Cut buttons brighten, and their arrow square nudges up and right.
+  - The CTA card brightens and its arrow moves.
+  - Service tags fill sky tint with a blue edge.
+  - Footer social squares turn navy.
+  - Nav links turn blue with an underline. Footer links and the phone links also respond.
+  - Text links slide their arrow right.
+  - FAQ questions turn sky blue, and closed items rotate their plus.
+  - Service rows turn the title blue and fill the arrow square.
+  - Blog posts underline the title on top of the wedge animation.
+  - Form fields show a sky underline on focus.
 - **Blog strip (desktop):** detached from the contact section by an 88 px cream gap. "Read all articles" sits directly under the heading. On hover or keyboard focus, each post's diagonal photo cut tips the other way over 0.7 s, and the motion is off for reduced-motion users. The board is set to interactive so the hover works on the canvas. Mobile already had both changes and was left alone.
 - **Style sheet:** the twin chevrons were removed from the sample stat tile, matching the homepage.
 - **Desktop height:** the board's auto-fill setting does not grow it to fit, so the stored height must match the page. A local render at 1,440 px measured Lane D at 7,908 px, then 7,996 px with the blog gap, and Lane C at 6,967 px. The boards are now 7,696 px (after the stats band was removed) and 6,968 px; both had been 6,900 px and were clipping the footer.
