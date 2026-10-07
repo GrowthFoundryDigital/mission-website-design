@@ -1,2 +1,3 @@
 
 - `inspiration-3.webp`: Lane D. A consulting homepage with a cream ground, deep forest-green panels, sans headlines with one italic serif line, a four-tile stats band, numbered service rows, a tinted full-bleed photo banner, a dark contact form and a four-column strip with diagonal photo wedges. Supplied by Growth Foundry on 7 Oct 2026.
+- `inspiration-4.webp`: Lane E. A fintech homepage with a near-black purple hero, centered headlines, floating product cards that straddle the hero edge, a logo strip, three feature cards with mockup panels, alternating big-stat rows, a dark bento grid, a two-column FAQ, a connected icon constellation, a lime call-to-action block that straddles into the footer, and a dark four-column footer. Supplied by Growth Foundry on 7 Oct 2026.
