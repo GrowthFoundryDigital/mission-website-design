@@ -82,8 +82,8 @@ Agreed on the canvas, to carry into later rounds of Lane C:
 
 Built from `content-baseline.md` on inspiration 3. Content only carried from Lane C; the look comes from the inspiration.
 
-- **Type:** DM Sans for everything, with one Instrument Serif Italic line in each heading, as the inspiration pairs a sans with an italic serif. Stat numbers and row numbers are also Instrument Serif Italic.
-- **Color:** Mission Navy stands in for the inspiration's forest green (dark panels, tiles, headings). Action Blue is the italic line on light grounds, the buttons, links and icons. Sky #7CB8F0 stands in for the inspiration's lime on navy. The cream ground #F6F5F0 is kept.
+- **Type:** DM Sans for everything. The inspiration's italic serif second line was tried and dropped: headings are one weight and one color, with no italic line, and the two-tone grey-and-navy statements are plain navy. Stat numbers and row numbers are DM Sans Semibold.
+- **Color:** Mission Navy stands in for the inspiration's forest green (dark panels, tiles, headings). Action Blue is the buttons, links, icons and row numbers. Sky #7CB8F0 stands in for the inspiration's lime on navy, for eyebrows and numbers. The cream ground #F6F5F0 is kept.
 - **Buttons:** pills with a white circled arrow, as in the inspiration. Lane C's 10 px radius was a Lane C decision only.
 - **Section order:** hero → stats band → value proposition (three numbered rows) → certifications (badges in the white card, industries row below) → the six triggers as glass cards on a navy-tinted photo banner → services as six numbered rows with service tags → team card with two testimonials → contact form on navy with the FAQ beside it → blog as the inspiration's four-column strip with diagonal photo wedges → footer. The stats moved up under the hero and the FAQ moved beside the form because the inspiration's layouts fit them there.
 - **Second testimonial:** Jacquie Herz, Jornik Manufacturing, from the Relume export. Initials circles stand in for reviewer photos, since the three headshots aren't identified.
