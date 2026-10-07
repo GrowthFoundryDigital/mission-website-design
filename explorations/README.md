@@ -80,6 +80,8 @@ Agreed on the canvas, to carry into later rounds of Lane C:
 
 ## Lane D decisions (7 Oct 2026)
 
+**Status:** the user called Lane D good enough on 7 Oct. Lane E comes next, from a new inspiration screenshot.
+
 Built from `content-baseline.md` on inspiration 3. Content only carried from Lane C; the look comes from the inspiration.
 
 - **Type:** DM Sans for everything. The inspiration's italic serif second line was tried and dropped: headings are one weight and one color, with no italic line, and the two-tone grey-and-navy statements are plain navy. Stat numbers and row numbers are DM Sans Semibold.
