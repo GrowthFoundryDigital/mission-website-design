@@ -90,6 +90,10 @@ Lanes C, D and E each have a review bar at the top of the desktop homepage: "Rev
 - **Mobile heights, measured:** C 10,465 px, D 11,943 px, E 11,457 px including the bar. The continuation boards are 2,625 px (C), 4,103 px (D) and 3,617 px (E). Lane C's continuation board had been sized from an estimate of about 13,240 px and showed roughly 2,800 px of blank space below the footer; it now fits.
 - **Before launch:** the bar is a review control, not part of the design. Remove it, or hide it, for any client-facing build.
 
+## Schedule buttons lead with a calendar (7 Oct 2026)
+
+On every lane, A to F, each solid button that says Schedule and carried an icon now shows a calendar icon on the left instead of an arrow on the right. The calendar takes the text color. Lane D's calendar has square corners, and the arrow's hover nudge is off for these buttons. Text links and cards that mention scheduling keep their arrows: Lane D's "Not on the list?" link and navy CTA card, and Lane E's text link and sky tile.
+
 ## Lane F decisions (7 Oct 2026, rebuilt the same day)
 
 The first Lane F, built on inspiration 5 (a fintech homepage on cream with a ringed gradient and pill buttons), was rejected and replaced. The current Lane F is built from `content-baseline.md` on inspiration 6, a mobile wallet homepage that alternates near-black and white sections. Content only; the look comes from the inspiration. Lane D's refinements stay out, as with Lane E. The button color review toggle is on desktop and both mobile boards.
