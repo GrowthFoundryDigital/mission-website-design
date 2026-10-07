@@ -63,3 +63,5 @@ Agreed on the canvas, to carry into later rounds of Lane C:
 - **Google reviews:** show the 5.0 average, never the total. In the hero, three overlapping headshots replace the star icon, with the starred headshot last, on top, at the right. The proof stat tile reads "5.0 · Average rating across our Google reviews".
 - **Hero photo:** no quote card over it.
 - **Section backgrounds:** the trust strip, From behind to ahead, the stats, the team story and the blog are plain white. Value proposition fades to white over the bottom 20%. Clear books, How it works and the FAQ fade to white at the top and bottom edges. How it works and the FAQ keep a 50% white veil in the middle, and the FAQ gradient is mirrored left to right.
+- **Journey cards:** soft mesh gradients, made of three layered radial glows over each card's existing color (navy, sky, white, green), as in inspiration 2. Text colors are unchanged. White text on the navy card stays above about 6:1 contrast at its lightest point.
+- **Team section (desktop):** photo on the left, text on the right. The stats section now sits after the team section on desktop. Mobile still has the original order.
