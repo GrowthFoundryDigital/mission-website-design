@@ -47,6 +47,10 @@ All lanes live on one Design canvas: https://claude.ai/artifact/3vmvJuakcT7WR5rU
 
 Homepage at desktop and mobile width, plus a small style sheet per lane.
 
+## Content baseline
+
+The next lane starts from [`content-baseline.md`](content-baseline.md). It lists every addition, change and removal since the original materials, with the source of each. Where it disagrees with the brief, the Business DNA or the Relume export, it wins.
+
 ## Lane C decisions (7 Oct 2026)
 
 Agreed on the canvas, to carry into later rounds of Lane C:
