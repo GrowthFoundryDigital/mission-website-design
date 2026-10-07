@@ -70,3 +70,4 @@ Agreed on the canvas, to carry into later rounds of Lane C:
 - **Proof section copy:** the heading is "Clients stay for years." (highlighter on "stay for years"). The body is just "Several clients have worked with us for more than a decade."
 - **Blog cards:** photos in 16:9 frames. They're the old laptop hero, the consultation-desk photo and the construction crew.
 - **Team photo testimonial:** a light white-mesh quote card instead of the dark glass strip.
+- **Hero typing animation:** "We handle" stays fixed. The highlighted line types and deletes through "the messy work.", "the hard part.", "the backlog.", "the cleanup." and "the numbers.", with a blinking Action Blue caret. Screen readers get the static first phrase, and so does anyone with reduced motion turned on. The eyebrow above it is now "Accounting for complicated businesses" (Growth Foundry's edit).
