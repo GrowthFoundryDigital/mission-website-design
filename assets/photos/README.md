@@ -19,5 +19,5 @@ Supplied by Growth Foundry on 6 Oct 2026 for the design explorations. These are 
 
 ## Added 7 Oct 2026
 
-- `thinking-at-laptop.webp`: a man thinking at a laptop in a sunlit open office, with a colleague walking past in motion blur. Supplied by Growth Foundry. It's the featured image for the blog post "Is automated accounting software the future of financial accounting?" in Lane C. It's not MISSION staff, so don't caption it as the team.
+- `thinking-at-laptop.webp`: a man thinking at a laptop in a sunlit open office, with a colleague walking past in motion blur. Supplied by Growth Foundry. It was briefly the featured image for the Lane C blog post "Is automated accounting software the future of financial accounting?", then swapped back to a gradient because it looked too similar to the hero photo. It's unused for now. It's not MISSION staff, so don't caption it as the team.
 - `hero-thinking-at-desk.webp`: a man in glasses thinking at a laptop, with a "Q3" checklist on the whiteboard behind him and a colleague walking past in motion blur. Supplied by Growth Foundry. It's the Lane C hero photo, replacing the earlier laptop photo. It's not MISSION staff. The whiteboard text ("Revenue, Marketing, Product, Hiring") is readable, so keep headline copy from implying it's a MISSION planning board.
