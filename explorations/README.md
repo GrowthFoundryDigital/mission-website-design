@@ -10,6 +10,7 @@ All lanes live on one Design canvas: https://claude.ai/artifact/3vmvJuakcT7WR5rU
 |---|---|---|
 | A | 1 | Homepage desktop, mobile and style sheet published 6 Oct 2026 |
 | B | 1 | Homepage desktop and mobile published 7 Oct 2026. Same inspiration as Lane A, so the lanes isolate the content variable |
+| C | 1 | Homepage desktop, mobile and style sheet published 7 Oct 2026. Inspiration 2, with the section gradients in `assets/backgrounds` |
 
 ## The inspirations lead the design
 
@@ -24,6 +25,7 @@ All lanes live on one Design canvas: https://claude.ai/artifact/3vmvJuakcT7WR5rU
 |---|---|---|
 | A | First screenshot supplied | Relume structure and copy, minus the invented facts flagged in `reviews/relume-wireframe-review.md` |
 | B | Same first screenshot (decided 7 Oct 2026) | Brief and Business DNA only. Relume ignored. Free to restructure. Shares Lane A's type and color so only content changes |
+| C | Inspiration 2 (`assets/inspiration/inspiration-2.webp`) with the 12 gradient backgrounds, one per section | The inspiration's own copy where accurate, corrected against the brief: no invented stats, logos or testimonials |
 
 ## Color
 
