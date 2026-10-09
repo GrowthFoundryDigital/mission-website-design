@@ -90,6 +90,17 @@ Lanes C, D and E each have a review bar at the top of the desktop homepage: "Rev
 - **Mobile heights, measured:** C 10,465 px, D 11,943 px, E 11,457 px including the bar. The continuation boards are 2,625 px (C), 4,103 px (D) and 3,617 px (E). Lane C's continuation board had been sized from an estimate of about 13,240 px and showed roughly 2,800 px of blank space below the footer; it now fits.
 - **Before launch:** the bar is a review control, not part of the design. Remove it, or hide it, for any client-facing build.
 
+## Lane G decisions (9 Oct 2026)
+
+Built from `content-baseline.md` on inspiration 7, a security consultancy homepage on near-black, white and one royal blue band. Content only; the look comes from the inspiration. Lane G carries the button color review toggle on desktop and both mobile boards, the calendar icon on Schedule buttons and the blue MISSION logo.
+
+- **Type:** Inter Tight for headings and Inter for text. The hero headline is uppercase Semibold with the second line stepped in, as in the inspiration. A sky square stands in for the period. Every other heading is Inter Tight Medium in one color. The inspiration's two-tone headings were not used, because headings stay one color.
+- **Color:** ink #070D17 for the hero, quote band and call to action, after the inspiration's near-black. Action Blue replaces its royal blue on buttons, the featured card and the certifications band. Light sections alternate white and mist #F1F3F6. Square corners throughout.
+- **Imagery:** photos run in grayscale, as the inspiration's do. The hero photo is full-bleed on the right with a blue tint, where the inspiration shows its architecture render.
+- **Section order:** hero, with the certifications card where the inspiration shows "A clear place to start" → software strip where it shows client logos → 01 value statement and the services as four cards, Bookkeeping first and featured in blue, Fractional CFO marked limited → 02 certifications on the blue band, the eight badges listed on a tilted sheet like the inspiration's report → 03 proof as a case study: 5.0 with headshots, "Clients stay for years.", and a stat panel with 10+ and 2007 → Jane Didona's quote on the dark band → 04 the six triggers as numbered rows → 05 the bench, with the team photo in black and white like the founder portrait → 06 how we work, with the five industries and their descriptors → 07 FAQ → 08 blog as photo cards → call to action with three steps → white footer.
+- **Judgment calls to check:** the certifications moved after the services, so the blue band can sit where the inspiration has its. The call to action splits the approved line "Bring your situation as it is. We'll tell you what we'd do first, and what it would take." into the inspiration's three steps. The founder block shows the team, because Rob's title and naming people are still open.
+- **Heights, measured:** desktop 7,675 px. Mobile 10,796 px; the continuation board is 2,956 px including its 40 px toggle bar.
+
 ## Schedule buttons lead with a calendar (7 Oct 2026)
 
 On every lane, A to F, each solid button that says Schedule and carried an icon now shows a calendar icon on the left instead of an arrow on the right. The calendar takes the text color. Lane D's calendar has square corners, and the arrow's hover nudge is off for these buttons. Text links and cards that mention scheduling keep their arrows: Lane D's "Not on the list?" link and navy CTA card, and Lane E's text link and sky tile.
