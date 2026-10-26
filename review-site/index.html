@@ -80,7 +80,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <div class="brand"><img src="img/mission-logo.svg" alt="MISSION"><span>Homepage review</span></div>
   <div class="controls">
     <div class="group"><span class="lbl">Lane</span><div class="seg" id="lane" role="group" aria-label="Lane"></div></div>
-    <div class="group"><span class="lbl">Version</span><div class="seg" id="ver" role="group" aria-label="Version"></div></div>
     <div class="group"><span class="lbl">View</span><div class="seg" id="dev" role="group" aria-label="Device"></div></div>
     <a class="open" id="open" href="pages/g2-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
@@ -100,19 +99,14 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   var LANES = {
     c: 'Serif headlines on soft gradient sections',
     d: 'Dark hero with angled details',
-    e: 'Clean white layout with centered headings',
-    f: 'Navy and white sections in turns',
     g: 'Near-black, white and one blue band'
   };
-  var VERSIONS = {
-    '1': 'As designed and revised on the canvas.',
-    '2': 'Updated to the October 2026 Business DNA, with a new case studies section.'
-  };
+  var NOTE = 'Updated to the October 2026 Business DNA, leading with client case studies.';
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
   var state = { lane: 'g', ver: '2', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
 
-  var m = (location.hash || '').match(/^#([c-g])([12])-(desktop|mobile)$/);
-  if (m) state = { lane: m[1], ver: m[2], dev: m[3] };
+  var m = (location.hash || '').match(/^#([cdg])2-(desktop|mobile)$/);
+  if (m) state = { lane: m[1], ver: '2', dev: m[2] };
 
   function seg(el, items, key) {
     el.innerHTML = '';
@@ -124,7 +118,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     });
   }
   seg(document.getElementById('lane'), Object.keys(LANES).map(function (k) { return { v: k, label: k.toUpperCase() }; }), 'lane');
-  seg(document.getElementById('ver'), [{ v: '1', label: '1' }, { v: '2', label: '2' }], 'ver');
   seg(document.getElementById('dev'), [{ v: 'desktop', label: 'Desktop' }, { v: 'mobile', label: 'Mobile' }], 'dev');
 
   var stage = document.getElementById('stage');
@@ -146,7 +139,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   function render() {
     var id = state.lane + state.ver + '-' + state.dev;
     var src = 'pages/' + id + '.html';
-    ['lane', 'ver', 'dev'].forEach(function (k) {
+    ['lane', 'dev'].forEach(function (k) {
       document.querySelectorAll('#' + k + ' button').forEach(function (b) {
         b.setAttribute('aria-pressed', b.dataset.v === state[k] ? 'true' : 'false');
       });
@@ -156,7 +149,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     document.getElementById('open').setAttribute('href', src);
     document.getElementById('ctx-title').textContent = 'Lane ' + state.lane.toUpperCase() + state.ver + ' · ' + DEVICES[state.dev].label;
     document.getElementById('ctx-look').textContent = LANES[state.lane];
-    document.getElementById('ctx-note').textContent = VERSIONS[state.ver];
+    document.getElementById('ctx-note').textContent = NOTE;
     document.getElementById('ctx-px').textContent = DEVICES[state.dev].w + ' px';
     try { history.replaceState(null, '', '#' + id); } catch (e) {}
     fit();
