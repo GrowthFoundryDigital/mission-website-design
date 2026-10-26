@@ -1,0 +1,168 @@
+<title>MISSION Homepage Review</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a slim review console on top, the homepage itself filling the rest of the screen. */
+:root {
+  --bg: #EEF1F4;
+  --panel: #FFFFFF;
+  --ink: #14202E;
+  --muted: #5C6878;
+  --line: #D6DCE3;
+  --accent: #1E73BE;
+  --accent-ink: #FFFFFF;
+  --chip: #E3E8EE;
+  --stage: #DDE2E8;
+  --font-ui: 'Public Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-data: 'IBM Plex Mono', ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F151C; --panel: #161E27; --ink: #E7ECF2; --muted: #93A0B0; --line: #2A3542;
+    --accent: #4C9BE0; --accent-ink: #0B1520; --chip: #212B36; --stage: #0B1016; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F151C; --panel: #161E27; --ink: #E7ECF2; --muted: #93A0B0; --line: #2A3542;
+  --accent: #4C9BE0; --accent-ink: #0B1520; --chip: #212B36; --stage: #0B1016; color-scheme: dark;
+}
+html, body { height: 100%; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--font-ui); font-size: 14px;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--panel); }
+.bar {
+  background: var(--panel); border-bottom: 1px solid var(--line);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 12px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px;
+}
+.brand { display: flex; align-items: center; gap: 12px; margin-right: auto; min-width: 0; }
+.brand img { height: 18px; width: auto; display: block; }
+.brand span { font-weight: 600; font-size: 14px; color: var(--muted); white-space: nowrap; }
+.controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
+.group { display: flex; align-items: center; gap: 8px; }
+.group > .lbl { font-family: var(--font-data); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.seg { display: inline-flex; background: var(--chip); border-radius: 8px; padding: 3px; gap: 2px; }
+.seg button {
+  all: unset; cursor: pointer; font: 600 13px/1 var(--font-ui); color: var(--muted);
+  padding: 8px 12px; border-radius: 6px; transition: background-color .15s ease, color .15s ease;
+}
+.seg button:hover { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+.seg button:focus-visible, .open:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.open {
+  font: 600 13px/1 var(--font-ui); color: var(--accent); text-decoration: none; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 6px; padding: 8px 2px;
+}
+.context {
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 10px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
+  border-bottom: 1px solid var(--line); background: var(--bg);
+}
+.context strong { font-size: 15px; font-weight: 700; }
+.context .look { color: var(--muted); }
+.context .note { color: var(--ink); min-width: 0; }
+.context .px { font-family: var(--font-data); font-size: 12px; color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
+.stage { flex: 1; min-height: 0; background: var(--stage); position: relative; overflow: hidden; }
+.frame { position: absolute; top: 0; left: 50%; transform-origin: top center; background: #FFFFFF; }
+.frame iframe { display: block; border: 0; width: 100%; height: 100%; background: #FFFFFF; }
+.stage.mobile .frame { top: 20px; border-radius: 28px; overflow: hidden; box-shadow: 0 0 0 10px #10161D, 0 18px 40px rgba(16, 22, 29, .28); }
+@media (max-width: 700px) {
+  .brand span { display: none; }
+  .context .px { display: none; }
+  .stage.mobile .frame { top: 0; border-radius: 0; box-shadow: none; }
+}
+</style>
+
+<header class="bar">
+  <div class="brand"><img src="img/mission-logo.svg" alt="MISSION"><span>Homepage review</span></div>
+  <div class="controls">
+    <div class="group"><span class="lbl">Lane</span><div class="seg" id="lane" role="group" aria-label="Lane"></div></div>
+    <div class="group"><span class="lbl">Version</span><div class="seg" id="ver" role="group" aria-label="Version"></div></div>
+    <div class="group"><span class="lbl">View</span><div class="seg" id="dev" role="group" aria-label="Device"></div></div>
+    <a class="open" id="open" href="pages/g2-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
+  </div>
+</header>
+<div class="context" aria-live="polite">
+  <strong id="ctx-title">Lane G2</strong>
+  <span class="look" id="ctx-look"></span>
+  <span class="note" id="ctx-note"></span>
+  <span class="px" id="ctx-px"></span>
+</div>
+<main class="stage" id="stage">
+  <div class="frame" id="frame"><iframe id="view" title="Homepage preview" src="pages/g2-desktop.html"></iframe></div>
+</main>
+
+<script>
+(function () {
+  var LANES = {
+    c: 'Serif headlines on soft gradient sections',
+    d: 'Dark hero with angled details',
+    e: 'Clean white layout with centered headings',
+    f: 'Navy and white sections in turns',
+    g: 'Near-black, white and one blue band'
+  };
+  var VERSIONS = {
+    '1': 'As designed and revised on the canvas.',
+    '2': 'Updated to the October 2026 Business DNA, with a new case studies section.'
+  };
+  var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
+  var state = { lane: 'g', ver: '2', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
+
+  var m = (location.hash || '').match(/^#([c-g])([12])-(desktop|mobile)$/);
+  if (m) state = { lane: m[1], ver: m[2], dev: m[3] };
+
+  function seg(el, items, key) {
+    el.innerHTML = '';
+    items.forEach(function (it) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = it.label; b.dataset.v = it.v;
+      b.addEventListener('click', function () { state[key] = it.v; render(); });
+      el.appendChild(b);
+    });
+  }
+  seg(document.getElementById('lane'), Object.keys(LANES).map(function (k) { return { v: k, label: k.toUpperCase() }; }), 'lane');
+  seg(document.getElementById('ver'), [{ v: '1', label: '1' }, { v: '2', label: '2' }], 'ver');
+  seg(document.getElementById('dev'), [{ v: 'desktop', label: 'Desktop' }, { v: 'mobile', label: 'Mobile' }], 'dev');
+
+  var stage = document.getElementById('stage');
+  var frame = document.getElementById('frame');
+  var view = document.getElementById('view');
+
+  function fit() {
+    var w = DEVICES[state.dev].w;
+    var sw = stage.clientWidth, sh = stage.clientHeight;
+    var mobile = state.dev === 'mobile';
+    var scale = Math.min(1, sw / w);
+    var top = mobile && sw > 700 ? 20 : 0;
+    var h = (sh - top * 2) / scale;
+    frame.style.width = w + 'px';
+    frame.style.height = h + 'px';
+    frame.style.transform = 'translateX(-50%) scale(' + scale + ')';
+  }
+
+  function render() {
+    var id = state.lane + state.ver + '-' + state.dev;
+    var src = 'pages/' + id + '.html';
+    ['lane', 'ver', 'dev'].forEach(function (k) {
+      document.querySelectorAll('#' + k + ' button').forEach(function (b) {
+        b.setAttribute('aria-pressed', b.dataset.v === state[k] ? 'true' : 'false');
+      });
+    });
+    stage.classList.toggle('mobile', state.dev === 'mobile');
+    if (view.getAttribute('src') !== src) view.setAttribute('src', src);
+    document.getElementById('open').setAttribute('href', src);
+    document.getElementById('ctx-title').textContent = 'Lane ' + state.lane.toUpperCase() + state.ver + ' · ' + DEVICES[state.dev].label;
+    document.getElementById('ctx-look').textContent = LANES[state.lane];
+    document.getElementById('ctx-note').textContent = VERSIONS[state.ver];
+    document.getElementById('ctx-px').textContent = DEVICES[state.dev].w + ' px';
+    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    fit();
+  }
+
+  window.addEventListener('resize', fit);
+  render();
+})();
+</script>

@@ -90,6 +90,16 @@ Lanes C, D and E each have a review bar at the top of the desktop homepage: "Rev
 - **Mobile heights, measured:** C 10,465 px, D 11,943 px, E 11,457 px including the bar. The continuation boards are 2,625 px (C), 4,103 px (D) and 3,617 px (E). Lane C's continuation board had been sized from an estimate of about 13,240 px and showed roughly 2,800 px of blank space below the footer; it now fits.
 - **Before launch:** the bar is a review control, not part of the design. Remove it, or hide it, for any client-facing build.
 
+## Versions 1 and 2, and the client review site (26 Oct 2026)
+
+Lanes C to G now come in two versions. Version 1 (C1 to G1) is each board as it stood on 26 Oct, with every canvas revision; the files keep their names (`lane-g-home.dc.html` and so on) so their comment history stays attached. Version 2 (C2 to G2, `lane-g2-home.dc.html` and so on) started as an exact copy of version 1 and changes only what the October 2026 Business DNA requires, plus a new case studies section. The full change list is in `v2-dna-changes.md`; the DNA itself is `business-dna-2026-10.md`.
+
+- **Canvas:** each lane's row reads inspiration, version 1 desktop and mobile, style sheet, then version 2 desktop (1 of 2, 2 of 2) and mobile (1 of 2, 2 of 2). Inspiration and style sheet boards stay shared. Version 2 boards have their own button toggle channel, so 1 and 2 can be compared in different button colors.
+- **Heights, measured:** C2 desktop 8,167, mobile 12,548 · D2 9,321 and 14,440 · E2 9,420 and 13,584 · F2 8,687 and 12,791 · G2 9,376 and 13,038. Every version 2 desktop now runs past 8,000 px, so each has a continuation board.
+- **Case studies:** researched on Mobbin (incident.io, Jasper, Zendesk and TheyDo customer story sections): one featured story with the construction photo, three story cards with an industry label, a problem-led headline and a "Read the story" link, and a closing line with the Schedule button. The DNA confirms no results, so no numbers are shown.
+- **Judgment calls to check:** the case study headlines describe each problem from the DNA's topic lines; the blog strips still list two of the same articles the case studies link to; Lane D2 reorders its services rows to the DNA priority, and Lane G2 merges Cleanup and Setup with Advisory into one "QuickBooks Setup & Advisory" carousel card; the Point of Sale badge became an "About 50 client reviews on our ProAdvisor profile" tile.
+- **Client review site:** https://claude.ai/artifact/Bcfv2oZ3wHrJGKY6svUfGJ. A lane, version and desktop/mobile switch over standalone pages generated from the boards, with the carousels, typing hero and button toggle working. Each view has its own link, for example `#g2-desktop`. Private until shared from its Share menu. Source in `review-site/`; `build.cjs` regenerates the pages from the canvas files.
+
 ## Lane G decisions (9 Oct 2026)
 
 Built from `content-baseline.md` on inspiration 7, a security consultancy homepage on near-black, white and one royal blue band. Content only; the look comes from the inspiration. Lane G carries the button color review toggle on desktop and both mobile boards, the calendar icon on Schedule buttons and the blue MISSION logo.
