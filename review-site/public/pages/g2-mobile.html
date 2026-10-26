@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>MISSION homepage · Lane G2 · Mobile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0;background:#070D17}
+.lg{font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:#2B3440;-webkit-font-smoothing:antialiased}
+.lg .w{max-width:1160px;margin:0 auto;padding:0 40px;box-sizing:content-box}
+.lg h1,.lg h2,.lg h3{margin:0;font-family:'Inter Tight','Inter',sans-serif;color:#0E3A66}
+.lg h1{font-size:112px;line-height:.9;font-weight:600;letter-spacing:-.05em;text-transform:uppercase;color:#FFFFFF}
+.lg h2{font-size:54px;line-height:1.02;font-weight:500;letter-spacing:-.04em}
+.lg h3{font-size:22px;line-height:1.2;font-weight:500;letter-spacing:-.02em}
+.lg p{margin:0;line-height:1.6}
+.lg .dark{background:#070D17;color:#C9D3DE}
+.lg .dark h1,.lg .dark h2,.lg .dark h3{color:#FFFFFF}
+.lg .blue{background:#1E73BE;color:#E3EEF9}
+.lg .blue h2,.lg .blue h3{color:#FFFFFF}
+.lg .grey{background:#F1F3F6}
+.lg .white{background:#FFFFFF}
+.lg .eb{margin:0;font-size:11px;line-height:1.3;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:#1E73BE;display:flex;align-items:center;gap:8px}
+.lg .dark .eb,.lg .blue .eb{color:#7CB8F0}
+.lg .blue .eb{color:#CFE3F7}
+.lg .eb .sq{width:6px;height:6px;background:#1E73BE;display:inline-block}
+.lg .dark .eb .sq{background:#7CB8F0}
+.lg .lead{font-size:15px;color:#5B6573}
+.lg .dark .lead{color:#AEBACB}
+.lg .blue .lead{color:#DCE9F6}
+.lg .sm{font-size:12.5px;line-height:1.55;color:#6B7584}
+.lg .dark .sm{color:#8796AA}
+.lg .blue .sm{color:#CFE3F7}
+.lg .btn{box-sizing:border-box;display:inline-flex;align-items:center;gap:12px;height:52px;padding:0 22px;border:1px solid transparent;border-radius:0;font:600 14px/1 'Inter',sans-serif;text-decoration:none;cursor:pointer;transition:background-color .2s ease,color .2s ease,border-color .2s ease,opacity .2s ease}
+.lg .btn-blue{background:#1E73BE;color:#FFFFFF}
+.lg .btn-blue:hover,.lg .btn-blue:focus-visible{background:#155A96}
+.lg .btn-white{background:#FFFFFF;color:#0E3A66}
+.lg .btn-white:hover,.lg .btn-white:focus-visible{background:#E7F1FB}
+.lg .btn-ghost{background:transparent;color:#FFFFFF;border-color:rgba(255,255,255,.28);height:42px;padding:0 16px;font-size:13px}
+.lg .btn-ghost:hover,.lg .btn-ghost:focus-visible{border-color:#FFFFFF}
+.lg .btn .ar{margin-left:18px;transition:transform .25s ease}
+.lg .btn:hover .ar{transform:translate(2px,-2px)}
+.lg .lnk{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:space-between;gap:18px;min-height:46px;padding:12px 18px;line-height:1.3;border:1px solid #C3CCD8;font-size:13.5px;font-weight:600;color:#0E3A66;text-decoration:none;transition:background-color .35s cubic-bezier(.4,0,.2,1),border-color .35s cubic-bezier(.4,0,.2,1),color .35s cubic-bezier(.4,0,.2,1)}
+.lg .dark .lnk,.lg .blue .lnk{color:#FFFFFF;border-color:rgba(255,255,255,.32)}
+.lg .lnk:hover,.lg .lnk:focus-visible,.lg .dark .lnk:hover,.lg .dark .lnk:focus-visible{background:#1E73BE;border-color:#1E73BE;color:#FFFFFF}
+.lg .blue .lnk:hover,.lg .blue .lnk:focus-visible{background:#FFFFFF;border-color:#FFFFFF;color:#0E3A66}
+[data-btn="green"].lg .lnk:hover,[data-btn="green"].lg .lnk:focus-visible{background:#C1F432;border-color:#C1F432;color:#0E3A66}
+.lg .lnk-plain{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:#0E3A66;text-decoration:none;transition:color .2s ease}
+.lg .dark .lnk-plain{color:#FFFFFF}
+.lg .lnk-plain:hover,.lg .lnk-plain:focus-visible{color:#7CB8F0}
+.lg .lnk .ar{transition:transform .25s ease}
+.lg .lnk:hover .ar{transform:translate(2px,-2px)}
+.lg .nav a{color:#C9D3DE;text-decoration:none;font-size:13px;font-weight:500;transition:color .2s ease}
+.lg .nav a:hover,.lg .nav a:focus-visible{color:#FFFFFF}
+.lg .nav a.btn-ghost{color:#FFFFFF}
+.lg .hair{border-top:1px solid #DCE1E8}
+.lg .dark .hair{border-color:rgba(255,255,255,.1)}
+.lg .blue .hair{border-color:rgba(255,255,255,.25)}
+.lg .card{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:340px;padding:20px;text-decoration:none;box-sizing:border-box;transition:transform .25s ease}
+.lg .card:hover{transform:translateY(-4px)}
+.lg .card .ft{position:relative;display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid rgba(255,255,255,.25);font-size:12.5px;font-weight:500}
+.lg .card .ph{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.62)}
+.lg .card .shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,13,23,.55) 0%,rgba(7,13,23,.15) 45%,rgba(7,13,23,.8) 100%)}
+.lg .row{display:flex;align-items:flex-start;gap:28px;padding:22px 0;border-top:1px solid #DCE1E8}
+.lg .row:last-child{border-bottom:1px solid #DCE1E8}
+.lg .row .ti{flex:none;display:inline-flex;color:#1E73BE;padding-top:1px}
+.lg .faq{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:20px 0;border-top:1px solid #DCE1E8;cursor:pointer;font:500 15px/1.4 'Inter',sans-serif;color:#0E3A66;transition:color .2s ease}
+.lg .faq:hover,.lg .faq:focus-visible{color:#1E73BE}
+.lg .faq svg{color:#1E73BE;flex:none;transition:transform .25s ease}
+.lg .faq[aria-expanded="true"] svg{transform:rotate(45deg)}
+.lg .tag{font-size:11.5px;color:#6B7584;letter-spacing:.02em}
+.lg .foot a{color:#5B6573;text-decoration:none;font-size:13px;transition:color .2s ease}
+.lg .foot a:hover,.lg .foot a:focus-visible{color:#1E73BE}
+.lg .foot input{box-sizing:border-box;flex:1;min-width:0;height:46px;padding:0 14px;border:1px solid #C3CCD8;border-radius:0;background:#FFFFFF;font:400 13.5px/1 'Inter',sans-serif;color:#0E3A66;transition:border-color .2s ease}
+.lg .foot input::placeholder{color:#8A94A3}
+.lg .foot input:focus{outline:none;border-color:#1E73BE}
+.lg .foot .fh{font-size:12.5px;font-weight:600;color:#0E3A66;margin-bottom:4px}
+.lg .dark.foot{border-top:1px solid rgba(255,255,255,.1)}
+.lg .dark.foot a{color:#A3B0C0}
+.lg .dark.foot a:hover,.lg .dark.foot a:focus-visible{color:#FFFFFF}
+.lg .dark.foot .fh{color:#FFFFFF}
+.lg .dark.foot input{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.2);color:#FFFFFF}
+.lg .dark.foot input::placeholder{color:#6F7D90}
+.lg .dark.foot input:focus{border-color:#7CB8F0}
+.lg .w{max-width:none;padding:0 20px}
+.lg h1{font-size:50px;line-height:.92}
+.lg h2{font-size:34px;line-height:1.06}
+.lg h3{font-size:20px}
+.lg .btn{width:100%;justify-content:center;height:54px}
+.lg .btn .ar{margin-left:auto}
+.lg .card{min-height:300px}
+.lg .row{gap:16px;padding:18px 0}
+/* Case studies */
+.lg .cs{display:grid;text-decoration:none;color:#FFFFFF;background:#0E1622;transition:background-color .35s cubic-bezier(.4,0,.2,1)}
+.lg .cs:hover,.lg .cs:focus-visible{background:#132033}
+.lg .cs:hover .lnk,.lg .cs:focus-visible .lnk{background:#1E73BE;border-color:#1E73BE;color:#FFFFFF}
+[data-btn="green"].lg .cs:hover .lnk,[data-btn="green"].lg .cs:focus-visible .lnk{background:#C1F432;border-color:#C1F432;color:#0E3A66}
+.lg .cs:hover .lnk .ar{transform:translate(2px,-2px)}
+.lg .cs-card{background:#FFFFFF;border:1px solid #DCE1E8;color:#0E3A66;transition:transform .25s ease,border-color .35s cubic-bezier(.4,0,.2,1)}
+.lg .cs-card:hover,.lg .cs-card:focus-visible{border-color:#1E73BE}
+.lg .cs-card .ft{border-color:#DCE1E8}
+.lg .cs-card:hover .ar{transform:translate(2px,-2px)}
+.lg .cs-card .ar{transition:transform .25s ease}
+.lg .cs-feat img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.lg .cs-feat:hover img{transform:scale(1.03)}
+/* Services carousel */
+.lg .car-btn{all:unset;box-sizing:border-box;width:46px;height:46px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #C3CCD8;color:#0E3A66;cursor:pointer;transition:background-color .35s cubic-bezier(.4,0,.2,1),border-color .35s cubic-bezier(.4,0,.2,1),color .35s cubic-bezier(.4,0,.2,1),opacity .35s ease}
+.lg .car-btn:hover,.lg .car-btn:focus-visible{background:#0E3A66;border-color:#0E3A66;color:#FFFFFF}
+.lg .car-btn.is-off{opacity:.35;cursor:default;pointer-events:none}
+@media (prefers-reduced-motion: reduce){.lg *{transition:none !important}}
+/* Review toggle: blue or green (#C1F432) solid buttons */
+.tg-bar{height:40px;box-sizing:border-box;background:#141414;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:12px;font:500 12.5px/1 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0}
+.tg-bar .tg-label{color:#BDBDBD}
+.tg-bar .tg-group{display:inline-flex;background:#2B2B2B;border-radius:999px;padding:3px;gap:2px}
+.tg-bar .tg-opt{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 12px;border-radius:999px;color:#D0D0D0;font:600 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;transition:background-color .2s ease,color .2s ease}
+.tg-bar .tg-opt:hover{color:#FFFFFF}
+.tg-bar .tg-opt:focus-visible{outline:2px solid #7CB8F0;outline-offset:2px}
+.tg-bar .tg-opt[aria-pressed="true"]{background:#FFFFFF;color:#141414}
+.tg-bar .tg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+[data-btn="green"] .tg-btn{background:#C1F432 !important;color:#0E3A66 !important;border-color:#C1F432 !important}
+[data-btn="green"] .tg-btn{filter:none !important;transition:opacity .2s ease,background-color .2s ease,color .2s ease}
+[data-btn="green"] .tg-btn:hover,[data-btn="green"] .tg-btn:focus-visible{background:#C1F432 !important;opacity:.9;filter:none !important}
+[data-btn="green"] .tg-btn *{color:#0E3A66 !important}
+</style>
+
+<style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl"><div data-btn="{{ btnMode }}" class="lg" style="width: 390px; background: #070D17">
+<div class="tg-bar" aria-label="Review control, not part of the design">
+<span class="tg-label">Review · buttons</span>
+<div class="tg-group" role="group" aria-label="Button color">
+<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: #1E73BE"></span>Blue</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>Green</button>
+</div>
+</div>
+
+<div class="dark">
+<header style="border-bottom: 1px solid rgba(255, 255, 255, .08)">
+<div class="w" style="height: 62px; display: flex; align-items: center; justify-content: space-between">
+<a href="#top" aria-label="MISSION home" style="display: flex"><img src="../img/b29865f8838e8d694583c88108f0c2aa.svg" alt="MISSION" style="height: 22px; width: auto; display: block"></a>
+<div style="display: flex; align-items: center; gap: 8px">
+<a href="tel:+12032279475" aria-label="Call (203) 227-9475" style="width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, .25); color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a>
+<button type="button" aria-label="Open menu" style="width: 40px; height: 40px; border: 1px solid rgba(255, 255, 255, .25); background: transparent; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg></button>
+</div>
+</div>
+</header>
+<main id="top">
+<section class="w" style="padding-top: 30px; padding-bottom: 0">
+<p class="eb"><span class="sq" aria-hidden="true"></span>Is your accounting Complicated?</p>
+<h1 style="margin-top: 26px">We handle<span style="display: inline-block; padding-left: 34px">the messy</span><br><span style="display: inline-block; padding-left: 34px">work</span></h1>
+</section>
+<div style="position: relative; margin-top: 30px; height: 300px; overflow: hidden">
+<img src="../img/c76296e63f1cbdfd3cc1859696beddca.webp" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 35%; filter: grayscale(1) contrast(1.15) brightness(.7)">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: #1E73BE; mix-blend-mode: color; opacity: .55"></div>
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, #070D17 0%, rgba(7, 13, 23, .1) 30%, rgba(7, 13, 23, .2) 70%, #070D17 100%)"></div>
+</div>
+<section class="w" style="position: relative; margin-top: -40px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 18px">
+<p style="font-family: 'Inter Tight', sans-serif; font-size: 20px; line-height: 1.3; letter-spacing: -.01em; color: #FFFFFF">Catch you up.<br>Keep you accurate.<br>Give you clarity.</p>
+<p class="lead" style="font-size: 14.5px">We catch you up, keep you accurate, and give you clear numbers, so you can make better decisions and focus on running the business.</p>
+<a href="#schedule" class="btn btn-blue tg-btn" style="margin-top: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+<a href="#case-studies" class="lnk-plain" style="align-self: center; font-size: 13.5px; font-weight: 600; padding: 4px 0">Read client stories<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14"></path><path d="M6 13l6 6 6-6"></path></svg></a>
+
+
+</section>
+</main>
+</div>
+
+<section id="case-studies" aria-label="Case studies" class="grey">
+<div class="w" style="padding-top: 60px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 18px">
+<p class="eb">Case studies</p>
+<h2 style="font-size: 44px; line-height: .98; letter-spacing: -.045em">How we set QuickBooks up for real businesses.</h2>
+<p class="lead" style="font-size: 14.5px">Client stories from our blog: the problem each business brought us, and how we set QuickBooks up to handle it.</p>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 8px">
+<a href="https://missionaccountinghelp.com/customers/quickbooks-enterprise-support" target="_blank" rel="noopener" class="cs cs-feat dark" style="grid-template-columns: minmax(0, 1fr); overflow: hidden">
+<div style="position: relative; overflow: hidden; height: 260px">
+<img src="../img/3554cab00abc02f5b19956702ff92a9f.webp" alt="A construction site" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 55%; filter: grayscale(1) contrast(1.1) brightness(.8)">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: #1E73BE; mix-blend-mode: color; opacity: .5"></div>
+<span style="position: absolute; left: 0; top: 0; background: #1E73BE; padding: 11px 14px; font-size: 10.5px; line-height: 1.3; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: #FFFFFF">Featured story</span>
+</div>
+<div style="position: relative; padding: 26px 22px 24px; display: flex; flex-direction: column; gap: 16px">
+<p class="eb">Construction</p>
+<h3 style="font-size: 30px; line-height: 1.06; letter-spacing: -.035em">On QuickBooks Enterprise, but not using what it could do.</h3>
+<p class="lead" style="font-size: 14.5px">A construction company was missing QuickBooks Enterprise functionality it already had. We found what it wasn't using and set it up to work for the business.</p>
+<span class="lnk" style="align-self: flex-start; margin-top: 4px">Read the story<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</div>
+</a>
+<a href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" class="card cs-card" style="min-height: 0; padding: 22px; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 12px"><p class="eb">Food production</p><h3>Perishable goods that need tight inventory control.</h3><p class="sm" style="font-size: 13px">Inventory management for a bakery's perishable goods, set up in QuickBooks Enterprise.</p></div>
+<span class="ft">Read the story<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" class="card cs-card" style="min-height: 0; padding: 22px; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 12px"><p class="eb">Jewelry</p><h3>Custom orders, and stock in more than one place.</h3><p class="sm" style="font-size: 13px">Sales orders and inventory location tracking for a jewelry business that works to custom order.</p></div>
+<span class="ft">Read the story<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software" target="_blank" rel="noopener" class="card cs-card" style="min-height: 0; padding: 22px; gap: 22px">
+<div style="display: flex; flex-direction: column; gap: 12px"><p class="eb">Bills and expenses</p><h3>Bill approvals and expense tracking that needed automating.</h3><p class="sm" style="font-size: 13px">How Wren's Nest Interiors automated its bill approvals and expense tracking.</p></div>
+<span class="ft">Read the story<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+</div>
+<div class="hair" style="display: flex; flex-direction: column; gap: 10px; padding-top: 24px; margin-top: 10px">
+<p style="font-family: 'Inter Tight', sans-serif; font-size: 24px; line-height: 1.15; letter-spacing: -.025em; color: #0E3A66">Have books like these?</p>
+<p class="lead" style="font-size: 14.5px">Tell us what's going on, and we'll tell you what we'd do first.</p>
+<a href="#schedule" class="btn btn-blue tg-btn" style="margin-top: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+</div>
+</div>
+</section>
+
+<section aria-label="Software" class="white">
+<div class="w" style="padding-top: 26px; padding-bottom: 26px; display: flex; flex-direction: column; gap: 14px">
+<p class="sm" style="text-transform: uppercase; letter-spacing: .12em; font-size: 10.5px; font-weight: 600; color: #6B7584">The software we know inside out</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 18px; font-family: 'Inter Tight', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: -.02em; color: #8A95A3"><span>QuickBooks Online</span><span>Desktop</span><span>Enterprise</span><span>Intuit Enterprise Suite</span><span>Workforce</span><span>Payments</span></div>
+</div>
+</section>
+
+<section id="services" class="grey">
+<div class="w" style="padding-top: 64px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 24px">
+<p class="eb">What we do</p>
+<h2>You didn't build a business to manage its books.</h2>
+<p class="lead" style="font-size: 14.5px">We're business advisors who specialize in accounting technology, giving established businesses clean, accurate books without the overhead of a full-time finance team or the distance of a large firm.</p>
+<div class="svc-vp" role="region" aria-label="Services" style="overflow: hidden; margin-right: -20px">
+<div style="{{ svcTrack }}">
+<a href="#bookkeeping" class="card" style="flex: 0 0 238px; width: 238px; background: #1E73BE; color: #FFFFFF;">
+<div style=" display: flex; flex-direction: column; gap: 12px"><p class="eb" style="color: #CFE3F7">Bookkeeping &amp; Accounting</p><h3 style="color: #FFFFFF">Current, every month.</h3></div>
+<p style=" font-size: 13.5px; line-height: 1.55; color: #E3EEF9">Nearly every client lands here. Reconciled, trustworthy books from a team that knows QuickBooks deeply.</p>
+<span class="ft">Where most clients start<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="#setup" class="card" style="flex: 0 0 238px; width: 238px; background: #0E1622; color: #FFFFFF;">
+<img class="ph" src="../img/959f667ae9fbf3a0eb90cf0ce15668ff.webp" alt="" aria-hidden="true" style="object-position: center 30%"><span class="shade" aria-hidden="true"></span>
+<div style="position: relative; display: flex; flex-direction: column; gap: 12px"><p class="eb" style="color: #CFE3F7">QuickBooks Setup &amp; Advisory</p><h3 style="color: #FFFFFF">Set up right, then put to work.</h3></div>
+<p style="position: relative; font-size: 13.5px; line-height: 1.55; color: #D5DEE8">QuickBooks configured and integrated correctly, your team trained on it, and your numbers used to make better decisions.</p>
+<span class="ft">Learn more<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="#cfo" class="card" style="flex: 0 0 238px; width: 238px; background: #E3E8EE; color: #0E3A66;">
+<div style=" display: flex; flex-direction: column; gap: 12px"><p class="eb" style="color: #1E73BE">Fractional CFO</p><h3 style="color: #0E3A66">Strategic decisions.</h3></div>
+<div style="display: flex; flex-direction: column; gap: 14px"><span style="align-self: flex-start; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #0E3A66; border: 1px solid #0E3A66; padding: 5px 8px">Limited availability</span><p style="font-size: 13.5px; line-height: 1.55; color: #46505E">Senior financial leadership without a full-time hire, led by our managing partner.</p></div>
+<span class="ft" style="border-color: #C3CCD8">Learn more<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="#cleanup" class="card" style="flex: 0 0 238px; width: 238px; background: #0E1622; color: #FFFFFF;">
+<img class="ph" src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="" aria-hidden="true" style="object-position: 60% center"><span class="shade" aria-hidden="true"></span>
+<div style="position: relative; display: flex; flex-direction: column; gap: 12px"><p class="eb" style="color: #CFE3F7">QuickBooks Cleanup</p><h3 style="color: #FFFFFF">Behind, or inherited a mess.</h3></div>
+<p style="position: relative; font-size: 13.5px; line-height: 1.55; color: #D5DEE8">Months of unreconciled accounts, or books left behind when a bookkeeper moved on. We get them current and accurate.</p>
+<span class="ft">Learn more<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="#pos" class="card" style="flex: 0 0 238px; width: 238px; background: #0E3A66; color: #FFFFFF;">
+<div style=" display: flex; flex-direction: column; gap: 12px"><p class="eb" style="color: #7CB8F0">POS Integration</p><h3 style="color: #FFFFFF">Sales that don't match the books.</h3></div>
+<p style=" font-size: 13.5px; line-height: 1.55; color: #C9D8E8">Square, Shopify and other point-of-sale systems connected to QuickBooks, so sales flow cleanly into your books.</p>
+<span class="ft">Learn more<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="#reporting" class="card" style="flex: 0 0 238px; width: 238px; background: #0E1622; color: #FFFFFF;">
+<img class="ph" src="../img/16a347e2aaf4894dd3d60cbfb48a31af.webp" alt="" aria-hidden="true" style="object-position: center 45%"><span class="shade" aria-hidden="true"></span>
+<div style="position: relative; display: flex; flex-direction: column; gap: 12px"><p class="eb" style="color: #CFE3F7">Custom Reporting</p><h3 style="color: #FFFFFF">Reports that answer your questions.</h3></div>
+<p style="position: relative; font-size: 13.5px; line-height: 1.55; color: #D5DEE8">Standard reports answer the accountant's questions. Custom reporting answers yours.</p>
+<span class="ft">Learn more<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="#products" class="card" style="flex: 0 0 238px; width: 238px; background: #FFFFFF; color: #0E3A66; border: 1px solid #DCE1E8;">
+<div style=" display: flex; flex-direction: column; gap: 12px"><p class="eb" style="color: #1E73BE">QuickBooks Products</p><h3 style="color: #0E3A66">QuickBooks software.</h3></div>
+<p style=" font-size: 13.5px; line-height: 1.55; color: #46505E">QuickBooks Online, Desktop, Enterprise and Intuit Enterprise Suite, available through us as an Intuit reseller.</p>
+<span class="ft" style="border-color: #DCE1E8">Call for pricing<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span>
+</a>
+<a href="#schedule" class="card" style="flex: 0 0 238px; width: 238px; background: #070D17; color: #FFFFFF;">
+<div style=" display: flex; flex-direction: column; gap: 12px"><p class="eb" style="color: #7CB8F0">Where to start</p><h3 style="color: #FFFFFF">Not sure which you need?</h3></div>
+<p style=" font-size: 13.5px; line-height: 1.55; color: #AEBACB">A free consultation with Bernard or Rob.</p>
+<span class="btn btn-blue tg-btn" style="height: 46px; padding: 0 16px; font-size: 13px; justify-content: center; white-space: nowrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a consultation</span>
+</a>
+</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<div style="display: flex; align-items: center; gap: 8px">
+<button type="button" class="{{ svcPrevCls }}" aria-label="Previous services" onClick="{{ svcPrev }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg></button>
+<button type="button" class="{{ svcNextCls }}" aria-label="More services" onClick="{{ svcNext }}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" aria-hidden="true"><path d="M9 5l7 7-7 7"></path></svg></button>
+</div>
+<a href="#services" class="lnk">All services<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</div></section>
+
+<section id="about" class="blue" style="overflow: hidden">
+<div class="w" style="padding-top: 64px; padding-bottom: 64px; display: flex; flex-direction: column; gap: 20px">
+<p class="eb">Certified by Intuit</p>
+<h2 style="font-size: 38px">QuickBooks credentials you can check.</h2>
+<p style="font-family: 'Inter Tight', sans-serif; font-size: 19px; line-height: 1.3; color: #FFFFFF">Elite-tier and Level 2 Advanced ProAdvisors.</p>
+<p class="lead" style="font-size: 14.5px">Intuit certifies our ProAdvisors across QuickBooks Online, Desktop and Enterprise. The certifications and client reviews are listed on Intuit's ProAdvisor directory.</p>
+<div style="position: relative; padding: 18px 8px 26px 4px; margin-top: 8px">
+
+<div style="position: relative; background: #FFFFFF; padding: 22px 20px 16px; box-shadow: 0 24px 48px rgba(7, 13, 23, .35); display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1px solid #DCE1E8"><img src="../img/b29865f8838e8d694583c88108f0c2aa.svg" alt="MISSION" style="height: 13px; width: auto"><span class="tag" style="font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase">ProAdvisor directory</span></div>
+<p style="font-family: 'Inter Tight', sans-serif; font-size: 28px; line-height: 1; font-weight: 500; letter-spacing: -.035em; color: #0E3A66">Certified by Intuit.</p>
+<ul aria-label="Intuit ProAdvisor badges and reviews" style="margin: 4px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px">
+<li style="display: flex; align-items: center; justify-content: center; height: 66px; padding: 8px; box-sizing: border-box; background: #F1F3F6"><img src="../img/5a6f8298d29fe5b417692e04bb5cefb5.png" alt="QuickBooks ProAdvisor Elite badge" style="max-width: 100%; max-height: 50px; width: auto; height: auto; display: block"></li>
+<li style="display: flex; align-items: center; justify-content: center; height: 66px; padding: 8px; box-sizing: border-box; background: #F1F3F6"><img src="../img/1f90e7cd2b6fe11043a8aed199ff3bea.png" alt="Certified Advanced QuickBooks Online ProAdvisor badge" style="max-width: 100%; max-height: 50px; width: auto; height: auto; display: block"></li>
+<li style="display: flex; align-items: center; justify-content: center; height: 66px; padding: 8px; box-sizing: border-box; background: #F1F3F6"><img src="../img/8a6858620a6c323d48dea6c25360ff27.png" alt="Certified ProAdvisor, Advanced QuickBooks Desktop badge" style="max-width: 100%; max-height: 50px; width: auto; height: auto; display: block"></li>
+<li style="display: flex; align-items: center; justify-content: center; height: 66px; padding: 8px; box-sizing: border-box; background: #F1F3F6"><img src="../img/bdd1481bd009109078c5f28e16b35880.png" alt="Certified QuickBooks Online ProAdvisor badge" style="max-width: 100%; max-height: 50px; width: auto; height: auto; display: block"></li>
+<li style="display: flex; align-items: center; justify-content: center; height: 66px; padding: 8px; box-sizing: border-box; background: #F1F3F6"><img src="../img/cd885cfb7d6c05d7b71c90e8441a681f.png" alt="Certified QuickBooks Level 2 ProAdvisor badge" style="max-width: 100%; max-height: 50px; width: auto; height: auto; display: block"></li>
+<li style="display: flex; align-items: center; justify-content: center; height: 66px; padding: 8px; box-sizing: border-box; background: #F1F3F6"><img src="../img/34b1807ca27f04b30ace3c235cf23ea4.png" alt="Certified QuickBooks Level 1 ProAdvisor badge" style="max-width: 100%; max-height: 50px; width: auto; height: auto; display: block"></li>
+<li style="display: flex; align-items: center; justify-content: center; height: 66px; padding: 8px; box-sizing: border-box; background: #F1F3F6"><img src="../img/9eef1fc8b132f5488cb3871c7327a754.png" alt="Certified ProAdvisor, QuickBooks Enterprise badge" style="max-width: 100%; max-height: 50px; width: auto; height: auto; display: block"></li>
+<li aria-label="About 50 client reviews on our ProAdvisor profile" style="display: flex; flex-direction: column; justify-content: center; gap: 3px; height: 66px; padding: 6px 7px; box-sizing: border-box; background: #F1F3F6"><span style="font-family: 'Inter Tight', sans-serif; font-size: 13px; line-height: 1; font-weight: 500; letter-spacing: -.02em; color: #0E3A66; white-space: nowrap">About 50</span><span style="font-size: 9px; line-height: 1.25; color: #46505E">client reviews</span></li>
+</ul>
+</div>
+</div>
+<a href="https://proadvisor.intuit.com/app/accountant/search?searchId=bernard-roesch" target="_blank" rel="noopener" class="btn btn-white tg-btn">See certifications and reviews<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</section>
+
+<section aria-label="What clients say about MISSION" class="white">
+<div class="w" style="padding-top: 60px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 18px">
+<p class="eb">What clients say</p>
+<h2>Clients stay for years.</h2>
+<p class="lead" style="font-size: 14.5px">Several clients have worked with us for more than a decade.</p>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<figure style="margin: 0; background: #F1F3F6; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 0; box-sizing: border-box">
+<div style="display: flex; flex-direction: column; gap: 18px"><svg width="28" height="22" viewBox="0 0 34 26" fill="#1E73BE" aria-hidden="true"><path d="M0 26V14.6C0 6.2 4.6 1.4 13.4 0l1.3 3.6c-4.6 1.3-7 3.9-7.3 7.9H14V26zm20 0V14.6C20 6.2 24.6 1.4 33.4 0l1.3 3.6c-4.6 1.3-7 3.9-7.3 7.9H34V26z"></path></svg><blockquote style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; line-height: 1.3; font-weight: 400; letter-spacing: -.015em; color: #0E3A66">"We have been working with Bernard for over 10 years. He has been terrific."</blockquote></div>
+<figcaption class="hair" style="display: flex; flex-direction: column; gap: 3px; padding-top: 16px"><strong style="font-size: 13.5px; color: #0E3A66">Jacquie Herz</strong><span class="sm">Jornik Manufacturing, Stamford, CT</span></figcaption>
+</figure>
+<div style="background: #1E73BE; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 0; box-sizing: border-box">
+<p class="eb" style="font-size: 10.5px; color: #CFE3F7">Established</p>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'Inter Tight', sans-serif; font-size: 88px; line-height: .82; font-weight: 500; letter-spacing: -.06em; color: #FFFFFF">25+</span><span style="font-size: 14px; line-height: 1.4; color: #E3EEF9">years in business</span></div>
+</div>
+<figure style="margin: 0; background: #F1F3F6; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 0; box-sizing: border-box">
+<div style="display: flex; flex-direction: column; gap: 18px"><svg width="28" height="22" viewBox="0 0 34 26" fill="#1E73BE" aria-hidden="true"><path d="M0 26V14.6C0 6.2 4.6 1.4 13.4 0l1.3 3.6c-4.6 1.3-7 3.9-7.3 7.9H14V26zm20 0V14.6C20 6.2 24.6 1.4 33.4 0l1.3 3.6c-4.6 1.3-7 3.9-7.3 7.9H34V26z"></path></svg><blockquote style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; line-height: 1.3; font-weight: 400; letter-spacing: -.015em; color: #0E3A66">"I have been working with Bernard at MISSION since 2007."</blockquote></div>
+<figcaption class="hair" style="display: flex; flex-direction: column; gap: 3px; padding-top: 16px"><strong style="font-size: 13.5px; color: #0E3A66">Richard Cipolla</strong><span class="sm">Richard Cipolla Designs, Stamford, CT</span></figcaption>
+</figure>
+<div style="background: #FFFFFF; border: 1px solid #DCE1E8; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 0; box-sizing: border-box">
+<span aria-hidden="true" style="display: inline-flex"><img src="../img/b0f8fafa98dcbe0082a836a30303b5e5.png" alt="" style="position: relative; z-index: 1; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid #FFFFFF"><img src="../img/8dcd87561fad4fb41686cffb42d245b4.png" alt="" style="position: relative; z-index: 2; width: 40px; height: 40px; margin-left: -12px; border-radius: 50%; object-fit: cover; border: 2px solid #FFFFFF"><img src="../img/4a8aee7bf8f13bc1315ec9fa3aa9642d.png" alt="" style="position: relative; z-index: 3; width: 40px; height: 40px; margin-left: -12px; border-radius: 50%; object-fit: cover; border: 2px solid #FFFFFF"></span>
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'Inter Tight', sans-serif; font-size: 88px; line-height: .82; font-weight: 500; letter-spacing: -.06em; color: #0E3A66">5.0</span><span style="font-size: 14px; line-height: 1.4; color: #46505E">average on Google reviews</span></div>
+</div>
+<figure style="margin: 0; background: #F1F3F6; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 0; box-sizing: border-box">
+<div style="display: flex; flex-direction: column; gap: 18px"><svg width="28" height="22" viewBox="0 0 34 26" fill="#1E73BE" aria-hidden="true"><path d="M0 26V14.6C0 6.2 4.6 1.4 13.4 0l1.3 3.6c-4.6 1.3-7 3.9-7.3 7.9H14V26zm20 0V14.6C20 6.2 24.6 1.4 33.4 0l1.3 3.6c-4.6 1.3-7 3.9-7.3 7.9H34V26z"></path></svg><blockquote style="margin: 0; font-family: 'Inter Tight', sans-serif; font-size: 20px; line-height: 1.3; font-weight: 400; letter-spacing: -.015em; color: #0E3A66">"Great customer service from Bernard and his team – very friendly and helpful."</blockquote></div>
+<figcaption class="hair" style="display: flex; flex-direction: column; gap: 3px; padding-top: 16px"><strong style="font-size: 13.5px; color: #0E3A66">Mary Iaffaldano</strong><span class="sm">Milford, CT</span></figcaption>
+</figure>
+<div style="background: #0E3A66; padding: 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; min-height: 0; box-sizing: border-box">
+<div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px"><span style="font-family: 'Inter Tight', sans-serif; font-size: 88px; line-height: .82; font-weight: 500; letter-spacing: -.06em; color: #FFFFFF">2007</span><span style="font-size: 14px; line-height: 1.4; color: #C9D8E8">when our longest client relationship began</span></div>
+</div>
+</div>
+<a href="https://proadvisor.intuit.com/app/accountant/search?searchId=bernard-roesch" target="_blank" rel="noopener" class="lnk">See client reviews<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</section>
+
+
+
+<section aria-label="Does this sound like you" class="grey">
+<div class="w" style="padding-top: 60px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 18px">
+<p class="eb">Where clients come from</p>
+<h2>Does this sound like you?</h2>
+<p class="lead" style="font-size: 14.5px">If one of these is where you are right now, you're in the right place. It's how most of our clients arrived.</p>
+<div style="margin-top: 6px">
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 11h-6"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Our bookkeeper just left</h3><span class="sm" style="font-size: 13px">Retired, moved on, or turned out to be someone you couldn't rely on. We pick up the history, find what's missing and take over the month-end.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">We've lost confidence in our accountant</h3><span class="sm" style="font-size: 13px">Work that arrives late, wrong, or after three unanswered emails. We'll tell you honestly what state the books are in before anything else.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l4 2"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">We're months, or years, behind</h3><span class="sm" style="font-size: 13px">Accounts unreconciled to the point where nobody wants to open QuickBooks. Cleanup comes first, then the monthly work resumes.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"></path><path d="M14 2v4a2 2 0 0 0 2 2h4"></path><path d="m14.5 12.5-5 5"></path><path d="m9.5 12.5 5 5"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Our taxes are unfiled</h3><span class="sm" style="font-size: 13px">The books aren't clean enough to file from. We get the books right, help you find a CPA, and consult with them before they start.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 22h18"></path><path d="M6 18v-7"></path><path d="M10 18v-7"></path><path d="M14 18v-7"></path><path d="M18 18v-7"></path><path d="M12 2l8 5H4z"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">The bank wants clean financials</h3><span class="sm" style="font-size: 13px">A lender, an investor or a buyer is asking for numbers you'd stand behind. We produce financials you can hand over.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"></path><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"></path><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Our operation outgrew our help</h3><span class="sm" style="font-size: 13px">Inventory, several entities or nonprofit reporting rules are past what one bookkeeper can carry. That's the work we prefer.</span></span></div>
+</div>
+<a href="#schedule" class="btn btn-blue tg-btn" style="margin-top: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+</div>
+</section>
+
+<section id="team" class="dark">
+<div class="w" style="padding-top: 60px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 20px">
+<p class="eb">The team</p>
+<h2>A bench, not just a bookkeeper.</h2>
+<p class="lead" style="font-size: 14.5px">A core team of advanced-certified QuickBooks ProAdvisors, backed by an extended network of CPAs, controllers, ProAdvisors and independent accounting firm owners, staffed onto your work as needed.</p>
+<ul aria-label="Core team" style="margin: 0; padding: 0; list-style: none; border-bottom: 1px solid rgba(255, 255, 255, .1)">
+<li class="hair" style="display: flex; flex-direction: column; gap: 4px; padding: 13px 0"><h3 style="font-size: 17px">Bernard P. Roesch</h3><span class="sm" style="font-size: 13px">Co-founder and Managing Partner · Harvard Business School MBA, Elite-tier QuickBooks ProAdvisor</span></li>
+<li class="hair" style="display: flex; flex-direction: column; gap: 4px; padding: 13px 0"><h3 style="font-size: 17px">Carol A. Onorato</h3><span class="sm" style="font-size: 13px">Director of Operations · Level 2 Advanced QuickBooks ProAdvisor</span></li>
+<li class="hair" style="display: flex; flex-direction: column; gap: 4px; padding: 13px 0"><h3 style="font-size: 17px">Rob James</h3><span class="sm" style="font-size: 13px">Prospect pipeline and new-client onboarding · Level 2 Advanced QuickBooks ProAdvisor</span></li>
+</ul>
+<div style="position: relative; padding: 0 0 22px 12px; margin-top: 6px">
+<img src="../img/3b6448ffe67d241e50c579a0950384e9.webp" alt="Specialists reviewing a client's numbers together" style="display: block; width: 100%; height: 300px; object-fit: cover; object-position: 55% 34%; filter: grayscale(1) contrast(1.05)">
+<div style="position: absolute; left: 0; bottom: 0; background: #1E73BE; padding: 13px 16px; max-width: 230px"><p style="font-size: 10.5px; line-height: 1.5; letter-spacing: .12em; text-transform: uppercase; font-weight: 600; color: #FFFFFF">Advanced-certified<br>QuickBooks ProAdvisors</p></div>
+</div>
+<a href="#team" class="lnk">Meet the team<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+<div class="hair" style="display: flex; flex-wrap: wrap; gap: 8px 14px; padding-top: 16px"><span class="tag">QuickBooks Online</span><span class="tag">Desktop</span><span class="tag">Enterprise</span><span class="tag">Intuit Enterprise Suite</span></div>
+</div>
+</section>
+
+<section aria-label="How we work" class="white" style="border-top: 1px solid #DCE1E8">
+<div class="w" style="padding-top: 60px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 18px">
+<p class="eb">How we work</p>
+<h2>The complicated operations are the ones we prefer.</h2>
+<p class="lead" style="font-size: 14.5px">Our specialties are job costing for time-based businesses, inventory, and multi-channel ecommerce. Nonprofit rules and multiple entities are work we prefer too. If your operation is simple, a good solo bookkeeper will serve you well. If it isn't, this is the work we want.</p>
+<div style="margin-top: 6px">
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Nonprofits</h3><span class="sm" style="font-size: 13px">Fund accounting, restricted and unrestricted revenue, reported the way your board and your auditor expect.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"></path><path d="M14 6a6 6 0 0 1 6 6v3"></path><path d="M4 15v-3a6 6 0 0 1 6-6"></path><rect x="2" y="15" width="20" height="4" rx="1"></rect></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Construction</h3><span class="sm" style="font-size: 13px">Job costing, work in progress and change orders, kept straight in QuickBooks.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path><path d="M7 2v20"></path><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Restaurants</h3><span class="sm" style="font-size: 13px">Food and labor costs, daily sales and point-of-sale data that actually ties back to the bank.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"></rect><path d="M9 22v-4h6v4"></path><path d="M8 6h.01"></path><path d="M16 6h.01"></path><path d="M12 6h.01"></path><path d="M12 10h.01"></path><path d="M12 14h.01"></path><path d="M16 10h.01"></path><path d="M16 14h.01"></path><path d="M8 10h.01"></path><path d="M8 14h.01"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Property management</h3><span class="sm" style="font-size: 13px">Rent rolls, owner statements and tenant receipts, reconciled to the bank every month.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"></path><path d="M17 18h1"></path><path d="M12 18h1"></path><path d="M7 18h1"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Manufacturing</h3><span class="sm" style="font-size: 13px">Inventory, landed cost and work-in-progress reporting that holds up at year end.</span></span></div>
+<div class="row"><span class="ti" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"></circle><circle cx="19" cy="21" r="1"></circle><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px">Ecommerce</h3><span class="sm" style="font-size: 13px">Multi-channel sales from Shopify and Amazon, reconciled to QuickBooks.</span></span></div>
+</div>
+<a href="#schedule" class="lnk" style="margin-top: 6px">Not on the list? Schedule a free consultation<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</section>
+
+<section aria-label="Questions" class="grey">
+<div class="w" style="padding-top: 60px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 18px">
+<p class="eb">Before you call</p>
+<h2 style="font-size: 30px">Questions we get asked before the first call.</h2>
+<div style="border-bottom: 1px solid #DCE1E8; margin-top: 6px">
+<button type="button" class="faq" aria-expanded="true">What actually happens in the free consultation?<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+<p class="sm" style="font-size: 13.5px; padding: 0 0 20px">A conversation, not a pitch. Bernard or Rob will ask what's happening with your books, look at whatever you can show them, and tell you what they would do first.</p>
+<button type="button" class="faq" aria-expanded="false">Do I need to prepare anything?<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+<button type="button" class="faq" aria-expanded="false">Is there a minimum size of business you work with?<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+<button type="button" class="faq" aria-expanded="false">We already have a CPA who files our taxes. Does that change anything?<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+<button type="button" class="faq" aria-expanded="false">How quickly can you start?<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+</div>
+</div>
+</section>
+
+<section id="blog" class="white">
+<div class="w" style="padding-top: 60px; padding-bottom: 60px; display: flex; flex-direction: column; gap: 18px">
+<p class="eb">From the blog</p>
+<h2>Plain-English answers to the questions we get asked.</h2>
+<p class="lead" style="font-size: 14.5px">300+ articles on QuickBooks, bookkeeping, accounting and financial planning.</p>
+<div style="display: flex; flex-direction: column; gap: 10px; margin-top: 6px">
+<a href="#blog" class="card" style="background: #0E1622; color: #FFFFFF; min-height: 230px"><img class="ph" src="../img/37cbc555ab9573d99c3c204f11469679.webp" alt="" aria-hidden="true" style="object-position: 70% 50%"><span class="shade" aria-hidden="true"></span><div style="position: relative; display: flex; flex-direction: column; gap: 10px"><p class="eb" style="color: #CFE3F7">QuickBooks</p><h3 style="color: #FFFFFF">QuickBooks Desktop to Online: what actually changes</h3></div><span class="ft">Read<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></a>
+<a href="#blog" class="card" style="background: #0E1622; color: #FFFFFF; min-height: 230px"><img class="ph" src="../img/16a347e2aaf4894dd3d60cbfb48a31af.webp" alt="" aria-hidden="true" style="object-position: center 45%"><span class="shade" aria-hidden="true"></span><div style="position: relative; display: flex; flex-direction: column; gap: 10px"><p class="eb" style="color: #CFE3F7">Customers</p><h3 style="color: #FFFFFF">QuickBooks Online vs Enterprise: going beyond the basics</h3></div><span class="ft">Read<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></a>
+<a href="#blog" class="card" style="background: #0E1622; color: #FFFFFF; min-height: 230px"><img class="ph" src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="" aria-hidden="true" style="object-position: 60% center"><span class="shade" aria-hidden="true"></span><div style="position: relative; display: flex; flex-direction: column; gap: 10px"><p class="eb" style="color: #CFE3F7">Technology</p><h3 style="color: #FFFFFF">Is automated accounting software the future of financial accounting?</h3></div><span class="ft">Read<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></span></a>
+</div>
+<a href="#blog" class="lnk">Read all articles<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</section>
+
+<section id="schedule" class="dark">
+<div class="w" style="padding-top: 64px; padding-bottom: 56px; display: flex; flex-direction: column; gap: 26px">
+<p class="eb">Your next step</p>
+<h2 style="font-size: 50px; line-height: .98">Let's look at your books.</h2>
+<div class="hair" style="display: flex; flex-direction: column; gap: 16px; padding-top: 24px">
+<div style="display: flex; gap: 16px"><p style="font-size: 15px; color: #FFFFFF">Bring your situation as it is.</p></div>
+<div style="display: flex; gap: 16px"><p style="font-size: 15px; color: #FFFFFF">We'll tell you what we'd do first.</p></div>
+<div style="display: flex; gap: 16px"><p style="font-size: 15px; color: #FFFFFF">And what it would take.</p></div>
+</div>
+<a href="#contact" class="btn btn-blue tg-btn" style="margin-top: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+<p class="sm">A free consultation with Bernard or Rob.</p>
+<a href="tel:+12032279475" class="lnk-plain"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>(203) 227-9475</a>
+</div>
+</section>
+
+<footer id="contact" class="dark foot">
+<div class="w" style="padding-top: 52px; padding-bottom: 28px; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-direction: column; gap: 20px">
+<p class="sm" style="font-size: 13.5px">Business advisors who specialize in accounting technology. Bookkeeping, accounting and QuickBooks for established businesses with complicated books.</p>
+<form onsubmit="return false" style="display: flex; flex-direction: column; gap: 10px">
+<label for="gm-nl" class="fh" style="margin-bottom: 0">QuickBooks tips by email</label>
+<div style="display: flex; gap: 8px"><input id="gm-nl" type="email" placeholder="Your email address"><button type="submit" class="btn btn-blue tg-btn" style="width: auto; height: 46px; padding: 0 16px; font-size: 13px; flex: none">Subscribe</button></div>
+</form>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px"><a href="tel:+12032279475" style="color: #FFFFFF; font-size: 15px; font-weight: 600">(203) 227-9475</a><a href="mailto:info@missionaccountinghelp.com">info@missionaccountinghelp.com</a><p class="sm" style="font-size: 13px">Nationwide, fully remote</p></div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px 16px"><div style="display: flex; flex-direction: column; gap: 11px"><strong class="fh">Services</strong><a href="#bookkeeping">Bookkeeping &amp; Accounting</a><a href="#setup">QuickBooks Setup &amp; Advisory</a><a href="#cfo">Fractional CFO</a><a href="#cleanup">QuickBooks Cleanup</a><a href="#tax">Tax Readiness</a><a href="#reporting">Custom Reporting</a><a href="#pos">POS Integration</a><a href="#training">QuickBooks Training</a></div><div style="display: flex; flex-direction: column; gap: 11px"><strong class="fh">Company</strong><a href="#about">About</a><a href="#products">QuickBooks Products</a><a href="#partners">Partner Program</a><a href="#blog">Blog</a><a href="http://missionaccountinghelp.com/feed/podcast" target="_blank" rel="noopener">Podcast</a><a href="#contact">Contact</a></div><div style="display: flex; flex-direction: column; gap: 11px"><strong class="fh">Follow</strong><a href="https://www.facebook.com/MissionAccounting/" target="_blank" rel="noopener">Facebook ↗</a><a href="https://www.linkedin.com/company/mission-quickbooks/" target="_blank" rel="noopener">MISSION on LinkedIn ↗</a><a href="https://www.linkedin.com/in/bernard-roesch/" target="_blank" rel="noopener">Bernard on LinkedIn ↗</a></div><div style="display: flex; flex-direction: column; gap: 11px"><strong class="fh">Legal</strong><a href="#terms">Terms of Service</a><a href="#privacy">Privacy Policy</a><a href="#cookies">Cookie Policy</a><a href="#returns">Returns Policy</a></div></div>
+<svg viewBox="-0.25 -0.125 646 133" role="img" aria-label="MISSION" style="display: block; width: 100%; height: auto; overflow: visible"><g fill="none" stroke="#0087C0" stroke-width="1.2" stroke-linejoin="round" vector-effect="non-scaling-stroke"><path vector-effect="non-scaling-stroke" d="M640.93 129.79C640.35 129.27 638.98 128.16 637.88 127.33C636.77 126.49 635.65 125.57 635.38 125.26C635.11 124.96 634.32 124.30 633.63 123.81C632.94 123.31 631.77 122.39 631.03 121.77C630.29 121.14 628.75 119.89 627.61 119.00C623.39 115.69 622.65 115.10 621.03 113.74C620.12 112.98 618.92 112.03 618.38 111.62C617.83 111.22 616.70 110.32 615.88 109.62C614.61 108.55 608.04 103.25 601.53 98.05C596.87 94.34 594.79 92.66 592.00 90.38C589.11 88.01 586.34 85.79 583.11 83.25C582.33 82.63 580.94 81.50 580.03 80.74C579.12 79.98 577.92 79.03 577.38 78.62C576.83 78.22 575.70 77.32 574.88 76.62C574.05 75.92 572.92 75.02 572.38 74.62C571.83 74.22 570.76 73.37 570.00 72.73C568.42 71.40 567.70 71.09 567.29 71.58C567.09 71.82 566.99 79.40 566.94 98.95L566.88 125.99L566.31 126.56L565.74 127.12L552.06 127.12C544.53 127.12 538.07 127.04 537.69 126.93C537.31 126.83 536.83 126.47 536.61 126.13L536.21 125.53L536.22 64.77C536.23 21.89 536.31 3.86 536.50 3.50C536.65 3.23 536.97 3.00 537.21 3.00C537.46 3.00 539.73 4.72 542.27 6.81C552.07 14.91 555.41 17.68 557.24 19.21C558.28 20.09 559.91 21.44 560.88 22.22C561.84 23.00 565.33 25.88 568.62 28.62C576.80 35.40 584.30 41.62 587.75 44.48C590.75 46.96 591.42 47.51 603.57 57.59C607.67 60.99 611.31 63.90 611.66 64.06L612.30 64.36L612.65 63.88L613.00 63.40L613.00 35.47L613.00 7.54L613.66 7.02L614.32 6.50L628.41 6.50L642.50 6.50L643.00 7.00L643.50 7.50L643.50 68.73C643.50 102.41 643.43 130.14 643.35 130.35C643.09 131.04 642.04 130.80 640.93 129.79ZM210.75 128.25C209.72 127.99 208.39 127.77 207.81 127.76C207.22 127.75 206.10 127.52 205.31 127.25C204.53 126.98 203.72 126.75 203.51 126.75C203.06 126.76 200.24 125.91 198.25 125.17C190.30 122.23 185.41 119.15 180.25 113.84C177.20 110.70 175.84 109.01 175.74 108.25C175.62 107.34 175.88 106.99 178.18 104.99C179.52 103.83 183.32 100.46 186.62 97.50C196.47 88.70 196.70 88.50 197.36 88.50C197.84 88.50 198.21 88.87 199.08 90.19C200.46 92.30 204.88 96.61 206.89 97.82C208.80 98.96 211.81 100.18 213.96 100.66C216.31 101.20 222.29 101.38 225.09 101.01C227.68 100.66 230.56 99.78 231.94 98.91C233.25 98.08 234.63 96.49 235.02 95.35C235.20 94.81 235.36 93.70 235.36 92.88L235.37 91.38L234.65 90.15C232.97 87.28 229.33 84.67 223.88 82.42C222.20 81.73 215.31 79.40 213.38 78.87C212.69 78.68 210.66 77.97 208.88 77.29C200.00 73.89 194.69 70.69 190.20 66.04C184.03 59.66 181.43 53.35 180.86 43.38C180.00 28.26 190.19 14.18 206.35 8.14C215.00 4.91 225.55 4.27 235.03 6.40C244.44 8.51 254.04 14.04 259.94 20.76C262.29 23.43 262.30 23.41 257.61 28.25C256.07 29.83 252.98 33.15 250.73 35.62C248.48 38.10 246.24 40.56 245.76 41.09C245.27 41.62 244.57 42.21 244.19 42.41L243.50 42.76L242.81 42.40C242.43 42.20 241.39 41.29 240.50 40.37C237.86 37.65 235.09 36.01 230.82 34.62L228.12 33.75L225.12 33.75L222.12 33.75L220.00 34.50C215.74 36.00 214.00 37.88 214.00 41.00C214.00 43.98 214.65 45.15 217.31 46.90C219.45 48.31 222.74 49.75 229.90 52.38C238.41 55.51 240.63 56.42 245.62 58.86C252.27 62.10 255.79 64.51 259.90 68.61C264.52 73.22 266.46 76.59 267.88 82.45L268.50 85.04L268.50 90.85L268.50 96.66L268.01 98.52C267.73 99.54 267.51 100.68 267.51 101.05C267.50 101.43 267.27 102.31 266.99 103.02C266.44 104.43 266.53 105.25 267.24 105.25C267.80 105.25 271.78 101.93 280.25 94.40C283.76 91.28 286.90 88.66 287.23 88.58C287.90 88.41 288.11 88.60 289.99 91.23C291.62 93.51 295.10 96.70 297.36 97.99C301.36 100.25 305.44 101.25 310.72 101.25C320.09 101.25 325.51 98.28 325.49 93.16C325.49 91.21 324.96 90.04 323.23 88.15C320.29 84.93 314.66 82.23 304.75 79.26C299.93 77.82 294.55 75.67 290.38 73.49C283.24 69.77 276.78 63.32 274.00 57.13C271.42 51.38 270.37 43.15 271.37 36.56C272.63 28.24 277.86 19.82 285.20 14.31C293.39 8.16 302.94 5.13 314.00 5.17C327.23 5.23 338.99 9.96 348.32 18.98C351.11 21.67 351.87 22.73 351.65 23.61C351.57 23.94 350.21 25.58 348.63 27.25C347.04 28.92 344.21 32.00 342.33 34.08C337.70 39.22 334.18 42.75 333.68 42.75C333.46 42.75 332.05 41.65 330.55 40.31C326.83 36.98 324.53 35.68 319.86 34.28C318.48 33.87 317.43 33.75 315.07 33.75L312.06 33.75L310.38 34.38C307.88 35.32 306.98 35.85 305.82 37.04C304.08 38.84 303.70 40.31 304.27 43.01C304.95 46.16 308.31 48.14 320.45 52.53C334.14 57.49 342.15 61.56 347.93 66.50C350.41 68.61 353.59 72.25 354.86 74.43C356.99 78.06 358.38 82.76 358.62 87.12C358.71 88.77 358.78 90.24 358.78 90.38C358.67 96.16 358.18 99.52 356.83 103.88C355.92 106.80 355.34 108.06 353.52 111.12C350.89 115.54 346.43 119.88 341.83 122.51C338.97 124.14 332.59 126.75 331.45 126.75C331.24 126.75 330.36 126.98 329.50 127.25C328.64 127.52 327.56 127.75 327.11 127.75C326.66 127.75 325.31 127.98 324.11 128.27L321.93 128.78L311.78 128.69L301.62 128.59L300.40 128.17C299.72 127.94 298.70 127.75 298.12 127.75C297.54 127.75 296.36 127.52 295.50 127.25C294.64 126.98 293.74 126.75 293.51 126.75C293.04 126.75 287.23 124.82 285.62 124.13C281.59 122.39 277.96 120.32 274.87 117.97C272.88 116.46 268.64 112.33 266.33 109.64L265.54 108.71L265.04 108.98C264.77 109.12 264.29 109.67 263.98 110.18C259.95 116.91 255.02 121.27 247.86 124.42C244.55 125.88 238.35 127.75 236.85 127.75C236.30 127.75 235.24 127.94 234.49 128.16L233.12 128.58L222.88 128.65L212.62 128.73L210.75 128.25ZM462.62 128.59C462.21 128.53 461.12 128.32 460.20 128.12C459.28 127.91 457.97 127.75 457.30 127.75C456.62 127.75 455.36 127.52 454.50 127.25C453.64 126.98 452.70 126.75 452.42 126.75C452.14 126.75 451.11 126.51 450.14 126.22C441.37 123.56 433.95 119.76 427.42 114.56C425.09 112.70 420.51 108.11 418.14 105.25C405.95 90.54 401.50 71.00 406.14 52.48C408.67 42.35 414.49 32.22 422.13 24.62C431.96 14.85 444.24 8.72 458.50 6.47L462.12 5.89L468.38 5.90L474.62 5.91L477.94 6.46C486.22 7.83 492.84 10.00 499.50 13.53C508.19 18.15 517.14 26.14 522.29 33.88C524.94 37.87 528.05 44.06 529.14 47.50C529.38 48.26 529.78 49.48 530.04 50.21C530.29 50.94 530.50 51.74 530.50 51.99C530.50 52.23 530.73 53.14 531.00 54.00C531.27 54.86 531.50 56.07 531.50 56.68C531.50 57.30 531.70 58.49 531.93 59.34L532.37 60.88L532.37 67.12L532.37 73.38L531.93 74.91C531.70 75.76 531.50 76.90 531.50 77.45C531.50 78.00 531.28 79.17 531.00 80.04C530.73 80.91 530.51 81.85 530.50 82.12C530.50 82.70 529.82 84.81 528.54 88.25C522.72 103.92 509.38 117.33 493.12 123.87C490.27 125.02 484.88 126.75 484.16 126.75C483.82 126.75 482.83 126.97 481.96 127.25C481.09 127.52 479.81 127.75 479.12 127.75C478.44 127.75 477.20 127.93 476.38 128.15C475.29 128.43 473.27 128.56 469.12 128.62C465.96 128.67 463.04 128.66 462.62 128.59ZM4.62 127.33C3.15 127.15 2.75 126.98 2.38 126.42L2.00 125.85L2.50 115.36C2.98 105.36 3.38 96.89 4.50 73.38C4.78 67.60 5.23 58.09 5.51 52.25C5.78 46.41 6.23 37.01 6.50 31.38C6.77 25.74 7.18 17.13 7.40 12.25C7.63 7.37 7.92 3.23 8.06 3.06C8.20 2.89 8.48 2.75 8.68 2.75C9.09 2.75 13.35 7.12 15.78 10.02C16.63 11.04 18.26 12.89 19.39 14.12C20.52 15.36 22.33 17.40 23.41 18.65C26.96 22.77 30.92 27.26 39.78 37.22C40.93 38.52 43.04 40.94 44.47 42.60C45.90 44.26 47.76 46.36 48.60 47.25C49.44 48.15 50.97 49.89 52.00 51.13C53.03 52.36 54.63 54.19 55.55 55.19C56.48 56.19 58.57 58.56 60.21 60.44C64.50 65.39 66.07 67.00 66.61 67.00C67.18 67.00 67.81 66.34 72.76 60.61C74.90 58.14 78.38 54.11 80.51 51.65C82.63 49.19 85.11 46.32 86.00 45.26C86.89 44.20 89.03 41.71 90.75 39.72C96.78 32.74 104.65 23.62 107.25 20.62C108.69 18.95 112.84 14.14 116.46 9.93C120.09 5.73 123.23 2.22 123.44 2.13C123.66 2.05 123.94 2.09 124.07 2.22C124.41 2.56 124.73 4.39 124.74 6.12C124.75 6.95 124.87 8.04 125.01 8.54C125.15 9.04 125.37 13.03 125.51 17.41C125.65 21.79 125.87 26.44 126.01 27.75C126.14 29.06 126.36 33.50 126.49 37.62C126.63 41.75 126.85 46.19 127.00 47.50C127.14 48.81 127.37 53.25 127.51 57.38C127.65 61.50 127.87 66.00 128.00 67.38C128.14 68.75 128.36 73.25 128.50 77.38C128.64 81.50 128.87 86.00 129.00 87.38C129.14 88.75 129.36 93.25 129.50 97.38C129.64 101.50 129.87 105.89 130.00 107.12C130.13 108.36 130.35 113.14 130.48 117.75L130.72 126.12L130.23 126.62L129.74 127.12L118.43 127.21C112.21 127.25 105.17 127.21 102.78 127.12L98.44 126.94L97.97 126.47L97.50 126.00L97.50 103.67L97.50 81.35L97.17 80.89C96.91 80.53 96.73 80.49 96.35 80.70C96.08 80.84 93.22 83.80 89.99 87.27C86.76 90.74 82.48 95.28 80.48 97.35C78.47 99.43 74.66 103.46 72.00 106.31L67.17 111.50L66.40 111.50L65.63 111.50L63.88 109.68C62.91 108.68 60.16 105.73 57.75 103.11C39.77 83.59 36.84 80.50 36.26 80.50C35.55 80.50 35.50 82.00 35.50 103.75C35.50 126.15 35.48 126.76 34.65 127.31C34.38 127.49 6.07 127.51 4.62 127.33ZM138.50 125.25L138.00 124.75L138.00 65.75L138.00 6.75L138.50 6.25L139.00 5.75L154.95 5.75L170.90 5.75L171.38 6.10C171.73 6.35 171.90 6.91 172.03 8.28C172.14 9.30 172.23 35.97 172.23 67.55L172.25 124.97L171.69 125.36L171.14 125.75L155.07 125.75L139.00 125.75L138.50 125.25ZM364.00 125.25L363.50 124.75L363.50 65.75L363.50 6.75L364.00 6.25L364.50 5.75L380.50 5.75L396.50 5.75L397.00 6.25L397.50 6.75L397.50 65.75L397.50 124.75L397.00 125.25L396.50 125.75L380.50 125.75L364.50 125.75L364.00 125.25ZM474.00 98.15C479.85 96.93 484.75 94.39 488.97 90.39C499.86 80.08 502.08 63.63 494.35 50.49C492.84 47.92 488.82 43.65 485.92 41.55C482.54 39.10 479.15 37.54 474.64 36.37L472.16 35.73L467.89 35.81C463.13 35.89 461.91 36.13 457.50 37.81C453.41 39.37 450.63 41.22 447.18 44.68C445.56 46.30 443.77 48.36 443.20 49.25C440.93 52.83 438.88 57.73 438.50 60.50C438.39 61.26 438.10 63.04 437.86 64.46L437.41 67.05L437.86 69.71C438.11 71.18 438.40 72.99 438.50 73.75C438.96 76.99 441.09 81.84 443.79 85.79C445.75 88.65 450.01 92.74 452.70 94.35C456.16 96.41 460.17 97.82 464.75 98.58C466.82 98.92 471.28 98.71 474.00 98.15Z"></path></g></svg>
+<div class="hair" style="display: flex; flex-direction: column; gap: 14px; padding-top: 18px"><p class="sm" style="font-size: 11.5px">© 2026 MISSION. All rights reserved. · Intuit, QuickBooks and ProAdvisor are trademarks of Intuit Inc.</p><a href="#top" style="color: #FFFFFF; font-size: 12.5px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">Back to top<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"></path><path d="M6 11l6-6 6 6"></path></svg></a></div>
+</div>
+</footer>
+
+</div>
+
+</template>
+<script type="application/json" id="dc-props">{"$preview":{"width":390,"height":8000}}</script>
+<script src="../rt.js"></script>
+<script>
+class Component extends DCLogic {
+  setBtn(v) {
+    // the review toggle; boards of the same lane stay in step through a broadcast channel
+    this.setState({ btn: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
+  }
+  listenBtn() {
+    try {
+      this.btnChannel = new BroadcastChannel('mission-buttons-lane-g2');
+      this.btnChannel.onmessage = (e) => { if (e.data && e.data.btn) this.setState({ btn: e.data.btn }); };
+    } catch (e) {}
+  }
+  svcGo(d) {
+    const i = Math.max(0, Math.min(7, ((this.state && this.state.svc) || 0) + d));
+    this.setState({ svc: i });
+  }
+  svcVals() {
+    const i = (this.state && this.state.svc) || 0;
+    return {
+      svcTrack: 'display: flex; gap: 12px; transform: translateX(-' + (i * 250) + 'px); transition: transform .6s cubic-bezier(.22,.61,.36,1)',
+      svcPrevCls: 'car-btn' + (i === 0 ? ' is-off' : ''),
+      svcNextCls: 'car-btn' + (i === 7 ? ' is-off' : ''),
+      svcPrev: this.svcPrevFn || (this.svcPrevFn = () => this.svcGo(-1)),
+      svcNext: this.svcNextFn || (this.svcNextFn = () => this.svcGo(1)),
+    };
+  }
+  renderVals() {
+    return {
+      ...this.svcVals(),
+      btnMode: (this.state && this.state.btn) || 'green',
+      isBlue: ((this.state && this.state.btn) || 'green') === 'blue' ? 'true' : 'false',
+      isGreen: ((this.state && this.state.btn) || 'green') === 'green' ? 'true' : 'false',
+      setBlue: this.setBlue || (this.setBlue = () => this.setBtn('blue')),
+      setGreen: this.setGreen || (this.setGreen = () => this.setBtn('green')),
+    };
+  }
+  componentDidMount() {
+    this.listenBtn();
+  }
+  componentWillUnmount() {
+    try { if (this.btnChannel) this.btnChannel.close(); } catch (e) {}
+  }
+}
+DC.boot(Component);
+</script>
+</body>
+</html>
