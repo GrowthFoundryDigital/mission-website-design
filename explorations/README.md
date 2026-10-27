@@ -90,6 +90,16 @@ Lanes C, D and E each have a review bar at the top of the desktop homepage: "Rev
 - **Mobile heights, measured:** C 10,465 px, D 11,943 px, E 11,457 px including the bar. The continuation boards are 2,625 px (C), 4,103 px (D) and 3,617 px (E). Lane C's continuation board had been sized from an estimate of about 13,240 px and showed roughly 2,800 px of blank space below the footer; it now fits.
 - **Before launch:** the bar is a review control, not part of the design. Remove it, or hide it, for any client-facing build.
 
+## Lane C3 (27 Oct 2026)
+
+A third version of Lane C, restyled to the style board Growth Foundry supplied (`assets/inspiration/inspiration-8-c3-style-board.webp`, "Clear. Connected. Confident."). Content and section order come from C2, including the user's removal of the rule above "Have books like these?".
+
+- **Look:** Plus Jakarta Sans throughout, headings 800 in one color with short lime or Mission blue accent bars. Midnight navy and ice blue sections in turns with white cards, 14 to 16 px radii. Navy hero with the monitor mockup and floating check cards, and the typing-then-highlighter animation in sky blue. Case studies first: the construction photo with a "Real people. Real progress." caption, the other three stories as a thumbnail list with chevrons, and a navy "look like this?" card with the Schedule button. Sky-blue testimonial card, blue check-circle checklists, navy footer with a large MISSION watermark. Green (lime) buttons by default; logos stay Mission blue.
+- **ELI15 copy test:** every heading, intro, card and FAQ answer has a plain-language version a 15-year-old would follow, with no jargon and no new facts. Testimonials, names, the Schedule label, nav and legal lines are unchanged. The review bar on all four C3 boards has a "Copy: ELI15 / Standard" switch that flips the whole page instantly and stays in step across the boards. To make standard the default for good, change `return 'eli';` to `return 'std';` in `defaultCopy()` in `lane-c3-home.dc.html` and `lane-c3-home-mobile.dc.html` (and the `'eli'` defaults in the two part-2 files).
+- **Canvas:** in the Lane C row after C2: style board, desktop (1 of 2, 2 of 2), mobile (1 of 2, 2 of 2).
+- **Heights, measured:** desktop 9,404 (ELI15) and 9,417 (standard); mobile 13,639 and 13,544. The continuation boards use the taller of the two so neither mode is cut off.
+- **Not on the review site** yet; it shows C2, D2 and G2.
+
 ## Versions 1 and 2, and the client review site (26 Oct 2026)
 
 Lanes C to G now come in two versions. Version 1 (C1 to G1) is each board as it stood on 26 Oct, with every canvas revision; the files keep their names (`lane-g-home.dc.html` and so on) so their comment history stays attached. Version 2 (C2 to G2, `lane-g2-home.dc.html` and so on) started as an exact copy of version 1 and changes only what the October 2026 Business DNA requires, plus a new case studies section. The full change list is in `v2-dna-changes.md`; the DNA itself is `business-dna-2026-10.md`.
