@@ -113,6 +113,10 @@ A third version of Lane C, restyled to the style board Growth Foundry supplied (
 - **Heights, measured:** desktop 9,194, mobile 13,367 (the three-way Hero switch wraps the mobile review bar onto two lines).
 - **Not on the review site** yet; it shows C2, D2 and G2.
 
+## Proof stats: client loyalty, not firm age (27 Oct 2026)
+
+MISSION is unsure how its ideal clients will read a long company history, so the version 2 lanes (C2 to G2) and C3 no longer show the firm's age. "25+ years in business" became "10+: years several of our clients have stayed", and "2007: when our longest client relationship began" became "~50: client reviews on our ProAdvisor profile". The 5.0 Google rating stays. The hero lines that mentioned 2007 (C2, E2 and F2) now say clients stay 10+ years, D2's team line drops "25+ years in business", and G2's tile label "Established" became "Client loyalty". Richard Cipolla's quote ("since 2007") is unchanged because testimonials stay word for word. All figures are from the Business DNA. The client review site was rebuilt with the change.
+
 ## Versions 1 and 2, and the client review site (26 Oct 2026)
 
 Lanes C to G now come in two versions. Version 1 (C1 to G1) is each board as it stood on 26 Oct, with every canvas revision; the files keep their names (`lane-g-home.dc.html` and so on) so their comment history stays attached. Version 2 (C2 to G2, `lane-g2-home.dc.html` and so on) started as an exact copy of version 1 and changes only what the October 2026 Business DNA requires, plus a new case studies section. The full change list is in `v2-dna-changes.md`; the DNA itself is `business-dna-2026-10.md`.
