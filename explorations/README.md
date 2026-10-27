@@ -113,6 +113,17 @@ A third version of Lane C, restyled to the style board Growth Foundry supplied (
 - **Heights, measured:** desktop 9,194, mobile 13,367 (the three-way Hero switch wraps the mobile review bar onto two lines).
 - **On the review site** since 27 Oct, with D3 and G3.
 
+## Lane H: the "Decisive Clarity" style board (27 Oct 2026)
+
+A new lane built from the style board Growth Foundry supplied (`assets/inspiration/inspiration-9-h-style-board.webp`), in the ELI15 copy used on C3, D3 and G3. Decisions, from the clarifying questions: ELI15 copy; the board's brand lines (hero "Complex books. Clear answers.", eyebrow "Practical. Reassuring. Experienced.", "Numbers create possibility." in script over the hero photo, "A specialist team that knows your business.", and "Your books. In order." on the closing call); library photos with a cool, desaturated grade instead of the board's photos; and the project lime #C1F432 on buttons rather than the board's softer #D1E86C.
+
+- **Look:** Space Grotesk headings in one weight (600), Open Sans body, near-black and chalk sections with one Electric Blue band, numbered eyebrows ("01 Case studies"), thin Electric Blue line icons, the board's diagonal blue wedge, dark wedge and dot grid as graphic elements. No accent bars under headings (removed elsewhere on request). Logos stay Mission blue.
+- **Sections:** hero with the three core services along its foot (tier order), case studies first (featured construction story, three cards, a blue closing call), software strip, positioning with a 2 × 2 photo grid, services (three tiers plus five supporting services and QuickBooks products), the six trigger moments, specialties and industries, Intuit certification band, testimonials word for word with the loyalty stats (10+, ~50, 5.0), team, FAQ, blog, closing call and footer.
+- **Review bar:** Blue (#2459F5) / Green (#C1F432) button switch, green by default, on its own channel.
+- **Canvas:** a new Lane H row below Lane G: style board, desktop with its continuation below, mobile with its continuation below.
+- **Heights, measured:** desktop 11,403, mobile 15,594.
+- **Source:** both boards are generated from one content file, `tools/lane-h-gen.py` (run it with the output folder as its argument), so desktop and mobile stay in step.
+
 ## Lanes D3 and G3: ELI15 copy (27 Oct 2026)
 
 D3 and G3 are exact copies of D2 and G2 with every heading, intro, card, service description and FAQ question rewritten in plain language a 15-year-old would follow, in the same voice as C3 (C3's wording is reused wherever the meaning matches). Layout, imagery, facts and section order are unchanged. Testimonials, names and roles, nav, service names, the Schedule label, blog titles, stats and legal lines stay as they are. Each has its own review-bar channel, so D2/D3 and G2/G3 can be compared in different button colors.

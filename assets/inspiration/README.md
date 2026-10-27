@@ -8,3 +8,5 @@
 ## inspiration-8-c3-style-board.webp
 
 Style board supplied by Growth Foundry on 27 Oct 2026 for Lane C3: a MISSION "visual direction" tile, "Clear. Connected. Confident." Midnight navy, Mission blue, sky blue, ice blue, lime and white; bold geometric headings; a dashboard monitor with floating check cards; photos of real people; a checklist with a lime button; a sky-blue quote card; a list with photo thumbnails; and a navy footer band with a large MISSION watermark.
+
+- `inspiration-9-h-style-board.webp` (941 × 1672): the "Decisive Clarity" brand exploration supplied by Growth Foundry on 27 Oct 2026 for Lane H. Electric Blue #2459F5, near black #101419, chalk #F5F6F7 and signal lime; Space Grotesk and Open Sans; cool, desaturated photos of people at work; thin blue line icons; diagonal blue and black shapes. The board labels itself "G2"; that is the agency's exploration number, not Lane G2. Its email signature shows a placeholder domain (mission.com), which is not MISSION's.
