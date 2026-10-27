@@ -25,4 +25,4 @@ Supplied by Growth Foundry on 6 Oct 2026 for the design explorations. These are 
 
 ## Added 27 Oct 2026
 
-- `restaurant-chef-plating.webp` (1672 × 941): a chef plating dishes at the pass of an open restaurant kitchen under pendant lights, a cook behind him and a server walking past the dining room in motion blur. Supplied by Growth Foundry. It's the default Lane C3 hero background, with `hero-thinking-at-desk.webp` as the "Office" variant. It also fills the brief's gap for a restaurant-industry image. Not a MISSION client, so don't caption it as one.
+- `restaurant-chef-plating.webp` (1672 × 941): a chef plating dishes at the pass of an open restaurant kitchen under pendant lights, another cook behind and a server walking past the dining room in motion blur. Supplied by Growth Foundry. It's the default Lane C3 hero background, with `hero-thinking-at-desk.webp` as the "Office" variant. It also fills the brief's gap for a restaurant-industry image. Not a MISSION client, so don't caption it as one.
