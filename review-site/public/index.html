@@ -91,32 +91,32 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <div class="controls">
     <div class="group"><span class="lbl">Lane</span><div class="seg" id="lane" role="group" aria-label="Lane"></div></div>
     <div class="group"><span class="lbl">View</span><div class="seg" id="dev" role="group" aria-label="Device"></div></div>
-    <a class="open" id="open" href="pages/g2-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
+    <a class="open" id="open" href="pages/d3-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
 </header>
 <div class="context" aria-live="polite">
-  <strong id="ctx-title">Lane G2</strong>
+  <strong id="ctx-title">Lane D3</strong>
   <span class="look" id="ctx-look"></span>
   <span class="note" id="ctx-note"></span>
   <span class="px" id="ctx-px"></span>
 </div>
 <main class="stage" id="stage">
-  <div class="frame" id="frame"><iframe id="view" title="Homepage preview" src="pages/g2-desktop.html"></iframe></div>
+  <div class="frame" id="frame"><iframe id="view" title="Homepage preview" src="pages/d3-desktop.html"></iframe></div>
 </main>
 
 <script>
 (function () {
   var LANES = {
-    c: 'Serif headlines on soft gradient sections',
     d: 'Dark hero with angled details',
-    g: 'Near-black, white and one blue band'
+    g: 'Near-black, white and one blue band',
+    c: 'Navy, ice blue and lime, with a photo hero'
   };
-  var NOTE = 'Updated to the October 2026 Business DNA, leading with client case studies.';
+  var NOTE = 'Plain-language copy on the October 2026 Business DNA, leading with client case studies.';
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
-  var state = { lane: 'g', ver: '2', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
+  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
 
-  var m = (location.hash || '').match(/^#([cdg])2-(desktop|mobile)$/);
-  if (m) state = { lane: m[1], ver: '2', dev: m[2] };
+  var m = (location.hash || '').match(/^#([cdg])3-(desktop|mobile)$/);
+  if (m) state = { lane: m[1], ver: '3', dev: m[2] };
 
   function seg(el, items, key) {
     el.innerHTML = '';

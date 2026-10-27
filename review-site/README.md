@@ -1,6 +1,6 @@
 # MISSION homepage review site
 
-The client review site: lanes C, D and G (version 2), each on desktop and mobile, in one viewer. `public/` is the finished static site; `wrangler.jsonc` deploys it as a Cloudflare Worker with static assets. The same site is also published as a claude.ai artifact: https://claude.ai/artifact/Bcfv2oZ3wHrJGKY6svUfGJ
+The client review site: lanes D3, G3 and C3 (the plain-language ELI15 versions), each on desktop and mobile, in one viewer. `public/` is the finished static site; `wrangler.jsonc` deploys it as a Cloudflare Worker with static assets. The same site is also published as a claude.ai artifact: https://claude.ai/artifact/Bcfv2oZ3wHrJGKY6svUfGJ
 
 ## Deploy on Cloudflare
 
@@ -12,7 +12,7 @@ The client review site: lanes C, D and G (version 2), each on desktop and mobile
 
 ## Files
 
-- `public/index.html`: the viewer (lane and desktop/mobile switches, an "Open full page" link, a link per view such as `#g2-desktop`).
+- `public/index.html`: the viewer (lane and desktop/mobile switches, an "Open full page" link, a link per view such as `#d3-desktop`).
 - `public/pages/*.html`: one standalone page per lane and device, generated from the canvas boards.
 - `public/rt.js`: a small runtime that runs the boards' component scripts (carousels, the typing hero, the button toggle).
 - `public/img/`: the images the pages use.

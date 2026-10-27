@@ -111,7 +111,15 @@ A third version of Lane C, restyled to the style board Growth Foundry supplied (
 - **Canvas edits (27 Oct):** the team photo and the How we work checklist panel stretch to the height of the text beside them, and the footer watermark is centred, by request.
 - **Canvas:** in the Lane C row after C2: style board, desktop with its continuation stacked below, mobile with its continuation stacked below.
 - **Heights, measured:** desktop 9,194, mobile 13,367 (the three-way Hero switch wraps the mobile review bar onto two lines).
-- **Not on the review site** yet; it shows C2, D2 and G2.
+- **On the review site** since 27 Oct, with D3 and G3.
+
+## Lanes D3 and G3: ELI15 copy (27 Oct 2026)
+
+D3 and G3 are exact copies of D2 and G2 with every heading, intro, card, service description and FAQ question rewritten in plain language a 15-year-old would follow, in the same voice as C3 (C3's wording is reused wherever the meaning matches). Layout, imagery, facts and section order are unchanged. Testimonials, names and roles, nav, service names, the Schedule label, blog titles, stats and legal lines stay as they are. Each has its own review-bar channel, so D2/D3 and G2/G3 can be compared in different button colors.
+
+- **Canvas:** in the Lane D and Lane G rows after version 2: desktop with its continuation stacked below, then mobile with its continuation below.
+- **Heights, measured:** D3 desktop 9,602, mobile 14,641 · G3 desktop 9,704, mobile 13,021.
+- **Review site:** now shows D3, G3 and C3 (in that order) instead of C2, D2 and G2.
 
 ## Proof stats: client loyalty, not firm age (27 Oct 2026)
 

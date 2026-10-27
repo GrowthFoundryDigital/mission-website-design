@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1440">
+<title>MISSION homepage · Lane C3 · Desktop</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+@keyframes caretBlink{0%,49%{opacity:1}50%,100%{opacity:0}}
+body{margin:0;background:#FFFFFF}
+a{color:#0A7FD0}a:hover{color:#0866A8}
+/* hero highlighter: a semi-transparent Sky Blue stroke drawn over the white type (normal blend, navy ground) */
+.hlx{position:relative;font-style:normal}
+.caret{animation:caretBlink 1s steps(1) infinite}
+.caret.is-off{opacity:0;animation:none}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media (max-width: 960px){.nav-links{display:none !important}}
+.hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
+[data-hero="kitchen"] .hero-bg-kitchen,[data-hero="office"] .hero-bg-office,[data-hero="ecommerce"] .hero-bg-ecommerce{display:block}
+/* Review toggle: blue or green (#C1F432) solid buttons */
+.tg-bar{height:40px;box-sizing:border-box;background:#141414;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:12px;font:500 12.5px/1 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0}
+.tg-bar .tg-label{color:#BDBDBD}
+.tg-bar .tg-group{display:inline-flex;background:#2B2B2B;border-radius:999px;padding:3px;gap:2px}
+.tg-bar .tg-opt{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 12px;border-radius:999px;color:#D0D0D0;font:600 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;transition:background-color .2s ease,color .2s ease}
+.tg-bar .tg-opt:hover{color:#FFFFFF}
+.tg-bar .tg-opt:focus-visible{outline:2px solid #7CB8F0;outline-offset:2px}
+.tg-bar .tg-opt[aria-pressed="true"]{background:#FFFFFF;color:#141414}
+.tg-bar .tg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+[data-btn="green"] .tg-btn{background:#C1F432 !important;color:#0A2240 !important;border-color:#C1F432 !important}
+[data-btn="green"] .tg-btn{filter:none !important;transition:opacity .2s ease,background-color .2s ease,color .2s ease}
+[data-btn="green"] .tg-btn:hover,[data-btn="green"] .tg-btn:focus-visible{background:#C1F432 !important;opacity:.9;filter:none !important}
+[data-btn="green"] .tg-btn *{color:#0A2240 !important}
+</style>
+
+<style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" style="font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif; color: #3B4A63; background: #FFFFFF; font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased">
+<div class="tg-bar" aria-label="Review control, not part of the design">
+<span class="tg-label">Review · button color</span>
+<div class="tg-group" role="group" aria-label="Button color">
+<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: #0A7FD0"></span>Blue</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>Green #C1F432</button>
+</div>
+<span class="tg-label">Hero</span>
+<div class="tg-group" role="group" aria-label="Hero background">
+<button type="button" class="tg-opt" aria-pressed="{{ isKitchen }}" onClick="{{ setKitchen }}">Kitchen</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>
+</div>
+</div>
+
+<!-- 01 Hero: photo background (kitchen, office or ecommerce, chosen in the review bar) -->
+<section style="position: relative; overflow: hidden">
+<img class="hero-bg-kitchen" src="../img/2066a54da13614d9c2246994e32d1902.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 40%; z-index: 0">
+<img class="hero-bg-office" src="../img/c76296e63f1cbdfd3cc1859696beddca.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 30%; z-index: 0">
+<img class="hero-bg-ecommerce" src="../img/b70d1fd6eb5a9839c3acd3ccea5d44a1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 38%; z-index: 0">
+<div class="hero-bg-office" aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.6) 32%, rgba(0, 0, 0, 0.22) 55%, rgba(0, 0, 0, 0) 70%)"></div>
+<div class="hero-bg-ecommerce" aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0.18) 34%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0) 68%)"></div>
+<header style="position: relative; z-index: 2; background: linear-gradient(180deg, #000000D8 0%, rgba(0, 0, 0, 0) 100%)">
+<nav aria-label="Main" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<a href="#top" aria-label="MISSION home" style="display: flex; align-items: center"><img src="../img/b29865f8838e8d694583c88108f0c2aa.svg" alt="MISSION" style="height: 26px; width: auto; display: block"></a>
+<div class="nav-links" style="display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 500">
+<a href="#services" style="color: #D6E2F2; text-decoration: none; display: flex; align-items: center; gap: 4px">Services<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a>
+<a href="#case-studies" style="color: #D6E2F2; text-decoration: none">Case studies</a>
+<a href="#about" style="color: #D6E2F2; text-decoration: none">About</a>
+<a href="#products" style="color: #D6E2F2; text-decoration: none">Products</a>
+<a href="#blog" style="color: #D6E2F2; text-decoration: none">Blog</a>
+<a href="#contact" style="color: #D6E2F2; text-decoration: none">Contact</a>
+</div>
+<div style="display: flex; align-items: center; gap: 20px">
+<a href="tel:+12032279475" class="nav-links" style="display: flex; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600">(203) 227-9475</a>
+<a class="tg-btn btn-cal" href="#schedule" style="display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 20px; border-radius: 12px; background: {{ primary }}; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 700; white-space: nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a consultation</a>
+</div>
+</nav>
+</header>
+<main id="top" style="position: relative; z-index: 1">
+<div style="max-width: 1160px; margin: 0 auto; padding: 96px 40px 132px; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 40px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 24px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">Bookkeeping for tricky businesses</p>
+<h1 style="margin: 0; font-weight: 800; font-size: clamp(52px, 4.9vw, 70px); line-height: 1.02; letter-spacing: -0.04em; color: #FFFFFF">We handle <span class="sr-only">the messy work.</span><span aria-hidden="true" style="display: block; min-height: 1.05em; white-space: nowrap"><em class="hlx">{{ typed }}</em><span class="{{ caretCls }}" style="display: inline-block; width: 0.07em; height: 0.78em; margin-left: 0.05em; vertical-align: -0.06em; background: #C1F432"></span></span></h1>
+
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #C9D6E8; max-width: 500px">We fix messy books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 26px">
+<a class="tg-btn btn-cal" href="#schedule" style="display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 28px; border-radius: 12px; background: {{ primary }}; color: #FFFFFF; text-decoration: none; font-size: 15.5px; font-weight: 700; white-space: nowrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+<a href="#case-studies" style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: #7CC4F8; text-underline-offset: 4px">Read client stories<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px; font-size: 13.5px; color: #C9D6E8"><span style="display: inline-flex; align-items: center; gap: 10px"><span aria-hidden="true" style="display: inline-flex; align-items: center"><img src="../img/b0f8fafa98dcbe0082a836a30303b5e5.png" alt="" style="position: relative; z-index: 1; width: 32px; height: 32px; margin-left: 0px; border-radius: 50%; object-fit: cover; border: 2px solid #0A2240; box-sizing: content-box"><img src="../img/8dcd87561fad4fb41686cffb42d245b4.png" alt="" style="position: relative; z-index: 2; width: 32px; height: 32px; margin-left: -9px; border-radius: 50%; object-fit: cover; border: 2px solid #0A2240; box-sizing: content-box"><img src="../img/4a8aee7bf8f13bc1315ec9fa3aa9642d.png" alt="" style="position: relative; z-index: 3; width: 32px; height: 32px; margin-left: -9px; border-radius: 50%; object-fit: cover; border: 2px solid #0A2240; box-sizing: content-box"></span><span>5.0 average on Google reviews</span></span></div>
+</div>
+</div>
+</main>
+</section>
+
+<!-- 01b Case studies: the lead proof, straight after the hero -->
+<section id="case-studies" aria-label="Case studies" style="position: relative; overflow: hidden; background: #E8F3FD">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 96px 40px 104px; display: flex; flex-direction: column; gap: 44px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A7FD0">Case studies</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(46px, 4.6vw, 64px); line-height: 1.06; letter-spacing: -0.03em; color: #0A2240; text-wrap: balance; line-height: 1.02">Messy books, fixed.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #3B4A63; max-width: 700px; width: 860px">Each one shows the problem a business had and how we set up QuickBooks to fix it.</p>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; align-items: stretch">
+<article style="background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 56px rgba(10, 34, 64, 0.14); display: flex; flex-direction: column">
+<div style="position: relative; flex: 1; min-height: 400px">
+<img src="../img/3554cab00abc02f5b19956702ff92a9f.webp" alt="A construction crew reviewing plans together on a job site" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%">
+<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 34, 64, 0.88) 0%, rgba(10, 34, 64, 0.35) 38%, rgba(10, 34, 64, 0) 62%)"></div>
+<span style="position: absolute; top: 18px; left: 18px; background: #C1F432; color: #0A2240; border-radius: 999px; padding: 6px 12px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase">Featured story</span>
+<p style="position: absolute; left: 28px; bottom: 24px; margin: 0; font-size: 30px; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: #FFFFFF">Real people.<br>Real progress.</p>
+</div>
+<div style="padding: 28px 32px 32px; display: flex; flex-direction: column; gap: 14px">
+<span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Construction</span>
+<h3 style="margin: 0; font-weight: 800; font-size: 30px; line-height: 1.12; letter-spacing: -0.025em; color: #0A2240; text-wrap: balance">A construction company had useful QuickBooks tools it wasn’t using.</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B4A63; text-wrap: pretty">We found the tools already built into their QuickBooks Enterprise that nobody was using.</p>
+<a href="https://missionaccountinghelp.com/customers/quickbooks-enterprise-support" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: #0A7FD0; text-underline-offset: 4px; align-self: flex-start">Read the story<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</article>
+<div style="display: flex; flex-direction: column; gap: 24px; justify-content: space-between">
+<div style="background: #FFFFFF; border-radius: 16px; box-shadow: 0 18px 44px rgba(10, 34, 64, 0.10)">
+<a href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 18px; padding: 20px 22px; text-decoration: none; color: inherit; border-bottom: 1px solid #DCE7F3"><img src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="" style="flex: none; width: 92px; height: 92px; border-radius: 12px; object-fit: cover; object-position: center 40%"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Food production</span><span style="font-size: 18px; font-weight: 800; line-height: 1.2; letter-spacing: -0.015em; color: #0A2240; text-wrap: balance">Tracking food that spoils fast.</span><span style="font-size: 14px; line-height: 1.5; color: #3B4A63">How a bakery keeps count of fresh goods in QuickBooks Enterprise.</span><span style="font-size: 13.5px; font-weight: 700; color: #0A7FD0; text-decoration: underline; text-underline-offset: 4px">Read the story</span></span><span aria-hidden="true" style="flex: none; color: #0A2240"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span></a>
+<a href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 18px; padding: 20px 22px; text-decoration: none; color: inherit; border-bottom: 1px solid #DCE7F3"><img src="../img/16a347e2aaf4894dd3d60cbfb48a31af.webp" alt="" style="flex: none; width: 92px; height: 92px; border-radius: 12px; object-fit: cover; object-position: center 45%"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Jewelry</span><span style="font-size: 18px; font-weight: 800; line-height: 1.2; letter-spacing: -0.015em; color: #0A2240; text-wrap: balance">Custom orders, and knowing where each piece is.</span><span style="font-size: 14px; line-height: 1.5; color: #3B4A63">How a jewelry business tracks custom orders, and where each item is kept, in QuickBooks Enterprise.</span><span style="font-size: 13.5px; font-weight: 700; color: #0A7FD0; text-decoration: underline; text-underline-offset: 4px">Read the story</span></span><span aria-hidden="true" style="flex: none; color: #0A2240"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span></a>
+<a href="https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 18px; padding: 20px 22px; text-decoration: none; color: inherit"><img src="../img/959f667ae9fbf3a0eb90cf0ce15668ff.webp" alt="" style="flex: none; width: 92px; height: 92px; border-radius: 12px; object-fit: cover; object-position: 58% 38%"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Bills and expenses</span><span style="font-size: 18px; font-weight: 800; line-height: 1.2; letter-spacing: -0.015em; color: #0A2240; text-wrap: balance">Bills approved and spending tracked, automatically.</span><span style="font-size: 14px; line-height: 1.5; color: #3B4A63">How Wren's Nest Interiors made bill approvals and expense tracking automatic.</span><span style="font-size: 13.5px; font-weight: 700; color: #0A7FD0; text-decoration: underline; text-underline-offset: 4px">Read the story</span></span><span aria-hidden="true" style="flex: none; color: #0A2240"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span></a>
+</div>
+<div style="background: radial-gradient(55% 70% at 88% 18%, rgba(10, 127, 208, 0.30) 0%, rgba(10, 127, 208, 0) 70%), radial-gradient(45% 60% at 0% 100%, rgba(124, 196, 248, 0.10) 0%, rgba(124, 196, 248, 0) 70%), #0A2240; border-radius: 16px; padding: 30px 30px; display: flex; flex-direction: column; gap: 12px">
+<p style="margin: 0; font-size: 26px; font-weight: 800; line-height: 1.12; letter-spacing: -0.025em; color: #FFFFFF; text-wrap: balance">Do your books look like this?</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.65; color: #C9D6E8">Bring them to a free call. We'll tell you what we'd fix first.</p>
+<a class="tg-btn btn-cal" href="#schedule" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 24px; border-radius: 12px; background: {{ primary }}; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700; white-space: nowrap; align-self: flex-start; margin-top: 6px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-label="Software we know inside out" style="position: relative; overflow: hidden; background: #FFFFFF">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 40px 40px 46px; display: flex; flex-direction: column; align-items: center; gap: 20px">
+<p style="margin: 0; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #5B6B80; text-align: center">The software we know really well</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 20px 44px; width: 100%; color: #5B6B80">
+<span style="font-size: 19px; font-weight: 800; letter-spacing: -0.02em">QuickBooks Online</span>
+<span style="font-size: 19px; font-weight: 500; letter-spacing: -0.01em">QuickBooks Desktop</span>
+<span style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-size: 18px; font-weight: 700"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"></rect><path d="M3 9h18M8 4v16"></path></svg>Enterprise</span>
+<span style="font-size: 18px; font-weight: 600; letter-spacing: -0.01em">Intuit Enterprise Suite</span>
+<span style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase">Intuit reseller</span>
+<span style="font-size: 19px; font-weight: 800; letter-spacing: -0.02em">Double</span>
+</div>
+</div>
+</section>
+
+<!-- 03 Value proposition -->
+<section id="about" style="position: relative; overflow: hidden; background: radial-gradient(55% 70% at 88% 18%, rgba(10, 127, 208, 0.30) 0%, rgba(10, 127, 208, 0) 70%), radial-gradient(45% 60% at 0% 100%, rgba(124, 196, 248, 0.10) 0%, rgba(124, 196, 248, 0) 70%), #0A2240">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 104px 40px 104px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">For grown-up businesses</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #FFFFFF; text-wrap: balance; max-width: 780px">You started a business, not a bookkeeping job.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #C9D6E8; max-width: 600px">We keep your books clean and correct. You don't have to hire a full finance team or get lost at a big firm.</p>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; width: 100%; max-width: 1040px; padding-top: 26px">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 28px 26px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; text-align: left; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.25)"><span aria-hidden="true" style="flex: none; width: 44px; height: 44px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l3 2"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 800; letter-spacing: -0.015em; color: #0A2240">We catch you up</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">However far behind you are, we sort out the old mess first.</p></div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 28px 26px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; text-align: left; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.25)"><span aria-hidden="true" style="flex: none; width: 44px; height: 44px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"></rect><path d="M8 9h8M8 13h8M8 17h5"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 800; letter-spacing: -0.015em; color: #0A2240">We keep it right</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">Every month we record what came in and went out, match it to your bank, and send you reports.</p></div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 28px 26px; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; text-align: left; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.25)"><span aria-hidden="true" style="flex: none; width: 44px; height: 44px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18h6M10 22h4"></path><path d="M12 2a7 7 0 0 0-4 12.7V16h8v-1.3A7 7 0 0 0 12 2z"></path></svg></span><h3 style="margin: 0; font-size: 18px; font-weight: 800; letter-spacing: -0.015em; color: #0A2240">We make it clear</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">You see your real numbers in plain words, and you can ask us anything.</p></div>
+</div>
+</div>
+</section>
+
+<!-- 04 Certifications -->
+<section aria-label="QuickBooks certifications" style="position: relative; overflow: hidden; background: #FFFFFF">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 88px 40px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 56px; align-items: center">
+<ul style="margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px">
+<li style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: 160px; padding: 18px; background: #FFFFFF; border: 1px solid #DCE7F3; border-radius: 14px; box-shadow: 0 10px 24px rgba(10, 34, 64, 0.05)"><img src="../img/5a6f8298d29fe5b417692e04bb5cefb5.png" alt="QuickBooks ProAdvisor Elite badge" style="display: block; width: auto; height: auto; max-width: 100%; max-height: 124px"></li>
+<li style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: 160px; padding: 18px; background: #FFFFFF; border: 1px solid #DCE7F3; border-radius: 14px; box-shadow: 0 10px 24px rgba(10, 34, 64, 0.05)"><img src="../img/1f90e7cd2b6fe11043a8aed199ff3bea.png" alt="Certified Advanced QuickBooks Online ProAdvisor badge" style="display: block; width: auto; height: auto; max-width: 100%; max-height: 124px"></li>
+<li style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: 160px; padding: 18px; background: #FFFFFF; border: 1px solid #DCE7F3; border-radius: 14px; box-shadow: 0 10px 24px rgba(10, 34, 64, 0.05)"><img src="../img/8a6858620a6c323d48dea6c25360ff27.png" alt="Certified ProAdvisor, Advanced QuickBooks Desktop badge" style="display: block; width: auto; height: auto; max-width: 100%; max-height: 124px"></li>
+<li style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: 160px; padding: 18px; background: #FFFFFF; border: 1px solid #DCE7F3; border-radius: 14px; box-shadow: 0 10px 24px rgba(10, 34, 64, 0.05)"><img src="../img/bdd1481bd009109078c5f28e16b35880.png" alt="Certified QuickBooks Online ProAdvisor badge" style="display: block; width: auto; height: auto; max-width: 100%; max-height: 124px"></li>
+<li style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: 160px; padding: 18px; background: #FFFFFF; border: 1px solid #DCE7F3; border-radius: 14px; box-shadow: 0 10px 24px rgba(10, 34, 64, 0.05)"><img src="../img/cd885cfb7d6c05d7b71c90e8441a681f.png" alt="Certified QuickBooks Level 2 ProAdvisor badge" style="display: block; width: auto; height: auto; max-width: 100%; max-height: 124px"></li>
+<li style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: 160px; padding: 18px; background: #FFFFFF; border: 1px solid #DCE7F3; border-radius: 14px; box-shadow: 0 10px 24px rgba(10, 34, 64, 0.05)"><img src="../img/34b1807ca27f04b30ace3c235cf23ea4.png" alt="Certified QuickBooks Level 1 ProAdvisor badge" style="display: block; width: auto; height: auto; max-width: 100%; max-height: 124px"></li>
+<li style="display: flex; align-items: center; justify-content: center; box-sizing: border-box; height: 160px; padding: 18px; background: #FFFFFF; border: 1px solid #DCE7F3; border-radius: 14px; box-shadow: 0 10px 24px rgba(10, 34, 64, 0.05)"><img src="../img/9eef1fc8b132f5488cb3871c7327a754.png" alt="Certified ProAdvisor, QuickBooks Enterprise badge" style="display: block; width: auto; height: auto; max-width: 100%; max-height: 124px"></li>
+<li style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; box-sizing: border-box; height: 160px; padding: 18px 14px; background: #0A2240; border-radius: 14px; text-align: center"><span style="font-size: 12px; line-height: 1.2; color: #C9D6E8">About</span><span style="font-weight: 800; font-size: 44px; line-height: 1; letter-spacing: -0.03em; color: #C1F432">50</span><span style="font-size: 12px; line-height: 1.3; color: #C9D6E8">client reviews on our ProAdvisor profile</span></li>
+</ul>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A7FD0">Certified by Intuit</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #0A2240; text-wrap: balance">Proof you can look up yourself.</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B4A63; max-width: 440px">Intuit, the company that makes QuickBooks, has tested and certified our team on QuickBooks Online, Desktop and Enterprise. You can see our certificates and client reviews on Intuit's website.</p>
+<a href="https://proadvisor.intuit.com/app/accountant/search?searchId=bernard-roesch" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; gap: 8px; font-size: 14.5px; font-weight: 700; color: #0A7FD0; text-underline-offset: 4px; align-self: flex-start">See ProAdvisor certifications and reviews<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7"></path><path d="M8 7h9v9"></path></svg></a>
+</div>
+</div>
+</section>
+
+<!-- 04b Triggers -->
+<section style="position: relative; overflow: hidden; background: #E8F3FD">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 88px 40px 96px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: stretch">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A7FD0">When people usually call us</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #0A2240; text-wrap: balance">Does this sound like you?</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B4A63; max-width: 460px">If one of these sounds like you, you're in the right place. Most of our clients came to us this way.</p>
+<a class="tg-btn btn-cal" href="#schedule" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 24px; border-radius: 12px; background: {{ primary }}; color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700; white-space: nowrap; align-self: flex-start"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+<div style="position: relative; flex: 1; min-height: 300px; margin-top: 12px; border-radius: 16px; overflow: hidden"><img src="../img/959f667ae9fbf3a0eb90cf0ce15668ff.webp" alt="A business owner reviewing printed financial statements at her desk" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 58% 38%"><div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 34, 64, 0.85) 0%, rgba(10, 34, 64, 0) 55%)"></div><p style="position: absolute; left: 20px; bottom: 18px; right: 20px; margin: 0; font-size: 24px; font-weight: 800; line-height: 1.15; letter-spacing: -0.02em; color: #FFFFFF">This is where most clients start.</p></div>
+</div>
+<div style="background: #FFFFFF; border-radius: 18px; padding: 8px; box-shadow: 0 20px 50px rgba(10, 34, 64, 0.08)">
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr))">
+<article style="padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid #DCE7F3; border-right: 1px solid #DCE7F3"><span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"></circle><path d="M2 21v-1a6 6 0 0 1 6-6h2a6 6 0 0 1 5 2.7"></path><path d="M17 14l5 5M22 14l-5 5"></path></svg></span><h3 style="margin: 0; font-size: 17.5px; line-height: 1.3; font-weight: 800; letter-spacing: -0.01em; color: #0A2240">Our bookkeeper just left</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">Maybe they retired, moved on, or you couldn't count on them. We go through what they left, fill in the gaps, and take over the monthly work.</p></article>
+<article style="padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid #DCE7F3"><span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4M12 17h.01"></path></svg></span><h3 style="margin: 0; font-size: 17.5px; line-height: 1.3; font-weight: 800; letter-spacing: -0.01em; color: #0A2240">We don't trust our accountant anymore</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">The work comes late, has mistakes, or your emails go unanswered. First, we tell you honestly how your books look.</p></article>
+<article style="padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid #DCE7F3; border-right: 1px solid #DCE7F3"><span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path><path d="M12 7v5l3 2"></path></svg></span><h3 style="margin: 0; font-size: 17.5px; line-height: 1.3; font-weight: 800; letter-spacing: -0.01em; color: #0A2240">We're months, or years, behind</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">Nobody has matched the bank statements to the books in so long that no one wants to open QuickBooks. We clean it up first, then keep it up every month.</p></article>
+<article style="padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 12px; border-bottom: 1px solid #DCE7F3"><span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 2h14v20l-3-2-2 2-2-2-2 2-2-2-3 2z"></path><path d="M9 7h6M9 11h6M9 15h4"></path></svg></span><h3 style="margin: 0; font-size: 17.5px; line-height: 1.3; font-weight: 800; letter-spacing: -0.01em; color: #0A2240">Our taxes haven't been filed</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">Your books are too messy to do taxes from. We fix the books, help you find a tax accountant (a CPA), and talk with them before they start.</p></article>
+<article style="padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 12px; border-right: 1px solid #DCE7F3"><span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10M19 21V10M9 21V10M15 21V10M2 10l10-6 10 6z"></path></svg></span><h3 style="margin: 0; font-size: 17.5px; line-height: 1.3; font-weight: 800; letter-spacing: -0.01em; color: #0A2240">The bank wants clear, correct numbers</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">A bank, investor or buyer wants numbers you can trust. We get you reports you can hand over with confidence.</p></article>
+<article style="padding: 26px 26px 30px; display: flex; flex-direction: column; gap: 12px"><span aria-hidden="true" style="flex: none; width: 40px; height: 40px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5 9 5 9-5z"></path><path d="M3 8v8l9 5 9-5V8"></path><path d="M12 13v8"></path></svg></span><h3 style="margin: 0; font-size: 17.5px; line-height: 1.3; font-weight: 800; letter-spacing: -0.01em; color: #0A2240">Our business got too big for our bookkeeper</h3><p style="margin: 0; font-size: 14.5px; line-height: 1.6; color: #3B4A63">Lots of stock, more than one company, or nonprofit rules can be too much for one bookkeeper. That's the kind of work we like best.</p></article>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 05 Services carousel -->
+<section id="services" style="position: relative; overflow: hidden; background: radial-gradient(55% 70% at 88% 18%, rgba(10, 127, 208, 0.30) 0%, rgba(10, 127, 208, 0) 70%), radial-gradient(45% 60% at 0% 100%, rgba(124, 196, 248, 0.10) 0%, rgba(124, 196, 248, 0) 70%), #0A2240">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 88px 40px 88px; display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">From behind to ahead</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #FFFFFF; text-wrap: balance; max-width: 760px">Where most clients start, and what comes next.</h2>
+</div>
+<div style="display: flex; gap: 10px"><button type="button" aria-label="Previous" onClick="{{ prev }}" style="width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.06); color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button><button type="button" aria-label="Next" onClick="{{ next }}" style="width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, 0.28); background: rgba(255, 255, 255, 0.06); color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; cursor: pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button></div>
+</div>
+<div ref="{{ setTrack }}" style="display: flex; align-items: stretch; overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; margin: -28px calc(-1 * max(40px, (100vw - 1160px) / 2)) -64px; padding: 28px 0 64px max(40px, (100vw - 1160px) / 2)">
+<article style="flex: 0 0 272px; box-sizing: border-box; background: #FFFFFF; border-radius: 14px; padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.28)"><span style="align-self: flex-start; width: 30px; height: 30px; border-radius: 50%; background: #0A2240; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800">01</span><h3 style="margin: 0; font-weight: 800; font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; color: #0A2240">Behind, or still using spreadsheets</h3><p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #3B4A63">Months of bank statements nobody has matched to the books, or a grown-up business still tracking money in Excel.</p><div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px"><a href="#cleanup" style="color: #0A2240; font-size: 13px; font-weight: 700; text-underline-offset: 3px">QuickBooks Cleanup</a><span style="color: #0A2240; font-size: 12.5px">·</span><a href="#setup" style="color: #0A2240; font-size: 13px; font-weight: 700; text-underline-offset: 3px">Setup &amp; Integration</a></div></article>
+<span aria-hidden="true" style="flex: 0 0 28px; display: flex; align-items: center; justify-content: center; color: #7CC4F8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+<article style="flex: 0 0 272px; box-sizing: border-box; background: #E8F3FD; border-radius: 14px; padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.28)"><span style="align-self: flex-start; width: 30px; height: 30px; border-radius: 50%; background: #0A2240; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800">02</span><h3 style="margin: 0; font-weight: 800; font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; color: #0A2240">Up to date, every month</h3><p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #3B4A63">Books that match your bank and that you can trust, kept by a team that knows QuickBooks inside out. Almost every client ends up here.</p><div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px"><a href="#bookkeeping" style="color: #0A2240; font-size: 13px; font-weight: 700; text-underline-offset: 3px">Bookkeeping &amp; Accounting</a></div></article>
+<span aria-hidden="true" style="flex: 0 0 28px; display: flex; align-items: center; justify-content: center; color: #7CC4F8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+<article style="flex: 0 0 272px; box-sizing: border-box; background: #7CC4F8; border-radius: 14px; padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.28)"><span style="align-self: flex-start; width: 30px; height: 30px; border-radius: 50%; background: #0A2240; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800">03</span><h3 style="margin: 0; font-weight: 800; font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; color: #0A2240">Sales that don't match the books</h3><p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #0A2240">We connect your checkout system, like Square or Shopify, to QuickBooks so your sales show up in your books on their own.</p><div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px"><a href="#pos" style="color: #0A2240; font-size: 13px; font-weight: 700; text-underline-offset: 3px">POS Integration</a></div></article>
+<span aria-hidden="true" style="flex: 0 0 28px; display: flex; align-items: center; justify-content: center; color: #7CC4F8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+<article style="flex: 0 0 272px; box-sizing: border-box; background: #FFFFFF; border-radius: 14px; padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.28)"><span style="align-self: flex-start; width: 30px; height: 30px; border-radius: 50%; background: #0A2240; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800">04</span><h3 style="margin: 0; font-weight: 800; font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; color: #0A2240">Reports that answer your questions</h3><p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #3B4A63">Normal reports answer your accountant's questions. Custom reports answer yours, like how each customer, job or location is doing.</p><div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px"><a href="#reporting" style="color: #0A2240; font-size: 13px; font-weight: 700; text-underline-offset: 3px">Custom Reporting</a></div></article>
+<span aria-hidden="true" style="flex: 0 0 28px; display: flex; align-items: center; justify-content: center; color: #7CC4F8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+<article style="flex: 0 0 272px; box-sizing: border-box; background: #E8F3FD; border-radius: 14px; padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.28)"><span style="align-self: flex-start; width: 30px; height: 30px; border-radius: 50%; background: #0A2240; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800">05</span><h3 style="margin: 0; font-weight: 800; font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; color: #0A2240">Numbers you can use</h3><p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #3B4A63">Once your books are clean, we help you use the numbers to make better choices.</p><div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px"><a href="#advisory" style="color: #0A2240; font-size: 13px; font-weight: 700; text-underline-offset: 3px">Advisory</a></div></article>
+<span aria-hidden="true" style="flex: 0 0 28px; display: flex; align-items: center; justify-content: center; color: #7CC4F8"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+<article style="flex: 0 0 272px; box-sizing: border-box; background: #7CC4F8; border-radius: 14px; padding: 22px 22px 26px; display: flex; flex-direction: column; gap: 12px; min-height: 260px; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.28)"><div style="display: flex; justify-content: space-between; align-items: center; gap: 8px"><span style="width: 30px; height: 30px; border-radius: 50%; background: #0A2240; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center; font-size: 11.5px; font-weight: 800">06</span><span style="background: #C1F432; color: #0A2240; border-radius: 999px; padding: 3px 10px; font-size: 11px; font-weight: 800">Limited availability</span></div><h3 style="margin: 0; font-weight: 800; font-size: 22px; line-height: 1.15; letter-spacing: -0.02em; color: #0A2240">Big decisions</h3><p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #0A2240">A part-time finance chief for your business, without hiring one full-time. Our managing partner leads this.</p><div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px"><a href="#cfo" style="color: #0A2240; font-size: 13px; font-weight: 700; text-underline-offset: 3px">Fractional CFO</a></div></article>
+<span aria-hidden="true" style="flex: 0 0 max(40px, (100vw - 1160px) / 2)"></span>
+</div>
+<p style="margin: 0; font-size: 14px; color: #C9D6E8">We also sell <a href="#products" style="font-weight: 700; color: #7CC4F8; text-underline-offset: 3px">QuickBooks software</a>. Call us for prices.</p>
+</div>
+</section>
+
+<!-- 07 Team -->
+<section id="team" style="position: relative; overflow: hidden; background: #FFFFFF">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 88px 40px 88px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 52px; align-items: stretch">
+<div style="position: relative; min-height: 500px; border-radius: 16px; overflow: hidden"><img src="../img/3b6448ffe67d241e50c579a0950384e9.webp" alt="Specialists reviewing a client's numbers together" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 34%"><figure style="position: absolute; left: 20px; bottom: 20px; max-width: 370px; margin: 0; background: #7CC4F8; border-radius: 14px; padding: 22px 24px 20px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 16px 36px rgba(4, 16, 34, 0.25)"><span aria-hidden="true" style="font-weight: 800; font-size: 72px; line-height: 0.62; height: 36px; color: #0A2240">“</span><blockquote style="margin: 0; font-weight: 800; font-size: 21px; line-height: 1.25; letter-spacing: -0.015em; color: #0A2240">Bernard and Gina have been a great team.</blockquote><figcaption style="display: flex; flex-direction: column; gap: 1px"><span style="font-size: 13px; font-weight: 700; color: #0A2240">Jane Didona</span><span style="font-size: 12.5px; color: #0A2240">Didona Associates, Danbury, CT</span></figcaption></figure></div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A7FD0">Why MISSION</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #0A2240; text-wrap: balance">A whole team, not just one bookkeeper.</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B4A63">We're business advisors who know accounting software really well. Our core team holds advanced QuickBooks certifications, and we bring in trusted accountants and specialists from our wider network when your work needs them.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; border-top: 1px solid #DCE7F3">
+<li style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #DCE7F3"><span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; line-height: 1.4; color: #0A2240"><span style="font-weight: 800">Bernard P. Roesch</span><span style="color: #3B4A63"> · Co-founder and Managing Partner</span></span><span style="font-size: 13px; line-height: 1.45; color: #5B6B80">Harvard Business School MBA, Elite-tier QuickBooks ProAdvisor</span></span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #DCE7F3"><span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; line-height: 1.4; color: #0A2240"><span style="font-weight: 800">Carol A. Onorato</span><span style="color: #3B4A63"> · Director of Operations</span></span><span style="font-size: 13px; line-height: 1.45; color: #5B6B80">Level 2 Advanced QuickBooks ProAdvisor</span></span></li>
+<li style="display: flex; gap: 12px; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid #DCE7F3"><span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 15px; line-height: 1.4; color: #0A2240"><span style="font-weight: 800">Rob James</span><span style="color: #3B4A63"> · Prospect pipeline and new-client onboarding</span></span><span style="font-size: 13px; line-height: 1.45; color: #5B6B80">Level 2 Advanced QuickBooks ProAdvisor</span></span></li>
+</ul>
+<a class="tg-btn" href="#team" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 12px; background: {{ primary }}; color: #FFFFFF; text-decoration: none; font-size: 14.5px; font-weight: 700; align-self: flex-start">Meet the team<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</section>
+
+<!-- 06 Results stats -->
+<section style="position: relative; overflow: hidden; background: #E8F3FD">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 96px 40px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 48px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A7FD0">Real impact</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #0A2240; text-wrap: balance">Clients stay for years.</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #3B4A63; max-width: 420px">Several clients have been with us for 10+ years.</p>
+<a class="tg-btn" href="#case-studies" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 12px; background: {{ primary }}; color: #FFFFFF; text-decoration: none; font-size: 14.5px; font-weight: 700; align-self: flex-start">Read client stories<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px">
+<div style="background: #FFFFFF; border-radius: 14px; padding: 24px 22px; display: flex; flex-direction: column; gap: 12px; min-height: 160px; box-shadow: 0 14px 34px rgba(10, 34, 64, 0.07)"><span style="font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.04em; color: #0A2240">10+</span><span style="font-size: 14px; line-height: 1.45; color: #3B4A63">Years several of our clients have stayed</span></div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 24px 22px; display: flex; flex-direction: column; gap: 12px; min-height: 160px; box-shadow: 0 14px 34px rgba(10, 34, 64, 0.07)"><span style="font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.04em; color: #0A2240">~50</span><span style="font-size: 14px; line-height: 1.45; color: #3B4A63">Client reviews on our ProAdvisor profile</span></div>
+<div style="background: #FFFFFF; border-radius: 14px; padding: 24px 22px; display: flex; flex-direction: column; gap: 12px; min-height: 160px; box-shadow: 0 14px 34px rgba(10, 34, 64, 0.07)"><span style="font-weight: 800; font-size: 52px; line-height: 1; letter-spacing: -0.04em; color: #0A2240">5.0</span><span style="font-size: 14px; line-height: 1.45; color: #3B4A63">Our average star rating on Google</span></div>
+</div>
+</div>
+</section>
+
+<!-- 08 How we work -->
+<section id="how" style="position: relative; overflow: hidden; background: radial-gradient(55% 70% at 88% 18%, rgba(10, 127, 208, 0.30) 0%, rgba(10, 127, 208, 0) 70%), radial-gradient(45% 60% at 0% 100%, rgba(124, 196, 248, 0.10) 0%, rgba(124, 196, 248, 0) 70%), #0A2240">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 96px 40px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: stretch">
+<div style="position: relative; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 18px; padding: 44px 48px; display: flex; align-items: center; justify-content: center; min-height: 320px">
+<div style="width: 100%; max-width: 380px; background: #FFFFFF; border-radius: 14px; box-shadow: 0 18px 40px rgba(4, 16, 34, 0.3); padding: 12px 22px">
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column">
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DCE7F3; font-size: 15px; font-weight: 600; color: #0A2240"><span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Matching bank and card statements</span></li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DCE7F3; font-size: 15px; font-weight: 600; color: #0A2240"><span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Keeping track of stock</span></li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DCE7F3; font-size: 15px; font-weight: 600; color: #0A2240"><span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Paying bills and sending invoices</span></li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid #DCE7F3; font-size: 15px; font-weight: 600; color: #0A2240"><span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Watching money coming in and going out</span></li>
+<li style="display: flex; align-items: center; gap: 12px; padding: 12px 0; font-size: 15px; font-weight: 600; color: #0A2240"><span aria-hidden="true" style="flex: none; width: 24px; height: 24px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"></path></svg></span><span>Tax paperwork for your accountant</span></li>
+</ul>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">How we work</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #FFFFFF; text-wrap: balance">We like the tricky businesses best.</h2>
+<p style="margin: 0; font-size: 16px; line-height: 1.65; color: #C9D6E8">We're best at three things: showing what each job really costs for businesses that sell their time, keeping track of stock, and making sure Shopify and Amazon sales match QuickBooks. We're also happy to handle nonprofit rules and businesses with more than one company. If your business is simple, one good bookkeeper is enough. If it isn't, this is the work we want.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><span style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 500; color: #FFFFFF">Nonprofits</span><span style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 500; color: #FFFFFF">Construction</span><span style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 500; color: #FFFFFF">Restaurants</span><span style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 500; color: #FFFFFF">Property management</span><span style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 500; color: #FFFFFF">Manufacturing</span><span style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 999px; padding: 6px 13px; font-size: 13px; font-weight: 500; color: #FFFFFF">Ecommerce</span></div>
+<a class="tg-btn" href="#bookkeeping" style="display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 22px; border-radius: 12px; background: {{ primary }}; color: #FFFFFF; text-decoration: none; font-size: 14.5px; font-weight: 700; align-self: flex-start; margin-top: 4px">See what's included<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</section>
+
+<!-- 09 FAQ -->
+<section style="position: relative; overflow: hidden; background: #E8F3FD">
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 96px 40px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 56px; align-items: start">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A7FD0">Before you call</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #0A2240; text-wrap: balance">Questions people ask before the first call.</h2>
+</div>
+<div style="background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 16px 40px rgba(10, 34, 64, 0.07)">
+<div style="border-bottom: 1px solid #DCE7F3"><button type="button" aria-expanded="true" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px 24px; background: none; border: 0; text-align: left; font-family: inherit; font-size: 16px; font-weight: 800; color: #0A2240; cursor: pointer"><span>What happens in the free consultation?</span><span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #0A7FD0; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"></path></svg></span></button><p style="margin: 0; padding: 0 24px 22px; font-size: 15px; line-height: 1.65; color: #3B4A63">It's a chat, not a sales pitch. Bernard or Rob will ask how your books are going, look at anything you can share, and tell you what they would fix first.</p></div>
+<div style="border-bottom: 1px solid #DCE7F3"><button type="button" aria-expanded="false" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px 24px; background: none; border: 0; text-align: left; font-family: inherit; font-size: 16px; font-weight: 600; color: #0A2240; cursor: pointer"><span>Do I need to prepare anything?</span><span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E8F3FD; color: #0A2240; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></button></div>
+<div style="border-bottom: 1px solid #DCE7F3"><button type="button" aria-expanded="false" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px 24px; background: none; border: 0; text-align: left; font-family: inherit; font-size: 16px; font-weight: 600; color: #0A2240; cursor: pointer"><span>Is there a minimum size of business you work with?</span><span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E8F3FD; color: #0A2240; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></button></div>
+<div style="border-bottom: 1px solid #DCE7F3"><button type="button" aria-expanded="false" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px 24px; background: none; border: 0; text-align: left; font-family: inherit; font-size: 16px; font-weight: 600; color: #0A2240; cursor: pointer"><span>We already have a tax accountant. Does that change anything?</span><span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E8F3FD; color: #0A2240; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></button></div>
+<div><button type="button" aria-expanded="false" style="width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 20px 24px; background: none; border: 0; text-align: left; font-family: inherit; font-size: 16px; font-weight: 600; color: #0A2240; cursor: pointer"><span>How quickly can you start?</span><span aria-hidden="true" style="flex: none; width: 28px; height: 28px; border-radius: 50%; background: #E8F3FD; color: #0A2240; display: inline-flex; align-items: center; justify-content: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></span></button></div>
+</div>
+</div>
+</section>
+
+<!-- 10 Blog -->
+<section id="blog" style="position: relative; overflow: hidden; background: #FFFFFF">
+<div id="stories" style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 88px 40px 104px; display: flex; flex-direction: column; gap: 34px">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 16px">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #0A7FD0">From the blog</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(38px, 3.7vw, 52px); line-height: 1.06; letter-spacing: -0.03em; color: #0A2240; text-wrap: balance; max-width: 640px">Simple answers to the questions we hear most.</h2>
+</div>
+<a class="tg-btn" href="#blog" style="display: inline-flex; align-items: center; gap: 8px; height: 46px; padding: 0 20px; border-radius: 12px; background: #FFFFFF; border: 1.5px solid #0A2240; color: #0A2240; text-decoration: none; font-size: 14px; font-weight: 700">Read all articles<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+<article style="display: flex; flex-direction: column; gap: 10px"><img src="../img/37cbc555ab9573d99c3c204f11469679.webp" alt="A business owner working through the numbers on a laptop" style="width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: 78% 60%; border-radius: 16px; display: block"><span style="padding-top: 6px"><span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">QuickBooks</span></span><h3 style="margin: 0; font-size: 18px; line-height: 1.3; font-weight: 800; letter-spacing: -0.015em; color: #0A2240">QuickBooks Desktop to Online: what actually changes</h3><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #3B4A63">Switching from the desktop version to the online one changes your daily routine. Here's what to expect.</p></article>
+<article style="display: flex; flex-direction: column; gap: 10px"><img src="../img/16a347e2aaf4894dd3d60cbfb48a31af.webp" alt="An adviser listening to a business owner across a desk" style="width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 45%; border-radius: 16px; display: block"><span style="padding-top: 6px"><span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Customers</span></span><h3 style="margin: 0; font-size: 18px; line-height: 1.3; font-weight: 800; letter-spacing: -0.015em; color: #0A2240">QuickBooks Online vs Enterprise: going beyond the basics</h3><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #3B4A63">The big differences show up when you track stock, orders and where things are kept.</p></article>
+<article style="display: flex; flex-direction: column; gap: 10px"><img src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="A business owner thinking at a laptop" style="width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: center 40%; border-radius: 16px; display: block"><span style="padding-top: 6px"><span style="font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Technology</span></span><h3 style="margin: 0; font-size: 18px; line-height: 1.3; font-weight: 800; letter-spacing: -0.015em; color: #0A2240">Is automated accounting software the future of financial accounting?</h3><p style="margin: 0; font-size: 14px; line-height: 1.6; color: #3B4A63">Software can do the boring, repeat work. People still make the judgment calls. Here's what that means for you.</p></article>
+</div>
+</div>
+</section>
+
+<!-- 11 + 12 Footer, with the call to action merged in -->
+<footer id="contact" style="position: relative; overflow: hidden; background: #0A2240; color: #C9D6E8">
+<div aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(50% 40% at 50% 0%, rgba(10, 127, 208, 0.28) 0%, rgba(10, 127, 208, 0) 70%)"></div>
+<span aria-hidden="true" style="position: absolute; left: 50%; transform: translateX(-50%); bottom: -30px; z-index: 0; font-weight: 800; font-size: 300px; line-height: 0.8; letter-spacing: -0.05em; color: #0F2B50; pointer-events: none; white-space: nowrap">MISSION</span>
+<div id="schedule" style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 96px 40px 72px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.1)">
+<p style="margin: 0; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">Free consultation</p>
+<h2 style="margin: 0; font-weight: 800; font-size: clamp(44px, 4.4vw, 62px); line-height: 1.06; letter-spacing: -0.03em; color: #FFFFFF; text-wrap: balance">Let's look at your books.</h2>
+<p style="margin: 0; font-size: 17px; line-height: 1.65; color: #C9D6E8; max-width: 540px">Book a free call with Bernard or Rob. Come as you are, mess and all. We'll tell you what we'd fix first and what it would take.</p>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding-top: 6px">
+<a class="tg-btn btn-cal" href="#schedule" style="display: inline-flex; align-items: center; gap: 10px; height: 54px; padding: 0 28px; border-radius: 12px; background: {{ primary }}; color: #FFFFFF; text-decoration: none; font-size: 15.5px; font-weight: 700; white-space: nowrap"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+<a href="tel:+12032279475" style="display: inline-flex; align-items: center; height: 54px; padding: 0 26px; border-radius: 12px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.24); color: #FFFFFF; text-decoration: none; font-size: 15px; font-weight: 700">Call (203) 227-9475</a>
+</div>
+</div>
+<div style="position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 60px 40px 32px; display: flex; flex-direction: column; gap: 56px">
+<div style="display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 36px 32px">
+<div style="display: flex; flex-direction: column; gap: 16px; min-width: 0">
+<img src="../img/b29865f8838e8d694583c88108f0c2aa.svg" alt="MISSION" style="height: 22px; width: auto; align-self: flex-start">
+<address style="font-style: normal; font-size: 13.5px; line-height: 1.7; color: #C9D6E8">Nationwide, fully remote<br><a href="mailto:info@missionaccountinghelp.com" style="color: #FFFFFF; text-decoration: none">info@missionaccountinghelp.com</a><br><a href="tel:+12032279475" style="color: #FFFFFF; text-decoration: none">(203) 227-9475</a></address>
+<div style="display: flex; gap: 10px"><a href="https://www.facebook.com/MissionAccounting/" target="_blank" rel="noopener" aria-label="MISSION on Facebook" style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; background: #FFFFFF; color: #0A2240; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a><a href="https://www.linkedin.com/company/mission-quickbooks/" target="_blank" rel="noopener" aria-label="MISSION on LinkedIn" style="display: inline-flex; align-items: center; justify-content: center; width: 42px; height: 42px; border-radius: 10px; background: #FFFFFF; color: #0A2240; text-decoration: none"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a><a href="https://www.linkedin.com/in/bernard-roesch/" target="_blank" rel="noopener" aria-label="Bernard Roesch on LinkedIn" style="display: inline-flex; align-items: center; gap: 8px; height: 42px; box-sizing: border-box; padding: 0 14px 0 12px; border-radius: 10px; background: #FFFFFF; color: #0A2240; text-decoration: none; font-size: 13px; font-weight: 700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>Bernard Roesch</a></div>
+<form style="display: flex; flex-direction: column; gap: 8px; max-width: 380px; padding-top: 6px">
+<p style="margin: 0; font-size: 15px; font-weight: 800; color: #FFFFFF">QuickBooks tips by email</p>
+<p style="margin: 0; font-size: 13.5px; line-height: 1.55; color: #C9D6E8">Simple answers to the questions business owners ask us most. No sales emails.</p>
+<label for="nl-email-c" class="sr-only">Email address</label>
+<div style="display: flex; gap: 8px; padding-top: 4px">
+<input id="nl-email-c" type="email" placeholder="Your email address" style="flex: 1; min-width: 0; height: 46px; box-sizing: border-box; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.18); border-radius: 12px; color: #FFFFFF; font-family: inherit; font-size: 14px; padding: 0 14px">
+<button class="tg-btn" type="submit" style="height: 46px; padding: 0 18px; border-radius: 12px; border: 0; background: #FFFFFF; color: #0A2240; font-family: inherit; font-size: 14px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">Subscribe<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+</div>
+</form>
+</div>
+<nav aria-label="Services" style="display: flex; flex-direction: column; gap: 9px; font-size: 13.5px"><p style="margin: 0 0 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">Services</p><a href="#bookkeeping" style="color: #E3EAF3; text-decoration: none">Bookkeeping &amp; Accounting</a><a href="#setup" style="color: #E3EAF3; text-decoration: none">QuickBooks Setup &amp; Advisory</a><a href="#cfo" style="color: #E3EAF3; text-decoration: none">Fractional CFO</a><a href="#cleanup" style="color: #E3EAF3; text-decoration: none">QuickBooks Cleanup</a><a href="#tax" style="color: #E3EAF3; text-decoration: none">Tax Readiness</a><a href="#reporting" style="color: #E3EAF3; text-decoration: none">Custom Reporting</a><a href="#pos" style="color: #E3EAF3; text-decoration: none">POS Integration</a></nav>
+<nav aria-label="Company" style="display: flex; flex-direction: column; gap: 9px; font-size: 13.5px"><p style="margin: 0 0 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">Company</p><a href="#about" style="color: #E3EAF3; text-decoration: none">About</a><a href="#products" style="color: #E3EAF3; text-decoration: none">QuickBooks Products</a><a href="#partners" style="color: #E3EAF3; text-decoration: none">Partner Program</a><a href="#blog" style="color: #E3EAF3; text-decoration: none">Blog</a><a href="http://missionaccountinghelp.com/feed/podcast" target="_blank" rel="noopener" style="color: #E3EAF3; text-decoration: none">Podcast</a><a href="#contact" style="color: #E3EAF3; text-decoration: none">Contact</a></nav>
+<nav aria-label="Legal" style="display: flex; flex-direction: column; gap: 9px; font-size: 13.5px"><p style="margin: 0 0 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">Legal</p><a href="#terms" style="color: #E3EAF3; text-decoration: none">Terms of Service</a><a href="#privacy" style="color: #E3EAF3; text-decoration: none">Privacy Policy</a><a href="#cookies" style="color: #E3EAF3; text-decoration: none">Cookie Policy</a><a href="#returns" style="color: #E3EAF3; text-decoration: none">Returns Policy</a></nav>
+</div>
+<div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; color: #8FA3BC"><span>© 2026 MISSION. All rights reserved.</span><span>Intuit, QuickBooks and ProAdvisor are trademarks of Intuit Inc.</span></div>
+</div>
+</footer>
+
+</div>
+</template>
+<script type="application/json" id="dc-props">{"primary":{"editor":"color","default":"#0A7FD0","options":["#0A7FD0","#0A2240","#0087C0","#111111"]},"$preview":{"width":1440,"height":8000}}</script>
+<script src="../rt.js"></script>
+<script>
+class Component extends DCLogic {
+  setBtn(v) {
+    // the review toggle; boards of the same lane stay in step through a broadcast channel
+    this.setState({ btn: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
+  }
+  setHero(v) {
+    // the hero background toggle (kitchen, office or ecommerce photo), shared with the other Lane C3 boards
+    this.setState({ hero: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ hero: v }); } catch (e) {}
+  }
+  listenBtn() {
+    try {
+      this.btnChannel = new BroadcastChannel('mission-buttons-lane-c3');
+      this.btnChannel.onmessage = (e) => {
+        if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
+        if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
+      };
+    } catch (e) {}
+  }
+  phrases() {
+    return ["the messy work.", "the hard part.", "the backlog.", "the cleanup.", "the numbers."];
+  }
+  renderVals() {
+    return {
+      btnMode: (this.state && this.state.btn) || 'green',
+      isBlue: ((this.state && this.state.btn) || 'green') === 'blue' ? 'true' : 'false',
+      isGreen: ((this.state && this.state.btn) || 'green') === 'green' ? 'true' : 'false',
+      setBlue: this.setBlue || (this.setBlue = () => this.setBtn('blue')),
+      setGreen: this.setGreen || (this.setGreen = () => this.setBtn('green')),
+      heroMode: (this.state && this.state.hero) || 'kitchen',
+      isKitchen: ((this.state && this.state.hero) || 'kitchen') === 'kitchen' ? 'true' : 'false',
+      isOffice: ((this.state && this.state.hero) || 'kitchen') === 'office' ? 'true' : 'false',
+      setKitchen: this.setKitchen || (this.setKitchen = () => this.setHero('kitchen')),
+      setOffice: this.setOffice || (this.setOffice = () => this.setHero('office')),
+      isEcommerce: ((this.state && this.state.hero) || 'kitchen') === 'ecommerce' ? 'true' : 'false',
+      setEcommerce: this.setEcommerce || (this.setEcommerce = () => this.setHero('ecommerce')),
+      typed: (this.state && this.state.typed) ?? this.phrases()[0],
+      caretCls: 'caret' + (((this.state && this.state.caret) ?? false) ? '' : ' is-off'),
+      primary: this.props.primary ?? '#0A7FD0',
+      setTrack: this.setTrack || (this.setTrack = (el) => { this.track = el; }),
+      prev: this.prev || (this.prev = () => this.scrollCards(-1)),
+      next: this.next || (this.next = () => this.scrollCards(1)),
+    };
+  }
+  componentDidMount() {
+    this.listenBtn();
+    // hero phrase: type it out, hide the cursor and hold, clear, then the next phrase.
+    // reduced-motion users get the first phrase, still
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const PHRASES = this.phrases();
+    let idx = 0;
+    const later = (fn, ms) => { this.typeTimer = setTimeout(fn, ms); };
+    const clear = () => {
+      this.setState({ caret: true });
+      let len = PHRASES[idx].length;
+      const del = () => {
+        len -= 1;
+        this.setState({ typed: PHRASES[idx].slice(0, len) });
+        if (len > 0) later(del, 35);
+        else { idx = (idx + 1) % PHRASES.length; later(type, 350); }
+      };
+      later(del, 300);
+    };
+    const type = () => {
+      let len = 0;
+      const add = () => {
+        len += 1;
+        this.setState({ typed: PHRASES[idx].slice(0, len) });
+        if (len < PHRASES[idx].length) later(add, 75);
+        else { this.setState({ caret: false }); later(clear, 1800); }
+      };
+      add();
+    };
+    later(clear, 2200);
+  }
+  componentWillUnmount() {
+    try { if (this.btnChannel) this.btnChannel.close(); } catch (e) {}
+    clearTimeout(this.typeTimer);
+  }
+  scrollCards(dir) {
+    // one card plus its arrow per click
+    if (this.track) this.track.scrollBy({ left: dir * 300, behavior: 'smooth' });
+  }
+}
+DC.boot(Component);
+</script>
+</body>
+</html>

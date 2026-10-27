@@ -8,6 +8,8 @@ const SRC = S + '/canvas/project';
 const OUT = S + '/review';
 
 const blobs = {
+  b70d1fd6eb5a9839c3acd3ccea5d44a1: A + '/photos/ecommerce-packing-orders.webp',
+  '2066a54da13614d9c2246994e32d1902': A + '/photos/restaurant-chef-plating.webp',
   b29865f8838e8d694583c88108f0c2aa: S + '/artifact-files/17b46128-259c-40d5-b7d3-374c526f9a58/b29865f8838e8d694583c88108f0c2aa.svg',
   c81310e520e144cd622a899707febdc7: S + '/artifact-files/17b46128-259c-40d5-b7d3-374c526f9a58/c81310e520e144cd622a899707febdc7.svg',
   '5a6f8298d29fe5b417692e04bb5cefb5': S + '/badges/proadvisor-elite.png',
@@ -36,7 +38,7 @@ const blobs = {
   '8be5233d6f752c62fe0c170b175cee61': A + '/backgrounds/12_footer_bg.jpg',
 };
 
-const lanes = ['c', 'd', 'g'];
+const lanes = ['d', 'g', 'c'];
 const used = new Set();
 const missing = new Set();
 fs.mkdirSync(OUT + '/pages', { recursive: true });
@@ -64,8 +66,8 @@ function page(file, width, title) {
 }
 
 for (const l of lanes) {
-  for (const v of ['2']) {
-    const base = v === '1' ? 'lane-' + l : 'lane-' + l + '2';
+  for (const v of ['3']) {
+    const base = 'lane-' + l + v;
     const L = l.toUpperCase() + v;
     fs.writeFileSync(OUT + '/pages/' + l + v + '-desktop.html', page(base + '-home.dc.html', 1440, 'MISSION homepage · Lane ' + L + ' · Desktop'));
     fs.writeFileSync(OUT + '/pages/' + l + v + '-mobile.html', page(base + '-home-mobile.dc.html', 390, 'MISSION homepage · Lane ' + L + ' · Mobile'));
