@@ -90,6 +90,10 @@ Lanes C, D and E each have a review bar at the top of the desktop homepage: "Rev
 - **Mobile heights, measured:** C 10,465 px, D 11,943 px, E 11,457 px including the bar. The continuation boards are 2,625 px (C), 4,103 px (D) and 3,617 px (E). Lane C's continuation board had been sized from an estimate of about 13,240 px and showed roughly 2,800 px of blank space below the footer; it now fits.
 - **Before launch:** the bar is a review control, not part of the design. Remove it, or hide it, for any client-facing build.
 
+## Header menus (27 Oct 2026)
+
+"Partner Program" is removed from the header navigation on every desktop board (A to G, every version), by request. It stays in the footer's Company column. The mobile headers only have a menu icon, so they had no header link to remove.
+
 ## Lane C3 (27 Oct 2026)
 
 A third version of Lane C, restyled to the style board Growth Foundry supplied (`assets/inspiration/inspiration-8-c3-style-board.webp`, "Clear. Connected. Confident."). Content and section order come from C2, including the user's removal of the rule above "Have books like these?".
