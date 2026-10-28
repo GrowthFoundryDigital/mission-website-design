@@ -280,7 +280,17 @@ body{margin:0;background:#101419}
 .lh h3{transition:color .25s ease}
 /* Buttons ease over 0.4s (28 Oct, by request) */
 .lh .btn,[data-btn] .lh .tg-btn,[data-btn].lh .tg-btn{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease,filter .4s ease,opacity .4s ease !important}
-.lh .btn .ar,.lh .lk .ar{transition:transform .4s cubic-bezier(.22,.61,.36,1) !important}
+.lh .btn .ar{transition:transform .4s cubic-bezier(.22,.61,.36,1) !important}
+/* Text links (28 Oct, by request): a square lime wipe behind the words, left to right, reaching 8px past each end; the words ink to
+   near-black as the lime reaches them (.lk-ink), and the arrow follows. Links inside a card fire when the card is hovered */
+.lh .lk{position:relative;isolation:isolate;width:fit-content;max-width:100%}
+.lh .lk::before{content:'';position:absolute;top:-5px;bottom:-5px;left:-8px;right:-8px;z-index:-1;background:#C1F432;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+.lh a.lk:hover::before,.lh a.lk:focus-visible::before,.lh a:hover .lk::before,.lh a:focus-visible .lk::before{transform:scaleX(1)}
+.lh .lk-ink{background-image:linear-gradient(90deg,#101419 50%,currentColor 50%);background-size:200% 100%;background-position:100% 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transition:background-position .45s cubic-bezier(.22,.61,.36,1) .03s}
+.lh a.lk:hover .lk-ink,.lh a.lk:focus-visible .lk-ink,.lh a:hover .lk .lk-ink,.lh a:focus-visible .lk .lk-ink{background-position:0 0}
+.lh .lk .ar{transition:transform .4s cubic-bezier(.22,.61,.36,1),color .15s ease .3s !important}
+.lh a.lk:hover .ar,.lh a.lk:focus-visible .ar,.lh a:hover .lk .ar,.lh a:focus-visible .lk .ar{color:#101419}
+@media (prefers-reduced-motion: reduce){.lh .lk::before,.lh .lk-ink{transition:none}}
 [data-btn="green"] .tg-btn *{color:#101419 !important}
 """
 
@@ -810,6 +820,8 @@ def hov(h):
                      (r'<div (id="\w+" style="display: flex; flex-direction: (?:column|row);[^"]*border-top: 2px solid #101419")', 'hv-sup'),
                      (r'<div (style="display: flex; align-items: center; gap: 1[24]px; padding(?:-top: 14px|: 16px 0);(?: border-top: 1px solid rgba\(255,255,255,\.1[24]\))?)', 'hv-li')]:
         h = re.sub(pat, r'<div class="%s" \1' % cls, h)
+    # text links: wrap the words so they can ink as the lime wipe passes
+    h = re.sub(r'(class="lk"[^>]*>)([^<]+)', r'\1<span class="lk-ink">\2</span>', h)
     return h
 
 
