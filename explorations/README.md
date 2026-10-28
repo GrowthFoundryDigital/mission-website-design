@@ -124,6 +124,7 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Canvas:** beside Lane H in the Lane H row: desktop with its continuation below, then mobile.
 - **Removed by request (28 Oct):** the software strip, the corner marks around the featured case study (removed on the canvas), and the section numbers (01, 02...) on eyebrows and trigger cards.
 - **Header phone (28 Oct):** a ghost button with a phone icon beside the Schedule button; the closing call's Call button has the same icon.
+- **Header overlay (28 Oct):** on the photo side only (under the blue), near-black #101419 at 60% behind the nav, fading out just below it, so the Call button and Schedule button read on every hero photo. Mobile's header sits on solid blue, so it has none.
 - **Heights, measured:** desktop 11,272, mobile 15,492.
 - **Source:** `tools/lane-h2-gen.py`.
 
