@@ -255,14 +255,15 @@ def stars():
 BLUE, INK, LIME, WHITE = '#2459F5', '#101419', '#C1F432', '#FFFFFF'
 
 
-def poly(pos, w, h, cut, fill='none', stroke=None, sw=2, op=1):
+def poly(pos, w, h, cut, fill='none', stroke=None, sw=2, op=1, rot=0, blur=0):
     # a cut-corner (chamfered) polygon, solid or outlined
     i = sw / 2 if stroke else 0
     W, H = w - 2 * i, h - 2 * i
     pts = [(cut, 0), (W - cut, 0), (W, cut), (W, H - cut), (W - cut, H), (cut, H), (0, H - cut), (0, cut)]
     pts = ' '.join('%g,%g' % (x + i, y + i) for x, y in pts)
     st = ' stroke="%s" stroke-width="%g"' % (stroke, sw) if stroke else ''
-    return '<svg class="deco" aria-hidden="true" width="%d" height="%d" viewBox="0 0 %d %d" style="%s; opacity: %g"><polygon points="%s" fill="%s"%s></polygon></svg>' % (w, h, w, h, pos, op, pts, fill, st)
+    fx = ''.join(['; transform: rotate(%gdeg)' % rot if rot else '', '; filter: blur(%gpx)' % blur if blur else ''])
+    return '<svg class="deco" aria-hidden="true" width="%d" height="%d" viewBox="0 0 %d %d" style="%s; opacity: %g%s"><polygon points="%s" fill="%s"%s></polygon></svg>' % (w, h, w, h, pos, op, fx, pts, fill, st)
 
 
 def sq(pos, size, color, outline=False):
@@ -347,11 +348,17 @@ def page(m):
         # geometry on the blue side
         A(dotp('left: 28px; top: 150px', 112, 288, 'white'))
         A(poly('left: -70px; bottom: 150px', 230, 230, 46, stroke=WHITE, sw=1.5, op=.28))
-        A(poly('left: 48px; bottom: 101px', 76, 76, 16, fill=INK))
+        # near-black polygons floating at mixed sizes and depths (some blurred), none resting on the strip
+        A(poly('left: -34px; top: 628px', 112, 112, 24, fill=INK, op=.7, rot=-8, blur=6))
+        A(poly('left: 98px; top: 546px', 54, 54, 12, fill=INK, rot=12))
+        A(poly('left: 36px; top: 468px', 44, 44, 10, fill=INK, op=.85, rot=-18, blur=2.5))
+        A(poly('left: 318px; top: 714px', 150, 150, 32, fill='#1A3FB8', op=.6, rot=10, blur=14))
+        A(poly('left: 522px; top: 724px', 30, 30, 7, fill=INK, rot=22))
+        A(poly('left: 640px; top: 166px', 22, 22, 5, fill=INK, op=.9, rot=30, blur=1.5))
         A(poly('left: 112px; bottom: 166px', 40, 40, 9, stroke=LIME, sw=2))
         A(poly('left: 690px; top: 150px', 46, 46, 10, stroke=LIME, sw=2))
         A(scatter([('left: 566px; top: 712px', 12, WHITE), ('left: 594px; top: 738px', 8, WHITE), ('left: 548px; top: 752px', 8, INK), ('left: 618px; top: 702px', 10, LIME, True)]))
-        A(poly('left: 600px; bottom: 101px', 64, 64, 14, fill=INK))
+        A(poly('left: 604px; top: 650px', 18, 18, 4, fill=INK, rot=-12))
         A('<p class="script" aria-hidden="true" style="position: absolute; right: 64px; top: 150px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35)">Numbers create<br>possibility.</p>')
         A('<header style="position: relative; z-index: 3">')
         A('<nav aria-label="Main" class="nav" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px">')
