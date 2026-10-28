@@ -78,10 +78,11 @@ def esc(s):
 # ---- content (ELI15, from the C3/D3/G3 wording; brand lines from the style board) ----
 NAV = [('#services', 'Services'), ('#case-studies', 'Case studies'), ('#about', 'About'), ('#blog', 'Blog'), ('#contact', 'Contact')]
 HERO_P = 'We fix messy books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.'
+# the services strip under the hero (28 Oct, by request): QuickBooks Cleanup first, Fractional CFO removed from the strip
 TIERS = [
+    ('spark', 'QuickBooks Cleanup', 'Behind on your books? We get you current'),
     ('doc', 'Bookkeeping &amp; Accounting', 'Almost every client needs this'),
     ('gear', 'QuickBooks Setup &amp; Advisory', 'Set up right, then put to good use'),
-    ('people', 'Fractional CFO', 'Big decisions, for a few clients'),
 ]
 CASES = [
     ('Food production', 'A bakery tracking food that spoils fast', 'How a bakery keeps count of fresh goods in QuickBooks Enterprise.', 'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise'),
