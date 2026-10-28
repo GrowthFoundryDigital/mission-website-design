@@ -400,7 +400,9 @@ def page(m):
         A('</div>')
     else:
         # photo panel, from the top (behind the nav): the right 60%, cut on a hard diagonal from 61% at the top to 46% at the bottom
-        A('<div aria-hidden="true" style="position: absolute; top: 0; left: 40%; right: 0; bottom: 101px; clip-path: polygon(35% 0, 100% 0, 100% 100%, 10% 100%)">')
+        # the angled divider (moved right 28 Oct, by request): from 71% of the width at the top, in the gap between the header's phone and
+        # Schedule buttons, to 56% at the foot, the same angle as before
+        A('<div aria-hidden="true" style="position: absolute; top: 0; left: 40%; right: 0; bottom: 101px; clip-path: polygon(51.6% 0, 100% 0, 100% 100%, 26.6% 100%)">')
         for k, (alt, pos) in HERO_BG.items():
             A('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[0]))
         # header overlay on the photo only (under the blue), deepened 28 Oct like C3's: near-black at 90% at the top, 80% behind the nav,
