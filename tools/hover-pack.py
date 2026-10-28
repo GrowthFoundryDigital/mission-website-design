@@ -18,6 +18,8 @@ figure:hover{transform:translateY(-4px)}
 .ld-post img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .ld-post:hover img{transform:scale(1.05)}
 .ld-cut-sm img,.ld-cut img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+/* Buttons ease over 0.4s (28 Oct, by request); wins over the lime-mode transition */
+.tg-btn,[data-btn] .tg-btn,a.ld-cut,button.ld-cut{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease,filter .4s ease,opacity .4s ease !important}
 """
 
 G3 = MARK + r"""
@@ -38,6 +40,9 @@ G3 = MARK + r"""
 .lg article img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .lg article:hover img{transform:scale(1.05)}
 .lg .foot a[target="_blank"]:hover{text-decoration:underline;text-underline-offset:3px}
+/* Buttons ease over 0.4s (28 Oct, by request); wins over the lime-mode transition */
+.lg .btn,.lg .lnk,.lg .car-btn,.lg .nav a.btn-ghost,[data-btn] .lg .tg-btn,[data-btn].lg .tg-btn{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease,filter .4s ease,opacity .4s ease !important}
+.lg .btn .ar,.lg .lnk .ar{transition:transform .4s cubic-bezier(.22,.61,.36,1) !important}
 """
 
 C3 = MARK + r"""

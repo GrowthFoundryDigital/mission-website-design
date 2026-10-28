@@ -270,6 +270,9 @@ body{margin:0;background:#101419}
 .lh .hv-li:hover{border-top-color:#C1F432 !important}
 .lh .hv-li:hover .ic{transform:translateX(4px);color:#C1F432}
 .lh h3{transition:color .25s ease}
+/* Buttons ease over 0.4s (28 Oct, by request) */
+.lh .btn,[data-btn] .lh .tg-btn,[data-btn].lh .tg-btn{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease,filter .4s ease,opacity .4s ease !important}
+.lh .btn .ar,.lh .lk .ar{transition:transform .4s cubic-bezier(.22,.61,.36,1) !important}
 [data-btn="green"] .tg-btn *{color:#101419 !important}
 """
 

@@ -71,6 +71,8 @@ figure:hover{transform:translateY(-4px)}
 .ld-post img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .ld-post:hover img{transform:scale(1.05)}
 .ld-cut-sm img,.ld-cut img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+/* Buttons ease over 0.4s (28 Oct, by request); wins over the lime-mode transition */
+.tg-btn,[data-btn] .tg-btn,a.ld-cut,button.ld-cut{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease,filter .4s ease,opacity .4s ease !important}
 </style>
 
 <style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
