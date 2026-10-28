@@ -2,6 +2,7 @@
 # dot-grid panels, outline frames and corner marks) and a hard, angled hero divider. One content source, two boards.
 # Style: the "Decisive Clarity" style board (Space Grotesk + Open Sans, Electric Blue, near-black, chalk),
 # with the project lime #C1F432 on buttons and the Mission blue logo. Copy: ELI15, as on C3, D3 and G3.
+import re
 import sys
 
 OUT = sys.argv[1]
@@ -251,6 +252,24 @@ body{margin:0;background:#101419}
 .lh .post h3{transition:color .25s ease}
 .lh .post:hover .ph img{transform:scale(1.05)}
 .lh .post:hover h3{color:#2459F5}
+/* Hover pack (28 Oct): FAQ, trigger rows, support items, dark list rows */
+.lh .faq{transition:color .2s ease}
+.lh .faq:hover,.lh .faq:focus-visible{color:#2459F5}
+.lh .faq:hover svg{transform:rotate(90deg)}
+.lh .faq[aria-expanded="true"]:hover svg{transform:rotate(45deg)}
+.lh .hv-row{transition:transform .25s ease}
+.lh .hv-row .ic{transition:transform .25s ease}
+.lh .hv-row:hover{transform:translateX(8px)}
+.lh .hv-row:hover .ic{transform:scale(1.15)}
+.lh .hv-row:hover h3{color:#2459F5}
+.lh .hv-sup{transition:border-color .25s ease,transform .25s ease}
+.lh .hv-sup:hover{border-top-color:#2459F5 !important;transform:translateY(-3px)}
+.lh .hv-sup:hover h3{color:#2459F5}
+.lh .hv-li{transition:border-color .25s ease,color .25s ease}
+.lh .hv-li .ic{transition:transform .25s ease}
+.lh .hv-li:hover{border-top-color:#C1F432 !important}
+.lh .hv-li:hover .ic{transform:translateX(4px);color:#C1F432}
+.lh h3{transition:color .25s ease}
 [data-btn="green"] .tg-btn *{color:#101419 !important}
 """
 
@@ -765,10 +784,19 @@ SCRIPT = """class Component extends DCLogic {
 }"""
 
 
+def hov(h):
+    # Hover pack (28 Oct): tag rows that are styled inline (desktop and mobile variants)
+    for pat, cls in [(r'<div (style="display: flex; (?:align-items: flex-start; )?gap: (?:22|14)px; padding: (?:24|18)px 0; border-top: 1px solid #(?:E2E5EA|DDE1E6))', 'hv-row'),
+                     (r'<div (id="\w+" style="display: flex; flex-direction: (?:column|row);[^"]*border-top: 2px solid #101419")', 'hv-sup'),
+                     (r'<div (style="display: flex; align-items: center; gap: 1[24]px; padding(?:-top: 14px|: 16px 0);(?: border-top: 1px solid rgba\(255,255,255,\.1[24]\))?)', 'hv-li')]:
+        h = re.sub(pat, r'<div class="%s" \1' % cls, h)
+    return h
+
+
 def doc(m):
     w = 390 if m else 1440
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>Lane H2 homepage, %s</title>\n<script src="./support.js"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n%s\n<style>%s</style>\n</helmet>\n%s\n</x-dc>\n'
-            '<script type="text/x-dc" data-dc-script data-props=\'{"$preview":{"width":%d,"height":8000}}\'>\n%s\n</script>\n</body>\n</html>\n') % ('mobile' if m else 'desktop', FONTS, CSS, page(m), w, SCRIPT)
+            '<script type="text/x-dc" data-dc-script data-props=\'{"$preview":{"width":%d,"height":8000}}\'>\n%s\n</script>\n</body>\n</html>\n') % ('mobile' if m else 'desktop', FONTS, CSS, hov(page(m)), w, SCRIPT)
 
 
 open(OUT + '/lane-h2-home.dc.html', 'w').write(doc(False))

@@ -100,6 +100,16 @@ By request the pieces are no longer side by side as "1 of 2" and "2 of 2". Each 
 
 "Partner Program" is removed from the header navigation on every desktop board (A to G, every version), by request. It stays in the footer's Company column. The mobile headers only have a menu icon, so they had no header link to remove.
 
+## Hover effects on the review lanes (28 Oct 2026)
+
+By request, every clickable thing on D3, G3, C3 and H2 (desktop and mobile) now reacts on hover with a colour change, an invert or a small lift or zoom. Existing hovers were kept, and page heights are unchanged. Checked in a browser: each hover was triggered and its computed style read back.
+
+- **D3:** buttons lift 2px with a soft shadow; case study cards lift, their photo zooms slightly and the title turns blue; testimonials lift. Blog cards keep their wedge-and-underline hover.
+- **G3:** buttons lift; "When people usually call us" and industry rows slide right, with a larger icon and a blue title; testimonials lift with a shadow; case study photos zoom.
+- **C3:** most of C3 is styled inline, so hover classes (`hv-*`) were added. Lime buttons invert to navy with lime text (white with navy text in the footer). The outline "Read all articles" button fills navy. Nav links go white and underline; footer links go sky blue. Arrow links nudge their arrow. Case study rows tint and slide. The featured case study lifts with a photo zoom; trigger cells tint; service cards lift; blog photos zoom and titles turn blue. FAQ questions turn blue and their icon turns. Round carousel and Call buttons invert to white; social icons lift and turn sky blue; the testimonial card lifts.
+- **H2:** adds to its 28 Oct button and card hovers: FAQ questions turn blue; trigger and industry rows slide right with a larger icon; support items lift and their top rule turns Electric Blue; the dark list rows turn their rule and arrow lime.
+- **Source:** `tools/hover-pack.py` (D3, G3, C3; reruns are skipped) and `tools/lane-h2-gen.py` (H2).
+
 ## Lane C3 (27 Oct 2026)
 
 A third version of Lane C, restyled to the style board Growth Foundry supplied (`assets/inspiration/inspiration-8-c3-style-board.webp`, "Clear. Connected. Confident."). Content and section order come from C2, including the user's removal of the rule above "Have books like these?".
