@@ -9,7 +9,7 @@ E = 'cubic-bezier(.22,.61,.36,1)'
 
 CSS = MARK + '''
 /* "When people usually call us" cards: the same lime wipe as the case study rows; nothing moves */
-.hv-cells{border-radius:10px;overflow:hidden}
+.hv-cells{border-radius:18px;overflow:hidden}
 .hv-cell{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0%% 100%% !important;transition:background-size .5s %(E)s}
 .hv-cell:hover{background-size:100%% 100%% !important}
 .hv-cell:hover h3{color:#0A2240 !important}
@@ -25,7 +25,7 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 @media (prefers-reduced-motion: reduce){.hl,.hl-ink,.hv-cell{transition:none !important}}
 ''' % {'E': E}
 
-MOBILE_CSS = '.hv-cell{border-radius:12px}\n'
+MOBILE_CSS = '.hv-cells{border-radius:16px}\n'
 
 # on click: the stroke presses down to full height and back, and a burst of lime and blue confetti flies out of the click
 JS = '''  popHighlight(e) {
@@ -84,6 +84,17 @@ def body(b, mobile):
     j = b.rfind('<div', 0, i)
     k = b.index('>', j) + 1
     b = b[:j] + addcls(b[j:k], 'hv-cells') + b[k:]
+    # the cards fill their white panel edge to edge, so the wipe reaches its rounded corners (like the case study rows)
+    if mobile:
+        old = 'class="hv-cells" style="background: #FFFFFF; border-radius: 16px; padding: 4px 8px;'
+        assert b.count(old) == 1
+        b = b.replace(old, 'class="hv-cells" style="background: #FFFFFF; border-radius: 16px; padding: 0;')
+        b, k = re.subn(r'(<article class="hv-cell" style="padding: )18px 12px;', r'\g<1>18px 20px;', b)
+        n['mobile cells widened'] = k
+    else:
+        old = '<div style="background: #FFFFFF; border-radius: 18px; padding: 8px; box-shadow: 0 20px 50px rgba(10, 34, 64, 0.08)">\n<div class="hv-cells"'
+        assert b.count(old) == 1
+        b = b.replace(old, '<div style="background: #FFFFFF; border-radius: 18px; padding: 0; box-shadow: 0 20px 50px rgba(10, 34, 64, 0.08)">\n<div class="hv-cells"')
     return b, n
 
 
