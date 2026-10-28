@@ -77,6 +77,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .stage { flex: 1; min-height: 0; background: var(--stage); position: relative; overflow: hidden; }
 .frame { position: absolute; top: 0; left: 50%; transform-origin: top center; background: #FFFFFF; }
 .frame iframe { display: block; border: 0; width: 100%; height: 100%; background: #FFFFFF; }
+#cmt-layer { position: absolute; inset: 0; z-index: 5; cursor: crosshair; }
+#cmt-hint { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 6; margin: 0; padding: 8px 14px; border-radius: 999px; background: var(--ink); color: var(--panel); font: 600 12.5px/1.2 var(--font-ui); pointer-events: none; white-space: nowrap; }
+#cmt-layer[hidden], #cmt-hint[hidden] { display: none; }
 .stage.mobile .frame { top: 20px; border-radius: 28px; overflow: hidden; box-shadow: 0 0 0 10px #10161D, 0 18px 40px rgba(16, 22, 29, .28); }
 @media (max-width: 700px) {
   .brand span { display: none; }
@@ -104,6 +107,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 </div>
 <main class="stage" id="stage">
   <div class="frame" id="frame"><iframe id="view" title="Homepage preview" src="pages/d3-desktop.html"></iframe></div>
+  <div id="cmt-layer" hidden></div>
+  <p id="cmt-hint" hidden>Click any spot on the design to comment. Scrolling still works.</p>
 </main>
 
 <script>
@@ -125,7 +130,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   if (h2) h2.onmessage = function (e) { if (e.data && e.data.div && e.data.div !== state.div) { state.div = e.data.div; render(); } };
 
   var m = (location.hash || '').match(/^#([cdgh])([23])-(desktop|mobile)$/);
-  if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3] };
+  if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3], div: 'on' };
 
   function seg(el, items, key) {
     el.innerHTML = '';
@@ -155,6 +160,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     frame.style.width = w + 'px';
     frame.style.height = h + 'px';
     frame.style.transform = 'translateX(-50%) scale(' + scale + ')';
+    frame.dataset.scale = scale;
+    document.dispatchEvent(new Event('review:layout'));
   }
 
   function render() {
@@ -182,6 +189,111 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   view.addEventListener('load', function () { if (state.lane === 'h' && state.div !== 'on') { setTimeout(sendDiv, 150); setTimeout(sendDiv, 600); } });
   window.addEventListener('resize', fit);
   render();
+  // for the comment layer below: which design is showing, and a way to switch to another
+  window.reviewView = {
+    current: function () { return { lane: state.lane, ver: state.ver, dev: state.dev }; },
+    go: function (lane, dev) { if (VER[lane]) { state.lane = lane; state.dev = dev; render(); } },
+    LANES: VER
+  };
+})();
+</script>
+
+<script>
+// Comments pinned to spots inside the designs (28 Oct). The claude.ai shell draws every pin, card and composer; this page
+// only turns a click on a design into an anchor and tells the shell where each pin sits. An anchor names the design and
+// the point in its own pixels, e.g. "H2 desktop @720,3410", so a pin stays on its spot at any zoom and Claude can find it.
+(function () {
+  var layer = document.getElementById('cmt-layer');
+  var stage = document.getElementById('stage');
+  var frame = document.getElementById('frame');
+  var view = document.getElementById('view');
+  var hint = document.getElementById('cmt-hint');
+  var RE = /^([DGCH])(\d) (desktop|mobile) @(\d+),(\d+)$/;
+  var ctl = null, threads = [], on = false, pending = null;
+
+  function scale() { return parseFloat(frame.dataset.scale) || 1; }
+  function doc() { try { return view.contentDocument; } catch (e) { return null; } }
+  function win() { try { return view.contentWindow; } catch (e) { return null; } }
+
+  // a click on the stage, in the design's own pixels (page coordinates inside the frame)
+  function toDesign(clientX, clientY) {
+    var r = frame.getBoundingClientRect(), s = scale(), w = win();
+    var x = (clientX - r.left) / s, y = (clientY - r.top) / s;
+    return { x: Math.round(x), y: Math.round(y + (w ? w.scrollY : 0)), vx: x, vy: y };
+  }
+  // a design point back to the artifact page, or null when it is scrolled out of view
+  function toPage(x, y) {
+    var r = frame.getBoundingClientRect(), sr = stage.getBoundingClientRect(), s = scale(), w = win();
+    var px = r.left + x * s, py = r.top + (y - (w ? w.scrollY : 0)) * s;
+    if (px < sr.left || px > sr.right || py < sr.top || py > sr.bottom) return null;
+    return { x: px + window.scrollX, y: py + window.scrollY };
+  }
+  function clip(t, n) { t = (t || '').replace(/\s+/g, ' ').trim(); return t.length > n ? t.slice(0, n - 1) + '\u2026' : t; }
+  // words for the spot: the section it is in, and the nearest bit of text
+  function describe(vx, vy) {
+    var d = doc(); if (!d) return { section: '', text: '' };
+    var el = d.elementFromPoint(vx, vy); if (!el) return { section: '', text: '' };
+    var sec = el.closest('section[aria-label], footer, header');
+    var section = sec ? (sec.getAttribute('aria-label') || (sec.tagName === 'FOOTER' ? 'Footer' : 'Header')) : '';
+    var t = el, text = '';
+    for (var i = 0; t && i < 6 && !text; i++, t = t.parentElement) {
+      var s = clip(t.innerText || t.getAttribute && (t.getAttribute('alt') || t.getAttribute('aria-label')) || '', 70);
+      if (s && s.length <= 70) text = s;
+    }
+    if (!text && el.tagName === 'IMG') text = 'Photo: ' + clip(el.getAttribute('alt') || '', 60);
+    return { section: section, text: text };
+  }
+  function report() {
+    if (!ctl) return;
+    var cur = window.reviewView.current(), map = {};
+    threads.forEach(function (t) {
+      var m = RE.exec(t.anchor);
+      map[t.id] = (m && m[1].toLowerCase() === cur.lane && m[2] === cur.ver && m[3] === cur.dev) ? toPage(+m[4], +m[5]) : null;
+    });
+    if (pending) map.composer = toPage(pending.x, pending.y);
+    ctl.placed(map);
+  }
+  function setMode(v) {
+    on = v; layer.hidden = !v; if (hint) hint.hidden = !v;
+    if (!v) { threads = []; pending = null; }
+  }
+  layer.addEventListener('click', function (ev) {
+    if (!ctl || !on) return;
+    var cur = window.reviewView.current(), p = toDesign(ev.clientX, ev.clientY), d = describe(p.vx, p.vy);
+    var name = cur.lane.toUpperCase() + cur.ver + ' ' + cur.dev + ' @' + p.x + ',' + p.y;
+    var where = cur.lane.toUpperCase() + cur.ver + ' \u00b7 ' + (cur.dev === 'desktop' ? 'Desktop' : 'Mobile');
+    var label = clip([where, d.section, d.text ? '\u201c' + d.text + '\u201d' : ''].filter(Boolean).join(' \u00b7 '), 120);
+    pending = { x: p.x, y: p.y };
+    ctl.compose(name, { x: ev.pageX, y: ev.pageY }, { label: label, detail: clip('Lane ' + where + ', ' + (d.section || 'page') + ', at ' + p.x + ',' + p.y + ' px in the design' + (d.text ? ', near: ' + d.text : ''), 500) })
+      .then(function (r) { if (!r || !r.opened) pending = null; report(); }, function () { pending = null; });
+  });
+  // while commenting, the wheel still scrolls the design under the layer
+  layer.addEventListener('wheel', function (ev) { var w = win(); if (w) { w.scrollBy(0, ev.deltaY / scale()); ev.preventDefault(); } }, { passive: false });
+  function hookFrame() { var w = win(); if (w) w.addEventListener('scroll', report, { passive: true }); report(); }
+  view.addEventListener('load', hookFrame);
+  document.addEventListener('review:layout', report);
+
+  (async function () {
+    if (!window.claude || !window.claude.use) return;
+    var comments = await window.claude.use('comments');
+    if (!comments || !comments.customAnchors) return;
+    try {
+      ctl = await comments.customAnchors({
+        mode: setMode,
+        threads: function (list) { threads = list || []; report(); },
+        composing: function (open) { if (!open) { pending = null; report(); } },
+        reveal: function (id) {
+          var t = threads.filter(function (x) { return x.id === id; })[0], m = t && RE.exec(t.anchor);
+          if (!m) return;
+          var cur = window.reviewView.current(), lane = m[1].toLowerCase(), y = +m[5];
+          function scrollTo() { var w = win(); if (w) w.scrollTo({ top: Math.max(0, y - 220), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); setTimeout(report, 450); }
+          if (cur.lane === lane && cur.dev === m[3]) scrollTo();
+          else { view.addEventListener('load', function once() { view.removeEventListener('load', once); setTimeout(scrollTo, 300); }); window.reviewView.go(lane, m[3]); }
+        }
+      });
+      hookFrame();
+    } catch (e) { ctl = null; }
+  })();
 })();
 </script>
 

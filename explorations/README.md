@@ -184,6 +184,10 @@ D3 and G3 are exact copies of D2 and G2 with every heading, intro, card, service
 
 MISSION is unsure how its ideal clients will read a long company history, so the version 2 lanes (C2 to G2) and C3 no longer show the firm's age. "25+ years in business" became "10+: years several of our clients have stayed", and "2007: when our longest client relationship began" became "~50: client reviews on our ProAdvisor profile". The 5.0 Google rating stays. The hero lines that mentioned 2007 (C2, E2 and F2) now say clients stay 10+ years, D2's team line drops "25+ years in business", and G2's tile label "Established" became "Client loyalty". Richard Cipolla's quote ("since 2007") is unchanged because testimonials stay word for word. All figures are from the Business DNA. The client review site was rebuilt with the change.
 
+## Review comments (28 Oct 2026)
+
+By request, reviewers can pin comments to exact spots on the four review designs (D3, G3, C3, H2, desktop and mobile) on the claude.ai review artifact, using claude.ai's own comment mode: the page positions each pin by lane, device and point in the design, and labels it with the section and nearby text. Comments show in the artifact's comments panel for everyone with access. Plain comments do not reach Claude on their own; an editor presses Send to Claude on a thread, or asks Claude in the session to go through the comments, and Claude waits for the owner's OK before changing anything. The Cloudflare copy stays view-only.
+
 ## Versions 1 and 2, and the client review site (26 Oct 2026)
 
 Lanes C to G now come in two versions. Version 1 (C1 to G1) is each board as it stood on 26 Oct, with every canvas revision; the files keep their names (`lane-g-home.dc.html` and so on) so their comment history stays attached. Version 2 (C2 to G2, `lane-g2-home.dc.html` and so on) started as an exact copy of version 1 and changes only what the October 2026 Business DNA requires, plus a new case studies section. The full change list is in `v2-dna-changes.md`; the DNA itself is `business-dna-2026-10.md`.
