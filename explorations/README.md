@@ -122,7 +122,8 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Revised 28 Oct, by request:** the cut-corner "stop sign" polygons are now the footer's angled four-sided shapes (wedges and trapezoids, in four orientations) everywhere, solid and outlined; photos are full colour (no grade); and the hero photo runs to the top behind the nav, with a soft dark fade under the nav on the photo side only. The "Numbers create possibility." script stays where it was moved on the canvas, low on the photo.
 - **Unchanged from H:** copy, sections, photos, Hero (Kitchen / Office / Ecommerce) and button switches (on H2's own channel).
 - **Canvas:** beside Lane H in the Lane H row: desktop with its continuation below, then mobile.
-- **Heights, measured:** desktop 11,388, mobile 15,658.
+- **Removed by request (28 Oct):** the software strip, and the corner marks around the featured case study (removed on the canvas).
+- **Heights, measured:** desktop 11,272, mobile 15,492.
 - **Source:** `tools/lane-h2-gen.py`.
 
 ## Lane H: the "Decisive Clarity" style board (27 Oct 2026)

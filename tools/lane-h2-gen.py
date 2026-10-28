@@ -413,7 +413,7 @@ def page(m):
         A('<div style="padding: 24px 22px 26px; display: flex; flex-direction: column; gap: 12px"><span class="tag" style="color: #8FAEFF">Construction · Featured story</span><h3 style="font-size: 25px; line-height: 1.15; color: #FFFFFF">A construction company had useful QuickBooks tools it wasn\'t using</h3><p style="font-size: 15px; color: #B9C0CA">We found the tools already built into their QuickBooks Enterprise that nobody was using, and set them up for the way they work.</p><span class="lk" style="color: #FFFFFF; padding-top: 4px">Read the story%s</span></div>' % ARR)
         A('</a>')
     else:
-        A('<div style="position: relative">' + frame('18px -18px -18px 18px', BLUE, .6) + corners(BLUE, -12, 18))
+        A('<div style="position: relative">' + frame('18px -18px -18px 18px', BLUE, .6))  # corner marks removed on the canvas (28 Oct)
         A('<a href="%s" target="_blank" rel="noopener" style="position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419; min-height: 460px">' % feat_url)
         A('<div class="ph" style="position: relative"><img src="%s" alt="A construction crew reviewing plans on a job site" style="position: absolute; inset: 0; object-position: center 40%%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 220px; height: 84px; background: #2459F5; z-index: 1"></span></div>' % PH['construction'])
         A('<div style="position: relative; padding: 48px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px"><div aria-hidden="true" class="dots on-dk" style="position: absolute; top: 28px; right: 28px; width: 120px; height: 72px"></div><span class="tag" style="color: #8FAEFF">Construction · Featured story</span><div style="display: flex; flex-direction: column; gap: 16px"><h3 style="font-size: 34px; line-height: 1.1; color: #FFFFFF">A construction company had useful QuickBooks tools it wasn\'t using</h3><p style="font-size: 16px; color: #B9C0CA">We found the tools already built into their QuickBooks Enterprise that nobody was using, and set them up for the way they work.</p></div><span class="lk" style="color: #FFFFFF">Read the story%s</span></div>' % ARR)
@@ -429,14 +429,7 @@ def page(m):
         A('<div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 30px 36px; border-radius: 6px; background: #2459F5"><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 26px; color: #FFFFFF">Do your books look like this?</h3><p style="font-size: 15.5px; color: #DCE5FF">Come as you are, mess and all. We\'ll tell you what we\'d fix first.</p></div>%s</div>' % sched(extra=' style="background: #FFFFFF; color: #101419"'))
     A('</div>\n</section>\n')
 
-    # ---------- 03 Software strip ----------
-    A('<!-- 03 Software strip -->')
-    A('<section aria-label="Software we know" class="wh" style="border-top: 1px solid #E2E5EA; border-bottom: 1px solid #E2E5EA">')
-    if m:
-        A('<div style="padding: 28px 20px; display: flex; flex-direction: column; gap: 14px"><p class="tag" style="margin: 0; color: #5E6670">The software we know really well</p><div style="display: flex; flex-wrap: wrap; gap: 8px 18px; font: 600 15px/1.4 \'Space Grotesk\', sans-serif; color: #101419">' + ''.join('<span>%s</span>' % s for s in SOFTWARE) + '</div></div>')
-    else:
-        A('<div style="max-width: 1160px; margin: 0 auto; padding: 30px 40px; display: flex; align-items: center; justify-content: space-between; gap: 24px"><p class="tag" style="margin: 0; color: #5E6670; flex: none">The software we know really well</p><div style="display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 10px 34px; font: 600 16px/1.4 \'Space Grotesk\', sans-serif; color: #101419">' + ''.join('<span>%s</span>' % s for s in SOFTWARE) + '</div></div>')
-    A('</section>\n')
+    # (03 Software strip removed by request, 28 Oct)
 
     # ---------- 04 Positioning ----------
     A('<!-- 04 Positioning, after the style board: a specialist team, with the photography grid -->')
