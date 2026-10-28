@@ -118,7 +118,6 @@ body{margin:0;background:#070D17}
 [data-btn="green"] .tg-btn *{color:#0E3A66 !important}
 /* Hover pack (28 Oct) */
 .lg .btn,.lg .lnk{transition:background-color .35s cubic-bezier(.4,0,.2,1),border-color .35s cubic-bezier(.4,0,.2,1),color .35s cubic-bezier(.4,0,.2,1),transform .25s ease,box-shadow .25s ease}
-.lg .btn:hover,.lg .btn:focus-visible{transform:translateY(-2px);box-shadow:0 12px 26px rgba(14,58,102,.25)}
 .lg .row{transition:transform .25s ease}
 .lg .row:hover{transform:translateX(8px)}
 .lg .row h3{transition:color .25s ease}
@@ -128,8 +127,10 @@ body{margin:0;background:#070D17}
 .lg figure{transition:transform .3s ease,box-shadow .3s ease,background-color .3s ease}
 .lg figure:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(14,58,102,.14)}
 .lg .card .ph{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
-.lg .card:hover .ph{transform:scale(1.05)}
-.lg .card:hover{box-shadow:0 20px 44px rgba(7,13,23,.25)}
+.lg .card:not(.cs-card):hover .ph{transform:scale(1.05)}
+.lg .card:not(.cs-card):hover{box-shadow:0 20px 44px rgba(7,13,23,.25)}
+/* Case study cards (28 Oct, toned down by request): no lift, no zoom; the blue edge and arrow nudge stay */
+.lg .cs-card:hover,.lg .cs-card:focus-visible{transform:none}
 .lg article img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .lg article:hover img{transform:scale(1.05)}
 .lg .foot a[target="_blank"]:hover{text-decoration:underline;text-underline-offset:3px}
