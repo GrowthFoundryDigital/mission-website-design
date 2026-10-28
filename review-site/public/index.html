@@ -51,6 +51,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .brand span { font-weight: 600; font-size: 14px; color: var(--muted); white-space: nowrap; }
 .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; }
 .group { display: flex; align-items: center; gap: 8px; }
+.group[hidden] { display: none; }
 .group > .lbl { font-family: var(--font-data); font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
 .seg { display: inline-flex; background: var(--chip); border-radius: 8px; padding: 3px; gap: 2px; }
 .seg button {
@@ -91,6 +92,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <div class="controls">
     <div class="group"><span class="lbl">Lane</span><div class="seg" id="lane" role="group" aria-label="Lane"></div></div>
     <div class="group"><span class="lbl">View</span><div class="seg" id="dev" role="group" aria-label="Device"></div></div>
+    <div class="group" id="div-group" hidden><span class="lbl">Divider</span><div class="seg" id="div" role="group" aria-label="Hero divider"></div></div>
     <a class="open" id="open" href="pages/d3-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
 </header>
@@ -115,7 +117,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   var VER = { d: '3', g: '3', c: '3', h: '2' };
   var NOTE = 'Plain-language copy on the October 2026 Business DNA, leading with client case studies.';
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
-  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
+  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop', div: 'on' };
+  // Lane H2's hero divider switch: the console and the page's own review bar talk over the page's broadcast channel
+  var h2 = null;
+  try { h2 = new BroadcastChannel('mission-buttons-lane-h2'); } catch (e) {}
+  function sendDiv() { try { if (h2) h2.postMessage({ div: state.div }); } catch (e) {} }
+  if (h2) h2.onmessage = function (e) { if (e.data && e.data.div && e.data.div !== state.div) { state.div = e.data.div; render(); } };
 
   var m = (location.hash || '').match(/^#([cdgh])([23])-(desktop|mobile)$/);
   if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3] };
@@ -131,6 +138,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   }
   seg(document.getElementById('lane'), Object.keys(LANES).map(function (k) { return { v: k, label: k.toUpperCase() + VER[k] }; }), 'lane');
   seg(document.getElementById('dev'), [{ v: 'desktop', label: 'Desktop' }, { v: 'mobile', label: 'Mobile' }], 'dev');
+  seg(document.getElementById('div'), [{ v: 'on', label: 'On' }, { v: 'off', label: 'Off' }], 'div');
+  document.querySelectorAll('#div button').forEach(function (b) { b.addEventListener('click', sendDiv); });
 
   var stage = document.getElementById('stage');
   var frame = document.getElementById('frame');
@@ -152,7 +161,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     state.ver = VER[state.lane];
     var id = state.lane + state.ver + '-' + state.dev;
     var src = 'pages/' + id + '.html';
-    ['lane', 'dev'].forEach(function (k) {
+    document.getElementById('div-group').hidden = state.lane !== 'h';
+    ['lane', 'dev', 'div'].forEach(function (k) {
       document.querySelectorAll('#' + k + ' button').forEach(function (b) {
         b.setAttribute('aria-pressed', b.dataset.v === state[k] ? 'true' : 'false');
       });
@@ -168,6 +178,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     fit();
   }
 
+  // a newly loaded H2 page starts with the divider on; tell it the console's choice once it is listening
+  view.addEventListener('load', function () { if (state.lane === 'h' && state.div !== 'on') { setTimeout(sendDiv, 150); setTimeout(sendDiv, 600); } });
   window.addEventListener('resize', fit);
   render();
 })();

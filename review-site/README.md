@@ -12,7 +12,7 @@ The client review site: lanes D3, G3, C3 and H2 (the plain-language ELI15 versio
 
 ## Files
 
-- `public/index.html`: the viewer (lane and desktop/mobile switches, an "Open full page" link, a link per view such as `#d3-desktop`).
+- `public/index.html`: the viewer (lane and desktop/mobile switches, a Divider On/Off switch that appears for Lane H2 and drives the page's hero divider, an "Open full page" link, a link per view such as `#d3-desktop`). It is `index.html` wrapped in a page skeleton (doctype, head, body).
 - `public/pages/*.html`: one standalone page per lane and device, generated from the canvas boards.
 - `public/rt.js`: a small runtime that runs the boards' component scripts (carousels, the typing hero, the button toggle).
 - `public/img/`: the images the pages use.
