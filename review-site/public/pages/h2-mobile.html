@@ -31,6 +31,16 @@ body{margin:0;background:#101419}
 .lh .bl .nav a{color:#FFFFFF}
 .lh .bl .nav a:hover,.lh .bl .nav a:focus-visible{color:#FFFFFF}
 .hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
+/* Hero divider review switch (28 Oct): off = the photo full width behind the text, no blue angle, no blue-side geometry */
+.hero-fade,.hero-full{display:none}
+.hero-full{position:absolute;inset:0;z-index:0;overflow:hidden}
+[data-div="off"] .hero-ph{left:0 !important;clip-path:none !important}
+[data-div="off"] .hero-fade{display:block}
+[data-div="off"] .hero-script{left:1133px !important}
+[data-div="off"] .hero-geo{display:none}
+[data-div="off"] .hero-full{display:block}
+[data-div="off"] .hero-band{clip-path:none !important}
+[data-div="off"] .hero-band > img,[data-div="off"] .hero-band > .wedge{visibility:hidden}
 [data-hero="kitchen"] .hero-bg-kitchen,[data-hero="office"] .hero-bg-office,[data-hero="ecommerce"] .hero-bg-ecommerce{display:block}
 .lh .mu{color:#5E6670}
 .lh .dk .mu{color:#9AA3AE}
@@ -157,7 +167,7 @@ body{margin:0;background:#101419}
 </head>
 <body>
 <div id="dc-root"></div>
-<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" class="lh" style="width: 390px; background: #101419">
+<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" class="lh" style="width: 390px; background: #101419">
 <div class="tg-bar" aria-label="Review control, not part of the design">
 <span class="tg-label">Review · buttons</span>
 <div class="tg-group" role="group" aria-label="Button color">
@@ -169,16 +179,22 @@ body{margin:0;background:#101419}
 <button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>
 </span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Divider</span><span class="tg-group" role="group" aria-label="Hero divider">
+<button type="button" class="tg-opt" aria-pressed="{{ isDivOn }}" onClick="{{ setDivOn }}">On</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isDivOff }}" onClick="{{ setDivOff }}">Off</button>
+</span></span>
 </div>
 
 <!-- 01 Hero: Electric Blue on the left, a photo on the right (kitchen, office or ecommerce, chosen in the review bar), three core services along the bottom -->
 <section class="bl" style="position: relative; overflow: hidden">
+<div class="hero-top" style="position: relative">
+<div class="hero-full" aria-hidden="true"><img class="hero-bg-kitchen" src="../img/2066a54da13614d9c2246994e32d1902.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 80% 28%"><img class="hero-bg-office" src="../img/c76296e63f1cbdfd3cc1859696beddca.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 74% 30%"><img class="hero-bg-ecommerce" src="../img/b70d1fd6eb5a9839c3acd3ccea5d44a1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 82% 30%"><div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16, 20, 25, .82) 0%, rgba(16, 20, 25, .74) 58%, rgba(16, 20, 25, .25) 82%, rgba(16, 20, 25, 0) 100%)"></div></div>
 <header style="position: relative; z-index: 3; height: 68px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between">
 <a href="#top" aria-label="MISSION home" style="display: flex"><img src="../img/c81310e520e144cd622a899707febdc7.svg" alt="MISSION" style="height: 24px; width: auto; display: block"></a>
 <div style="display: flex; gap: 8px"><a class="btn btn-p tg-btn" href="#schedule" style="height: 40px; padding: 0 14px; font-size: 13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule</a>
 <button type="button" aria-label="Open menu" style="all: unset; cursor: pointer; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.5); border-radius: 4px; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div>
 </header>
-<div class="deco dots on-dk" aria-hidden="true" style="right: 14px; top: 132px; width: 64px; height: 56px"></div>
+<div class="hero-geo"><div class="deco dots on-dk" aria-hidden="true" style="right: 14px; top: 132px; width: 64px; height: 56px"></div></div>
 <div id="top" style="position: relative; z-index: 2; padding: 36px 20px 0; display: flex; flex-direction: column; gap: 20px">
 <p class="eb" style="letter-spacing: .16em">Practical. Reassuring. Experienced.</p>
 <h1 style="font-size: 44px; line-height: 1; letter-spacing: -.035em">Complex books.<br>Clear answers.</h1>
@@ -186,12 +202,13 @@ body{margin:0;background:#101419}
 <div style="display: flex; flex-direction: column; gap: 12px; padding-top: 6px"><a class="btn btn-p tg-btn" href="#schedule" style="width: 100%"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a><a class="btn btn-o" href="#case-studies">Read client stories<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
 <div style="display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: #EEF2FF"><span aria-hidden="true" style="display: inline-flex; align-items: center"><img src="../img/b0f8fafa98dcbe0082a836a30303b5e5.png" alt="" style="position: relative; z-index: 3; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #2459F5; margin-left: 0px"><img src="../img/8dcd87561fad4fb41686cffb42d245b4.png" alt="" style="position: relative; z-index: 2; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #2459F5; margin-left: -10px"><img src="../img/4a8aee7bf8f13bc1315ec9fa3aa9642d.png" alt="" style="position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #2459F5; margin-left: -10px"></span><span><strong style="color: #FFFFFF">5.0 average</strong> on Google reviews</span></div>
 </div>
-<div style="position: relative; margin-top: 32px; height: 270px; overflow: hidden; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%)">
+<div class="hero-band" style="position: relative; margin-top: 32px; height: 270px; overflow: hidden; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%)">
 <img class="hero-bg-kitchen" src="../img/2066a54da13614d9c2246994e32d1902.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 80% 28%">
 <img class="hero-bg-office" src="../img/c76296e63f1cbdfd3cc1859696beddca.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 74% 30%">
 <img class="hero-bg-ecommerce" src="../img/b70d1fd6eb5a9839c3acd3ccea5d44a1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 82% 30%">
 <div aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 46%; height: 56px; background: #101419"></div>
 <p class="script" aria-hidden="true" style="position: absolute; right: 18px; top: 26px; font-size: 30px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 12px rgba(0, 0, 0, .35)">Numbers create<br>possibility.</p>
+</div>
 </div>
 <div class="dk" style="padding: 8px 20px 28px; display: flex; flex-direction: column">
 <div class="hv-li" style="display: flex; align-items: center; gap: 14px; padding: 16px 0;"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">QuickBooks Cleanup</strong><span style="font-size: 13px; color: #9AA3AE">Behind on your books? We get you current</span></span></div>
@@ -440,6 +457,11 @@ class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
+  setDiv(v) {
+    // the hero divider switch (on or off), shared with the other Lane H2 board
+    this.setState({ div: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ div: v }); } catch (e) {}
+  }
   setHero(v) {
     // the hero background toggle (kitchen, office or ecommerce photo), shared with the other Lane H2 board
     this.setState({ hero: v });
@@ -451,6 +473,7 @@ class Component extends DCLogic {
       this.btnChannel.onmessage = (e) => {
         if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
         if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
+        if (e.data && e.data.div) this.setState({ div: e.data.div });
       };
     } catch (e) {}
   }
@@ -468,6 +491,11 @@ class Component extends DCLogic {
       setKitchen: this.setKitchen || (this.setKitchen = () => this.setHero('kitchen')),
       setOffice: this.setOffice || (this.setOffice = () => this.setHero('office')),
       setEcommerce: this.setEcommerce || (this.setEcommerce = () => this.setHero('ecommerce')),
+      divMode: (this.state && this.state.div) || 'on',
+      isDivOn: ((this.state && this.state.div) || 'on') === 'on' ? 'true' : 'false',
+      isDivOff: ((this.state && this.state.div) || 'on') === 'off' ? 'true' : 'false',
+      setDivOn: this.setDivOn || (this.setDivOn = () => this.setDiv('on')),
+      setDivOff: this.setDivOff || (this.setDivOff = () => this.setDiv('off')),
     };
   }
   componentDidMount() {

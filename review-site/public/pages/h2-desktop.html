@@ -31,6 +31,16 @@ body{margin:0;background:#101419}
 .lh .bl .nav a{color:#FFFFFF}
 .lh .bl .nav a:hover,.lh .bl .nav a:focus-visible{color:#FFFFFF}
 .hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
+/* Hero divider review switch (28 Oct): off = the photo full width behind the text, no blue angle, no blue-side geometry */
+.hero-fade,.hero-full{display:none}
+.hero-full{position:absolute;inset:0;z-index:0;overflow:hidden}
+[data-div="off"] .hero-ph{left:0 !important;clip-path:none !important}
+[data-div="off"] .hero-fade{display:block}
+[data-div="off"] .hero-script{left:1133px !important}
+[data-div="off"] .hero-geo{display:none}
+[data-div="off"] .hero-full{display:block}
+[data-div="off"] .hero-band{clip-path:none !important}
+[data-div="off"] .hero-band > img,[data-div="off"] .hero-band > .wedge{visibility:hidden}
 [data-hero="kitchen"] .hero-bg-kitchen,[data-hero="office"] .hero-bg-office,[data-hero="ecommerce"] .hero-bg-ecommerce{display:block}
 .lh .mu{color:#5E6670}
 .lh .dk .mu{color:#9AA3AE}
@@ -157,7 +167,7 @@ body{margin:0;background:#101419}
 </head>
 <body>
 <div id="dc-root"></div>
-<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" class="lh" style="width: 1440px; background: #101419">
+<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" class="lh" style="width: 1440px; background: #101419">
 <div class="tg-bar" aria-label="Review control, not part of the design">
 <span class="tg-label">Review · button color</span>
 <div class="tg-group" role="group" aria-label="Button color">
@@ -169,17 +179,23 @@ body{margin:0;background:#101419}
 <button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>
 </span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Divider</span><span class="tg-group" role="group" aria-label="Hero divider">
+<button type="button" class="tg-opt" aria-pressed="{{ isDivOn }}" onClick="{{ setDivOn }}">On</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isDivOff }}" onClick="{{ setDivOff }}">Off</button>
+</span></span>
 </div>
 
 <!-- 01 Hero: Electric Blue on the left, a photo on the right (kitchen, office or ecommerce, chosen in the review bar), three core services along the bottom -->
 <section class="bl" style="position: relative; overflow: hidden">
-<div aria-hidden="true" style="position: absolute; top: 0; left: 40%; right: 0; bottom: 101px; clip-path: polygon(43.3% 0, 100% 0, 100% 100%, 18.3% 100%)">
+<div class="hero-ph" aria-hidden="true" style="position: absolute; top: 0; left: 40%; right: 0; bottom: 101px; clip-path: polygon(43.3% 0, 100% 0, 100% 100%, 18.3% 100%)">
 <img class="hero-bg-kitchen" src="../img/2066a54da13614d9c2246994e32d1902.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 40%">
 <img class="hero-bg-office" src="../img/c76296e63f1cbdfd3cc1859696beddca.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 62% 30%">
 <img class="hero-bg-ecommerce" src="../img/b70d1fd6eb5a9839c3acd3ccea5d44a1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 66% 38%">
 <div style="position: absolute; left: 0; right: 0; top: 0; height: 184px; background: linear-gradient(180deg, rgba(16, 20, 25, .9) 0%, rgba(16, 20, 25, .8) 44px, rgba(16, 20, 25, .55) 88px, rgba(16, 20, 25, .24) 131px, rgba(16, 20, 25, 0) 184px)"></div>
-<p class="script" aria-hidden="true" style="position: absolute; top: 613px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35); left: 557px">Numbers create<br>possibility.</p>
+<div class="hero-fade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16, 20, 25, .9) 0%, rgba(16, 20, 25, .78) 30%, rgba(16, 20, 25, .4) 52%, rgba(16, 20, 25, 0) 70%)"></div>
+<p class="script hero-script" aria-hidden="true" style="position: absolute; top: 613px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35); left: 557px">Numbers create<br>possibility.</p>
 </div>
+<div class="hero-geo">
 <div class="deco dots on-dk" aria-hidden="true" style="left: 28px; top: 150px; width: 112px; height: 288px"></div>
 <svg class="deco" aria-hidden="true" width="112" height="112" viewBox="0 0 112 112" style="left: -34px; top: 628px; opacity: 0.7; transform: rotate(-8deg); filter: blur(6px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="#101419"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="54" height="54" viewBox="0 0 54 54" style="left: 98px; top: 546px; opacity: 1; transform: rotate(12deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
@@ -190,6 +206,7 @@ body{margin:0;background:#101419}
 <svg class="deco" aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" style="left: 112px; bottom: 166px; opacity: 1"><polygon points="1,1 24.56,1 39,39 1,39" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>
 <span class="deco" aria-hidden="true" style="left: 566px; top: 712px; width: 12px; height: 12px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="left: 594px; top: 738px; width: 8px; height: 8px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="left: 548px; top: 752px; width: 8px; height: 8px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="left: 618px; top: 702px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid #C1F432"></span>
 <svg class="deco" aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" style="left: 604px; top: 650px; opacity: 1; transform: rotate(-12deg)"><polygon points="0,0 18,0 18,18 6.84,18" fill="#101419"></polygon></svg>
+</div>
 <header style="position: relative; z-index: 3">
 <nav aria-label="Main" class="nav" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
 <a href="#top" aria-label="MISSION home" style="display: flex"><img src="../img/c81310e520e144cd622a899707febdc7.svg" alt="MISSION" style="height: 28px; width: auto; display: block"></a>
@@ -479,6 +496,11 @@ class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
+  setDiv(v) {
+    // the hero divider switch (on or off), shared with the other Lane H2 board
+    this.setState({ div: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ div: v }); } catch (e) {}
+  }
   setHero(v) {
     // the hero background toggle (kitchen, office or ecommerce photo), shared with the other Lane H2 board
     this.setState({ hero: v });
@@ -490,6 +512,7 @@ class Component extends DCLogic {
       this.btnChannel.onmessage = (e) => {
         if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
         if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
+        if (e.data && e.data.div) this.setState({ div: e.data.div });
       };
     } catch (e) {}
   }
@@ -507,6 +530,11 @@ class Component extends DCLogic {
       setKitchen: this.setKitchen || (this.setKitchen = () => this.setHero('kitchen')),
       setOffice: this.setOffice || (this.setOffice = () => this.setHero('office')),
       setEcommerce: this.setEcommerce || (this.setEcommerce = () => this.setHero('ecommerce')),
+      divMode: (this.state && this.state.div) || 'on',
+      isDivOn: ((this.state && this.state.div) || 'on') === 'on' ? 'true' : 'false',
+      isDivOff: ((this.state && this.state.div) || 'on') === 'off' ? 'true' : 'false',
+      setDivOn: this.setDivOn || (this.setDivOn = () => this.setDiv('on')),
+      setDivOff: this.setDivOff || (this.setDivOff = () => this.setDiv('off')),
     };
   }
   componentDidMount() {

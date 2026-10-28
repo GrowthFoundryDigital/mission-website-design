@@ -175,6 +175,16 @@ body{margin:0;background:#101419}
 .lh .bl .nav a{color:#FFFFFF}
 .lh .bl .nav a:hover,.lh .bl .nav a:focus-visible{color:#FFFFFF}
 .hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
+/* Hero divider review switch (28 Oct): off = the photo full width behind the text, no blue angle, no blue-side geometry */
+.hero-fade,.hero-full{display:none}
+.hero-full{position:absolute;inset:0;z-index:0;overflow:hidden}
+[data-div="off"] .hero-ph{left:0 !important;clip-path:none !important}
+[data-div="off"] .hero-fade{display:block}
+[data-div="off"] .hero-script{left:1133px !important}
+[data-div="off"] .hero-geo{display:none}
+[data-div="off"] .hero-full{display:block}
+[data-div="off"] .hero-band{clip-path:none !important}
+[data-div="off"] .hero-band > img,[data-div="off"] .hero-band > .wedge{visibility:hidden}
 [data-hero="kitchen"] .hero-bg-kitchen,[data-hero="office"] .hero-bg-office,[data-hero="ecommerce"] .hero-bg-ecommerce{display:block}
 .lh .mu{color:#5E6670}
 .lh .dk .mu{color:#9AA3AE}
@@ -371,7 +381,7 @@ def page(m):
     h2 = 34 if m else 54
     o = []
     A = o.append
-    A('<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" class="lh" style="width: %dpx; background: #101419">' % W)
+    A('<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" class="lh" style="width: %dpx; background: #101419">' % W)
     A('<div class="tg-bar" aria-label="Review control, not part of the design">')
     A('<span class="tg-label">Review · %s</span>' % ('buttons' if m else 'button color'))
     A('<div class="tg-group" role="group" aria-label="Button color">')
@@ -382,18 +392,26 @@ def page(m):
     A('<button type="button" class="tg-opt" aria-pressed="{{ isKitchen }}" onClick="{{ setKitchen }}">Kitchen</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>')
+    A('</span></span>')
+    # hero divider on or off (28 Oct): off shows the hero photo full width, darkened on the left, with no blue angle
+    A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Divider</span><span class="tg-group" role="group" aria-label="Hero divider">')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isDivOn }}" onClick="{{ setDivOn }}">On</button>')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isDivOff }}" onClick="{{ setDivOff }}">Off</button>')
     A('</span></span>\n</div>\n')
 
     # ---------- 01 Hero ----------
     A('<!-- 01 Hero: Electric Blue on the left, a photo on the right (kitchen, office or ecommerce, chosen in the review bar), three core services along the bottom -->')
     A('<section class="bl" style="position: relative; overflow: hidden">')
     if m:
+        A('<div class="hero-top" style="position: relative">')
+        # divider off: the photo runs behind the whole hero, darkened at the top for the text
+        A('<div class="hero-full" aria-hidden="true">' + ''.join('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[1]) for k, (alt, pos) in HERO_BG.items()) + '<div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16, 20, 25, .82) 0%, rgba(16, 20, 25, .74) 58%, rgba(16, 20, 25, .25) 82%, rgba(16, 20, 25, 0) 100%)"></div></div>')
         A('<header style="position: relative; z-index: 3; height: 68px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between">')
         A('<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 24px; width: auto; display: block"></a>' % LOGO_W)
         A('<div style="display: flex; gap: 8px"><a class="btn btn-p tg-btn" href="#schedule" style="height: 40px; padding: 0 14px; font-size: 13.5px">%sSchedule</a>' % CAL)
         A('<button type="button" aria-label="Open menu" style="all: unset; cursor: pointer; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.5); border-radius: 4px; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div>')
         A('</header>')
-        A(dotp('right: 14px; top: 132px', 64, 56, 'white'))
+        A('<div class="hero-geo">' + dotp('right: 14px; top: 132px', 64, 56, 'white') + '</div>')
         A('<div id="top" style="position: relative; z-index: 2; padding: 36px 20px 0; display: flex; flex-direction: column; gap: 20px">')
         A('<p class="eb" style="letter-spacing: .16em">Practical. Reassuring. Experienced.</p>')
         A('<h1 style="font-size: 44px; line-height: 1; letter-spacing: -.035em">Complex books.<br>Clear answers.</h1>')
@@ -401,11 +419,12 @@ def page(m):
         A('<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 6px">%s<a class="btn btn-o" href="#case-studies">Read client stories%s</a></div>' % (sched(extra=' style="width: 100%"'), ARR))
         A('<div style="display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: #EEF2FF">%s<span><strong style="color: #FFFFFF">5.0 average</strong> on Google reviews</span></div>' % stars())
         A('</div>')
-        A('<div style="position: relative; margin-top: 32px; height: 270px; overflow: hidden; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%)">')
+        A('<div class="hero-band" style="position: relative; margin-top: 32px; height: 270px; overflow: hidden; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%)">')
         for k, (alt, pos) in HERO_BG.items():
             A('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[1]))
         A('<div aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 46%; height: 56px; background: #101419"></div>')
         A('<p class="script" aria-hidden="true" style="position: absolute; right: 18px; top: 26px; font-size: 30px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 12px rgba(0, 0, 0, .35)">Numbers create<br>possibility.</p>')
+        A('</div>')
         A('</div>')
         A('<div class="dk" style="padding: 8px 20px 28px; display: flex; flex-direction: column">')
         for k, (icn, t, s) in enumerate(TIERS):
@@ -415,16 +434,19 @@ def page(m):
         # photo panel, from the top (behind the nav): the right 60%, cut on a hard diagonal from 61% at the top to 46% at the bottom
         # the angled divider (moved right 28 Oct, by request, then pulled back halfway): from 66% of the width at the top to 51% at the foot,
         # the same angle as before
-        A('<div aria-hidden="true" style="position: absolute; top: 0; left: 40%; right: 0; bottom: 101px; clip-path: polygon(43.3% 0, 100% 0, 100% 100%, 18.3% 100%)">')
+        A('<div class="hero-ph" aria-hidden="true" style="position: absolute; top: 0; left: 40%; right: 0; bottom: 101px; clip-path: polygon(43.3% 0, 100% 0, 100% 100%, 18.3% 100%)">')
         for k, (alt, pos) in HERO_BG.items():
             A('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[0]))
         # header overlay on the photo only (under the blue), deepened 28 Oct like C3's: near-black at 90% at the top, 80% behind the nav,
         # 55% at the header's foot (88px), then fading out over another 96px so it has no hard edge
         A('<div style="position: absolute; left: 0; right: 0; top: 0; height: 184px; background: linear-gradient(180deg, rgba(16, 20, 25, .9) 0%, rgba(16, 20, 25, .8) 44px, rgba(16, 20, 25, .55) 88px, rgba(16, 20, 25, .24) 131px, rgba(16, 20, 25, 0) 184px)"></div>')
+        # divider off: a dark fade from the left keeps the hero text legible on the full-width photo
+        A('<div class="hero-fade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16, 20, 25, .9) 0%, rgba(16, 20, 25, .78) 30%, rgba(16, 20, 25, .4) 52%, rgba(16, 20, 25, 0) 70%)"></div>')
         # the script line sits on the photo where it was placed on the canvas (28 Oct)
-        A('<p class="script" aria-hidden="true" style="position: absolute; top: 613px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35); left: 557px">Numbers create<br>possibility.</p>')
+        A('<p class="script hero-script" aria-hidden="true" style="position: absolute; top: 613px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35); left: 557px">Numbers create<br>possibility.</p>')
         A('</div>')
-        # geometry on the blue side
+        # geometry on the blue side (hidden when the divider is off)
+        A('<div class="hero-geo">')
         A(dotp('left: 28px; top: 150px', 112, 288, 'white'))
         # near-black polygons floating at mixed sizes and depths (some blurred), none resting on the strip
         A(poly('left: -34px; top: 628px', 112, 112, 24, fill=INK, op=.7, rot=-8, blur=6))
@@ -436,6 +458,7 @@ def page(m):
         A(poly('left: 112px; bottom: 166px', 40, 40, 9, stroke=LIME, sw=2))
         A(scatter([('left: 566px; top: 712px', 12, WHITE), ('left: 594px; top: 738px', 8, WHITE), ('left: 548px; top: 752px', 8, INK), ('left: 618px; top: 702px', 10, LIME, True)]))
         A(poly('left: 604px; top: 650px', 18, 18, 4, fill=INK, rot=-12))
+        A('</div>')
         A('<header style="position: relative; z-index: 3">')
         A('<nav aria-label="Main" class="nav" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px">')
         A('<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 28px; width: auto; display: block"></a>' % LOGO_W)
@@ -779,6 +802,11 @@ SCRIPT = """class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
+  setDiv(v) {
+    // the hero divider switch (on or off), shared with the other Lane H2 board
+    this.setState({ div: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ div: v }); } catch (e) {}
+  }
   setHero(v) {
     // the hero background toggle (kitchen, office or ecommerce photo), shared with the other Lane H2 board
     this.setState({ hero: v });
@@ -790,6 +818,7 @@ SCRIPT = """class Component extends DCLogic {
       this.btnChannel.onmessage = (e) => {
         if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
         if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
+        if (e.data && e.data.div) this.setState({ div: e.data.div });
       };
     } catch (e) {}
   }
@@ -807,6 +836,11 @@ SCRIPT = """class Component extends DCLogic {
       setKitchen: this.setKitchen || (this.setKitchen = () => this.setHero('kitchen')),
       setOffice: this.setOffice || (this.setOffice = () => this.setHero('office')),
       setEcommerce: this.setEcommerce || (this.setEcommerce = () => this.setHero('ecommerce')),
+      divMode: (this.state && this.state.div) || 'on',
+      isDivOn: ((this.state && this.state.div) || 'on') === 'on' ? 'true' : 'false',
+      isDivOff: ((this.state && this.state.div) || 'on') === 'off' ? 'true' : 'false',
+      setDivOn: this.setDivOn || (this.setDivOn = () => this.setDiv('on')),
+      setDivOff: this.setDivOff || (this.setDivOff = () => this.setDiv('off')),
     };
   }
   componentDidMount() {

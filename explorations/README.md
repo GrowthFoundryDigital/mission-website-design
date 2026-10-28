@@ -156,7 +156,8 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Testimonial cards (28 Oct, by request):** the thin divider above each name was removed; the space above the name stays.
 - **Proof stats (28 Oct, by request):** the blue rules above 10+, ~50 and 5.0 were removed.
 - **Testimonials heading (28 Oct, by request):** "Our Clients" replaces "Clients stay for years." (also on C3).
-- **Heights, measured:** desktop 11,229, mobile 15,520.
+- **Hero divider switch (28 Oct, by request):** a "Divider: On / Off" switch in H2's review bar, beside Hero, kept in step across the H2 boards. On (the default) is the design above. Off shows the hero photo full width behind the text, with a near-black fade from the left (90% to clear by 70% of the width) so the headline and buttons stay legible, and hides the blue-side geometry; the script line stays where it was on the photo. On mobile, Off runs the photo behind the whole hero under a dark fade at the top, with no angled cut or wedge. The page is the same height either way. The extra switch wraps the mobile review bar onto another line (+44 px).
+- **Heights, measured:** desktop 11,229, mobile 15,564.
 - **Source:** `tools/lane-h2-gen.py`.
 
 ## Lane H: the "Decisive Clarity" style board (27 Oct 2026)
