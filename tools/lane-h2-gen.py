@@ -211,8 +211,9 @@ body{margin:0;background:#101419}
 .lh .faq{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-top:1px solid #DDE1E6;cursor:pointer;font:600 17px/1.35 'Space Grotesk',sans-serif;color:#101419}
 .lh .faq svg{color:#2459F5;flex:none;transition:transform .25s ease}
 .lh .faq[aria-expanded="true"] svg{transform:rotate(45deg)}
-.lh .foot a{color:#AEB5BF;text-decoration:none;font-size:13.5px;transition:color .2s ease}
-.lh .foot a:hover,.lh .foot a:focus-visible{color:#FFFFFF}
+.lh .foot a{color:#AEB5BF;text-decoration:none;font-size:13.5px;transition:color .3s ease}
+/* footer text links turn lime on hover (28 Oct, by request); the footer's buttons keep their own hovers */
+.lh .foot a:not(.btn):hover,.lh .foot a:not(.btn):focus-visible{color:#C1F432 !important}
 .lh .foot .fh{margin:0 0 6px;font:600 11.5px/1.3 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8FAEFF}
 .lh .foot input{flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:4px;background:rgba(255,255,255,.05);font:400 14px/1 'Open Sans',sans-serif;color:#FFFFFF}
 .lh .foot input::placeholder{color:#7D8692}
