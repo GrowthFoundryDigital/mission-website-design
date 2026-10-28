@@ -807,19 +807,14 @@ def hov(h):
 
 
 def post_media(k, h, src, pos, m):
-    # blog photos with the featured case study's offset border and Electric Blue wedge, in three options to compare (28 Oct):
-    # 1 border offset down-right, wedge bottom-left (as the featured case study); 2 border offset up-left, wedge bottom-left,
-    # dot grid bottom-right (as the team photo); 3 border offset down-left, wedge flipped to the top-right
+    # blog photos with the featured case study's treatment (Option 1, chosen 28 Oct): an offset border shifted down and right,
+    # and an Electric Blue wedge in the bottom-left corner
     o = 7 if m else 14
-    insets = ['%dpx -%dpx -%dpx %dpx' % (o, o, o, o), '-%dpx %dpx %dpx -%dpx' % (o, o, o, o), '%dpx %dpx -%dpx -%dpx' % (o, o, o, o)]
     ww, wh = (44, 18) if m else (132, 52)
-    wedge = ['left: 0; bottom: 0', 'left: 0; bottom: 0', 'right: 0; top: 0'][k]
-    shape = '' if k < 2 else ' clip-path: polygon(0 0, 100%% 0, 100%% 100%%, 38%% 100%%);'
-    dots = '' if (k != 1 or m) else dotp('right: -%dpx; bottom: -%dpx' % (o + 10, o + 10), 50 if m else 110, 40 if m else 80)
-    # on desktop every photo gets the same room below it, so the downward borders clear the label and the three labels stay level
-    return ('<div class="post-media" style="position: relative; height: %dpx%s">' % (h, '' if m else '; margin-bottom: 14px') + frame(insets[k], BLUE, .6) + dots +
+    # on desktop every photo gets the same room below it, so the border clears the label
+    return ('<div class="post-media" style="position: relative; height: %dpx%s">' % (h, '' if m else '; margin-bottom: 14px') + frame('%dpx -%dpx -%dpx %dpx' % (o, o, o, o), BLUE, .6) +
             '<div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="%s" alt="" style="object-position: %s">' % (src, pos) +
-            '<span aria-hidden="true" class="wedge" style="position: absolute; %s; width: %dpx; height: %dpx; background: #2459F5; z-index: 1;%s"></span></div></div>' % (wedge, ww, wh, shape))
+            '<span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: %dpx; height: %dpx; background: #2459F5; z-index: 1"></span></div></div>' % (ww, wh))
 
 
 def doc(m):
