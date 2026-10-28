@@ -113,6 +113,17 @@ A third version of Lane C, restyled to the style board Growth Foundry supplied (
 - **Heights, measured:** desktop 9,194, mobile 13,367 (the three-way Hero switch wraps the mobile review bar onto two lines).
 - **On the review site** since 27 Oct, with D3 and G3.
 
+## Lane H2: geometry through the page (28 Oct 2026)
+
+H2 is a copy of Lane H that takes the style board's geometry further, by request. Mobbin references: Shopify Commerce Components (clusters of solid and outlined cut-corner polygons), TIDAL (a hard angled split between photo and colour), Reducto and Maze (scattered small squares), FigJam (dot-grid panels), Greptile (corner marks and stepped edges) and PayPal (shapes that bridge the hero into the next section). Decisions from the clarifying questions: an angled divider; all four pattern types; Electric Blue and near-black shapes with a few thin lime outlines.
+
+- **Hero:** the Electric Blue and the photo now meet on a hard diagonal with no gradient, running from 61% of the width at the top to 46% at the bottom, so the divider sits further left at the foot. The photo starts below the header, so the nav sits on solid blue. The blue side has a dot grid in the left margin, a large white outline polygon, near-black and lime cut-corner polygons, and small squares by the divider.
+- **Through the page:** every section has a light touch of geometry, kept to the margins or behind cards so it never sits over text: scattered blue, near-black and lime-outline squares by headings; dot-grid panels peeking out behind the case studies, service cards, team photo and FAQ; outline frames with corner marks behind the featured case study and the team photo; corner marks around the photo grid; and cut-corner polygon clusters on the dark, blue and footer sections. Mobile uses a smaller set in the corners.
+- **Unchanged from H:** copy, sections, photos, Hero (Kitchen / Office / Ecommerce) and button switches (on H2's own channel).
+- **Canvas:** beside Lane H in the Lane H row: desktop with its continuation below, then mobile.
+- **Heights, measured:** desktop 11,388, mobile 15,658.
+- **Source:** `tools/lane-h2-gen.py`.
+
 ## Lane H: the "Decisive Clarity" style board (27 Oct 2026)
 
 A new lane built from the style board Growth Foundry supplied (`assets/inspiration/inspiration-9-h-style-board.webp`), in the ELI15 copy used on C3, D3 and G3. Decisions, from the clarifying questions: ELI15 copy; the board's brand lines (hero "Complex books. Clear answers.", eyebrow "Practical. Reassuring. Experienced.", "Numbers create possibility." in script over the hero photo, "A specialist team that knows your business.", and "Your books. In order." on the closing call); library photos with a cool, desaturated grade instead of the board's photos; and the project lime #C1F432 on buttons rather than the board's softer #D1E86C.
