@@ -94,10 +94,10 @@ def body(b, mobile):
         old = '<header style="position: relative; z-index: 2; background: linear-gradient(180deg, #000000D8 0%, rgba(0, 0, 0, 0) 100%)">'
         assert b.count(old) == 1
         b = b.replace(old, '<header class="hdr-fade" style="position: relative; z-index: 2; background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.55) 100%)">')
-    # the header phone number (desktop) becomes a white button with a Mission blue icon and number, sized like the Schedule button;
+    # the header phone number (desktop) becomes a white button with a navy (#0A2240) icon and number, sized like the Schedule button;
     # it lifts on hover like the other buttons (hv-ghost)
     sub(r'<a href="tel:\+12032279475" class="nav-links" style="display: flex; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600">([^<]*)</a>',
-        lambda m: '<a href="tel:+12032279475" class="hv-ghost nav-links" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 12px; background: #FFFFFF; color: #0087C0; text-decoration: none; font-size: 14px; font-weight: 700; white-space: nowrap">' + PHONE + m.group(1) + '</a>', 'header phone')
+        lambda m: '<a href="tel:+12032279475" class="hv-ghost nav-links" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 12px; background: #FFFFFF; color: #0A2240; text-decoration: none; font-size: 14px; font-weight: 700; white-space: nowrap">' + PHONE + m.group(1) + '</a>', 'header phone')
     sub(r'(<a class="hv-arrow"[^>]*>)([^<]*)', lambda m: m.group(1).replace('class="hv-arrow"', 'class="hv-arrow hl"') + ink(m.group(2)), 'arrow links')
     sub(r'(<article class="hv-post"[^>]*>.*?<h3 [^>]*>)([^<]*)(</h3>)', lambda m: m.group(1) + '<span class="hl">' + ink(m.group(2)) + '</span>' + m.group(3), 'blog titles')
     # the cards' container: on desktop the grid inside the padded card, on mobile the card itself
