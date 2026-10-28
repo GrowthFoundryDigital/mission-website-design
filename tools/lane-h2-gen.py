@@ -262,6 +262,13 @@ body{margin:0;background:#101419}
 .lh .hv-row:hover{transform:translateX(8px)}
 .lh .hv-row:hover .ic{transform:scale(1.15)}
 .lh .hv-row:hover h3{color:#2459F5}
+/* Industries rows (28 Oct, by request): a lime wipe from left to right, reaching 24px past the text on both sides, square corners;
+   only the fill moves, nothing inside the row */
+.lh .hv-ind{position:relative;isolation:isolate}
+.lh .hv-ind::before{content:'';position:absolute;top:0;bottom:0;left:-24px;right:-24px;z-index:-1;background:#C1F432;transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+.lh .hv-ind:hover::before{transform:scaleX(1)}
+@media (max-width: 600px){.lh .hv-ind::before{left:-14px;right:-14px}}
+@media (prefers-reduced-motion: reduce){.lh .hv-ind::before{transition:none}}
 .lh .hv-sup{transition:border-color .25s ease,transform .25s ease}
 .lh .hv-sup:hover{border-top-color:#2459F5 !important;transform:translateY(-3px)}
 .lh .hv-sup:hover h3{color:#2459F5}
@@ -448,9 +455,9 @@ def page(m):
 
     A('<div style="%s; display: flex; flex-direction: column; gap: %dpx">' % (wrap, 28 if m else 48))
     if m:
-        A('<div style="display: flex; flex-direction: column; gap: 16px">%s<h2 style="font-size: %dpx; line-height: 1.04">Real problems, Real solutions.</h2><p class="mu" style="font-size: 15.5px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
+        A('<div style="display: flex; flex-direction: column; gap: 16px">%s<h2 style="font-size: %dpx; line-height: 1.04">Real problems, real solutions.</h2><p class="mu" style="font-size: 15.5px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
     else:
-        A('<div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px">%s<h2 style="font-size: %dpx; line-height: 1.02">Real problems, Real solutions.</h2></div><p class="mu" style="font-size: 16.5px; max-width: 440px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
+        A('<div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px">%s<h2 style="font-size: %dpx; line-height: 1.02">Real problems, real solutions.</h2></div><p class="mu" style="font-size: 16.5px; max-width: 440px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
     feat_url = 'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support'
     if m:
         A('<a class="feat" href="%s" target="_blank" rel="noopener" style="display: flex; flex-direction: column; text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419">' % feat_url)
@@ -790,7 +797,8 @@ SCRIPT = """class Component extends DCLogic {
 
 def hov(h):
     # Hover pack (28 Oct): tag rows that are styled inline (desktop and mobile variants)
-    for pat, cls in [(r'<div (style="display: flex; (?:align-items: flex-start; )?gap: (?:22|14)px; padding: (?:24|18)px 0; border-top: 1px solid #(?:E2E5EA|DDE1E6))', 'hv-row'),
+    for pat, cls in [(r'<div (style="display: flex; align-items: flex-start; gap: (?:22|14)px; padding: (?:24|18)px 0; border-top: 1px solid #E2E5EA)', 'hv-ind'),
+                     (r'<div (style="display: flex; (?:align-items: flex-start; )?gap: (?:22|14)px; padding: (?:24|18)px 0; border-top: 1px solid #DDE1E6)', 'hv-row'),
                      (r'<div (id="\w+" style="display: flex; flex-direction: (?:column|row);[^"]*border-top: 2px solid #101419")', 'hv-sup'),
                      (r'<div (style="display: flex; align-items: center; gap: 1[24]px; padding(?:-top: 14px|: 16px 0);(?: border-top: 1px solid rgba\(255,255,255,\.1[24]\))?)', 'hv-li')]:
         h = re.sub(pat, r'<div class="%s" \1' % cls, h)
