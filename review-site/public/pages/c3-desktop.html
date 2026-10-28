@@ -34,7 +34,7 @@ a{color:#0A7FD0}a:hover{color:#0866A8}
 [data-btn="green"] .tg-btn *{color:#0A2240 !important}
 /* Hover pack (28 Oct) */
 /* Buttons (28 Oct, revised by request): a 2px lift only, with no invert and no shadow */
-.tg-btn{transition:transform .25s ease,filter .25s ease,opacity .2s ease}
+.tg-btn,[data-btn] .tg-btn{transition:transform .4s cubic-bezier(.22,.61,.36,1),filter .4s ease,opacity .4s ease}
 .tg-btn:hover,.tg-btn:focus-visible{transform:translateY(-2px)}
 [data-btn="blue"] .tg-btn:hover,[data-btn="blue"] .tg-btn:focus-visible{filter:brightness(1.12)}
 .hv-nav{transition:color .2s ease}
@@ -64,9 +64,9 @@ a{color:#0A7FD0}a:hover{color:#0866A8}
 .hv-faq svg{transition:transform .25s ease}
 .hv-faq:hover,.hv-faq:focus-visible{color:#0A7FD0 !important}
 .hv-faq:hover svg{transform:rotate(90deg)}
-.hv-circ{transition:transform .25s ease}
+.hv-circ{transition:transform .4s cubic-bezier(.22,.61,.36,1)}
 .hv-circ:hover,.hv-circ:focus-visible{transform:translateY(-2px)}
-.hv-ghost{transition:transform .25s ease}
+.hv-ghost{transition:transform .4s cubic-bezier(.22,.61,.36,1)}
 .hv-ghost:hover,.hv-ghost:focus-visible{transform:translateY(-2px)}
 .hv-soc{transition:transform .25s ease,background-color .25s ease}
 .hv-soc:hover,.hv-soc:focus-visible{transform:translateY(-3px) scale(1.06);background:#7CC4F8 !important}
