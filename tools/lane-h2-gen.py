@@ -192,8 +192,7 @@ body{margin:0;background:#101419}
 .lh .nav a{color:#C3C9D2;text-decoration:none;font-size:14px;font-weight:600;transition:color .2s ease}
 .lh .nav a:hover,.lh .nav a:focus-visible{color:#FFFFFF}
 .lh .ph{position:relative;overflow:hidden;background:#1B2029}
-.lh .ph img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.35) contrast(1.1) brightness(.84)}
-.lh .ph::after{content:"";position:absolute;inset:0;background:#2459F5;mix-blend-mode:color;opacity:.22;pointer-events:none}
+.lh .ph img{display:block;width:100%;height:100%;object-fit:cover}
 .lh .dots{background-image:radial-gradient(#8FA3C8 1.3px,transparent 1.4px);background-size:16px 16px}
 .lh .dk .dots,.lh .dots.on-dk{background-image:radial-gradient(rgba(255,255,255,.28) 1.3px,transparent 1.4px)}
 .lh .wedge{clip-path:polygon(0 0,100% 0,62% 100%,0 100%)}
@@ -255,11 +254,22 @@ def stars():
 BLUE, INK, LIME, WHITE = '#2459F5', '#101419', '#C1F432', '#FFFFFF'
 
 
+QUADS = [  # the footer's angled four-sided shapes, in four orientations, as fractions of the box
+    [(0, 0), (1, 0), (.6, 1), (0, 1)],
+    [(.22, 0), (1, 0), (1, 1), (0, 1)],
+    [(0, 0), (.62, 0), (1, 1), (0, 1)],
+    [(0, 0), (1, 0), (1, 1), (.38, 1)],
+]
+_quad = [0]
+
+
 def poly(pos, w, h, cut, fill='none', stroke=None, sw=2, op=1, rot=0, blur=0):
-    # a cut-corner (chamfered) polygon, solid or outlined
+    # an angled four-sided shape (wedge or trapezoid), solid or outlined; orientations cycle so neighbours differ
     i = sw / 2 if stroke else 0
     W, H = w - 2 * i, h - 2 * i
-    pts = [(cut, 0), (W - cut, 0), (W, cut), (W, H - cut), (W - cut, H), (cut, H), (0, H - cut), (0, cut)]
+    q = QUADS[_quad[0] % len(QUADS)]
+    _quad[0] += 1
+    pts = [(fx * W, fy * H) for fx, fy in q]
     pts = ' '.join('%g,%g' % (x + i, y + i) for x, y in pts)
     st = ' stroke="%s" stroke-width="%g"' % (stroke, sw) if stroke else ''
     fx = ''.join(['; transform: rotate(%gdeg)' % rot if rot else '', '; filter: blur(%gpx)' % blur if blur else ''])
@@ -340,10 +350,13 @@ def page(m):
             A('<div style="display: flex; align-items: center; gap: 14px; padding: 16px 0;%s"><span class="ic">%s</span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font: 600 15.5px/1.3 \'Space Grotesk\', sans-serif; color: #FFFFFF">%s</strong><span style="font-size: 13px; color: #9AA3AE">%s</span></span></div>' % ('' if k == 0 else ' border-top: 1px solid rgba(255,255,255,.12);', ic(icn, 26), t, s))
         A('</div>')
     else:
-        # photo panel, below the header: the right 60%, cut on a hard diagonal from 61% at the top to 46% at the bottom
-        A('<div aria-hidden="true" style="position: absolute; top: 88px; left: 40%; right: 0; bottom: 101px; clip-path: polygon(35% 0, 100% 0, 100% 100%, 10% 100%)">')
+        # photo panel, from the top (behind the nav): the right 60%, cut on a hard diagonal from 61% at the top to 46% at the bottom
+        A('<div aria-hidden="true" style="position: absolute; top: 0; left: 40%; right: 0; bottom: 101px; clip-path: polygon(35% 0, 100% 0, 100% 100%, 10% 100%)">')
         for k, (alt, pos) in HERO_BG.items():
             A('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[0]))
+        A('<div style="position: absolute; left: 0; right: 0; top: 0; height: 150px; background: linear-gradient(180deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, 0) 100%)"></div>')
+        # the script line sits on the photo where it was placed on the canvas (28 Oct)
+        A('<p class="script" aria-hidden="true" style="position: absolute; top: 613px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35); left: 557px">Numbers create<br>possibility.</p>')
         A('</div>')
         # geometry on the blue side
         A(dotp('left: 28px; top: 150px', 112, 288, 'white'))
@@ -359,7 +372,6 @@ def page(m):
         A(poly('left: 690px; top: 150px', 46, 46, 10, stroke=LIME, sw=2))
         A(scatter([('left: 566px; top: 712px', 12, WHITE), ('left: 594px; top: 738px', 8, WHITE), ('left: 548px; top: 752px', 8, INK), ('left: 618px; top: 702px', 10, LIME, True)]))
         A(poly('left: 604px; top: 650px', 18, 18, 4, fill=INK, rot=-12))
-        A('<p class="script" aria-hidden="true" style="position: absolute; right: 64px; top: 150px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35)">Numbers create<br>possibility.</p>')
         A('<header style="position: relative; z-index: 3">')
         A('<nav aria-label="Main" class="nav" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px">')
         A('<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 28px; width: auto; display: block"></a>' % LOGO_W)
@@ -671,7 +683,7 @@ def page(m):
     A('<div style="position: absolute; left: 0; top: 0; width: 62%; height: 62%; background: #2459F5; clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%)"></div>')
     A('<div style="position: absolute; right: 0; bottom: 0; width: 70%; height: 46%; background: #1B2029; clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%)"></div>')
     A('<div class="dots on-dk" style="position: absolute; right: 0; top: 0; width: 34%; height: 40%"></div>')
-    A('<svg aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" style="position: absolute; left: 66%; top: 6%"><polygon points="14,1 50,1 63,14 63,50 50,63 14,63 1,50 1,14" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>')
+    A('<svg aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" style="position: absolute; left: 66%; top: 6%"><polygon points="1,1 63,1 39,63 1,63" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>')
     A('<span style="position: absolute; left: 8%; top: 72%; width: 12px; height: 12px; background: #FFFFFF"></span><span style="position: absolute; left: 14%; top: 80%; width: 8px; height: 8px; background: #2459F5"></span>')
     if not m:
         A('<p style="position: absolute; left: 0; bottom: 0; margin: 0; font: 600 12px/1.5 \'Space Grotesk\', sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #9AA3AE">Simple structure<br>for a more<br>confident business.</p>')
