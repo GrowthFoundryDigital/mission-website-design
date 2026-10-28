@@ -171,7 +171,7 @@ body{margin:0;background:#101419}
 .lh .bl .btn-o:hover,.lh .bl .btn-o:focus-visible{border-color:#FFFFFF}
 .lh .bl .btn-p{background:#101419}
 .lh .bl .btn-p:hover,.lh .bl .btn-p:focus-visible{background:#000000}
-.lh .bl .nav a{color:#E3EAFF}
+.lh .bl .nav a{color:#FFFFFF}
 .lh .bl .nav a:hover,.lh .bl .nav a:focus-visible{color:#FFFFFF}
 .hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
 [data-hero="kitchen"] .hero-bg-kitchen,[data-hero="office"] .hero-bg-office,[data-hero="ecommerce"] .hero-bg-ecommerce{display:block}
@@ -395,8 +395,9 @@ def page(m):
         A('<div aria-hidden="true" style="position: absolute; top: 0; left: 40%; right: 0; bottom: 101px; clip-path: polygon(35% 0, 100% 0, 100% 100%, 10% 100%)">')
         for k, (alt, pos) in HERO_BG.items():
             A('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[0]))
-        # header overlay on the photo only (under the blue): near-black at 60% behind the nav, fading out just below it
-        A('<div style="position: absolute; left: 0; right: 0; top: 0; height: 150px; background: linear-gradient(180deg, rgba(16, 20, 25, .6) 0%, rgba(16, 20, 25, .6) 88px, rgba(16, 20, 25, 0) 150px)"></div>')
+        # header overlay on the photo only (under the blue), deepened 28 Oct like C3's: near-black at 90% at the top, 80% behind the nav,
+        # 55% at the header's foot (88px), then fading out over another 96px so it has no hard edge
+        A('<div style="position: absolute; left: 0; right: 0; top: 0; height: 184px; background: linear-gradient(180deg, rgba(16, 20, 25, .9) 0%, rgba(16, 20, 25, .8) 44px, rgba(16, 20, 25, .55) 88px, rgba(16, 20, 25, .24) 131px, rgba(16, 20, 25, 0) 184px)"></div>')
         # the script line sits on the photo where it was placed on the canvas (28 Oct)
         A('<p class="script" aria-hidden="true" style="position: absolute; top: 613px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35); left: 557px">Numbers create<br>possibility.</p>')
         A('</div>')
