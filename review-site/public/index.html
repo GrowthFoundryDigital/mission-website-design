@@ -109,14 +109,16 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   var LANES = {
     d: 'Dark hero with angled details',
     g: 'Near-black, white and one blue band',
-    c: 'Navy, ice blue and lime, with a photo hero'
+    c: 'Navy, ice blue and lime, with a photo hero',
+    h: 'Electric Blue and near-black, with angled geometry'
   };
+  var VER = { d: '3', g: '3', c: '3', h: '2' };
   var NOTE = 'Plain-language copy on the October 2026 Business DNA, leading with client case studies.';
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
   var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
 
-  var m = (location.hash || '').match(/^#([cdg])3-(desktop|mobile)$/);
-  if (m) state = { lane: m[1], ver: '3', dev: m[2] };
+  var m = (location.hash || '').match(/^#([cdgh])([23])-(desktop|mobile)$/);
+  if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3] };
 
   function seg(el, items, key) {
     el.innerHTML = '';
@@ -127,7 +129,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       el.appendChild(b);
     });
   }
-  seg(document.getElementById('lane'), Object.keys(LANES).map(function (k) { return { v: k, label: k.toUpperCase() }; }), 'lane');
+  seg(document.getElementById('lane'), Object.keys(LANES).map(function (k) { return { v: k, label: k.toUpperCase() + VER[k] }; }), 'lane');
   seg(document.getElementById('dev'), [{ v: 'desktop', label: 'Desktop' }, { v: 'mobile', label: 'Mobile' }], 'dev');
 
   var stage = document.getElementById('stage');
@@ -147,6 +149,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   }
 
   function render() {
+    state.ver = VER[state.lane];
     var id = state.lane + state.ver + '-' + state.dev;
     var src = 'pages/' + id + '.html';
     ['lane', 'dev'].forEach(function (k) {

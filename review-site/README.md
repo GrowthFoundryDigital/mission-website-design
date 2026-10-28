@@ -1,6 +1,6 @@
 # MISSION homepage review site
 
-The client review site: lanes D3, G3 and C3 (the plain-language ELI15 versions), each on desktop and mobile, in one viewer. `public/` is the finished static site; `wrangler.jsonc` deploys it as a Cloudflare Worker with static assets. The same site is also published as a claude.ai artifact: https://claude.ai/artifact/Bcfv2oZ3wHrJGKY6svUfGJ
+The client review site: lanes D3, G3, C3 and H2 (the plain-language ELI15 versions), each on desktop and mobile, in one viewer. `public/` is the finished static site; `wrangler.jsonc` deploys it as a Cloudflare Worker with static assets. The same site is also published as a claude.ai artifact: https://claude.ai/artifact/Bcfv2oZ3wHrJGKY6svUfGJ
 
 ## Deploy on Cloudflare
 

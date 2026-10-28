@@ -38,7 +38,7 @@ const blobs = {
   '8be5233d6f752c62fe0c170b175cee61': A + '/backgrounds/12_footer_bg.jpg',
 };
 
-const lanes = ['d', 'g', 'c'];
+const lanes = [['d', '3'], ['g', '3'], ['c', '3'], ['h', '2']];
 const used = new Set();
 const missing = new Set();
 fs.mkdirSync(OUT + '/pages', { recursive: true });
@@ -65,8 +65,8 @@ function page(file, width, title) {
     '</body>\n</html>\n';
 }
 
-for (const l of lanes) {
-  for (const v of ['3']) {
+for (const [l, lv] of lanes) {
+  for (const v of [lv]) {
     const base = 'lane-' + l + v;
     const L = l.toUpperCase() + v;
     fs.writeFileSync(OUT + '/pages/' + l + v + '-desktop.html', page(base + '-home.dc.html', 1440, 'MISSION homepage · Lane ' + L + ' · Desktop'));

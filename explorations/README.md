@@ -147,7 +147,7 @@ D3 and G3 are exact copies of D2 and G2 with every heading, intro, card, service
 
 - **Canvas:** in the Lane D and Lane G rows after version 2: desktop with its continuation stacked below, then mobile with its continuation below.
 - **Heights, measured:** D3 desktop 9,602, mobile 14,641 · G3 desktop 9,704, mobile 13,021.
-- **Review site:** now shows D3, G3 and C3 (in that order) instead of C2, D2 and G2.
+- **Review site:** now shows D3, G3 and C3 (in that order) instead of C2, D2 and G2; H2 was added as a fourth lane on 28 Oct.
 
 ## Proof stats: client loyalty, not firm age (27 Oct 2026)
 
