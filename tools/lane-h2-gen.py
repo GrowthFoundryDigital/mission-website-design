@@ -58,6 +58,7 @@ I = {  # line icons, 24px grid, drawn with currentColor
     'factory': '<path d="M3 21V10l6 4V10l6 4V6h6v15z"/><path d="M7 17h2M12 17h2M17 17h2"/>',
     'cart': '<circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11.5l2-8H6.2"/>',
 }
+PHONE = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>'
 CAL = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>'
 ARR = '<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>'
 PLUS = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>'
@@ -183,6 +184,8 @@ body{margin:0;background:#101419}
 .lh .btn-o:hover,.lh .btn-o:focus-visible{border-color:#101419}
 .lh .dk .btn-o{color:#FFFFFF;border-color:rgba(255,255,255,.3)}
 .lh .dk .btn-o:hover,.lh .dk .btn-o:focus-visible{border-color:#FFFFFF}
+.lh .btn-ghost{background:transparent;color:#FFFFFF;border-color:rgba(255,255,255,.6)}
+.lh .btn-ghost:hover,.lh .btn-ghost:focus-visible{background:rgba(255,255,255,.12);border-color:#FFFFFF}
 .lh .btn-w{background:#FFFFFF;color:#101419}
 .lh .btn-w:hover,.lh .btn-w:focus-visible{background:#E8EEFF}
 .lh .lk{display:inline-flex;align-items:center;gap:8px;font:600 14.5px/1.3 'Space Grotesk',sans-serif;color:#2459F5;text-decoration:none}
@@ -373,7 +376,7 @@ def page(m):
         A('<nav aria-label="Main" class="nav" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px">')
         A('<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 28px; width: auto; display: block"></a>' % LOGO_W)
         A('<div style="display: flex; align-items: center; gap: 30px">' + ''.join('<a href="%s">%s</a>' % x for x in NAV) + '</div>')
-        A('<div style="display: flex; align-items: center; gap: 20px"><a href="tel:+12032279475" style="color: #FFFFFF">(203) 227-9475</a><a class="btn btn-p tg-btn" href="#schedule" style="height: 44px; padding: 0 18px; font-size: 14px; color: #FFFFFF">%sSchedule a consultation</a></div>' % CAL)
+        A('<div style="display: flex; align-items: center; gap: 20px"><a class="btn btn-ghost" href="tel:+12032279475" style="height: 44px; padding: 0 16px; font-size: 14px">%s(203) 227-9475</a><a class="btn btn-p tg-btn" href="#schedule" style="height: 44px; padding: 0 18px; font-size: 14px; color: #FFFFFF">%sSchedule a consultation</a></div>' % (PHONE, CAL))
         A('</nav>\n</header>')
         A('<div id="top" style="position: relative; z-index: 2; max-width: 1160px; margin: 0 auto; padding: 96px 40px 120px">')
         A('<div style="max-width: 640px; display: flex; flex-direction: column; gap: 26px">')
@@ -668,7 +671,7 @@ def page(m):
         A(scatter([('left: 90px; top: 300px', 10, LIME, True), ('left: 60px; top: 330px', 8, WHITE)]))
 
     A('<div id="schedule" style="position: relative; %s; padding-top: %dpx; padding-bottom: %dpx; display: %s; gap: %dpx; align-items: center">' % (wrap if m else 'max-width: 1160px; margin: 0 auto; padding-left: 40px; padding-right: 40px', 72 if m else 120, 64 if m else 104, 'flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr)', 32 if m else 64))
-    A('<div style="display: flex; flex-direction: column; gap: 22px">%s<h2 style="font-size: %dpx; line-height: .98; letter-spacing: -.035em">Your books.<br>In order.</h2><p style="font-size: %spx; max-width: 520px">Book a free call with Bernard or Rob. Come as you are, mess and all. We\'ll tell you what we\'d fix first and what it would take.</p><div style="display: flex; %s gap: 12px; padding-top: 4px">%s<a class="btn btn-o" href="tel:+12032279475">Call (203) 227-9475</a></div></div>' % (eyebrow('11', 'Your next step'), 48 if m else 84, '15.5' if m else '17', 'flex-direction: column;' if m else 'align-items: center;', sched(extra=' style="width: 100%"' if m else '')))
+    A('<div style="display: flex; flex-direction: column; gap: 22px">%s<h2 style="font-size: %dpx; line-height: .98; letter-spacing: -.035em">Your books.<br>In order.</h2><p style="font-size: %spx; max-width: 520px">Book a free call with Bernard or Rob. Come as you are, mess and all. We\'ll tell you what we\'d fix first and what it would take.</p><div style="display: flex; %s gap: 12px; padding-top: 4px">%s<a class="btn btn-o" href="tel:+12032279475">%sCall (203) 227-9475</a></div></div>' % (eyebrow('11', 'Your next step'), 48 if m else 84, '15.5' if m else '17', 'flex-direction: column;' if m else 'align-items: center;', sched(extra=' style="width: 100%"' if m else ''), PHONE))
     A('<div aria-hidden="true" style="position: relative; width: 100%%; height: %dpx">' % (130 if m else 300))
     A('<div style="position: absolute; left: 0; top: 0; width: 62%; height: 62%; background: #2459F5; clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%)"></div>')
     A('<div style="position: absolute; right: 0; bottom: 0; width: 70%; height: 46%; background: #1B2029; clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%)"></div>')
