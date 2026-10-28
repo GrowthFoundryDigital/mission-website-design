@@ -233,7 +233,24 @@ body{margin:0;background:#101419}
 .tg-bar .tg-opt[aria-pressed="true"]{background:#FFFFFF;color:#141414}
 .tg-bar .tg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
 [data-btn="green"] .tg-btn{background:#C1F432 !important;color:#101419 !important;border-color:#C1F432 !important}
-[data-btn="green"] .tg-btn:hover,[data-btn="green"] .tg-btn:focus-visible{opacity:.9}
+[data-btn="green"] .tg-btn:hover,[data-btn="green"] .tg-btn:focus-visible{opacity:1}
+/* Hovers (28 Oct): every button turns lime; cards lift */
+.lh .btn{transition:background-color .25s ease,color .25s ease,border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.lh .btn:hover,.lh .btn:focus-visible,[data-btn="green"] .lh .btn:hover,[data-btn="green"].lh .btn:hover,[data-btn="green"].lh .btn:focus-visible{background:#C1F432 !important;color:#101419 !important;border-color:#C1F432 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(193,244,50,.28)}
+.lh .btn:hover *,.lh .btn:focus-visible *{color:#101419 !important}
+.lh .card{transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease}
+.lh .card:hover,.lh a.card:focus-visible{border-color:#2459F5 !important;transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,20,25,.10)}
+.lh .feat{transition:transform .3s ease,box-shadow .3s ease}
+.lh .feat img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.lh .feat:hover,.lh .feat:focus-visible{transform:translateY(-4px);box-shadow:0 24px 50px rgba(16,20,25,.22)}
+.lh .feat:hover img,.lh .feat:focus-visible img{transform:scale(1.04)}
+.lh .qcard{transition:transform .3s ease,box-shadow .3s ease,background-color .3s ease}
+.lh .qcard:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.35)}
+.lh .qcard:not([style*="#2459F5"]):hover{background:#222833 !important}
+.lh .post .ph img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.lh .post h3{transition:color .25s ease}
+.lh .post:hover .ph img{transform:scale(1.05)}
+.lh .post:hover h3{color:#2459F5}
 [data-btn="green"] .tg-btn *{color:#101419 !important}
 """
 
@@ -413,13 +430,13 @@ def page(m):
         A('<div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px">%s<h2 style="font-size: %dpx; line-height: 1.02">Real problems clients had, and how we fixed them.</h2></div><p class="mu" style="font-size: 16.5px; max-width: 440px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
     feat_url = 'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support'
     if m:
-        A('<a href="%s" target="_blank" rel="noopener" style="display: flex; flex-direction: column; text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419">' % feat_url)
+        A('<a class="feat" href="%s" target="_blank" rel="noopener" style="display: flex; flex-direction: column; text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419">' % feat_url)
         A('<div class="ph" style="height: 230px"><img src="%s" alt="A construction crew reviewing plans on a job site" style="object-position: center 40%%"></div>' % PH['construction'])
         A('<div style="padding: 24px 22px 26px; display: flex; flex-direction: column; gap: 12px"><span class="tag" style="color: #8FAEFF">Construction · Featured story</span><h3 style="font-size: 25px; line-height: 1.15; color: #FFFFFF">A construction company had useful QuickBooks tools it wasn\'t using</h3><p style="font-size: 15px; color: #B9C0CA">We found the tools already built into their QuickBooks Enterprise that nobody was using, and set them up for the way they work.</p><span class="lk" style="color: #FFFFFF; padding-top: 4px">Read the story%s</span></div>' % ARR)
         A('</a>')
     else:
         A('<div style="position: relative">' + frame('18px -18px -18px 18px', BLUE, .6))  # corner marks removed on the canvas (28 Oct)
-        A('<a href="%s" target="_blank" rel="noopener" style="position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419; min-height: 460px">' % feat_url)
+        A('<a class="feat" href="%s" target="_blank" rel="noopener" style="position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419; min-height: 460px">' % feat_url)
         A('<div class="ph" style="position: relative"><img src="%s" alt="A construction crew reviewing plans on a job site" style="position: absolute; inset: 0; object-position: center 40%%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 220px; height: 84px; background: #2459F5; z-index: 1"></span></div>' % PH['construction'])
         A('<div style="position: relative; padding: 48px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px"><div aria-hidden="true" class="dots on-dk" style="position: absolute; top: 28px; right: 28px; width: 120px; height: 72px"></div><span class="tag" style="color: #8FAEFF">Construction · Featured story</span><div style="display: flex; flex-direction: column; gap: 16px"><h3 style="font-size: 34px; line-height: 1.1; color: #FFFFFF">A construction company had useful QuickBooks tools it wasn\'t using</h3><p style="font-size: 16px; color: #B9C0CA">We found the tools already built into their QuickBooks Enterprise that nobody was using, and set them up for the way they work.</p></div><span class="lk" style="color: #FFFFFF">Read the story%s</span></div>' % ARR)
         A('</a>')
@@ -599,7 +616,7 @@ def page(m):
     spans = [3, 3, 2, 2, 2]
     for k, (q, n, c) in enumerate(QUOTES):
         big = k < 2
-        A('<figure style="margin: 0; %s display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: %s; border-radius: 6px; background: %s">' % ('' if m else 'grid-column: span %d;' % spans[k], '24px 22px' if m else ('34px 32px' if big else '28px'), '#2459F5' if k == 0 else '#1B2029'))
+        A('<figure class="qcard" style="margin: 0; %s display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: %s; border-radius: 6px; background: %s">' % ('' if m else 'grid-column: span %d;' % spans[k], '24px 22px' if m else ('34px 32px' if big else '28px'), '#2459F5' if k == 0 else '#1B2029'))
         A('<div style="display: flex; flex-direction: column; gap: 16px">%s<blockquote style="margin: 0; font: 500 %dpx/1.35 \'Space Grotesk\', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"%s"</blockquote></div>' % (QUOTE.replace('#2459F5', '#FFFFFF') if k == 0 else QUOTE, (20 if m else (26 if big else 20)), q))
         A('<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.16)"><strong style="font: 600 14.5px/1.3 \'Space Grotesk\', sans-serif; color: #FFFFFF">%s</strong><span style="font-size: 13px; color: %s">%s</span></figcaption>' % (n, '#DCE5FF' if k == 0 else '#9AA3AE', c))
         A('</figure>')
@@ -656,9 +673,9 @@ def page(m):
     A('<div style="display: grid; grid-template-columns: %s; gap: %dpx">' % ('minmax(0, 1fr)' if m else 'repeat(3, minmax(0, 1fr))', 24 if m else 24))
     for tag, t, p, ph, pos in BLOG:
         if m:
-            A('<article style="display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start"><div class="ph" style="height: 112px; border-radius: 6px"><img src="%s" alt="" style="object-position: %s"></div><div style="display: flex; flex-direction: column; gap: 6px"><span class="tag">%s</span><h3 style="font-size: 16.5px; line-height: 1.25">%s</h3><p class="mu" style="font-size: 13.5px; line-height: 1.5">%s</p></div></article>' % (PH[ph], pos, tag, t, p))
+            A('<article class="post" style="display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start"><div class="ph" style="height: 112px; border-radius: 6px"><img src="%s" alt="" style="object-position: %s"></div><div style="display: flex; flex-direction: column; gap: 6px"><span class="tag">%s</span><h3 style="font-size: 16.5px; line-height: 1.25">%s</h3><p class="mu" style="font-size: 13.5px; line-height: 1.5">%s</p></div></article>' % (PH[ph], pos, tag, t, p))
             continue
-        A('<article style="display: flex; flex-direction: column; gap: 12px"><div class="ph" style="height: %dpx; border-radius: 6px"><img src="%s" alt="" style="object-position: %s"></div><span class="tag" style="padding-top: 6px">%s</span><h3 style="font-size: %dpx; line-height: 1.25">%s</h3><p class="mu" style="font-size: 14.5px">%s</p></article>' % (150 if m else 230, PH[ph], pos, tag, 19 if m else 20, t, p))
+        A('<article class="post" style="display: flex; flex-direction: column; gap: 12px"><div class="ph" style="height: %dpx; border-radius: 6px"><img src="%s" alt="" style="object-position: %s"></div><span class="tag" style="padding-top: 6px">%s</span><h3 style="font-size: %dpx; line-height: 1.25">%s</h3><p class="mu" style="font-size: 14.5px">%s</p></article>' % (150 if m else 230, PH[ph], pos, tag, 19 if m else 20, t, p))
     A('</div>')
     A('</div>\n</section>\n')
 
