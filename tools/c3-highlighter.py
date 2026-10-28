@@ -13,13 +13,16 @@ CSS = MARK + '''
 .hv-cell{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0%% 100%% !important;transition:background-size .5s %(E)s}
 .hv-cell:hover{background-size:100%% 100%% !important}
 .hv-cell:hover h3{color:#0A2240 !important}
-/* Highlighter: a lime marker stroke drawn left to right behind the words; the link turns navy and its underline fades */
-.hl{position:relative;background-image:linear-gradient(100deg,rgba(193,244,50,0) 0%%,rgba(193,244,50,.9) 2.5%%,#C1F432 45%%,rgba(193,244,50,.85) 96%%,rgba(193,244,50,0) 100%%);background-repeat:no-repeat;background-position:0 90%%;background-size:0%% 64%%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .18em;margin:0 -.18em;border-radius:.35em .8em .45em .9em/.6em .35em .7em .4em;text-decoration-color:currentColor;transition:background-size .45s cubic-bezier(.65,0,.35,1),color .3s ease,text-decoration-color .3s ease}
-a.hl:hover,a.hl:focus-visible,.hv-post:hover .hl{background-size:100%% 64%%;color:#0A2240 !important;text-decoration-color:transparent !important}
-a.hl:hover *,a.hl:focus-visible *{color:#0A2240 !important}
+/* Highlighter (revised 28 Oct): a messy lime marker stroke, taller than the letters and running a little past both ends, drawn left to right;
+   the letters turn navy only as the stroke reaches them (.hl-ink), so they never vanish on the dark sections */
+.hl{position:relative;background-image:url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40' preserveAspectRatio='none'><path fill='%%23C1F432' fill-opacity='.55' d='M1 15C40 11 95 13 140 10S190 9 199 12L198 31C150 33 90 30 45 32S8 33 2 30C0 25 0 20 1 15Z'/><path fill='%%23C1F432' fill-opacity='.95' d='M5 8C28 5 62 9 98 6S168 4 195 7C199 13 197 21 199 27S196 33 194 34C160 36 118 33 80 35S30 36 6 34C2 28 4 22 2 17S3 11 5 8Z'/></svg>");background-repeat:no-repeat;background-position:0 55%%;background-size:0%% 112%%;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .42em;margin:0 -.42em;text-decoration-color:currentColor;transition:background-size .55s cubic-bezier(.65,0,.35,1),text-decoration-color .3s ease}
+a.hl:hover,a.hl:focus-visible,.hv-post:hover .hl{background-size:100%% 112%%;text-decoration-color:transparent !important}
+.hl-ink{background-image:linear-gradient(90deg,#0A2240 50%%,currentColor 50%%);background-size:200%% 100%%;background-position:100%% 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-position .55s cubic-bezier(.65,0,.35,1) .04s}
+a.hl:hover .hl-ink,a.hl:focus-visible .hl-ink,.hv-post:hover .hl-ink{background-position:0 0}
+a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transform .25s ease,color .2s ease .4s}
 .hv-post{cursor:pointer}
 .hv-post:hover h3{color:#0A2240 !important}
-@media (prefers-reduced-motion: reduce){.hl,.hv-cell{transition:none !important}}
+@media (prefers-reduced-motion: reduce){.hl,.hl-ink,.hv-cell{transition:none !important}}
 ''' % {'E': E}
 
 MOBILE_CSS = '.hv-cell{border-radius:12px}\n'
@@ -31,7 +34,7 @@ JS = '''  popHighlight(e) {
     if (!hit) return;
     const mark = hit.classList.contains('hl') ? hit : hit.querySelector('.hl');
     if (!mark || !mark.animate) return;
-    mark.animate([{ backgroundSize: '100% 64%' }, { backgroundSize: '100% 100%', offset: 0.35 }, { backgroundSize: '100% 64%' }], { duration: 520, easing: 'ease-out' });
+    mark.animate([{ backgroundSize: '100% 112%' }, { backgroundSize: '100% 150%', offset: 0.35 }, { backgroundSize: '100% 112%' }], { duration: 520, easing: 'ease-out' });
     mark.animate([{ transform: 'scale(1)' }, { transform: 'scale(0.96)', offset: 0.3 }, { transform: 'scale(1)' }], { duration: 420, easing: 'ease-out' });
     const doc = mark.ownerDocument;
     const colors = ['#C1F432', '#C1F432', '#0A7FD0', '#7CC4F8'];
@@ -71,10 +74,11 @@ def body(b, mobile):
         nonlocal b
         b, k = re.subn(pat, fn, b)
         n[key] = k
-    sub(r'<a href="#\w+" style="color: #0A2240; font-size: 1\dpx; font-weight: 700; text-underline-offset: 3px">', lambda m: addcls(m.group(0), 'hl'), 'service links')
-    sub(r'<a href="#products" style="font-weight: 700; color: #7CC4F8; text-underline-offset: 3px">', lambda m: addcls(m.group(0), 'hl'), 'software link')
-    sub(r'<a class="hv-arrow"', '<a class="hv-arrow hl"', 'arrow links')
-    sub(r'(<article class="hv-post"[^>]*>.*?<h3 [^>]*>)([^<]*)(</h3>)', lambda m: m.group(1) + '<span class="hl">' + m.group(2) + '</span>' + m.group(3), 'blog titles')
+    ink = lambda t: '<span class="hl-ink">' + t + '</span>'
+    sub(r'(<a href="#\w+" style="color: #0A2240; font-size: 1\dpx; font-weight: 700; text-underline-offset: 3px">)([^<]*)', lambda m: addcls(m.group(1), 'hl') + ink(m.group(2)), 'service links')
+    sub(r'(<a href="#products" style="font-weight: 700; color: #7CC4F8; text-underline-offset: 3px">)([^<]*)', lambda m: addcls(m.group(1), 'hl') + ink(m.group(2)), 'software link')
+    sub(r'(<a class="hv-arrow"[^>]*>)([^<]*)', lambda m: m.group(1).replace('class="hv-arrow"', 'class="hv-arrow hl"') + ink(m.group(2)), 'arrow links')
+    sub(r'(<article class="hv-post"[^>]*>.*?<h3 [^>]*>)([^<]*)(</h3>)', lambda m: m.group(1) + '<span class="hl">' + ink(m.group(2)) + '</span>' + m.group(3), 'blog titles')
     # the cards' container: on desktop the grid inside the padded card, on mobile the card itself
     i = b.index('class="hv-cell"')
     j = b.rfind('<div', 0, i)
