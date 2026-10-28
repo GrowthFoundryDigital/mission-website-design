@@ -73,7 +73,7 @@ def esc(s):
 
 
 # ---- content (ELI15, from the C3/D3/G3 wording; brand lines from the style board) ----
-NAV = [('#services', 'Services'), ('#case-studies', 'Case studies'), ('#about', 'About'), ('#products', 'Products'), ('#blog', 'Blog'), ('#contact', 'Contact')]
+NAV = [('#services', 'Services'), ('#case-studies', 'Case studies'), ('#about', 'About'), ('#blog', 'Blog'), ('#contact', 'Contact')]
 HERO_P = 'We fix messy books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.'
 TIERS = [
     ('doc', 'Bookkeeping &amp; Accounting', 'Almost every client needs this'),

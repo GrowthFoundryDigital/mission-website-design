@@ -100,6 +100,8 @@ By request the pieces are no longer side by side as "1 of 2" and "2 of 2". Each 
 
 "Partner Program" is removed from the header navigation on every desktop board (A to G, every version), by request. It stays in the footer's Company column. The mobile headers only have a menu icon, so they had no header link to remove.
 
+"Products" is also removed from the header navigation on every desktop board (A to H, every version, including D3, G3, C3 and H2 on the review site), by request on 28 Oct. The footer's "QuickBooks Products" link and the products note on the page stay.
+
 ## Hover effects on the review lanes (28 Oct 2026)
 
 By request, every clickable thing on D3, G3, C3 and H2 (desktop and mobile) now reacts on hover with a colour change, an invert or a small lift or zoom. Existing hovers were kept, and page heights are unchanged. Checked in a browser: each hover was triggered and its computed style read back.
