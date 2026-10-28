@@ -511,7 +511,7 @@ def page(m):
     A('<div style="position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: %dpx">' % (8 if m else 12))
     for i, (k, alt, pos) in enumerate(grid):
         A('<div class="ph" style="height: %dpx; border-radius: 4px"><img src="%s" alt="%s" style="object-position: %s"></div>' % (150 if m else 250, PH[k], alt, pos))
-    A(corners('#8FAEFF', -12 if not m else -8, 18 if not m else 12))
+    # the corner marks around the photo grid were removed by request (28 Oct)
     A(dotp('right: -40px; bottom: -36px' if not m else 'right: -12px; bottom: -20px', 140 if not m else 90, 110 if not m else 60, 'white'))
     A('</div>')
     A('</div>\n</section>\n')
