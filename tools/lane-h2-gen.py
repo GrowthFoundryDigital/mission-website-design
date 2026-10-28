@@ -702,11 +702,11 @@ def page(m):
     A('<div style="%s; display: flex; flex-direction: column; gap: %dpx">' % (wrap, 28 if m else 44))
     A('<div style="display: flex; %s gap: 20px"><div style="display: flex; flex-direction: column; gap: 16px">%s<h2 style="font-size: %dpx; line-height: 1.04">Simple answers to the questions we hear most.</h2><p class="mu" style="font-size: 15px">300+ articles on QuickBooks, bookkeeping, accounting and financial planning.</p></div><a class="btn btn-o" href="#blog" style="flex: none">Read all articles%s</a></div>' % ('flex-direction: column; align-items: flex-start;' if m else 'align-items: flex-end; justify-content: space-between;', eyebrow('10', 'From the blog'), h2, ARR))
     A('<div style="display: grid; grid-template-columns: %s; gap: %dpx">' % ('minmax(0, 1fr)' if m else 'repeat(3, minmax(0, 1fr))', 24 if m else 24))
-    for tag, t, p, ph, pos in BLOG:
+    for k, (tag, t, p, ph, pos) in enumerate(BLOG):
         if m:
-            A('<article class="post" style="display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start"><div class="ph" style="height: 112px; border-radius: 6px"><img src="%s" alt="" style="object-position: %s"></div><div style="display: flex; flex-direction: column; gap: 6px"><span class="tag">%s</span><h3 style="font-size: 16.5px; line-height: 1.25">%s</h3><p class="mu" style="font-size: 13.5px; line-height: 1.5">%s</p></div></article>' % (PH[ph], pos, tag, t, p))
+            A('<article class="post" style="display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start">%s<div style="display: flex; flex-direction: column; gap: 6px"><span class="tag">%s</span><h3 style="font-size: 16.5px; line-height: 1.25">%s</h3><p class="mu" style="font-size: 13.5px; line-height: 1.5">%s</p></div></article>' % (post_media(k, 112, PH[ph], pos, m), tag, t, p))
             continue
-        A('<article class="post" style="display: flex; flex-direction: column; gap: 12px"><div class="ph" style="height: %dpx; border-radius: 6px"><img src="%s" alt="" style="object-position: %s"></div><span class="tag" style="padding-top: 6px">%s</span><h3 style="font-size: %dpx; line-height: 1.25">%s</h3><p class="mu" style="font-size: 14.5px">%s</p></article>' % (150 if m else 230, PH[ph], pos, tag, 19 if m else 20, t, p))
+        A('<article class="post" style="display: flex; flex-direction: column; gap: 12px">%s<span class="tag" style="padding-top: 6px">%s</span><h3 style="font-size: %dpx; line-height: 1.25">%s</h3><p class="mu" style="font-size: 14.5px">%s</p></article>' % (post_media(k, 150 if m else 230, PH[ph], pos, m), tag, 19 if m else 20, t, p))
     A('</div>')
     A('</div>\n</section>\n')
 
@@ -804,6 +804,22 @@ def hov(h):
                      (r'<div (style="display: flex; align-items: center; gap: 1[24]px; padding(?:-top: 14px|: 16px 0);(?: border-top: 1px solid rgba\(255,255,255,\.1[24]\))?)', 'hv-li')]:
         h = re.sub(pat, r'<div class="%s" \1' % cls, h)
     return h
+
+
+def post_media(k, h, src, pos, m):
+    # blog photos with the featured case study's offset border and Electric Blue wedge, in three options to compare (28 Oct):
+    # 1 border offset down-right, wedge bottom-left (as the featured case study); 2 border offset up-left, wedge bottom-left,
+    # dot grid bottom-right (as the team photo); 3 border offset down-left, wedge flipped to the top-right
+    o = 7 if m else 14
+    insets = ['%dpx -%dpx -%dpx %dpx' % (o, o, o, o), '-%dpx %dpx %dpx -%dpx' % (o, o, o, o), '%dpx %dpx -%dpx -%dpx' % (o, o, o, o)]
+    ww, wh = (44, 18) if m else (132, 52)
+    wedge = ['left: 0; bottom: 0', 'left: 0; bottom: 0', 'right: 0; top: 0'][k]
+    shape = '' if k < 2 else ' clip-path: polygon(0 0, 100%% 0, 100%% 100%%, 38%% 100%%);'
+    dots = '' if (k != 1 or m) else dotp('right: -%dpx; bottom: -%dpx' % (o + 10, o + 10), 50 if m else 110, 40 if m else 80)
+    # on desktop every photo gets the same room below it, so the downward borders clear the label and the three labels stay level
+    return ('<div class="post-media" style="position: relative; height: %dpx%s">' % (h, '' if m else '; margin-bottom: 14px') + frame(insets[k], BLUE, .6) + dots +
+            '<div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="%s" alt="" style="object-position: %s">' % (src, pos) +
+            '<span aria-hidden="true" class="wedge" style="position: absolute; %s; width: %dpx; height: %dpx; background: #2459F5; z-index: 1;%s"></span></div></div>' % (wedge, ww, wh, shape))
 
 
 def doc(m):
