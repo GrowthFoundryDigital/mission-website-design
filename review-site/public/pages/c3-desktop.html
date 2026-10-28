@@ -85,6 +85,8 @@ a{color:#0A7FD0}a:hover{color:#0866A8}
 a.hl:hover,a.hl:focus-visible,.hv-post:hover .hl{background-size:100% 112%;text-decoration-color:transparent !important}
 .hl-ink{background-image:linear-gradient(90deg,#0A2240 50%,currentColor 50%);background-size:200% 100%;background-position:100% 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-position .55s cubic-bezier(.65,0,.35,1) .04s}
 a.hl:hover .hl-ink,a.hl:focus-visible .hl-ink,.hv-post:hover .hl-ink{background-position:0 0}
+/* header fade: continues 96px below the header so it never ends in a hard line */
+.hdr-fade::after{content:'';position:absolute;left:0;right:0;top:100%;height:96px;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.22) 45%,rgba(0,0,0,0) 100%);pointer-events:none}
 /* titles that wrap: the stroke is one continuous pass, across the first line and then on to the next (box-decoration-break: slice),
    so it runs a little longer and at a steadier pace */
 .hv-post .hl{transition:background-size .95s cubic-bezier(.45,.05,.55,.95)}
@@ -121,16 +123,16 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 <img class="hero-bg-ecommerce" src="../img/b70d1fd6eb5a9839c3acd3ccea5d44a1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 70% 38%; z-index: 0">
 <div class="hero-bg-office" aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.74) 0%, rgba(0, 0, 0, 0.6) 32%, rgba(0, 0, 0, 0.22) 55%, rgba(0, 0, 0, 0) 70%)"></div>
 <div class="hero-bg-ecommerce" aria-hidden="true" style="position: absolute; inset: 0; z-index: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0.24) 0%, rgba(0, 0, 0, 0.18) 34%, rgba(0, 0, 0, 0.06) 55%, rgba(0, 0, 0, 0) 68%)"></div>
-<header style="position: relative; z-index: 2; background: linear-gradient(180deg, #000000D8 0%, rgba(0, 0, 0, 0) 100%)">
+<header class="hdr-fade" style="position: relative; z-index: 2; background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.55) 100%)">
 <nav aria-label="Main" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 84px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
 <a href="#top" aria-label="MISSION home" style="display: flex; align-items: center"><img src="../img/b29865f8838e8d694583c88108f0c2aa.svg" alt="MISSION" style="height: 26px; width: auto; display: block"></a>
 <div class="nav-links" style="display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 500">
-<a class="hv-nav" href="#services" style="color: #D6E2F2; text-decoration: none; display: flex; align-items: center; gap: 4px">Services<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a>
-<a class="hv-nav" href="#case-studies" style="color: #D6E2F2; text-decoration: none">Case studies</a>
-<a class="hv-nav" href="#about" style="color: #D6E2F2; text-decoration: none">About</a>
+<a class="hv-nav" href="#services" style="color: #FFFFFF; text-decoration: none; display: flex; align-items: center; gap: 4px">Services<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"></path></svg></a>
+<a class="hv-nav" href="#case-studies" style="color: #FFFFFF; text-decoration: none">Case studies</a>
+<a class="hv-nav" href="#about" style="color: #FFFFFF; text-decoration: none">About</a>
 
-<a class="hv-nav" href="#blog" style="color: #D6E2F2; text-decoration: none">Blog</a>
-<a class="hv-nav" href="#contact" style="color: #D6E2F2; text-decoration: none">Contact</a>
+<a class="hv-nav" href="#blog" style="color: #FFFFFF; text-decoration: none">Blog</a>
+<a class="hv-nav" href="#contact" style="color: #FFFFFF; text-decoration: none">Contact</a>
 </div>
 <div style="display: flex; align-items: center; gap: 20px">
 <a href="tel:+12032279475" class="hv-ghost nav-links" style="display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 18px; border-radius: 12px; background: #FFFFFF; color: #0087C0; text-decoration: none; font-size: 14px; font-weight: 700; white-space: nowrap"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; position: relative; top: 1px"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>(203) 227-9475</a>

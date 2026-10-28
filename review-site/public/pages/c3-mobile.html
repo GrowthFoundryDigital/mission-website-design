@@ -85,6 +85,8 @@ a{color:#0A7FD0}a:hover{color:#0866A8}
 a.hl:hover,a.hl:focus-visible,.hv-post:hover .hl{background-size:100% 112%;text-decoration-color:transparent !important}
 .hl-ink{background-image:linear-gradient(90deg,#0A2240 50%,currentColor 50%);background-size:200% 100%;background-position:100% 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-position .55s cubic-bezier(.65,0,.35,1) .04s}
 a.hl:hover .hl-ink,a.hl:focus-visible .hl-ink,.hv-post:hover .hl-ink{background-position:0 0}
+/* header fade: continues 96px below the header so it never ends in a hard line */
+.hdr-fade::after{content:'';position:absolute;left:0;right:0;top:100%;height:96px;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,.22) 45%,rgba(0,0,0,0) 100%);pointer-events:none}
 /* titles that wrap: the stroke is one continuous pass, across the first line and then on to the next (box-decoration-break: slice),
    so it runs a little longer and at a steadier pace */
 .hv-post .hl{transition:background-size .95s cubic-bezier(.45,.05,.55,.95)}

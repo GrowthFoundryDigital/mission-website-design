@@ -19,6 +19,8 @@ CSS = MARK + '''
 a.hl:hover,a.hl:focus-visible,.hv-post:hover .hl{background-size:100%% 112%%;text-decoration-color:transparent !important}
 .hl-ink{background-image:linear-gradient(90deg,#0A2240 50%%,currentColor 50%%);background-size:200%% 100%%;background-position:100%% 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-position .55s cubic-bezier(.65,0,.35,1) .04s}
 a.hl:hover .hl-ink,a.hl:focus-visible .hl-ink,.hv-post:hover .hl-ink{background-position:0 0}
+/* header fade: continues 96px below the header so it never ends in a hard line */
+.hdr-fade::after{content:'';position:absolute;left:0;right:0;top:100%%;height:96px;background:linear-gradient(180deg,rgba(0,0,0,.55) 0%%,rgba(0,0,0,.22) 45%%,rgba(0,0,0,0) 100%%);pointer-events:none}
 /* titles that wrap: the stroke is one continuous pass, across the first line and then on to the next (box-decoration-break: slice),
    so it runs a little longer and at a steadier pace */
 .hv-post .hl{transition:background-size .95s cubic-bezier(.45,.05,.55,.95)}
@@ -85,6 +87,13 @@ def body(b, mobile):
     ink = lambda t: '<span class="hl-ink">' + t + '</span>'
     sub(r'(<a href="#\w+" style="color: #0A2240; font-size: 1\dpx; font-weight: 700; text-underline-offset: 3px">)([^<]*)', lambda m: addcls(m.group(1), 'hl') + ink(m.group(2)), 'service links')
     sub(r'(<a href="#products" style="font-weight: 700; color: #7CC4F8; text-underline-offset: 3px">)([^<]*)', lambda m: addcls(m.group(1), 'hl') + ink(m.group(2)), 'software link')
+    # header contrast (28 Oct, by request): white menu links and a deeper dark fade behind the header that carries on below it
+    if not mobile:
+        b, k = re.subn(r'(<a class="hv-nav" href="#[\w-]+" style="color: )#D6E2F2;', r'\g<1>#FFFFFF;', b)
+        n['menu links white'] = k
+        old = '<header style="position: relative; z-index: 2; background: linear-gradient(180deg, #000000D8 0%, rgba(0, 0, 0, 0) 100%)">'
+        assert b.count(old) == 1
+        b = b.replace(old, '<header class="hdr-fade" style="position: relative; z-index: 2; background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.55) 100%)">')
     # the header phone number (desktop) becomes a white button with a Mission blue icon and number, sized like the Schedule button;
     # it lifts on hover like the other buttons (hv-ghost)
     sub(r'<a href="tel:\+12032279475" class="nav-links" style="display: flex; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600">([^<]*)</a>',
