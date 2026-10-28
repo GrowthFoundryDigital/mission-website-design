@@ -330,8 +330,6 @@ def page(m):
         A('<button type="button" aria-label="Open menu" style="all: unset; cursor: pointer; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.5); border-radius: 4px; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div>')
         A('</header>')
         A(dotp('right: 14px; top: 132px', 64, 56, 'white'))
-        A(poly('right: -34px; top: 300px', 96, 96, 20, stroke=WHITE, sw=1.5, op=.25))
-        A(poly('right: 22px; top: 96px', 28, 28, 6, stroke=LIME, sw=2))
         A('<div id="top" style="position: relative; z-index: 2; padding: 36px 20px 0; display: flex; flex-direction: column; gap: 20px">')
         A('<p class="eb" style="letter-spacing: .16em">Practical. Reassuring. Experienced.</p>')
         A('<h1 style="font-size: 44px; line-height: 1; letter-spacing: -.035em">Complex books.<br>Clear answers.</h1>')
@@ -360,7 +358,6 @@ def page(m):
         A('</div>')
         # geometry on the blue side
         A(dotp('left: 28px; top: 150px', 112, 288, 'white'))
-        A(poly('left: -70px; bottom: 150px', 230, 230, 46, stroke=WHITE, sw=1.5, op=.28))
         # near-black polygons floating at mixed sizes and depths (some blurred), none resting on the strip
         A(poly('left: -34px; top: 628px', 112, 112, 24, fill=INK, op=.7, rot=-8, blur=6))
         A(poly('left: 98px; top: 546px', 54, 54, 12, fill=INK, rot=12))
@@ -369,7 +366,6 @@ def page(m):
         A(poly('left: 522px; top: 724px', 30, 30, 7, fill=INK, rot=22))
         A(poly('left: 640px; top: 166px', 22, 22, 5, fill=INK, op=.9, rot=30, blur=1.5))
         A(poly('left: 112px; bottom: 166px', 40, 40, 9, stroke=LIME, sw=2))
-        A(poly('left: 690px; top: 150px', 46, 46, 10, stroke=LIME, sw=2))
         A(scatter([('left: 566px; top: 712px', 12, WHITE), ('left: 594px; top: 738px', 8, WHITE), ('left: 548px; top: 752px', 8, INK), ('left: 618px; top: 702px', 10, LIME, True)]))
         A(poly('left: 604px; top: 650px', 18, 18, 4, fill=INK, rot=-12))
         A('<header style="position: relative; z-index: 3">')
