@@ -662,9 +662,10 @@ def page(m):
     spans = [3, 3, 2, 2, 2]
     for k, (q, n, c) in enumerate(QUOTES):
         big = k < 2
+        # the dividers above the names were removed by request (28 Oct)
         A('<figure class="qcard" style="margin: 0; %s display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: %s; border-radius: 6px; background: %s">' % ('' if m else 'grid-column: span %d;' % spans[k], '24px 22px' if m else ('34px 32px' if big else '28px'), '#2459F5' if k == 0 else '#1B2029'))
         A('<div style="display: flex; flex-direction: column; gap: 16px">%s<blockquote style="margin: 0; font: 500 %dpx/1.35 \'Space Grotesk\', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"%s"</blockquote></div>' % (QUOTE.replace('#2459F5', '#FFFFFF') if k == 0 else QUOTE, (20 if m else (26 if big else 20)), q))
-        A('<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.16)"><strong style="font: 600 14.5px/1.3 \'Space Grotesk\', sans-serif; color: #FFFFFF">%s</strong><span style="font-size: 13px; color: %s">%s</span></figcaption>' % (n, '#DCE5FF' if k == 0 else '#9AA3AE', c))
+        A('<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 \'Space Grotesk\', sans-serif; color: #FFFFFF">%s</strong><span style="font-size: 13px; color: %s">%s</span></figcaption>' % (n, '#DCE5FF' if k == 0 else '#9AA3AE', c))
         A('</figure>')
     A('</div>')
     A('<a class="lk" href="%s" target="_blank" rel="noopener">See client reviews%s</a>' % (PROADVISOR, ARR))
