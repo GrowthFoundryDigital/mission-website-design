@@ -320,7 +320,7 @@ def page(m):
         A('<div class="dk" style="position: relative; z-index: 2">')
         A('<div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))">')
         for k, (icn, t, s) in enumerate(TIERS):
-            A('<a href="#services" style="display: flex; align-items: center; gap: 16px; padding: 28px %s; text-decoration: none;%s"><span class="ic">%s</span><span style="display: flex; flex-direction: column; gap: 3px"><strong style="font: 600 16px/1.3 \'Space Grotesk\', sans-serif; color: #FFFFFF">%s</strong><span style="font-size: 13.5px; color: #9AA3AE">%s</span></span></a>' % ('0' if k == 0 else '0 0 0 32px', '' if k == 0 else ' border-left: 1px solid rgba(255,255,255,.12);', ic(icn, 30), t, s))
+            A('<a href="#services" style="display: flex; align-items: center; gap: 16px; padding: %s; text-decoration: none;%s"><span class="ic">%s</span><span style="display: flex; flex-direction: column; gap: 3px"><strong style="font: 600 16px/1.3 \'Space Grotesk\', sans-serif; color: #FFFFFF">%s</strong><span style="font-size: 13.5px; color: #9AA3AE">%s</span></span></a>' % ('28px 32px 28px 0' if k == 0 else '28px 32px 28px 36px', '' if k == 0 else ' border-left: 1px solid rgba(255,255,255,.12);', ic(icn, 30), t, s))
         A('</div>\n</div>')
     A('</section>\n')
 
