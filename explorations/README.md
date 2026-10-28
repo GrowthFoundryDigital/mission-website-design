@@ -144,7 +144,8 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Header overlay (28 Oct):** on the photo side only (under the blue), near-black #101419 at 60% behind the nav, fading out just below it, so the Call button and Schedule button read on every hero photo. Mobile's header sits on solid blue, so it has none.
 - **Header contrast (28 Oct, by request, as on C3):** the menu links are pure white instead of #E3EAFF, and the photo-side overlay is deeper: near-black at 90% at the top, 80% behind the nav, 55% at the header's foot, then fading out over another 96 px so it has no hard edge.
 - **Hovers (28 Oct):** every button turns lime #C1F432 with dark text and lifts 2px. Cards lift 4px with a shadow: white cards (case studies, services, triggers) also take an Electric Blue edge; the featured case study lifts and its photo zooms slightly; testimonial cards lift and lighten; blog posts zoom their photo and turn the title blue.
-- **Heights, measured:** desktop 11,272, mobile 15,492.
+- **Case studies heading (28 Oct, by request):** "Real problems, Real solutions." replaces "Real problems clients had, and how we fixed them." It is a line shorter.
+- **Heights, measured:** desktop 11,216, mobile 15,456.
 - **Source:** `tools/lane-h2-gen.py`.
 
 ## Lane H: the "Decisive Clarity" style board (27 Oct 2026)

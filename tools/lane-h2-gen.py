@@ -448,9 +448,9 @@ def page(m):
 
     A('<div style="%s; display: flex; flex-direction: column; gap: %dpx">' % (wrap, 28 if m else 48))
     if m:
-        A('<div style="display: flex; flex-direction: column; gap: 16px">%s<h2 style="font-size: %dpx; line-height: 1.04">Real problems clients had, and how we fixed them.</h2><p class="mu" style="font-size: 15.5px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
+        A('<div style="display: flex; flex-direction: column; gap: 16px">%s<h2 style="font-size: %dpx; line-height: 1.04">Real problems, Real solutions.</h2><p class="mu" style="font-size: 15.5px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
     else:
-        A('<div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px">%s<h2 style="font-size: %dpx; line-height: 1.02">Real problems clients had, and how we fixed them.</h2></div><p class="mu" style="font-size: 16.5px; max-width: 440px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
+        A('<div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px">%s<h2 style="font-size: %dpx; line-height: 1.02">Real problems, Real solutions.</h2></div><p class="mu" style="font-size: 16.5px; max-width: 440px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>' % (eyebrow('01', 'Case studies'), h2))
     feat_url = 'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support'
     if m:
         A('<a class="feat" href="%s" target="_blank" rel="noopener" style="display: flex; flex-direction: column; text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419">' % feat_url)
