@@ -57,13 +57,18 @@ C3 = MARK + r"""
 .hv-arrow svg{transition:transform .25s ease}
 .hv-arrow:hover,.hv-arrow:focus-visible{text-decoration:underline !important;text-underline-offset:4px}
 .hv-arrow:hover svg,.hv-arrow:focus-visible svg{transform:translateX(4px)}
-.hv-row{transition:background-color .25s ease,transform .25s ease}
-.hv-row:hover,.hv-row:focus-visible{background:#EEF6FD !important;transform:translateX(4px)}
-.hv-row:hover h3,.hv-row:focus-visible h3{color:#0A7FD0 !important}
-.hv-feat{transition:transform .3s ease,box-shadow .3s ease}
+/* Case study rows (28 Oct, by request): a lime wipe from left to right, clipped to the rounded panel; only the caret moves */
+.hv-rows{overflow:hidden}
+.hv-row{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;transition:background-size .5s cubic-bezier(.22,.61,.36,1)}
+.hv-row:hover,.hv-row:focus-visible{background-size:100% 100%}
+.hv-row [style*="#0A7FD0"]{transition:color .35s ease}
+.hv-row:hover [style*="#0A7FD0"],.hv-row:focus-visible [style*="#0A7FD0"]{color:#0A2240 !important}
+.hv-row > span:last-child svg{transition:transform .4s cubic-bezier(.22,.61,.36,1)}
+.hv-row:hover > span:last-child svg,.hv-row:focus-visible > span:last-child svg{transform:translateX(5px)}
+/* Featured case study (28 Oct, by request): only the photo zooms, inside its own frame; the card and its gradient stay put */
+.hv-feat-ph{overflow:hidden}
 .hv-feat img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
-.hv-feat:hover{transform:translateY(-4px)}
-.hv-feat:hover img{transform:scale(1.04)}
+.hv-feat:hover .hv-feat-ph > img{transform:scale(1.04)}
 .hv-cell{transition:background-color .25s ease}
 .hv-cell:hover{background:#F2F8FE}
 .hv-cell:hover h3{color:#0A7FD0 !important}
@@ -120,6 +125,8 @@ def c3(s, mobile):
         (r'display: inline-flex; align-items: center; justify-content: center; width: 4\dpx; height: 4\dpx', 'hv-soc', r'<a\b'),
         (r'display: inline-flex; align-items: center; gap: 8px; height: 42px', 'hv-soc', r'<a\b'),
         (r'position: absolute; left: \d+px; bottom: \d+px; max-width: \d+px; margin: 0; background: #7CC4F8', 'hv-fig', r'<figure\b'),
+        (r'background: #FFFFFF; border-radius: 16px; box-shadow: 0 18px 44px rgba\(10, 34, 64, 0.10\)"', 'hv-rows', r'<div\b'),
+        (r'position: relative; (?:flex: 1; min-height: 400px|height: 260px)"', 'hv-feat-ph', r'<div\b'),
         # mobile-only shapes
         (r'padding: 18px 12px; display: flex; gap: 14px; align-items: flex-start', 'hv-cell', r'<article\b'),
         (r'position: absolute; left: 12px; right: 12px; bottom: 12px; margin: 0; background: #7CC4F8', 'hv-fig', r'<figure\b'),

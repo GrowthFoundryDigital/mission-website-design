@@ -44,13 +44,18 @@ a{color:#0A7FD0}a:hover{color:#0866A8}
 .hv-arrow svg{transition:transform .25s ease}
 .hv-arrow:hover,.hv-arrow:focus-visible{text-decoration:underline !important;text-underline-offset:4px}
 .hv-arrow:hover svg,.hv-arrow:focus-visible svg{transform:translateX(4px)}
-.hv-row{transition:background-color .25s ease,transform .25s ease}
-.hv-row:hover,.hv-row:focus-visible{background:#EEF6FD !important;transform:translateX(4px)}
-.hv-row:hover h3,.hv-row:focus-visible h3{color:#0A7FD0 !important}
-.hv-feat{transition:transform .3s ease,box-shadow .3s ease}
+/* Case study rows (28 Oct, by request): a lime wipe from left to right, clipped to the rounded panel; only the caret moves */
+.hv-rows{overflow:hidden}
+.hv-row{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;transition:background-size .5s cubic-bezier(.22,.61,.36,1)}
+.hv-row:hover,.hv-row:focus-visible{background-size:100% 100%}
+.hv-row [style*="#0A7FD0"]{transition:color .35s ease}
+.hv-row:hover [style*="#0A7FD0"],.hv-row:focus-visible [style*="#0A7FD0"]{color:#0A2240 !important}
+.hv-row > span:last-child svg{transition:transform .4s cubic-bezier(.22,.61,.36,1)}
+.hv-row:hover > span:last-child svg,.hv-row:focus-visible > span:last-child svg{transform:translateX(5px)}
+/* Featured case study (28 Oct, by request): only the photo zooms, inside its own frame; the card and its gradient stay put */
+.hv-feat-ph{overflow:hidden}
 .hv-feat img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
-.hv-feat:hover{transform:translateY(-4px)}
-.hv-feat:hover img{transform:scale(1.04)}
+.hv-feat:hover .hv-feat-ph > img{transform:scale(1.04)}
 .hv-cell{transition:background-color .25s ease}
 .hv-cell:hover{background:#F2F8FE}
 .hv-cell:hover h3{color:#0A7FD0 !important}
@@ -144,7 +149,7 @@ a{color:#0A7FD0}a:hover{color:#0866A8}
 </div>
 <div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 24px; align-items: stretch">
 <article class="hv-feat" style="background: #FFFFFF; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 56px rgba(10, 34, 64, 0.14); display: flex; flex-direction: column">
-<div style="position: relative; flex: 1; min-height: 400px">
+<div class="hv-feat-ph" style="position: relative; flex: 1; min-height: 400px">
 <img src="../img/3554cab00abc02f5b19956702ff92a9f.webp" alt="A construction crew reviewing plans together on a job site" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 60% 50%">
 <div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(to top, rgba(10, 34, 64, 0.88) 0%, rgba(10, 34, 64, 0.35) 38%, rgba(10, 34, 64, 0) 62%)"></div>
 <span style="position: absolute; top: 18px; left: 18px; background: #C1F432; color: #0A2240; border-radius: 999px; padding: 6px 12px; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase">Featured story</span>
@@ -158,7 +163,7 @@ a{color:#0A7FD0}a:hover{color:#0866A8}
 </div>
 </article>
 <div style="display: flex; flex-direction: column; gap: 24px; justify-content: space-between">
-<div style="background: #FFFFFF; border-radius: 16px; box-shadow: 0 18px 44px rgba(10, 34, 64, 0.10)">
+<div class="hv-rows" style="background: #FFFFFF; border-radius: 16px; box-shadow: 0 18px 44px rgba(10, 34, 64, 0.10)">
 <a class="hv-row" href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 18px; padding: 20px 22px; text-decoration: none; color: inherit; border-bottom: 1px solid #DCE7F3"><img src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="" style="flex: none; width: 92px; height: 92px; border-radius: 12px; object-fit: cover; object-position: center 40%"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Food production</span><span style="font-size: 18px; font-weight: 800; line-height: 1.2; letter-spacing: -0.015em; color: #0A2240; text-wrap: balance">Tracking food that spoils fast.</span><span style="font-size: 14px; line-height: 1.5; color: #3B4A63">How a bakery keeps count of fresh goods in QuickBooks Enterprise.</span><span style="font-size: 13.5px; font-weight: 700; color: #0A7FD0; text-decoration: underline; text-underline-offset: 4px">Read the story</span></span><span aria-hidden="true" style="flex: none; color: #0A2240"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span></a>
 <a class="hv-row" href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 18px; padding: 20px 22px; text-decoration: none; color: inherit; border-bottom: 1px solid #DCE7F3"><img src="../img/16a347e2aaf4894dd3d60cbfb48a31af.webp" alt="" style="flex: none; width: 92px; height: 92px; border-radius: 12px; object-fit: cover; object-position: center 45%"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Jewelry</span><span style="font-size: 18px; font-weight: 800; line-height: 1.2; letter-spacing: -0.015em; color: #0A2240; text-wrap: balance">Custom orders, and knowing where each piece is.</span><span style="font-size: 14px; line-height: 1.5; color: #3B4A63">How a jewelry business tracks custom orders, and where each item is kept, in QuickBooks Enterprise.</span><span style="font-size: 13.5px; font-weight: 700; color: #0A7FD0; text-decoration: underline; text-underline-offset: 4px">Read the story</span></span><span aria-hidden="true" style="flex: none; color: #0A2240"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span></a>
 <a class="hv-row" href="https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 18px; padding: 20px 22px; text-decoration: none; color: inherit"><img src="../img/959f667ae9fbf3a0eb90cf0ce15668ff.webp" alt="" style="flex: none; width: 92px; height: 92px; border-radius: 12px; object-fit: cover; object-position: 58% 38%"><span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px"><span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A7FD0">Bills and expenses</span><span style="font-size: 18px; font-weight: 800; line-height: 1.2; letter-spacing: -0.015em; color: #0A2240; text-wrap: balance">Bills approved and spending tracked, automatically.</span><span style="font-size: 14px; line-height: 1.5; color: #3B4A63">How Wren's Nest Interiors made bill approvals and expense tracking automatic.</span><span style="font-size: 13.5px; font-weight: 700; color: #0A7FD0; text-decoration: underline; text-underline-offset: 4px">Read the story</span></span><span aria-hidden="true" style="flex: none; color: #0A2240"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></span></a>
