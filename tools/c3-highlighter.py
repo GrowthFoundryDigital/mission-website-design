@@ -19,6 +19,8 @@ CSS = MARK + '''
 a.hl:hover,a.hl:focus-visible,.hv-post:hover .hl{background-size:100%% 112%%;text-decoration-color:transparent !important}
 .hl-ink{background-image:linear-gradient(90deg,#0A2240 50%%,currentColor 50%%);background-size:200%% 100%%;background-position:100%% 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-position .55s cubic-bezier(.65,0,.35,1) .04s}
 a.hl:hover .hl-ink,a.hl:focus-visible .hl-ink,.hv-post:hover .hl-ink{background-position:0 0}
+/* the header phone icon sits at the start, so it turns navy as soon as the stroke reaches it */
+a.hl.hl-tel:hover svg,a.hl.hl-tel:focus-visible svg{transition:color .15s ease .08s}
 /* titles that wrap: the stroke is one continuous pass, across the first line and then on to the next (box-decoration-break: slice),
    so it runs a little longer and at a steadier pace */
 .hv-post .hl{transition:background-size .95s cubic-bezier(.45,.05,.55,.95)}
@@ -66,6 +68,10 @@ UNMOUNT_OLD = '  componentWillUnmount() {\n'
 UNMOUNT_NEW = "  componentWillUnmount() {\n    document.removeEventListener('click', this.onHlClick, true);\n"
 
 
+PHONE = ('<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none">'
+         '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>')
+
+
 def addcls(tag, cls):
     if 'class="' in tag:
         return tag.replace('class="', 'class="%s ' % cls, 1)
@@ -81,6 +87,9 @@ def body(b, mobile):
     ink = lambda t: '<span class="hl-ink">' + t + '</span>'
     sub(r'(<a href="#\w+" style="color: #0A2240; font-size: 1\dpx; font-weight: 700; text-underline-offset: 3px">)([^<]*)', lambda m: addcls(m.group(1), 'hl') + ink(m.group(2)), 'service links')
     sub(r'(<a href="#products" style="font-weight: 700; color: #7CC4F8; text-underline-offset: 3px">)([^<]*)', lambda m: addcls(m.group(1), 'hl') + ink(m.group(2)), 'software link')
+    # the header phone number (desktop) gets a phone icon and the highlighter
+    sub(r'<a href="tel:\+12032279475" class="nav-links" style="display: flex; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600">([^<]*)</a>',
+        lambda m: '<a href="tel:+12032279475" class="hl hl-tel nav-links" style="display: flex; align-items: center; gap: 8px; color: #FFFFFF; text-decoration: none; font-size: 14px; font-weight: 600">' + PHONE + ink(m.group(1)) + '</a>', 'header phone')
     sub(r'(<a class="hv-arrow"[^>]*>)([^<]*)', lambda m: m.group(1).replace('class="hv-arrow"', 'class="hv-arrow hl"') + ink(m.group(2)), 'arrow links')
     sub(r'(<article class="hv-post"[^>]*>.*?<h3 [^>]*>)([^<]*)(</h3>)', lambda m: m.group(1) + '<span class="hl">' + ink(m.group(2)) + '</span>' + m.group(3), 'blog titles')
     # the cards' container: on desktop the grid inside the padded card, on mobile the card itself
