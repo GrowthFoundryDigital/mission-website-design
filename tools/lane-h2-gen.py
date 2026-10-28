@@ -649,9 +649,9 @@ def page(m):
 
     A('<div style="%s; display: flex; flex-direction: column; gap: %dpx">' % (wrap, 28 if m else 48))
     if m:
-        A('<div style="display: flex; flex-direction: column; gap: 16px">%s<h2 style="font-size: %dpx; line-height: 1.04">Clients stay for years.</h2><p style="font-size: 15.5px">Several clients have been with us for 10+ years.</p></div>' % (eyebrow('07', 'What clients say'), h2))
+        A('<div style="display: flex; flex-direction: column; gap: 16px">%s<h2 style="font-size: %dpx; line-height: 1.04">Our Clients</h2><p style="font-size: 15.5px">Several clients have been with us for 10+ years.</p></div>' % (eyebrow('07', 'What clients say'), h2))
     else:
-        A('<div style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px">%s<h2 style="font-size: %dpx; line-height: 1.02">Clients stay for years.</h2><p style="font-size: 16.5px">Several clients have been with us for 10+ years.</p></div>' % (eyebrow('07', 'What clients say'), h2))
+        A('<div style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px">%s<h2 style="font-size: %dpx; line-height: 1.02">Our Clients</h2><p style="font-size: 16.5px">Several clients have been with us for 10+ years.</p></div>' % (eyebrow('07', 'What clients say'), h2))
     A('<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: %dpx">' % (8 if m else 20))
     # the blue rules above the numbers were removed by request (28 Oct)
     for v, l in STATS:

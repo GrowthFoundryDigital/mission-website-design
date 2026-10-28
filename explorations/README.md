@@ -127,7 +127,8 @@ A third version of Lane C, restyled to the style board Growth Foundry supplied (
 - **Hero photo (27 Oct):** the restaurant kitchen photo (`assets/photos/restaurant-chef-plating.webp`) is the hero background. On desktop the photo shows at full strength (the navy fade from the left was removed on request), with a subtle dark fade behind the header only (no blur) so the links stay legible over the bright window. On mobile the text sits on navy and the photo is a clean 340 px band at the bottom of the hero, with no fade between them. A "Hero: Kitchen / Office / Ecommerce" switch in the review bar swaps it for the office photo (`hero-thinking-at-desk.webp`) or the ecommerce packing photo (`ecommerce-packing-orders.webp`), in step across the C3 boards. Those two are brighter on the left, so on desktop each gets its own dark fade on the left (not blue) to keep the hero text legible: a stronger one for the office photo and a lighter, more see-through one for the ecommerce photo. The kitchen photo has none. Kitchen is the default; to change it, edit `|| 'kitchen'` in `renderVals()` in both C3 files.
 - **Canvas edits (27 Oct):** the team photo and the How we work checklist panel stretch to the height of the text beside them, and the footer watermark is centred, by request.
 - **Canvas:** in the Lane C row after C2: style board, desktop with its continuation stacked below, mobile with its continuation stacked below.
-- **Heights, measured:** desktop 9,195, mobile 13,363 (the three-way Hero switch wraps the mobile review bar onto two lines).
+- **Testimonials heading (28 Oct, by request):** "Our Clients" replaces "Clients stay for years." (also on H2).
+- **Heights, measured:** desktop 9,151, mobile 13,363 (the three-way Hero switch wraps the mobile review bar onto two lines).
 - **On the review site** since 27 Oct, with D3 and G3.
 
 ## Lane H2: geometry through the page (28 Oct 2026)
@@ -154,7 +155,8 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Newsletter at the top of the footer (28 Oct, by request):** the "QuickBooks tips by email" signup moved out of the brand column into its own full-width row at the top of the footer's link area, under the "Your books. In order." call to action: heading and line on the left, a 52 px email field and the Subscribe button on the right, then a divider before the logo and link columns. On mobile it stacks. Mobbin references: [Shopify Supply](https://mobbin.com/sites/sections/091c7a61-be44-4c2d-bafa-fa3afe0da71c), [Parker AI](https://mobbin.com/sites/sections/1b48e50a-07c1-4660-b610-7eedeb85718e), [Aave](https://mobbin.com/sites/sections/c5abe37c-bcb0-4f89-a966-15173abc9937) and [Intercom](https://mobbin.com/sites/sections/ea56dbb4-7d84-46bc-9eba-ebd65890d991), which all give the signup its own row at or just above the top of the footer. The wording is unchanged.
 - **Testimonial cards (28 Oct, by request):** the thin divider above each name was removed; the space above the name stays.
 - **Proof stats (28 Oct, by request):** the blue rules above 10+, ~50 and 5.0 were removed.
-- **Heights, measured:** desktop 11,284, mobile 15,520.
+- **Testimonials heading (28 Oct, by request):** "Our Clients" replaces "Clients stay for years." (also on C3).
+- **Heights, measured:** desktop 11,229, mobile 15,520.
 - **Source:** `tools/lane-h2-gen.py`.
 
 ## Lane H: the "Decisive Clarity" style board (27 Oct 2026)
