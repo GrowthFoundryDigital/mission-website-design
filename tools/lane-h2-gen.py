@@ -242,7 +242,8 @@ def sched(label='Schedule a free consultation', extra=''):
 
 
 def eyebrow(num, text):
-    return '<p class="eb"><b>%s</b><span>%s</span></p>' % (num, text)
+    # section numbers (01, 02...) removed by request, 28 Oct; num is kept in the calls for reference only
+    return '<p class="eb"><span>%s</span></p>' % text
 
 
 def stars():
@@ -519,7 +520,7 @@ def page(m):
         if m:
             A('<div style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid #DDE1E6;%s"><span class="ic" style="padding-top: 2px">%s</span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px; line-height: 1.25">%s</h3><span class="mu" style="font-size: 14px">%s</span></span></div>' % (' border-bottom: 1px solid #DDE1E6;' if k == 5 else '', ic(icn, 24), t, p))
             continue
-        A('<div class="card" style="display: flex; flex-direction: column; gap: 14px; padding: %s"><div style="display: flex; align-items: center; justify-content: space-between"><span class="ic">%s</span><span style="font: 600 13px/1 \'Space Grotesk\', sans-serif; color: #A3AAB4">0%d</span></div><h3 style="font-size: %dpx; line-height: 1.25">%s</h3><p class="mu" style="font-size: 14.5px">%s</p></div>' % ('22px' if m else '28px', ic(icn, 28), k + 1, 19 if m else 21, t, p))
+        A('<div class="card" style="display: flex; flex-direction: column; gap: 14px; padding: %s"><div style="display: flex; align-items: center; justify-content: space-between"><span class="ic">%s</span></div><h3 style="font-size: %dpx; line-height: 1.25">%s</h3><p class="mu" style="font-size: 14.5px">%s</p></div>' % ('22px' if m else '28px', ic(icn, 28), 19 if m else 21, t, p))
     A('</div>')
     if m:
         A(sched(extra=' style="width: 100%"'))
