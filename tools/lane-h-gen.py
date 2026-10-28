@@ -1,13 +1,14 @@
 # Lane H generator: one content source, rendered as the desktop (1440) and mobile (390) boards.
-# Style: the "G2 Decisive Clarity" style board (Space Grotesk + Open Sans, Electric Blue, near-black, chalk),
+# Style: the "Decisive Clarity" style board (Space Grotesk + Open Sans, Electric Blue, near-black, chalk),
 # with the project lime #C1F432 on buttons and the Mission blue logo. Copy: ELI15, as on C3, D3 and G3.
 import sys
 
 OUT = sys.argv[1]
 
 LOGO = '/_blob/b29865f8838e8d694583c88108f0c2aa'
+LOGO_W = '/_blob/c81310e520e144cd622a899707febdc7'  # white logo, for the Electric Blue hero only (allowed there by request)
 PH = {
-    'hero': '/_blob/16a347e2aaf4894dd3d60cbfb48a31af',
+    'office': '/_blob/c76296e63f1cbdfd3cc1859696beddca',
     'construction': '/_blob/3554cab00abc02f5b19956702ff92a9f',
     'ecommerce': '/_blob/b70d1fd6eb5a9839c3acd3ccea5d44a1',
     'kitchen': '/_blob/2066a54da13614d9c2246994e32d1902',
@@ -15,6 +16,11 @@ PH = {
     'team': '/_blob/3b6448ffe67d241e50c579a0950384e9',
     'lounge': '/_blob/37cbc555ab9573d99c3c204f11469679',
     'papers': '/_blob/959f667ae9fbf3a0eb90cf0ce15668ff',
+}
+HERO_BG = {  # the Lane C3 hero variants: (desktop, mobile) focal points
+    'kitchen': ('A chef plating dishes in a restaurant kitchen', ('62% 40%', '80% 28%')),
+    'office': ('A business owner thinking at a desk', ('62% 30%', '74% 30%')),
+    'ecommerce': ('A business owner packing an online order', ('66% 38%', '82% 30%')),
 }
 HEADS = ['/_blob/b0f8fafa98dcbe0082a836a30303b5e5', '/_blob/8dcd87561fad4fb41686cffb42d245b4', '/_blob/4a8aee7bf8f13bc1315ec9fa3aa9642d']
 BADGES = [
@@ -150,7 +156,7 @@ body{margin:0;background:#101419}
 .lh .dk{background:#101419;color:#B9C0CA}
 .lh .dk h1,.lh .dk h2,.lh .dk h3{color:#FFFFFF}
 .lh .bl{background:#2459F5;color:#DCE5FF}
-.lh .bl h2,.lh .bl h3{color:#FFFFFF}
+.lh .bl h1,.lh .bl h2,.lh .bl h3{color:#FFFFFF}
 .lh .ch{background:#F5F6F7}
 .lh .wh{background:#FFFFFF}
 .lh .eb{margin:0;display:flex;align-items:center;gap:14px;font:600 12px/1.3 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#2459F5}
@@ -158,6 +164,14 @@ body{margin:0;background:#101419}
 .lh .dk .eb{color:#8FAEFF}
 .lh .dk .eb b{color:#FFFFFF}
 .lh .bl .eb,.lh .bl .eb b{color:#FFFFFF}
+.lh .bl .btn-o{color:#FFFFFF;border-color:rgba(255,255,255,.55)}
+.lh .bl .btn-o:hover,.lh .bl .btn-o:focus-visible{border-color:#FFFFFF}
+.lh .bl .btn-p{background:#101419}
+.lh .bl .btn-p:hover,.lh .bl .btn-p:focus-visible{background:#000000}
+.lh .bl .nav a{color:#E3EAFF}
+.lh .bl .nav a:hover,.lh .bl .nav a:focus-visible{color:#FFFFFF}
+.hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
+[data-hero="kitchen"] .hero-bg-kitchen,[data-hero="office"] .hero-bg-office,[data-hero="ecommerce"] .hero-bg-ecommerce{display:block}
 .lh .mu{color:#5E6670}
 .lh .dk .mu{color:#9AA3AE}
 .lh .bl .mu{color:#DCE5FF}
@@ -228,7 +242,7 @@ def eyebrow(num, text):
 
 def stars():
     return '<span aria-hidden="true" style="display: inline-flex; align-items: center">' + ''.join(
-        '<img src="%s" alt="" style="position: relative; z-index: %d; width: 34px; height: 34px; border-radius: 50%%; object-fit: cover; border: 2px solid #101419; margin-left: %dpx">' % (h, 3 - i, 0 if i == 0 else -10)
+        '<img src="%s" alt="" style="position: relative; z-index: %d; width: 34px; height: 34px; border-radius: 50%%; object-fit: cover; border: 2px solid #2459F5; margin-left: %dpx">' % (h, 3 - i, 0 if i == 0 else -10)
         for i, h in enumerate(HEADS)) + '</span>'
 
 
@@ -241,62 +255,69 @@ def page(m):
     h2 = 34 if m else 54
     o = []
     A = o.append
-    A('<div data-btn="{{ btnMode }}" class="lh" style="width: %dpx; background: #101419">' % W)
+    A('<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" class="lh" style="width: %dpx; background: #101419">' % W)
     A('<div class="tg-bar" aria-label="Review control, not part of the design">')
     A('<span class="tg-label">Review · %s</span>' % ('buttons' if m else 'button color'))
     A('<div class="tg-group" role="group" aria-label="Button color">')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: #2459F5"></span>Blue</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>%s</button>' % ('Green' if m else 'Green #C1F432'))
-    A('</div>\n</div>\n')
+    A('</div>')
+    A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Hero</span><span class="tg-group" role="group" aria-label="Hero background">')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isKitchen }}" onClick="{{ setKitchen }}">Kitchen</button>')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>')
+    A('</span></span>\n</div>\n')
 
     # ---------- 01 Hero ----------
-    A('<!-- 01 Hero: near-black, graded photo on the right with the Electric Blue wedge, three core services along the bottom -->')
-    A('<section class="dk" style="position: relative; overflow: hidden">')
+    A('<!-- 01 Hero: Electric Blue on the left, a photo on the right (kitchen, office or ecommerce, chosen in the review bar), three core services along the bottom -->')
+    A('<section class="bl" style="position: relative; overflow: hidden">')
     if m:
         A('<header style="position: relative; z-index: 3; height: 68px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between">')
-        A('<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 24px; width: auto; display: block"></a>' % LOGO)
+        A('<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 24px; width: auto; display: block"></a>' % LOGO_W)
         A('<div style="display: flex; gap: 8px"><a class="btn btn-p tg-btn" href="#schedule" style="height: 40px; padding: 0 14px; font-size: 13.5px">%sSchedule</a>' % CAL)
-        A('<button type="button" aria-label="Open menu" style="all: unset; cursor: pointer; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.3); border-radius: 4px; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div>')
+        A('<button type="button" aria-label="Open menu" style="all: unset; cursor: pointer; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.5); border-radius: 4px; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div>')
         A('</header>')
         A('<div id="top" style="position: relative; z-index: 2; padding: 36px 20px 0; display: flex; flex-direction: column; gap: 20px">')
-        A('<p class="eb" style="color: #8FAEFF; letter-spacing: .16em">Practical. Reassuring. Experienced.</p>')
+        A('<p class="eb" style="letter-spacing: .16em">Practical. Reassuring. Experienced.</p>')
         A('<h1 style="font-size: 44px; line-height: 1; letter-spacing: -.035em">Complex books.<br>Clear answers.</h1>')
-        A('<p style="font-size: 16.5px; line-height: 1.6; color: #C9CFD8">%s</p>' % HERO_P)
+        A('<p style="font-size: 16.5px; line-height: 1.6; color: #EEF2FF">%s</p>' % HERO_P)
         A('<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 6px">%s<a class="btn btn-o" href="#case-studies">Read client stories%s</a></div>' % (sched(extra=' style="width: 100%"'), ARR))
-        A('<div style="display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: #C9CFD8">%s<span><strong style="color: #FFFFFF">5.0 average</strong> on Google reviews</span></div>' % stars())
+        A('<div style="display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: #EEF2FF">%s<span><strong style="color: #FFFFFF">5.0 average</strong> on Google reviews</span></div>' % stars())
         A('</div>')
-        A('<div style="position: relative; margin-top: 32px; height: 250px">')
-        A('<div class="ph" style="position: absolute; inset: 0"><img src="%s" alt="Two people going through the numbers together at a desk" style="object-position: 58%% 40%%"></div>' % PH['hero'])
-        A('<div aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 46%; height: 64px; background: #2459F5"></div>')
-        A('<p class="script" aria-hidden="true" style="position: absolute; right: 18px; top: 18px; font-size: 30px; transform: rotate(-7deg); text-align: right">Numbers create<br>possibility.</p>')
+        A('<div style="position: relative; margin-top: 32px; height: 250px; overflow: hidden">')
+        for k, (alt, pos) in HERO_BG.items():
+            A('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[1]))
+        A('<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, #2459F5 0%, rgba(36, 89, 245, 0) 30%)"></div>')
+        A('<div aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 46%; height: 56px; background: #101419"></div>')
+        A('<p class="script" aria-hidden="true" style="position: absolute; right: 18px; top: 26px; font-size: 30px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 12px rgba(0, 0, 0, .35)">Numbers create<br>possibility.</p>')
         A('</div>')
-        A('<div style="padding: 8px 20px 28px; display: flex; flex-direction: column">')
+        A('<div class="dk" style="padding: 8px 20px 28px; display: flex; flex-direction: column">')
         for k, (icn, t, s) in enumerate(TIERS):
             A('<div style="display: flex; align-items: center; gap: 14px; padding: 16px 0;%s"><span class="ic">%s</span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font: 600 15.5px/1.3 \'Space Grotesk\', sans-serif; color: #FFFFFF">%s</strong><span style="font-size: 13px; color: #9AA3AE">%s</span></span></div>' % ('' if k == 0 else ' border-top: 1px solid rgba(255,255,255,.12);', ic(icn, 26), t, s))
         A('</div>')
     else:
-        A('<div aria-hidden="true" style="position: absolute; top: 0; right: 0; bottom: 0; width: 50%">')
-        A('<div class="ph" style="position: absolute; inset: 0"><img src="%s" alt="" style="object-position: 50%% 40%%"></div>' % PH['hero'])
-        A('<div style="position: absolute; inset: 0; background: linear-gradient(90deg, #101419 0%, rgba(16, 20, 25, .35) 30%, rgba(16, 20, 25, 0) 55%)"></div>')
-        A('<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 40%; background: linear-gradient(180deg, rgba(16, 20, 25, 0), rgba(16, 20, 25, .85))"></div>')
+        A('<div aria-hidden="true" style="position: absolute; top: 0; right: 0; bottom: 101px; width: 46%">')
+        for k, (alt, pos) in HERO_BG.items():
+            A('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[0]))
+        A('<div style="position: absolute; inset: 0; background: linear-gradient(90deg, #2459F5 0%, rgba(36, 89, 245, .55) 16%, rgba(36, 89, 245, 0) 42%)"></div>')
         A('</div>')
-        A('<div aria-hidden="true" class="wedge" style="position: absolute; left: 50%; bottom: 101px; width: 280px; height: 96px; background: #2459F5; z-index: 1"></div>')
-        A('<p class="script" aria-hidden="true" style="position: absolute; right: 64px; top: 150px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right">Numbers create<br>possibility.</p>')
+        A('<div aria-hidden="true" class="wedge" style="position: absolute; left: 54%; bottom: 101px; width: 260px; height: 88px; background: #101419; z-index: 1"></div>')
+        A('<p class="script" aria-hidden="true" style="position: absolute; right: 64px; top: 150px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35)">Numbers create<br>possibility.</p>')
         A('<header style="position: relative; z-index: 3">')
         A('<nav aria-label="Main" class="nav" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px">')
-        A('<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 28px; width: auto; display: block"></a>' % LOGO)
+        A('<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 28px; width: auto; display: block"></a>' % LOGO_W)
         A('<div style="display: flex; align-items: center; gap: 30px">' + ''.join('<a href="%s">%s</a>' % x for x in NAV) + '</div>')
         A('<div style="display: flex; align-items: center; gap: 20px"><a href="tel:+12032279475" style="color: #FFFFFF">(203) 227-9475</a><a class="btn btn-p tg-btn" href="#schedule" style="height: 44px; padding: 0 18px; font-size: 14px; color: #FFFFFF">%sSchedule a consultation</a></div>' % CAL)
         A('</nav>\n</header>')
         A('<div id="top" style="position: relative; z-index: 2; max-width: 1160px; margin: 0 auto; padding: 96px 40px 120px">')
-        A('<div style="max-width: 720px; display: flex; flex-direction: column; gap: 26px">')
-        A('<p class="eb" style="color: #8FAEFF; letter-spacing: .18em">Practical. Reassuring. Experienced.</p>')
-        A('<h1 style="font-size: 92px; line-height: .95; letter-spacing: -.04em">Complex books.<br>Clear answers.</h1>')
-        A('<p style="font-size: 18px; line-height: 1.6; color: #C9CFD8; max-width: 520px">%s</p>' % HERO_P)
+        A('<div style="max-width: 640px; display: flex; flex-direction: column; gap: 26px">')
+        A('<p class="eb" style="letter-spacing: .18em">Practical. Reassuring. Experienced.</p>')
+        A('<h1 style="font-size: 84px; line-height: .96; letter-spacing: -.04em">Complex books.<br>Clear answers.</h1>')
+        A('<p style="font-size: 18px; line-height: 1.6; color: #EEF2FF; max-width: 520px">%s</p>' % HERO_P)
         A('<div style="display: flex; align-items: center; gap: 14px; padding-top: 6px">%s<a class="btn btn-o" href="#case-studies">Read client stories%s</a></div>' % (sched(), ARR))
-        A('<div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #C9CFD8">%s<span><strong style="color: #FFFFFF">5.0 average</strong> on Google reviews</span></div>' % stars())
+        A('<div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #EEF2FF">%s<span><strong style="color: #FFFFFF">5.0 average</strong> on Google reviews</span></div>' % stars())
         A('</div>\n</div>')
-        A('<div style="position: relative; z-index: 2; border-top: 1px solid rgba(255,255,255,.12); background: rgba(16, 20, 25, .72)">')
+        A('<div class="dk" style="position: relative; z-index: 2">')
         A('<div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr))">')
         for k, (icn, t, s) in enumerate(TIERS):
             A('<a href="#services" style="display: flex; align-items: center; gap: 16px; padding: 28px %s; text-decoration: none;%s"><span class="ic">%s</span><span style="display: flex; flex-direction: column; gap: 3px"><strong style="font: 600 16px/1.3 \'Space Grotesk\', sans-serif; color: #FFFFFF">%s</strong><span style="font-size: 13.5px; color: #9AA3AE">%s</span></span></a>' % ('0' if k == 0 else '0 0 0 32px', '' if k == 0 else ' border-left: 1px solid rgba(255,255,255,.12);', ic(icn, 30), t, s))
@@ -541,10 +562,18 @@ SCRIPT = """class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
+  setHero(v) {
+    // the hero background toggle (kitchen, office or ecommerce photo), shared with the other Lane H board
+    this.setState({ hero: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ hero: v }); } catch (e) {}
+  }
   listenBtn() {
     try {
       this.btnChannel = new BroadcastChannel('mission-buttons-lane-h');
-      this.btnChannel.onmessage = (e) => { if (e.data && e.data.btn) this.setState({ btn: e.data.btn }); };
+      this.btnChannel.onmessage = (e) => {
+        if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
+        if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
+      };
     } catch (e) {}
   }
   renderVals() {
@@ -554,6 +583,13 @@ SCRIPT = """class Component extends DCLogic {
       isGreen: ((this.state && this.state.btn) || 'green') === 'green' ? 'true' : 'false',
       setBlue: this.setBlue || (this.setBlue = () => this.setBtn('blue')),
       setGreen: this.setGreen || (this.setGreen = () => this.setBtn('green')),
+      heroMode: (this.state && this.state.hero) || 'kitchen',
+      isKitchen: ((this.state && this.state.hero) || 'kitchen') === 'kitchen' ? 'true' : 'false',
+      isOffice: ((this.state && this.state.hero) || 'kitchen') === 'office' ? 'true' : 'false',
+      isEcommerce: ((this.state && this.state.hero) || 'kitchen') === 'ecommerce' ? 'true' : 'false',
+      setKitchen: this.setKitchen || (this.setKitchen = () => this.setHero('kitchen')),
+      setOffice: this.setOffice || (this.setOffice = () => this.setHero('office')),
+      setEcommerce: this.setEcommerce || (this.setEcommerce = () => this.setHero('ecommerce')),
     };
   }
   componentDidMount() {

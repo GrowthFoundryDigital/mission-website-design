@@ -119,9 +119,10 @@ A new lane built from the style board Growth Foundry supplied (`assets/inspirati
 
 - **Look:** Space Grotesk headings in one weight (600), Open Sans body, near-black and chalk sections with one Electric Blue band, numbered eyebrows ("01 Case studies"), thin Electric Blue line icons, the board's diagonal blue wedge, dark wedge and dot grid as graphic elements. No accent bars under headings (removed elsewhere on request). Logos stay Mission blue.
 - **Sections:** hero with the three core services along its foot (tier order), case studies first (featured construction story, three cards, a blue closing call), software strip, positioning with a 2 × 2 photo grid, services (three tiers plus five supporting services and QuickBooks products), the six trigger moments, specialties and industries, Intuit certification band, testimonials word for word with the loyalty stats (10+, ~50, 5.0), team, FAQ, blog, closing call and footer.
-- **Review bar:** Blue (#2459F5) / Green (#C1F432) button switch, green by default, on its own channel.
+- **Hero (revised 28 Oct):** Electric Blue on the left with the white MISSION logo (allowed here by request; the footer logo stays Mission blue), and the C3 photo variants on the right (Kitchen by default, Office, Ecommerce), fading into the blue. The first photo (two people at a desk) was dropped on request.
+- **Review bar:** Blue (#2459F5) / Green (#C1F432) button switch, green by default, and a Hero: Kitchen / Office / Ecommerce switch, on the lane's own channel. In blue-button mode the hero buttons turn near-black so they show on the blue.
 - **Canvas:** a new Lane H row below Lane G: style board, desktop with its continuation below, mobile with its continuation below.
-- **Heights, measured:** desktop 11,403, mobile 15,594.
+- **Heights, measured:** desktop 11,388, mobile 15,638.
 - **Source:** both boards are generated from one content file, `tools/lane-h-gen.py` (run it with the output folder as its argument), so desktop and mobile stay in step.
 
 ## Lanes D3 and G3: ELI15 copy (27 Oct 2026)
