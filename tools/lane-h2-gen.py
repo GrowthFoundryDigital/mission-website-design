@@ -406,7 +406,7 @@ def page(m):
     A('<button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>%s</button>' % ('Green' if m else 'Green #C1F432'))
     A('<button type="button" class="tg-opt" aria-pressed="{{ isBlack }}" onClick="{{ setBlack }}"><span class="tg-dot" style="background: #101419; box-shadow: 0 0 0 1px rgba(255,255,255,.55)"></span>Black</button>')
     A('</div>')
-    A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Hero</span><span class="tg-group" role="group" aria-label="Hero background">')
+    A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Photos</span><span class="tg-group" role="group" aria-label="Hero photo">')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isKitchen }}" onClick="{{ setKitchen }}">Kitchen</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>')
