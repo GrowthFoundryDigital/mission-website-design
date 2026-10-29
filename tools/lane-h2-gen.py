@@ -305,6 +305,12 @@ body{margin:0;background:#101419}
 .lh a.lk:hover .ar,.lh a.lk:focus-visible .ar,.lh a:hover .lk .ar,.lh a:focus-visible .lk .ar{color:#101419}
 @media (prefers-reduced-motion: reduce){.lh .lk::before,.lh .lk-ink{transition:none}}
 [data-btn="green"] .tg-btn *{color:#101419 !important}
+/* Black buttons (29 Oct): near-black everywhere; a light outline keeps them visible on the dark footer */
+[data-btn="black"] .tg-btn{background:#101419 !important;color:#FFFFFF !important;border-color:#101419 !important}
+[data-btn="black"] .tg-btn *{color:#FFFFFF !important}
+[data-btn="black"] .foot .tg-btn{border-color:rgba(255,255,255,.45) !important}
+[data-btn="black"] .tg-btn:hover *,[data-btn="black"] .tg-btn:focus-visible *{color:#101419 !important}
+.lh .foot a.btn-p{color:#FFFFFF}
 """
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&amp;family=Open+Sans:wght@400;600&amp;family=Caveat:wght@600&amp;display=swap">'
@@ -387,6 +393,7 @@ def page(m):
     A('<div class="tg-group" role="group" aria-label="Button color">')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: var(--eb)"></span>Blue</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>%s</button>' % ('Green' if m else 'Green #C1F432'))
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isBlack }}" onClick="{{ setBlack }}"><span class="tg-dot" style="background: #101419; box-shadow: 0 0 0 1px rgba(255,255,255,.55)"></span>Black</button>')
     A('</div>')
     A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Hero</span><span class="tg-group" role="group" aria-label="Hero background">')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isKitchen }}" onClick="{{ setKitchen }}">Kitchen</button>')
@@ -840,6 +847,8 @@ SCRIPT = """class Component extends DCLogic {
       isGreen: ((this.state && this.state.btn) || 'green') === 'green' ? 'true' : 'false',
       setBlue: this.setBlue || (this.setBlue = () => this.setBtn('blue')),
       setGreen: this.setGreen || (this.setGreen = () => this.setBtn('green')),
+      isBlack: ((this.state && this.state.btn) || 'green') === 'black' ? 'true' : 'false',
+      setBlack: this.setBlack || (this.setBlack = () => this.setBtn('black')),
       heroMode: (this.state && this.state.hero) || 'kitchen',
       isKitchen: ((this.state && this.state.hero) || 'kitchen') === 'kitchen' ? 'true' : 'false',
       isOffice: ((this.state && this.state.hero) || 'kitchen') === 'office' ? 'true' : 'false',
