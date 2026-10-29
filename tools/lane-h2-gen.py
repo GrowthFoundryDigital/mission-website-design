@@ -182,8 +182,8 @@ body{margin:0;background:#101419}
 [data-div="off"] .hero-fade{display:block}
 [data-div="off"] .hero-script{left:1133px !important}
 [data-div="off"] .hero-geo{display:none}
-/* Shapes review switch (29 Oct): off hides every decorative shape; photo frames, wedges and the hero divider stay */
-[data-geo="off"] svg.deco,[data-geo="off"] span.deco,[data-geo="off"] .dots{display:none !important}
+/* Shapes review switch (29 Oct): off hides every decorative shape, including the outline frames around photos and cards and the wedges on photos; the hero divider has its own switch */
+[data-geo="off"] svg.deco,[data-geo="off"] span.deco,[data-geo="off"] div.deco,[data-geo="off"] .dots,[data-geo="off"] .wedge{display:none !important}
 [data-geo="off"] .foot-geo{visibility:hidden}
 [data-geo="off"] .foot-geo.m{display:none}
 [data-div="off"] .hero-full{display:block}
