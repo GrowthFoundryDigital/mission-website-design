@@ -311,6 +311,13 @@ body{margin:0;background:#101419}
 [data-btn="black"] .foot .tg-btn{border-color:rgba(255,255,255,.45) !important}
 [data-btn="black"] .tg-btn:hover *,[data-btn="black"] .tg-btn:focus-visible *{color:#101419 !important}
 .lh .foot a.btn-p{color:#FFFFFF}
+/* Blue buttons (29 Oct): blue everywhere; on blue backgrounds a darker shade of the same blue so they stay visible */
+[data-btn="blue"] .tg-btn{background:#2459F5 !important;color:#FFFFFF !important;border-color:#2459F5 !important}
+[data-btn="blue"] .tg-btn *{color:#FFFFFF !important}
+[data-btn="blue"] .bl .tg-btn,[data-btn="blue"] .bl-band .tg-btn{background:#1A3FB8 !important;border-color:#1A3FB8 !important}
+[data-btn="blue"][data-div="off"] .bl .tg-btn{background:#2459F5 !important;border-color:#2459F5 !important}
+[data-btn="blue"] .tg-btn:hover *,[data-btn="blue"] .tg-btn:focus-visible *{color:#101419 !important}
+.lh[data-btn="blue"] .tg-btn.btn:hover,.lh[data-btn="blue"] .tg-btn.btn:focus-visible{background:#C1F432 !important;border-color:#C1F432 !important;color:#101419 !important}
 """
 
 FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com">\n<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&amp;family=Open+Sans:wght@400;600&amp;family=Caveat:wght@600&amp;display=swap">'
@@ -527,9 +534,9 @@ def page(m):
         A('<a class="card" href="%s" target="_blank" rel="noopener" style="flex-direction: column; justify-content: space-between; gap: 18px; padding: %s; min-height: %s"><span style="display: flex; flex-direction: column; gap: 12px"><span class="tag">%s</span><h3 style="font-size: %dpx; line-height: 1.2">%s</h3><span class="mu" style="font-size: 14.5px">%s</span></span><span class="lk">Read the story%s</span></a>' % (u, '22px' if m else '28px', 'auto' if m else '250px', lab, 20 if m else 22, t, p, ARR))
     A('</div>')
     if m:
-        A('<div style="display: flex; flex-direction: column; gap: 16px; padding: 24px 22px; border-radius: 6px; background: #2459F5"><h3 style="font-size: 22px; color: #FFFFFF">Do your books look like this?</h3><p style="font-size: 15px; color: #DCE5FF">Come as you are, mess and all. We\'ll tell you what we\'d fix first.</p>%s</div>' % sched(extra=' style="width: 100%; background: #FFFFFF; color: #101419"'))
+        A('<div class="bl-band" style="display: flex; flex-direction: column; gap: 16px; padding: 24px 22px; border-radius: 6px; background: #2459F5"><h3 style="font-size: 22px; color: #FFFFFF">Do your books look like this?</h3><p style="font-size: 15px; color: #DCE5FF">Come as you are, mess and all. We\'ll tell you what we\'d fix first.</p>%s</div>' % sched(extra=' style="width: 100%; background: #FFFFFF; color: #101419"'))
     else:
-        A('<div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 30px 36px; border-radius: 6px; background: #2459F5"><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 26px; color: #FFFFFF">Do your books look like this?</h3><p style="font-size: 15.5px; color: #DCE5FF">Come as you are, mess and all. We\'ll tell you what we\'d fix first.</p></div>%s</div>' % sched(extra=' style="background: #FFFFFF; color: #101419"'))
+        A('<div class="bl-band" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 30px 36px; border-radius: 6px; background: #2459F5"><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 26px; color: #FFFFFF">Do your books look like this?</h3><p style="font-size: 15.5px; color: #DCE5FF">Come as you are, mess and all. We\'ll tell you what we\'d fix first.</p></div>%s</div>' % sched(extra=' style="background: #FFFFFF; color: #101419"'))
     A('</div>\n</section>\n')
 
     # (03 Software strip removed by request, 28 Oct)
