@@ -73,6 +73,10 @@ figure:hover{transform:translateY(-4px)}
 .ld-cut-sm img,.ld-cut img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 /* Buttons ease over 0.4s (28 Oct, by request); wins over the lime-mode transition */
 .tg-btn,[data-btn] .tg-btn,a.ld-cut,button.ld-cut{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease,filter .4s ease,opacity .4s ease !important}
+/* footer call-to-action band (29 Oct, review comment): lime, so it stands apart from the navy blog cards above; its button turns navy so it stays visible */
+[data-btn] .cta-band .tg-btn{background:#0E3A66 !important;color:#FFFFFF !important;border-color:#0E3A66 !important}
+[data-btn] .cta-band .tg-btn *{color:#FFFFFF !important}
+[data-btn] .cta-band .tg-btn:hover,[data-btn] .cta-band .tg-btn:focus-visible{background:#0A2B4C !important;opacity:1}
 </style>
 
 <style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
@@ -414,10 +418,10 @@ figure:hover{transform:translateY(-4px)}
 
 <!-- 11 Footer -->
 <footer style="background: #F6F5F0; color: #333333">
-<!-- call to action on its own navy band (29 Oct, review comment): it separates the blog, the call to action and the footer -->
-<div style="background: #0E3A66">
+<!-- call to action on its own lime band (29 Oct, review comment): it separates the blog, the call to action and the footer -->
+<div class="cta-band" style="background: #C1F432">
 <div style="max-width: 1240px; margin: 0 auto; padding: 80px 40px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px">
-<h2 style="margin: 0; font-weight: 600; font-size: clamp(44px, 4vw, 56px); line-height: 1.04; letter-spacing: -0.025em; color: #FFFFFF">Your books.<br>In order.</h2>
+<h2 style="margin: 0; font-weight: 600; font-size: clamp(44px, 4vw, 56px); line-height: 1.04; letter-spacing: -0.025em; color: #0E3A66; white-space: nowrap">Your books. In order.</h2>
 <a class="tg-btn ld-cut btn-cal" href="#schedule" style="display: inline-flex; align-items: center; gap: 12px; height: 48px; padding: 0 22px 0 14px; border-radius: 0; background: {{primary}}; color: #FFFFFF; text-decoration: none; font-size: 14.5px; font-weight: 500"><span class="ld-cut-sm" aria-hidden="true" style="width: 18px; height: 32px; border-radius: 0; background: none; color: #FFFFFF; display: inline-flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="0"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg></span>Schedule a free consultation</a>
 </div>
 </div>
