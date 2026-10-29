@@ -128,7 +128,7 @@ A third version of Lane C, restyled to the style board Growth Foundry supplied (
 - **Canvas edits (27 Oct):** the team photo and the How we work checklist panel stretch to the height of the text beside them, and the footer watermark is centred, by request.
 - **Canvas:** in the Lane C row after C2: style board, desktop with its continuation stacked below, mobile with its continuation stacked below.
 - **Testimonials heading (28 Oct, by request):** "Our Clients" replaces "Clients stay for years." (also on H2).
-- **Heights, measured:** desktop 9,151, mobile 13,363 (the three-way Hero switch wraps the mobile review bar onto two lines).
+- **Heights, measured:** desktop 9,151, mobile 13,403 (the Hero and Typing switches wrap the mobile review bar onto three lines).
 - **On the review site** since 27 Oct, with D3 and G3.
 
 ## Lane H2: geometry through the page (28 Oct 2026)
@@ -156,6 +156,7 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Testimonial cards (28 Oct, by request):** the thin divider above each name was removed; the space above the name stays.
 - **Proof stats (28 Oct, by request):** the blue rules above 10+, ~50 and 5.0 were removed.
 - **Testimonials heading (28 Oct, by request):** "Our Clients" replaces "Clients stay for years." (also on C3).
+- **C3 typing switch (29 Oct, by request):** a "Typing: On / Off" switch in C3's review bar, kept in step across the C3 boards. On (the default) is the typing headline as before. Off stops the loop and shows "We handle the messy work." still, with no cursor; switching back on restarts it from the first phrase. Built into the C3 base files, so `tools/c3-highlighter.py` still applies on top. The extra switch wraps the mobile review bar onto a third row: mobile is now 13,403 (continued board 5,403); desktop is unchanged at 9,151.
 - **No "Almost", all lanes (29 Oct, review comment, "we are driving for certainty"):** every "Almost every client…" now reads "Every client…" (D3 services intro and Bookkeeping row; G3 and C3 Bookkeeping description; H2 services strip, intro and row). H2 mobile is now 15,493 (continued board 7,493); other heights unchanged.
 - **D3 footer call to action (29 Oct, review comments):** the footer headline is now "Your books. In order." on one line (navy; 30 px on mobile so it fits), on its own full-width white band with a thin #E6E4DE line above and below, between the blog and the cream footer, so the three read as separate parts. The Schedule button follows the button switch (lime by default). Tried first: navy band (blended with the navy blog cards), then lime band with a navy button. Heights: desktop 9,676 (continued board 1,676), mobile 14,568 (continued board 6,568).
 - **D3 value-prop logo removed (29 Oct, review comment):** the MISSION logo beside "You started a business, not a bookkeeping job…" on D3 desktop is gone (mobile never had it there). Height unchanged.

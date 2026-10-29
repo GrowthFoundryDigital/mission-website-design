@@ -114,6 +114,12 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 <button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>
 </div>
+<!-- headline typing on or off (29 Oct, by request) -->
+<span class="tg-label">Typing</span>
+<div class="tg-group" role="group" aria-label="Headline typing animation">
+<button type="button" class="tg-opt" aria-pressed="{{ isTypingOn }}" onClick="{{ setTypingOn }}">On</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isTypingOff }}" onClick="{{ setTypingOff }}">Off</button>
+</div>
 </div>
 
 <!-- 01 Hero: photo background (kitchen, office or ecommerce, chosen in the review bar) -->
@@ -444,12 +450,25 @@ class Component extends DCLogic {
     this.setState({ hero: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ hero: v }); } catch (e) {}
   }
+  setTyping(v) {
+    // the headline typing switch (on or off), shared with the other Lane C3 board
+    this.setState({ typing: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ typing: v }); } catch (e) {}
+    this.applyTyping(v);
+  }
+  applyTyping(v) {
+    // off: stop the loop and show the first phrase, still, with no cursor; on: start the loop again from the first phrase
+    clearTimeout(this.typeTimer);
+    this.setState({ typed: this.phrases()[0], caret: false });
+    if (v !== 'off') this.startTyping();
+  }
   listenBtn() {
     try {
       this.btnChannel = new BroadcastChannel('mission-buttons-lane-c3');
       this.btnChannel.onmessage = (e) => {
         if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
         if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
+        if (e.data && e.data.typing) { this.setState({ typing: e.data.typing }); this.applyTyping(e.data.typing); }
       };
     } catch (e) {}
   }
@@ -470,6 +489,10 @@ class Component extends DCLogic {
       setOffice: this.setOffice || (this.setOffice = () => this.setHero('office')),
       isEcommerce: ((this.state && this.state.hero) || 'kitchen') === 'ecommerce' ? 'true' : 'false',
       setEcommerce: this.setEcommerce || (this.setEcommerce = () => this.setHero('ecommerce')),
+      isTypingOn: ((this.state && this.state.typing) || 'on') === 'on' ? 'true' : 'false',
+      isTypingOff: ((this.state && this.state.typing) || 'on') === 'off' ? 'true' : 'false',
+      setTypingOn: this.setTypingOn || (this.setTypingOn = () => this.setTyping('on')),
+      setTypingOff: this.setTypingOff || (this.setTypingOff = () => this.setTyping('off')),
       typed: (this.state && this.state.typed) ?? this.phrases()[0],
       caretCls: 'caret' + (((this.state && this.state.caret) ?? false) ? '' : ' is-off'),
       primary: this.props.primary ?? '#0A7FD0',
@@ -507,6 +530,9 @@ class Component extends DCLogic {
     // highlighter press and confetti on click (skipped for reduced motion)
     this.onHlClick = (e) => { if (!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) this.popHighlight(e); };
     document.addEventListener('click', this.onHlClick, true);
+    this.startTyping();
+  }
+  startTyping() {
     // hero phrase: type it out, hide the cursor and hold, clear, then the next phrase.
     // reduced-motion users get the first phrase, still
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
