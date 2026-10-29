@@ -156,6 +156,7 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Testimonial cards (28 Oct, by request):** the thin divider above each name was removed; the space above the name stays.
 - **Proof stats (28 Oct, by request):** the blue rules above 10+, ~50 and 5.0 were removed.
 - **Testimonials heading (28 Oct, by request):** "Our Clients" replaces "Clients stay for years." (also on C3).
+- **D3 footer call to action (29 Oct, review comment):** the footer headline is now "Your books. / In order." in larger white type, and the call to action sits on its own full-width navy band (#0E3A66) between the cream blog section and the cream footer, so the three read as separate parts. Heights: desktop 9,732 (continued board 1,732), mobile 14,616 (continued board 6,616).
 - **D3 value-prop logo removed (29 Oct, review comment):** the MISSION logo beside "You started a business, not a bookkeeping job…" on D3 desktop is gone (mobile never had it there). Height unchanged.
 - **"50" client reviews, all lanes (29 Oct, review comment):** "About 50" (D3, G3) and "~50" (G3, C3, H2) now read "50" on desktop and mobile, including G3 mobile's screen-reader label. The DNA still says "About 50", so confirm the ProAdvisor count before launch. Heights unchanged.
 - **Shapes switch (29 Oct, review comment):** a "Shapes: On / Off" switch in H2's review bar, kept in step across the H2 boards. Off hides every decorative shape: the floating angled shapes, the small squares and the dot patterns. It also hides the footer graphic beside "Your books. In order." (angled blocks, dots, lime outline, squares and the "Simple structure…" caption): on desktop the space stays empty, on mobile the gap closes (mobile is 162 px shorter with Shapes off). It also hides the blue offset outline frames around photos and the angled wedges on photos (blog, featured case study, mobile hero), so Off is photos, cards and text only. Card edges and the hero divider (its own switch) stay. On is the default. The extra switch wraps the mobile review bar onto a fourth row (+44 px): mobile is now 15,517 (continued board 7,517); desktop is unchanged at 11,174.
@@ -185,7 +186,7 @@ A new lane built from the style board Growth Foundry supplied (`assets/inspirati
 D3 and G3 are exact copies of D2 and G2 with every heading, intro, card, service description and FAQ question rewritten in plain language a 15-year-old would follow, in the same voice as C3 (C3's wording is reused wherever the meaning matches). Layout, imagery, facts and section order are unchanged. Testimonials, names and roles, nav, service names, the Schedule label, blog titles, stats and legal lines stay as they are. Each has its own review-bar channel, so D2/D3 and G2/G3 can be compared in different button colors.
 
 - **Canvas:** in the Lane D and Lane G rows after version 2: desktop with its continuation stacked below, then mobile with its continuation below.
-- **Heights, measured:** D3 desktop 9,602, mobile 14,557 (after the 29 Oct intro-line removal) · G3 desktop 9,704, mobile 13,021.
+- **Heights, measured:** D3 desktop 9,732, mobile 14,616 (after the 29 Oct changes) · G3 desktop 9,704, mobile 13,021.
 - **Review site:** now shows D3, G3 and C3 (in that order) instead of C2, D2 and G2; H2 was added as a fourth lane on 28 Oct.
 
 ## Proof stats: client loyalty, not firm age (27 Oct 2026)
