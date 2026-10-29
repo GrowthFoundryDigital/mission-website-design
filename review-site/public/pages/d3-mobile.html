@@ -42,7 +42,7 @@ input:focus,textarea:focus{outline:none;border-bottom-color:#7CB8F0 !important}
 footer .ld-cut:focus-within{border-color:#1E73BE !important}
 @media (prefers-reduced-motion: reduce){a svg,button svg,a > span,button > span,.ld-row > span{transition:none !important;transform:none !important}}
 /* Review toggle: blue or green (#C1F432) solid buttons */
-.tg-bar{height:40px;box-sizing:border-box;background:#141414;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:12px;font:500 12.5px/1 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0}
+.tg-bar{min-height:40px;flex-wrap:wrap;row-gap:6px;padding:6px 8px;box-sizing:border-box;background:#141414;color:#FFFFFF;display:flex;align-items:center;justify-content:center;gap:12px;font:500 12.5px/1 system-ui,-apple-system,'Segoe UI',sans-serif;letter-spacing:0}
 .tg-bar .tg-label{color:#BDBDBD}
 .tg-bar .tg-group{display:inline-flex;background:#2B2B2B;border-radius:999px;padding:3px;gap:2px}
 .tg-bar .tg-opt{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 12px;border-radius:999px;color:#D0D0D0;font:600 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;transition:background-color .2s ease,color .2s ease}
@@ -69,19 +69,33 @@ figure:hover{transform:translateY(-4px)}
 .ld-cut-sm img,.ld-cut img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 /* Buttons ease over 0.4s (28 Oct, by request); wins over the lime-mode transition */
 .tg-btn,[data-btn] .tg-btn,a.ld-cut,button.ld-cut{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease,filter .4s ease,opacity .4s ease !important}
+/* Hero blue review switch (29 Oct, by request, like H2's): the hero panel behind the angled divider in Navy (default), Electric Blue or Mission Blue */
+[data-hb="electric"] .hero-panel{background:#2459F5 !important}
+[data-hb="mission"] .hero-panel{background:#0087C0 !important}
+[data-hb="electric"] .hero-panel img{border-color:#2459F5 !important}
+[data-hb="mission"] .hero-panel img{border-color:#0087C0 !important}
+[data-hb="electric"] .hero-panel [style*="color: #7CB8F0"],[data-hb="mission"] .hero-panel [style*="color: #7CB8F0"]{color:#E3EEFA !important}
+[data-hb="electric"] .hero-panel svg[stroke="#7CB8F0"],[data-hb="mission"] .hero-panel svg[stroke="#7CB8F0"]{stroke:#E3EEFA}
 </style>
 
 <style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
 </head>
 <body>
 <div id="dc-root"></div>
-<template id="dc-tpl"><div data-btn="{{ btnMode }}" style="width: 390px; font-family: 'DM Sans', 'Helvetica Neue', sans-serif; color: #111111; background: #F6F5F0; -webkit-font-smoothing: antialiased">
+<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hb="{{ heroBlue }}" style="width: 390px; font-family: 'DM Sans', 'Helvetica Neue', sans-serif; color: #111111; background: #F6F5F0; -webkit-font-smoothing: antialiased">
 <div class="tg-bar" aria-label="Review control, not part of the design">
 <span class="tg-label">Review · buttons</span>
 <div class="tg-group" role="group" aria-label="Button color">
 <button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: #1E73BE"></span>Blue</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>Green</button>
 </div>
+<!-- hero blue (29 Oct, by request): the colour of the hero panel behind the angled divider -->
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Blue</span>
+<div class="tg-group" role="group" aria-label="Hero blue">
+<button type="button" class="tg-opt" aria-pressed="{{ isNavy }}" onClick="{{ setNavy }}"><span class="tg-dot" style="background: #0E3A66; box-shadow: 0 0 0 1px rgba(255,255,255,.4)"></span>Navy</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isElectric }}" onClick="{{ setElectric }}"><span class="tg-dot" style="background: #2459F5"></span>Electric</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>
+</div></span>
 </div>
 
 <header style="height: 64px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between; background: #F6F5F0">
@@ -93,7 +107,7 @@ figure:hover{transform:translateY(-4px)}
 </header>
 
 <main id="top">
-<section style="position: relative; background: #0E3A66">
+<section class="hero-panel" style="position: relative; background: #0E3A66">
 <div style="padding: 28px 20px 36px; display: flex; flex-direction: column; gap: 20px">
 <div style="display: flex; align-items: center; gap: 12px">
 <span aria-hidden="true" style="display: inline-flex; align-items: center"><img src="../img/b0f8fafa98dcbe0082a836a30303b5e5.png" alt="" style="position: relative; z-index: 1; width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #0E3A66; box-sizing: content-box"><img src="../img/8dcd87561fad4fb41686cffb42d245b4.png" alt="" style="position: relative; z-index: 2; width: 32px; height: 32px; margin-left: -11px; border-radius: 50%; object-fit: cover; border: 2px solid #0E3A66; box-sizing: content-box"><img src="../img/4a8aee7bf8f13bc1315ec9fa3aa9642d.png" alt="" style="position: relative; z-index: 3; width: 32px; height: 32px; margin-left: -11px; border-radius: 50%; object-fit: cover; border: 2px solid #0E3A66; box-sizing: content-box"></span>
@@ -399,10 +413,18 @@ class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
+  setHeroBlue(v) {
+    // the hero blue switch (navy, electric or mission), shared with the other Lane D3 board
+    this.setState({ hb: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ hb: v }); } catch (e) {}
+  }
   listenBtn() {
     try {
       this.btnChannel = new BroadcastChannel('mission-buttons-lane-d3');
-      this.btnChannel.onmessage = (e) => { if (e.data && e.data.btn) this.setState({ btn: e.data.btn }); };
+      this.btnChannel.onmessage = (e) => {
+        if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
+        if (e.data && e.data.hb) this.setState({ hb: e.data.hb });
+      };
     } catch (e) {}
   }
   renderVals() {
@@ -412,6 +434,13 @@ class Component extends DCLogic {
       isGreen: ((this.state && this.state.btn) || 'green') === 'green' ? 'true' : 'false',
       setBlue: this.setBlue || (this.setBlue = () => this.setBtn('blue')),
       setGreen: this.setGreen || (this.setGreen = () => this.setBtn('green')),
+      heroBlue: (this.state && this.state.hb) || 'navy',
+      isNavy: ((this.state && this.state.hb) || 'navy') === 'navy' ? 'true' : 'false',
+      isElectric: ((this.state && this.state.hb) || 'navy') === 'electric' ? 'true' : 'false',
+      isMission: ((this.state && this.state.hb) || 'navy') === 'mission' ? 'true' : 'false',
+      setNavy: this.setNavy || (this.setNavy = () => this.setHeroBlue('navy')),
+      setElectric: this.setElectric || (this.setElectric = () => this.setHeroBlue('electric')),
+      setMission: this.setMission || (this.setMission = () => this.setHeroBlue('mission')),
     };
   }
   componentDidMount() {
