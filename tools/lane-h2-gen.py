@@ -127,7 +127,7 @@ QUOTES = [  # word for word from the Business DNA
     ('Great customer service from Bernard and his team – very friendly and helpful.', 'Mary Iaffaldano', 'Milford, CT'),
     ('Bernard and Gina have been a great team.', 'Jane Didona', 'Didona Associates, Danbury, CT'),
 ]
-STATS = [('10+', 'years several of our clients have stayed'), ('~50', 'client reviews on our ProAdvisor profile'), ('5.0', 'our average star rating on Google')]
+STATS = [('10+', 'years several of our clients have stayed'), ('50', 'client reviews on our ProAdvisor profile'), ('5.0', 'our average star rating on Google')]
 TEAM = [
     ('Bernard P. Roesch', 'Co-founder and Managing Partner · Harvard Business School MBA, Elite-tier QuickBooks ProAdvisor'),
     ('Carol A. Onorato', 'Director of Operations · Level 2 Advanced QuickBooks ProAdvisor'),
@@ -682,7 +682,7 @@ def page(m):
     A('<div style="background: #FFFFFF; border-radius: 6px; padding: %s; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: %s; align-items: center; justify-items: center; width: 100%%">' % ('18px' if m else '32px', '12px 8px' if m else '22px 18px'))
     for b, alt in BADGES:
         A('<img src="/_blob/%s" alt="%s" style="width: 100%%; max-width: %dpx; height: auto; display: block">' % (b, alt, 70 if m else 116))
-    A('<div style="width: 100%%; aspect-ratio: 1; max-width: %dpx; border-radius: 4px; background: #101419; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6px; gap: 2px"><strong style="font: 600 %dpx/1 \'Space Grotesk\', sans-serif; color: #FFFFFF">~50</strong><span style="font-size: %spx; line-height: 1.3; color: #B9C0CA">client reviews on our ProAdvisor profile</span></div>' % (70 if m else 116, 18 if m else 30, '8' if m else '11'))
+    A('<div style="width: 100%%; aspect-ratio: 1; max-width: %dpx; border-radius: 4px; background: #101419; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6px; gap: 2px"><strong style="font: 600 %dpx/1 \'Space Grotesk\', sans-serif; color: #FFFFFF">50</strong><span style="font-size: %spx; line-height: 1.3; color: #B9C0CA">client reviews on our ProAdvisor profile</span></div>' % (70 if m else 116, 18 if m else 30, '8' if m else '11'))
     A('</div>')
     A('</div>\n</section>\n')
 
