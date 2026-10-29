@@ -81,7 +81,7 @@ HERO_P = 'We fix messy books, keep them right every month, and show you your num
 # the services strip under the hero (28 Oct, by request): QuickBooks Cleanup first, Fractional CFO removed from the strip
 TIERS = [
     ('spark', 'QuickBooks Cleanup', 'Behind on your books? We get you current'),
-    ('doc', 'Bookkeeping &amp; Accounting', 'Almost every client needs this'),
+    ('doc', 'Bookkeeping &amp; Accounting', 'Every client needs this'),
     ('gear', 'QuickBooks Setup &amp; Advisory', 'Set up right, then put to good use'),
 ]
 CASES = [
@@ -92,7 +92,7 @@ CASES = [
 SOFTWARE = ['QuickBooks Online', 'QuickBooks Desktop', 'QuickBooks Enterprise', 'Intuit Enterprise Suite', 'QuickBooks Workforce', 'QuickBooks Payments']
 SPECIAL = [('box', 'Keeping track of stock'), ('hat', 'What each job really costs'), ('cart', 'Selling in more than one place online'), ('layers', 'More than one company')]
 TOP = [
-    ('doc', 'Bookkeeping &amp; Accounting', 'Almost every client ends up here', 'Up to date, every month', 'Books that match your bank and that you can trust, every month, kept by a team that knows QuickBooks inside out.'),
+    ('doc', 'Bookkeeping &amp; Accounting', 'Every client ends up here', 'Up to date, every month', 'Books that match your bank and that you can trust, every month, kept by a team that knows QuickBooks inside out.'),
     ('gear', 'QuickBooks Setup &amp; Advisory', 'Moving off spreadsheets, or outgrowing your setup', 'A system built around how you work', 'QuickBooks set up and connected the right way, then we help you use your numbers to make better choices about prices, cash and growth.'),
     ('people', 'Fractional CFO', 'Only for a few clients', 'Big decisions', 'A part-time finance chief, Bernard, without hiring one full-time. Our managing partner leads this.'),
 ]
@@ -591,7 +591,7 @@ def page(m):
         A(poly('left: -70px; bottom: 60px', 200, 200, 40, stroke=BLUE, sw=1.5, op=.4))
 
     A('<div style="%s; display: flex; flex-direction: column; gap: %dpx">' % (wrap, 28 if m else 48))
-    intro = 'Almost every client needs bookkeeping and accounting. QuickBooks setup and advice build on that. A part-time finance chief (Fractional CFO) sits at the top, for a small number of clients.'
+    intro = 'Every client needs bookkeeping and accounting. QuickBooks setup and advice build on that. A part-time finance chief (Fractional CFO) sits at the top, for a small number of clients.'
     if m:
         A('<div style="display: flex; flex-direction: column; gap: 16px">%s<h2 style="font-size: %dpx; line-height: 1.04">Where most clients start, and what comes next.</h2><p class="mu" style="font-size: 15.5px">%s</p></div>' % (eyebrow('03', 'What we do'), h2, intro))
     else:
