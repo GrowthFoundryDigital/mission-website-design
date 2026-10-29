@@ -174,7 +174,7 @@ body{margin:0;background:#101419}
 <div class="tg-bar" aria-label="Review control, not part of the design">
 <span class="tg-label">Review · button color</span>
 <div class="tg-group" role="group" aria-label="Button color">
-<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: #2459F5"></span>Blue</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: var(--eb)"></span>Blue</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>Green #C1F432</button>
 </div>
 <span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Hero</span><span class="tg-group" role="group" aria-label="Hero background">
@@ -503,7 +503,7 @@ class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
-  setBlue(v) {
+  setBrand(v) {
     // the brand blue switch (Electric or Mission), shared with the other Lane H2 board
     this.setState({ blue: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ blue: v }); } catch (e) {}
@@ -551,8 +551,8 @@ class Component extends DCLogic {
       blueMode: (this.state && this.state.blue) || 'electric',
       isElectric: ((this.state && this.state.blue) || 'electric') === 'electric' ? 'true' : 'false',
       isMission: ((this.state && this.state.blue) || 'electric') === 'mission' ? 'true' : 'false',
-      setElectric: this.setElectric || (this.setElectric = () => this.setBlue('electric')),
-      setMission: this.setMission || (this.setMission = () => this.setBlue('mission')),
+      setElectric: this.setElectric || (this.setElectric = () => this.setBrand('electric')),
+      setMission: this.setMission || (this.setMission = () => this.setBrand('mission')),
     };
   }
   componentDidMount() {

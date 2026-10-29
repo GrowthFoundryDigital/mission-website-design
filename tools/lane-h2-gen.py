@@ -385,7 +385,7 @@ def page(m):
     A('<div class="tg-bar" aria-label="Review control, not part of the design">')
     A('<span class="tg-label">Review · %s</span>' % ('buttons' if m else 'button color'))
     A('<div class="tg-group" role="group" aria-label="Button color">')
-    A('<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: #2459F5"></span>Blue</button>')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: var(--eb)"></span>Blue</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>%s</button>' % ('Green' if m else 'Green #C1F432'))
     A('</div>')
     A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Hero</span><span class="tg-group" role="group" aria-label="Hero background">')
@@ -807,7 +807,7 @@ SCRIPT = """class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
-  setBlue(v) {
+  setBrand(v) {
     // the brand blue switch (Electric or Mission), shared with the other Lane H2 board
     this.setState({ blue: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ blue: v }); } catch (e) {}
@@ -855,8 +855,8 @@ SCRIPT = """class Component extends DCLogic {
       blueMode: (this.state && this.state.blue) || 'electric',
       isElectric: ((this.state && this.state.blue) || 'electric') === 'electric' ? 'true' : 'false',
       isMission: ((this.state && this.state.blue) || 'electric') === 'mission' ? 'true' : 'false',
-      setElectric: this.setElectric || (this.setElectric = () => this.setBlue('electric')),
-      setMission: this.setMission || (this.setMission = () => this.setBlue('mission')),
+      setElectric: this.setElectric || (this.setElectric = () => this.setBrand('electric')),
+      setMission: this.setMission || (this.setMission = () => this.setBrand('mission')),
     };
   }
   componentDidMount() {
