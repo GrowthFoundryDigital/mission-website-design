@@ -57,15 +57,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   font: 600 13px/1 var(--font-ui); color: var(--accent); text-decoration: none; white-space: nowrap;
   display: inline-flex; align-items: center; gap: 6px; padding: 8px 2px;
 }
-.context {
-  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 10px; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px;
-  border-bottom: 1px solid var(--line); background: var(--bg);
-}
-.context strong { font-size: 15px; font-weight: 700; }
-.context .look { color: var(--muted); }
-.context .note { color: var(--ink); min-width: 0; }
-.context .px { font-family: var(--font-data); font-size: 12px; color: var(--muted); margin-left: auto; font-variant-numeric: tabular-nums; }
 .stage { flex: 1; min-height: 0; background: var(--stage); position: relative; overflow: hidden; }
 .frame { position: absolute; top: 0; left: 50%; transform-origin: top center; background: #FFFFFF; }
 .frame iframe { display: block; border: 0; width: 100%; height: 100%; background: #FFFFFF; }
@@ -75,7 +66,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .stage.mobile .frame { top: 20px; border-radius: 28px; overflow: hidden; box-shadow: 0 0 0 10px #10161D, 0 18px 40px rgba(16, 22, 29, .28); }
 @media (max-width: 700px) {
   .brand span { display: none; }
-  .context .px { display: none; }
   .stage.mobile .frame { top: 0; border-radius: 0; box-shadow: none; }
 }
 </style>
@@ -85,17 +75,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <div class="controls">
     <div class="group"><span class="lbl">Lane</span><div class="seg" id="lane" role="group" aria-label="Lane"></div></div>
     <div class="group"><span class="lbl">View</span><div class="seg" id="dev" role="group" aria-label="Device"></div></div>
-    <div class="group" id="div-group" hidden><span class="lbl">Divider</span><div class="seg" id="div" role="group" aria-label="Hero divider"></div></div>
-    <div class="group" id="blue-group" hidden><span class="lbl">Blue</span><div class="seg" id="blue" role="group" aria-label="Brand blue"></div></div>
     <a class="open" id="open" href="pages/d3-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
 </header>
-<div class="context" aria-live="polite">
-  <strong id="ctx-title">Lane D3</strong>
-  <span class="look" id="ctx-look"></span>
-  <span class="note" id="ctx-note"></span>
-  <span class="px" id="ctx-px"></span>
-</div>
 <main class="stage" id="stage">
   <div class="frame" id="frame"><iframe id="view" title="Homepage preview" src="pages/d3-desktop.html"></iframe></div>
   <div id="cmt-layer" hidden></div>
@@ -111,23 +93,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     h: 'Electric Blue and near-black, with angled geometry'
   };
   var VER = { d: '3', g: '3', c: '3', h: '2' };
-  var NOTE = 'Plain-language copy on the October 2026 Business DNA, leading with client case studies.';
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
-  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop', div: 'on', blue: 'electric' };
-  // Lane H2's hero divider and brand blue switches: the console and the page's own review bar talk over the page's broadcast channel
-  var h2 = null;
-  try { h2 = new BroadcastChannel('mission-buttons-lane-h2'); } catch (e) {}
-  function sendDiv() { try { if (h2) h2.postMessage({ div: state.div }); } catch (e) {} }
-  function sendBlue() { try { if (h2) h2.postMessage({ blue: state.blue }); } catch (e) {} }
-  if (h2) h2.onmessage = function (e) {
-    var d = e.data || {}, changed = false;
-    if (d.div && d.div !== state.div) { state.div = d.div; changed = true; }
-    if (d.blue && d.blue !== state.blue) { state.blue = d.blue; changed = true; }
-    if (changed) render();
-  };
+  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
 
   var m = (location.hash || '').match(/^#([cdgh])([23])-(desktop|mobile)$/);
-  if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3], div: 'on', blue: 'electric' };
+  if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3] };
 
   function seg(el, items, key) {
     el.innerHTML = '';
@@ -140,10 +110,6 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   }
   seg(document.getElementById('lane'), Object.keys(LANES).map(function (k) { return { v: k, label: k.toUpperCase() + VER[k] }; }), 'lane');
   seg(document.getElementById('dev'), [{ v: 'desktop', label: 'Desktop' }, { v: 'mobile', label: 'Mobile' }], 'dev');
-  seg(document.getElementById('div'), [{ v: 'on', label: 'On' }, { v: 'off', label: 'Off' }], 'div');
-  document.querySelectorAll('#div button').forEach(function (b) { b.addEventListener('click', sendDiv); });
-  seg(document.getElementById('blue'), [{ v: 'electric', label: 'Electric' }, { v: 'mission', label: 'Mission' }], 'blue');
-  document.querySelectorAll('#blue button').forEach(function (b) { b.addEventListener('click', sendBlue); });
 
   var stage = document.getElementById('stage');
   var frame = document.getElementById('frame');
@@ -167,9 +133,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     state.ver = VER[state.lane];
     var id = state.lane + state.ver + '-' + state.dev;
     var src = 'pages/' + id + '.html';
-    document.getElementById('div-group').hidden = state.lane !== 'h';
-    document.getElementById('blue-group').hidden = state.lane !== 'h';
-    ['lane', 'dev', 'div', 'blue'].forEach(function (k) {
+    ['lane', 'dev'].forEach(function (k) {
       document.querySelectorAll('#' + k + ' button').forEach(function (b) {
         b.setAttribute('aria-pressed', b.dataset.v === state[k] ? 'true' : 'false');
       });
@@ -177,20 +141,10 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     stage.classList.toggle('mobile', state.dev === 'mobile');
     if (view.getAttribute('src') !== src) view.setAttribute('src', src);
     document.getElementById('open').setAttribute('href', src);
-    document.getElementById('ctx-title').textContent = 'Lane ' + state.lane.toUpperCase() + state.ver + ' · ' + DEVICES[state.dev].label;
-    document.getElementById('ctx-look').textContent = LANES[state.lane];
-    document.getElementById('ctx-note').textContent = NOTE;
-    document.getElementById('ctx-px').textContent = DEVICES[state.dev].w + ' px';
     try { history.replaceState(null, '', '#' + id); } catch (e) {}
     fit();
   }
 
-  // a newly loaded H2 page starts with the divider on and Electric Blue; tell it the console's choices once it is listening
-  view.addEventListener('load', function () {
-    if (state.lane !== 'h') return;
-    if (state.div !== 'on') { setTimeout(sendDiv, 150); setTimeout(sendDiv, 600); }
-    if (state.blue !== 'electric') { setTimeout(sendBlue, 150); setTimeout(sendBlue, 600); }
-  });
   window.addEventListener('resize', fit);
   render();
   // for the comment layer below: which design is showing, and a way to switch to another
