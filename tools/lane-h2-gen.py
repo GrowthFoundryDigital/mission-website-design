@@ -381,7 +381,7 @@ def page(m):
     h2 = 34 if m else 54
     o = []
     A = o.append
-    A('<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" class="lh" style="width: %dpx; background: #101419">' % W)
+    A('<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" data-blue="{{ blueMode }}" class="lh" style="width: %dpx; background: #101419">' % W)
     A('<div class="tg-bar" aria-label="Review control, not part of the design">')
     A('<span class="tg-label">Review · %s</span>' % ('buttons' if m else 'button color'))
     A('<div class="tg-group" role="group" aria-label="Button color">')
@@ -397,6 +397,11 @@ def page(m):
     A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Divider</span><span class="tg-group" role="group" aria-label="Hero divider">')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isDivOn }}" onClick="{{ setDivOn }}">On</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isDivOff }}" onClick="{{ setDivOff }}">Off</button>')
+    A('</span></span>')
+    # Electric Blue or Mission Blue (29 Oct): every blue on the page, with its tints, switches together
+    A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Blue</span><span class="tg-group" role="group" aria-label="Brand blue">')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isElectric }}" onClick="{{ setElectric }}"><span class="tg-dot" style="background: #2459F5"></span>Electric</button>')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>')
     A('</span></span>\n</div>\n')
 
     # ---------- 01 Hero ----------
@@ -802,6 +807,11 @@ SCRIPT = """class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
+  setBlue(v) {
+    // the brand blue switch (Electric or Mission), shared with the other Lane H2 board
+    this.setState({ blue: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ blue: v }); } catch (e) {}
+  }
   setDiv(v) {
     // the hero divider switch (on or off), shared with the other Lane H2 board
     this.setState({ div: v });
@@ -819,6 +829,7 @@ SCRIPT = """class Component extends DCLogic {
         if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
         if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
         if (e.data && e.data.div) this.setState({ div: e.data.div });
+        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });
       };
     } catch (e) {}
   }
@@ -841,6 +852,11 @@ SCRIPT = """class Component extends DCLogic {
       isDivOff: ((this.state && this.state.div) || 'on') === 'off' ? 'true' : 'false',
       setDivOn: this.setDivOn || (this.setDivOn = () => this.setDiv('on')),
       setDivOff: this.setDivOff || (this.setDivOff = () => this.setDiv('off')),
+      blueMode: (this.state && this.state.blue) || 'electric',
+      isElectric: ((this.state && this.state.blue) || 'electric') === 'electric' ? 'true' : 'false',
+      isMission: ((this.state && this.state.blue) || 'electric') === 'mission' ? 'true' : 'false',
+      setElectric: this.setElectric || (this.setElectric = () => this.setBlue('electric')),
+      setMission: this.setMission || (this.setMission = () => this.setBlue('mission')),
     };
   }
   componentDidMount() {
@@ -875,10 +891,30 @@ def post_media(k, h, src, pos, m):
             '<span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: %dpx; height: %dpx; background: #2459F5; z-index: 1"></span></div></div>' % (ww, wh))
 
 
+# Brand blue switch (29 Oct): Electric Blue and its tints, or Mission Blue #0087C0 (the logo blue, DNA › Visual Identity) and
+# matching tints. The review bar's own swatch dots keep their fixed colours.
+BLUES = [('#2459F5', 'eb', '#0087C0'), ('#8FAEFF', 'eb-lt', '#7CC8EB'), ('#DCE5FF', 'eb-pale', '#D2EDF8'), ('#EEF2FF', 'eb-mist', '#EAF6FB'),
+         ('#EEF2FE', 'eb-tint', '#E7F4FA'), ('#E8EEFF', 'eb-tint2', '#E0F1F9'), ('#1A3FB8', 'eb-dk', '#00648F')]
+BLUE_CSS = ('/* brand blue tokens */\n.lh{' + ';'.join('--%s:%s' % (v, e) for e, v, _ in BLUES) + '}\n'
+            '.lh[data-blue="mission"]{' + ';'.join('--%s:%s' % (v, mi) for _, v, mi in BLUES) + '}\n')
+
+
+def blues(h):
+    keep = {}
+    for k, sw in enumerate(re.findall(r'<span class="tg-dot" style="background: #[0-9A-Fa-f]{6}"></span>', h)):
+        keep['@@SW%d@@' % k] = sw
+        h = h.replace(sw, '@@SW%d@@' % k, 1)
+    for e, v, _ in BLUES:
+        h = re.sub(re.escape(e), 'var(--%s)' % v, h, flags=re.I)
+    for k, sw in keep.items():
+        h = h.replace(k, sw)
+    return h
+
+
 def doc(m):
     w = 390 if m else 1440
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>Lane H2 homepage, %s</title>\n<script src="./support.js"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n%s\n<style>%s</style>\n</helmet>\n%s\n</x-dc>\n'
-            '<script type="text/x-dc" data-dc-script data-props=\'{"$preview":{"width":%d,"height":8000}}\'>\n%s\n</script>\n</body>\n</html>\n') % ('mobile' if m else 'desktop', FONTS, CSS, hov(page(m)), w, SCRIPT)
+            '<script type="text/x-dc" data-dc-script data-props=\'{"$preview":{"width":%d,"height":8000}}\'>\n%s\n</script>\n</body>\n</html>\n') % ('mobile' if m else 'desktop', FONTS, blues(CSS) + BLUE_CSS, blues(hov(page(m))), w, SCRIPT)
 
 
 open(OUT + '/lane-h2-home.dc.html', 'w').write(doc(False))

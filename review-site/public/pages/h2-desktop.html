@@ -15,13 +15,13 @@ body{margin:0;background:#101419}
 .lh p{margin:0}
 .lh .dk{background:#101419;color:#B9C0CA}
 .lh .dk h1,.lh .dk h2,.lh .dk h3{color:#FFFFFF}
-.lh .bl{background:#2459F5;color:#DCE5FF}
+.lh .bl{background:var(--eb);color:var(--eb-pale)}
 .lh .bl h1,.lh .bl h2,.lh .bl h3{color:#FFFFFF}
 .lh .ch{background:#F5F6F7}
 .lh .wh{background:#FFFFFF}
-.lh .eb{margin:0;display:flex;align-items:center;gap:14px;font:600 12px/1.3 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#2459F5}
+.lh .eb{margin:0;display:flex;align-items:center;gap:14px;font:600 12px/1.3 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--eb)}
 .lh .eb b{font-weight:600;color:#101419}
-.lh .dk .eb{color:#8FAEFF}
+.lh .dk .eb{color:var(--eb-lt)}
 .lh .dk .eb b{color:#FFFFFF}
 .lh .bl .eb,.lh .bl .eb b{color:#FFFFFF}
 .lh .bl .btn-o{color:#FFFFFF;border-color:rgba(255,255,255,.55)}
@@ -44,9 +44,9 @@ body{margin:0;background:#101419}
 [data-hero="kitchen"] .hero-bg-kitchen,[data-hero="office"] .hero-bg-office,[data-hero="ecommerce"] .hero-bg-ecommerce{display:block}
 .lh .mu{color:#5E6670}
 .lh .dk .mu{color:#9AA3AE}
-.lh .bl .mu{color:#DCE5FF}
+.lh .bl .mu{color:var(--eb-pale)}
 .lh .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:4px;border:1px solid transparent;font:600 15px/1 'Space Grotesk',sans-serif;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
-.lh .btn-p{background:#2459F5;color:#FFFFFF}
+.lh .btn-p{background:var(--eb);color:#FFFFFF}
 .lh .btn-p:hover,.lh .btn-p:focus-visible{background:#1B47CC}
 .lh .btn-o{background:transparent;color:#101419;border-color:#C9CED6}
 .lh .btn-o:hover,.lh .btn-o:focus-visible{border-color:#101419}
@@ -55,8 +55,8 @@ body{margin:0;background:#101419}
 .lh .btn-ghost{background:transparent;color:#FFFFFF;border-color:rgba(255,255,255,.6)}
 .lh .btn-ghost:hover,.lh .btn-ghost:focus-visible{background:rgba(255,255,255,.12);border-color:#FFFFFF}
 .lh .btn-w{background:#FFFFFF;color:#101419}
-.lh .btn-w:hover,.lh .btn-w:focus-visible{background:#E8EEFF}
-.lh .lk{display:inline-flex;align-items:center;gap:8px;font:600 14.5px/1.3 'Space Grotesk',sans-serif;color:#2459F5;text-decoration:none}
+.lh .btn-w:hover,.lh .btn-w:focus-visible{background:var(--eb-tint2)}
+.lh .lk{display:inline-flex;align-items:center;gap:8px;font:600 14.5px/1.3 'Space Grotesk',sans-serif;color:var(--eb);text-decoration:none}
 .lh .dk .lk{color:#FFFFFF}
 .lh .lk .ar,.lh .btn .ar{transition:transform .25s ease}
 .lh .lk:hover .ar,.lh .btn:hover .ar,.lh a:hover .lk .ar{transform:translateX(3px)}
@@ -67,38 +67,38 @@ body{margin:0;background:#101419}
 .lh .dots{background-image:radial-gradient(#8FA3C8 1.3px,transparent 1.4px);background-size:16px 16px}
 .lh .dk .dots,.lh .dots.on-dk{background-image:radial-gradient(rgba(255,255,255,.28) 1.3px,transparent 1.4px)}
 .lh .wedge{clip-path:polygon(0 0,100% 0,62% 100%,0 100%)}
-.lh .ic{display:inline-flex;align-items:center;justify-content:center;flex:none;color:#2459F5}
-.lh .dk .ic{color:#8FAEFF}
+.lh .ic{display:inline-flex;align-items:center;justify-content:center;flex:none;color:var(--eb)}
+.lh .dk .ic{color:var(--eb-lt)}
 .lh .card{background:#FFFFFF;border:1px solid #E2E5EA;border-radius:6px;transition:border-color .25s ease,transform .25s ease}
 .lh a.card{text-decoration:none;color:inherit;display:flex}
-.lh a.card:hover,.lh a.card:focus-visible{border-color:#2459F5;transform:translateY(-3px)}
-.lh .tag{font:600 11.5px/1.3 'Space Grotesk',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#2459F5}
-.lh .dk .tag{color:#8FAEFF}
+.lh a.card:hover,.lh a.card:focus-visible{border-color:var(--eb);transform:translateY(-3px)}
+.lh .tag{font:600 11.5px/1.3 'Space Grotesk',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--eb)}
+.lh .dk .tag{color:var(--eb-lt)}
 .lh .faq{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-top:1px solid #DDE1E6;cursor:pointer;font:600 17px/1.35 'Space Grotesk',sans-serif;color:#101419}
-.lh .faq svg{color:#2459F5;flex:none;transition:transform .25s ease}
+.lh .faq svg{color:var(--eb);flex:none;transition:transform .25s ease}
 .lh .faq[aria-expanded="true"] svg{transform:rotate(45deg)}
 .lh .foot a{color:#AEB5BF;text-decoration:none;font-size:13.5px;transition:color .3s ease}
 /* footer text links turn lime on hover (28 Oct, by request); the footer's buttons keep their own hovers */
 .lh .foot a:not(.btn):hover,.lh .foot a:not(.btn):focus-visible{color:#C1F432 !important}
-.lh .foot .fh{margin:0 0 6px;font:600 11.5px/1.3 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8FAEFF}
+.lh .foot .fh{margin:0 0 6px;font:600 11.5px/1.3 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--eb-lt)}
 .lh .foot input{flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:4px;background:rgba(255,255,255,.05);font:400 14px/1 'Open Sans',sans-serif;color:#FFFFFF}
 .lh .foot input::placeholder{color:#7D8692}
-.lh .foot input:focus{outline:none;border-color:#8FAEFF}
+.lh .foot input:focus{outline:none;border-color:var(--eb-lt)}
 .lh .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .lh .script{font-family:'Caveat',cursive;font-weight:600;color:#FFFFFF;line-height:.95}
 /* Geometry: decorative shapes sit behind content (z 0); section content sits above (z 1) */
 .lh section,.lh footer{position:relative;overflow:hidden}
 .lh section > *:not(.deco),.lh footer > *:not(.deco){position:relative;z-index:1}
 .lh .deco{position:absolute;pointer-events:none;z-index:0}
-.lh .dots.blue{background-image:radial-gradient(#2459F5 1.4px,transparent 1.5px);opacity:.35}
+.lh .dots.blue{background-image:radial-gradient(var(--eb) 1.4px,transparent 1.5px);opacity:.35}
 @media (prefers-reduced-motion: reduce){.lh *{transition:none !important}}
-/* Review toggle: blue (#2459F5) or green (#C1F432) solid buttons */
+/* Review toggle: blue (var(--eb)) or green (#C1F432) solid buttons */
 .tg-bar{min-height:40px;box-sizing:border-box;background:#141414;color:#FFFFFF;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;padding:6px 8px;font:500 12.5px/1 system-ui,-apple-system,'Segoe UI',sans-serif}
 .tg-bar .tg-label{color:#BDBDBD}
 .tg-bar .tg-group{display:inline-flex;background:#2B2B2B;border-radius:999px;padding:3px;gap:2px}
 .tg-bar .tg-opt{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 12px;border-radius:999px;color:#D0D0D0;font:600 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;transition:background-color .2s ease,color .2s ease}
 .tg-bar .tg-opt:hover{color:#FFFFFF}
-.tg-bar .tg-opt:focus-visible{outline:2px solid #8FAEFF;outline-offset:2px}
+.tg-bar .tg-opt:focus-visible{outline:2px solid var(--eb-lt);outline-offset:2px}
 .tg-bar .tg-opt[aria-pressed="true"]{background:#FFFFFF;color:#141414}
 .tg-bar .tg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
 [data-btn="green"] .tg-btn{background:#C1F432 !important;color:#101419 !important;border-color:#C1F432 !important}
@@ -108,28 +108,28 @@ body{margin:0;background:#101419}
 .lh .btn:hover,.lh .btn:focus-visible,[data-btn="green"] .lh .btn:hover,[data-btn="green"].lh .btn:hover,[data-btn="green"].lh .btn:focus-visible{background:#C1F432 !important;color:#101419 !important;border-color:#C1F432 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(193,244,50,.28)}
 .lh .btn:hover *,.lh .btn:focus-visible *{color:#101419 !important}
 .lh .card{transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease}
-.lh .card:hover,.lh a.card:focus-visible{border-color:#2459F5 !important;transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,20,25,.10)}
+.lh .card:hover,.lh a.card:focus-visible{border-color:var(--eb) !important;transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,20,25,.10)}
 .lh .feat{transition:transform .3s ease,box-shadow .3s ease}
 .lh .feat img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .lh .feat:hover,.lh .feat:focus-visible{transform:translateY(-4px);box-shadow:0 24px 50px rgba(16,20,25,.22)}
 .lh .feat:hover img,.lh .feat:focus-visible img{transform:scale(1.04)}
 .lh .qcard{transition:transform .3s ease,box-shadow .3s ease,background-color .3s ease}
 .lh .qcard:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.35)}
-.lh .qcard:not([style*="#2459F5"]):hover{background:#222833 !important}
+.lh .qcard:not([style*="var(--eb)"]):hover{background:#222833 !important}
 .lh .post .ph img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
 .lh .post h3{transition:color .25s ease}
 .lh .post:hover .ph img{transform:scale(1.05)}
-.lh .post:hover h3{color:#2459F5}
+.lh .post:hover h3{color:var(--eb)}
 /* Hover pack (28 Oct): FAQ, trigger rows, support items, dark list rows */
 .lh .faq{transition:color .2s ease}
-.lh .faq:hover,.lh .faq:focus-visible{color:#2459F5}
+.lh .faq:hover,.lh .faq:focus-visible{color:var(--eb)}
 .lh .faq:hover svg{transform:rotate(90deg)}
 .lh .faq[aria-expanded="true"]:hover svg{transform:rotate(45deg)}
 .lh .hv-row{transition:transform .25s ease}
 .lh .hv-row .ic{transition:transform .25s ease}
 .lh .hv-row:hover{transform:translateX(8px)}
 .lh .hv-row:hover .ic{transform:scale(1.15)}
-.lh .hv-row:hover h3{color:#2459F5}
+.lh .hv-row:hover h3{color:var(--eb)}
 /* Industries rows (28 Oct, by request): a lime wipe from left to right, reaching 24px past the text on both sides, square corners;
    only the fill moves, nothing inside the row */
 .lh .hv-ind{position:relative;isolation:isolate}
@@ -140,8 +140,8 @@ body{margin:0;background:#101419}
 .lh .hv-sup{transition:border-color .25s ease,transform .25s ease}
 /* support items: icons sit at the left edge, in line with the titles (28 Oct, by request) */
 .lh .hv-sup > .ic{align-self:flex-start}
-.lh .hv-sup:hover{border-top-color:#2459F5 !important;transform:translateY(-3px)}
-.lh .hv-sup:hover h3{color:#2459F5}
+.lh .hv-sup:hover{border-top-color:var(--eb) !important;transform:translateY(-3px)}
+.lh .hv-sup:hover h3{color:var(--eb)}
 .lh .hv-li{transition:border-color .25s ease,color .25s ease}
 .lh .hv-li .ic{transition:transform .25s ease}
 .lh .hv-li:hover{border-top-color:#C1F432 !important}
@@ -161,13 +161,16 @@ body{margin:0;background:#101419}
 .lh a.lk:hover .ar,.lh a.lk:focus-visible .ar,.lh a:hover .lk .ar,.lh a:focus-visible .lk .ar{color:#101419}
 @media (prefers-reduced-motion: reduce){.lh .lk::before,.lh .lk-ink{transition:none}}
 [data-btn="green"] .tg-btn *{color:#101419 !important}
+/* brand blue tokens */
+.lh{--eb:#2459F5;--eb-lt:#8FAEFF;--eb-pale:#DCE5FF;--eb-mist:#EEF2FF;--eb-tint:#EEF2FE;--eb-tint2:#E8EEFF;--eb-dk:#1A3FB8}
+.lh[data-blue="mission"]{--eb:#0087C0;--eb-lt:#7CC8EB;--eb-pale:#D2EDF8;--eb-mist:#EAF6FB;--eb-tint:#E7F4FA;--eb-tint2:#E0F1F9;--eb-dk:#00648F}
 </style>
 
 <style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
 </head>
 <body>
 <div id="dc-root"></div>
-<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" class="lh" style="width: 1440px; background: #101419">
+<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" data-blue="{{ blueMode }}" class="lh" style="width: 1440px; background: #101419">
 <div class="tg-bar" aria-label="Review control, not part of the design">
 <span class="tg-label">Review · button color</span>
 <div class="tg-group" role="group" aria-label="Button color">
@@ -182,6 +185,10 @@ body{margin:0;background:#101419}
 <span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Divider</span><span class="tg-group" role="group" aria-label="Hero divider">
 <button type="button" class="tg-opt" aria-pressed="{{ isDivOn }}" onClick="{{ setDivOn }}">On</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isDivOff }}" onClick="{{ setDivOff }}">Off</button>
+</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Blue</span><span class="tg-group" role="group" aria-label="Brand blue">
+<button type="button" class="tg-opt" aria-pressed="{{ isElectric }}" onClick="{{ setElectric }}"><span class="tg-dot" style="background: #2459F5"></span>Electric</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>
 </span></span>
 </div>
 
@@ -200,7 +207,7 @@ body{margin:0;background:#101419}
 <svg class="deco" aria-hidden="true" width="112" height="112" viewBox="0 0 112 112" style="left: -34px; top: 628px; opacity: 0.7; transform: rotate(-8deg); filter: blur(6px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="#101419"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="54" height="54" viewBox="0 0 54 54" style="left: 98px; top: 546px; opacity: 1; transform: rotate(12deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="44" height="44" viewBox="0 0 44 44" style="left: 36px; top: 468px; opacity: 0.85; transform: rotate(-18deg); filter: blur(2.5px)"><polygon points="0,0 27.28,0 44,44 0,44" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="150" height="150" viewBox="0 0 150 150" style="left: 318px; top: 714px; opacity: 0.6; transform: rotate(10deg); filter: blur(14px)"><polygon points="0,0 150,0 150,150 57,150" fill="#1A3FB8"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="150" height="150" viewBox="0 0 150 150" style="left: 318px; top: 714px; opacity: 0.6; transform: rotate(10deg); filter: blur(14px)"><polygon points="0,0 150,0 150,150 57,150" fill="var(--eb-dk)"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="30" height="30" viewBox="0 0 30 30" style="left: 522px; top: 724px; opacity: 1; transform: rotate(22deg)"><polygon points="0,0 30,0 18,30 0,30" fill="#101419"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" style="left: 640px; top: 166px; opacity: 0.9; transform: rotate(30deg); filter: blur(1.5px)"><polygon points="4.84,0 22,0 22,22 0,22" fill="#101419"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" style="left: 112px; bottom: 166px; opacity: 1"><polygon points="1,1 24.56,1 39,39 1,39" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>
@@ -218,9 +225,9 @@ body{margin:0;background:#101419}
 <div style="max-width: 640px; display: flex; flex-direction: column; gap: 26px">
 <p class="eb" style="letter-spacing: .18em">Practical. Reassuring. Experienced.</p>
 <h1 style="font-size: 84px; line-height: .96; letter-spacing: -.04em">Complex books.<br>Clear answers.</h1>
-<p style="font-size: 18px; line-height: 1.6; color: #EEF2FF; max-width: 520px">We fix messy books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.</p>
+<p style="font-size: 18px; line-height: 1.6; color: var(--eb-mist); max-width: 520px">We fix messy books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.</p>
 <div style="display: flex; align-items: center; gap: 14px; padding-top: 6px"><a class="btn btn-p tg-btn" href="#schedule"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a><a class="btn btn-o" href="#case-studies">Read client stories<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
-<div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: #EEF2FF"><span aria-hidden="true" style="display: inline-flex; align-items: center"><img src="../img/b0f8fafa98dcbe0082a836a30303b5e5.png" alt="" style="position: relative; z-index: 3; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #2459F5; margin-left: 0px"><img src="../img/8dcd87561fad4fb41686cffb42d245b4.png" alt="" style="position: relative; z-index: 2; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #2459F5; margin-left: -10px"><img src="../img/4a8aee7bf8f13bc1315ec9fa3aa9642d.png" alt="" style="position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid #2459F5; margin-left: -10px"></span><span><strong style="color: #FFFFFF">5.0 average</strong> on Google reviews</span></div>
+<div style="display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--eb-mist)"><span aria-hidden="true" style="display: inline-flex; align-items: center"><img src="../img/b0f8fafa98dcbe0082a836a30303b5e5.png" alt="" style="position: relative; z-index: 3; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--eb); margin-left: 0px"><img src="../img/8dcd87561fad4fb41686cffb42d245b4.png" alt="" style="position: relative; z-index: 2; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--eb); margin-left: -10px"><img src="../img/4a8aee7bf8f13bc1315ec9fa3aa9642d.png" alt="" style="position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--eb); margin-left: -10px"></span><span><strong style="color: #FFFFFF">5.0 average</strong> on Google reviews</span></div>
 </div>
 </div>
 <div class="dk" style="position: relative; z-index: 2">
@@ -234,16 +241,16 @@ body{margin:0;background:#101419}
 
 <!-- 02 Case studies lead the page: featured construction story, three story cards, a closing call -->
 <section id="case-studies" aria-label="Case studies" class="ch" style="position: relative; padding: 100px 0">
-<span class="deco" aria-hidden="true" style="right: 96px; top: 96px; width: 14px; height: 14px; box-sizing: border-box; background: #2459F5"></span><span class="deco" aria-hidden="true" style="right: 132px; top: 122px; width: 9px; height: 9px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="right: 70px; top: 140px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid #2459F5"></span><span class="deco" aria-hidden="true" style="right: 118px; top: 162px; width: 7px; height: 7px; box-sizing: border-box; background: #2459F5"></span>
+<span class="deco" aria-hidden="true" style="right: 96px; top: 96px; width: 14px; height: 14px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="right: 132px; top: 122px; width: 9px; height: 9px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="right: 70px; top: 140px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid var(--eb)"></span><span class="deco" aria-hidden="true" style="right: 118px; top: 162px; width: 7px; height: 7px; box-sizing: border-box; background: var(--eb)"></span>
 <div class="deco dots blue" aria-hidden="true" style="left: 96px; top: 430px; width: 150px; height: 300px"></div>
-<svg class="deco" aria-hidden="true" width="210" height="210" viewBox="0 0 210 210" style="right: -60px; bottom: 150px; opacity: 0.45"><polygon points="0.75,0.75 209.25,0.75 125.85,209.25 0.75,209.25" fill="none" stroke="#2459F5" stroke-width="1.5"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="210" height="210" viewBox="0 0 210 210" style="right: -60px; bottom: 150px; opacity: 0.45"><polygon points="0.75,0.75 209.25,0.75 125.85,209.25 0.75,209.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="44" height="44" viewBox="0 0 44 44" style="right: 92px; bottom: 300px; opacity: 1"><polygon points="9.68,0 44,0 44,44 0,44" fill="#101419"></polygon></svg>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 48px">
 <div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px"><p class="eb"><span>Case studies</span></p><h2 style="font-size: 54px; line-height: 1.02">Real problems, real solutions.</h2></div><p class="mu" style="font-size: 16.5px; max-width: 440px">Real stories from our blog. Each one shows the problem a business had and how we set up QuickBooks to fix it.</p></div>
-<div style="position: relative"><div class="deco" aria-hidden="true" style="inset: 18px -18px -18px 18px; border: 1.5px solid #2459F5; border-radius: 6px; opacity: 0.6"></div>
+<div style="position: relative"><div class="deco" aria-hidden="true" style="inset: 18px -18px -18px 18px; border: 1.5px solid var(--eb); border-radius: 6px; opacity: 0.6"></div>
 <a class="feat" href="https://missionaccountinghelp.com/customers/quickbooks-enterprise-support" target="_blank" rel="noopener" style="position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419; min-height: 460px">
-<div class="ph" style="position: relative"><img src="../img/3554cab00abc02f5b19956702ff92a9f.webp" alt="A construction crew reviewing plans on a job site" style="position: absolute; inset: 0; object-position: center 40%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 220px; height: 84px; background: #2459F5; z-index: 1"></span></div>
-<div style="position: relative; padding: 48px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px"><div aria-hidden="true" class="dots on-dk" style="position: absolute; top: 28px; right: 28px; width: 120px; height: 72px"></div><span class="tag" style="color: #8FAEFF">Construction · Featured story</span><div style="display: flex; flex-direction: column; gap: 16px"><h3 style="font-size: 34px; line-height: 1.1; color: #FFFFFF">A construction company had useful QuickBooks tools it wasn't using</h3><p style="font-size: 16px; color: #B9C0CA">We found the tools already built into their QuickBooks Enterprise that nobody was using, and set them up for the way they work.</p></div><span class="lk" style="color: #FFFFFF"><span class="lk-ink">Read the story</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div>
+<div class="ph" style="position: relative"><img src="../img/3554cab00abc02f5b19956702ff92a9f.webp" alt="A construction crew reviewing plans on a job site" style="position: absolute; inset: 0; object-position: center 40%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 220px; height: 84px; background: var(--eb); z-index: 1"></span></div>
+<div style="position: relative; padding: 48px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px"><div aria-hidden="true" class="dots on-dk" style="position: absolute; top: 28px; right: 28px; width: 120px; height: 72px"></div><span class="tag" style="color: var(--eb-lt)">Construction · Featured story</span><div style="display: flex; flex-direction: column; gap: 16px"><h3 style="font-size: 34px; line-height: 1.1; color: #FFFFFF">A construction company had useful QuickBooks tools it wasn't using</h3><p style="font-size: 16px; color: #B9C0CA">We found the tools already built into their QuickBooks Enterprise that nobody was using, and set them up for the way they work.</p></div><span class="lk" style="color: #FFFFFF"><span class="lk-ink">Read the story</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div>
 </a>
 </div>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
@@ -251,13 +258,13 @@ body{margin:0;background:#101419}
 <a class="card" href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" style="flex-direction: column; justify-content: space-between; gap: 18px; padding: 28px; min-height: 250px"><span style="display: flex; flex-direction: column; gap: 12px"><span class="tag">Jewelry</span><h3 style="font-size: 22px; line-height: 1.2">A jewelry business keeping track of custom orders</h3><span class="mu" style="font-size: 14.5px">How a jewelry business tracks custom orders, and where each piece is kept, in QuickBooks Enterprise.</span></span><span class="lk"><span class="lk-ink">Read the story</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
 <a class="card" href="https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software" target="_blank" rel="noopener" style="flex-direction: column; justify-content: space-between; gap: 18px; padding: 28px; min-height: 250px"><span style="display: flex; flex-direction: column; gap: 12px"><span class="tag">Bills and expenses</span><h3 style="font-size: 22px; line-height: 1.2">Bills to approve and spending to track</h3><span class="mu" style="font-size: 14.5px">How Wren's Nest Interiors made bill approvals and expense tracking automatic.</span></span><span class="lk"><span class="lk-ink">Read the story</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
 </div>
-<div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 30px 36px; border-radius: 6px; background: #2459F5"><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 26px; color: #FFFFFF">Do your books look like this?</h3><p style="font-size: 15.5px; color: #DCE5FF">Come as you are, mess and all. We'll tell you what we'd fix first.</p></div><a class="btn btn-p tg-btn" href="#schedule" style="background: #FFFFFF; color: #101419"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 30px 36px; border-radius: 6px; background: var(--eb)"><div style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 26px; color: #FFFFFF">Do your books look like this?</h3><p style="font-size: 15.5px; color: var(--eb-pale)">Come as you are, mess and all. We'll tell you what we'd fix first.</p></div><a class="btn btn-p tg-btn" href="#schedule" style="background: #FFFFFF; color: #101419"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a></div>
 </div>
 </section>
 
 <!-- 04 Positioning, after the style board: a specialist team, with the photography grid -->
 <section id="about" aria-label="Who we are" class="dk" style="position: relative; overflow: hidden; padding: 100px 0">
-<svg class="deco" aria-hidden="true" width="96" height="96" viewBox="0 0 96 96" style="right: 60px; top: 64px; opacity: 1"><polygon points="0,0 59.52,0 96,96 0,96" fill="#2459F5"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="96" height="96" viewBox="0 0 96 96" style="right: 60px; top: 64px; opacity: 1"><polygon points="0,0 59.52,0 96,96 0,96" fill="var(--eb)"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" style="right: 34px; top: 120px; opacity: 1"><polygon points="1,1 63,1 63,63 24.56,63" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>
 <span class="deco" aria-hidden="true" style="right: 172px; top: 84px; width: 10px; height: 10px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="right: 150px; top: 60px; width: 7px; height: 7px; box-sizing: border-box; background: #FFFFFF"></span>
 <svg class="deco" aria-hidden="true" width="240" height="240" viewBox="0 0 240 240" style="left: -80px; bottom: -60px; opacity: 0.18"><polygon points="0.75,0.75 239.25,0.75 143.85,239.25 0.75,239.25" fill="none" stroke="#FFFFFF" stroke-width="1.5"></polygon></svg>
@@ -282,15 +289,15 @@ body{margin:0;background:#101419}
 
 <!-- 05 Services, in tier order: Bookkeeping, then QuickBooks Setup & Advisory, then Fractional CFO (limited) -->
 <section id="services" aria-label="Services" class="wh" style="padding: 100px 0">
-<span class="deco" aria-hidden="true" style="left: 84px; top: 112px; width: 14px; height: 14px; box-sizing: border-box; background: #2459F5"></span><span class="deco" aria-hidden="true" style="left: 120px; top: 140px; width: 9px; height: 9px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="left: 70px; top: 150px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid #2459F5"></span>
+<span class="deco" aria-hidden="true" style="left: 84px; top: 112px; width: 14px; height: 14px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="left: 120px; top: 140px; width: 9px; height: 9px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="left: 70px; top: 150px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid var(--eb)"></span>
 <div class="deco dots blue" aria-hidden="true" style="right: 44px; top: 300px; width: 230px; height: 380px"></div>
-<svg class="deco" aria-hidden="true" width="200" height="200" viewBox="0 0 200 200" style="left: -70px; bottom: 60px; opacity: 0.4"><polygon points="44.42,0.75 199.25,0.75 199.25,199.25 0.75,199.25" fill="none" stroke="#2459F5" stroke-width="1.5"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="200" height="200" viewBox="0 0 200 200" style="left: -70px; bottom: 60px; opacity: 0.4"><polygon points="44.42,0.75 199.25,0.75 199.25,199.25 0.75,199.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 48px">
 <div style="display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px"><p class="eb"><span>What we do</span></p><h2 style="font-size: 54px; line-height: 1.02">Where most clients start, and what comes next.</h2></div><p class="mu" style="font-size: 16.5px">Almost every client needs bookkeeping and accounting. QuickBooks setup and advice build on that. A part-time finance chief (Fractional CFO) sits at the top, for a small number of clients.</p></div>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
-<div id="bookkeeping" class="card" style="background: #101419; border-color: #101419; display: flex; flex-direction: column; gap: 18px; padding: 32px 30px; min-height: 330px"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #2459F5; color: #FFFFFF"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: #8FAEFF">Almost every client ends up here</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: #8FAEFF">Bookkeeping &amp; Accounting</p><h3 style="font-size: 28px; line-height: 1.15; color: #FFFFFF;">Up to date, every month</h3><p style="font-size: 14.5px; color: #B9C0CA">Books that match your bank and that you can trust, every month, kept by a team that knows QuickBooks inside out.</p></div></div>
-<div id="setup" class="card" style=" display: flex; flex-direction: column; gap: 18px; padding: 32px 30px; min-height: 330px"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #EEF2FE; color: #2459F5"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M2.5 12h3M18.5 12h3M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: #2459F5">Moving off spreadsheets, or outgrowing your setup</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: #2459F5">QuickBooks Setup &amp; Advisory</p><h3 style="font-size: 28px; line-height: 1.15;">A system built around how you work</h3><p style="font-size: 14.5px; color: #5E6670">QuickBooks set up and connected the right way, then we help you use your numbers to make better choices about prices, cash and growth.</p></div></div>
-<div id="cfo" class="card" style=" display: flex; flex-direction: column; gap: 18px; padding: 32px 30px; min-height: 330px"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #EEF2FE; color: #2459F5"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 5.8"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: #2459F5">Only for a few clients</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: #2459F5">Fractional CFO</p><h3 style="font-size: 28px; line-height: 1.15;">Big decisions</h3><p style="font-size: 14.5px; color: #5E6670">A part-time finance chief, Bernard, without hiring one full-time. Our managing partner leads this.</p></div></div>
+<div id="bookkeeping" class="card" style="background: #101419; border-color: #101419; display: flex; flex-direction: column; gap: 18px; padding: 32px 30px; min-height: 330px"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb); color: #FFFFFF"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: var(--eb-lt)">Almost every client ends up here</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: var(--eb-lt)">Bookkeeping &amp; Accounting</p><h3 style="font-size: 28px; line-height: 1.15; color: #FFFFFF;">Up to date, every month</h3><p style="font-size: 14.5px; color: #B9C0CA">Books that match your bank and that you can trust, every month, kept by a team that knows QuickBooks inside out.</p></div></div>
+<div id="setup" class="card" style=" display: flex; flex-direction: column; gap: 18px; padding: 32px 30px; min-height: 330px"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint); color: var(--eb)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M2.5 12h3M18.5 12h3M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: var(--eb)">Moving off spreadsheets, or outgrowing your setup</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: var(--eb)">QuickBooks Setup &amp; Advisory</p><h3 style="font-size: 28px; line-height: 1.15;">A system built around how you work</h3><p style="font-size: 14.5px; color: #5E6670">QuickBooks set up and connected the right way, then we help you use your numbers to make better choices about prices, cash and growth.</p></div></div>
+<div id="cfo" class="card" style=" display: flex; flex-direction: column; gap: 18px; padding: 32px 30px; min-height: 330px"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint); color: var(--eb)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 5.8"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: var(--eb)">Only for a few clients</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: var(--eb)">Fractional CFO</p><h3 style="font-size: 28px; line-height: 1.15;">Big decisions</h3><p style="font-size: 14.5px; color: #5E6670">A part-time finance chief, Bernard, without hiring one full-time. Our managing partner leads this.</p></div></div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px">
 <div class="hv-sup" id="cleanup" style="display: flex; flex-direction: column; gap: 12px; padding: 20px 0 0; border-top: 2px solid #101419"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #101419">QuickBooks Cleanup</strong><span class="mu" style="font-size: 13.5px; line-height: 1.55">Months of bank statements nobody has matched to the books, brought up to date.</span></span></div>
@@ -305,9 +312,9 @@ body{margin:0;background:#101419}
 
 <!-- 06 The six moments clients call us -->
 <section aria-label="Does this sound like you?" class="ch" style="padding: 100px 0">
-<svg class="deco" aria-hidden="true" width="260" height="260" viewBox="0 0 260 260" style="left: -110px; top: 300px; opacity: 0.4"><polygon points="0.75,0.75 161.02,0.75 259.25,259.25 0.75,259.25" fill="none" stroke="#2459F5" stroke-width="1.5"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="54" height="54" viewBox="0 0 54 54" style="left: 60px; top: 520px; opacity: 1"><polygon points="0,0 54,0 54,54 20.52,54" fill="#2459F5"></polygon></svg>
-<span class="deco" aria-hidden="true" style="right: 80px; bottom: 90px; width: 12px; height: 12px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="right: 108px; bottom: 116px; width: 8px; height: 8px; box-sizing: border-box; background: #2459F5"></span><span class="deco" aria-hidden="true" style="right: 60px; bottom: 124px; width: 9px; height: 9px; box-sizing: border-box; border: 2px solid #2459F5"></span>
+<svg class="deco" aria-hidden="true" width="260" height="260" viewBox="0 0 260 260" style="left: -110px; top: 300px; opacity: 0.4"><polygon points="0.75,0.75 161.02,0.75 259.25,259.25 0.75,259.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="54" height="54" viewBox="0 0 54 54" style="left: 60px; top: 520px; opacity: 1"><polygon points="0,0 54,0 54,54 20.52,54" fill="var(--eb)"></polygon></svg>
+<span class="deco" aria-hidden="true" style="right: 80px; bottom: 90px; width: 12px; height: 12px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="right: 108px; bottom: 116px; width: 8px; height: 8px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="right: 60px; bottom: 124px; width: 9px; height: 9px; box-sizing: border-box; border: 2px solid var(--eb)"></span>
 <div class="deco dots blue" aria-hidden="true" style="right: 30px; top: 60px; width: 120px; height: 150px"></div>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 48px">
 <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px"><div style="display: flex; flex-direction: column; gap: 18px; max-width: 640px"><p class="eb"><span>When people usually call us</span></p><h2 style="font-size: 54px; line-height: 1.02">Does this sound like you?</h2><p class="mu" style="font-size: 16.5px">If one of these sounds like you, you're in the right place. Most of our clients came to us this way.</p></div><a class="btn btn-p tg-btn" href="#schedule"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a></div>
@@ -325,17 +332,17 @@ body{margin:0;background:#101419}
 <!-- 07 Specialties and industries -->
 <section aria-label="How we work" class="wh" style="padding: 100px 0">
 <svg class="deco" aria-hidden="true" width="72" height="72" viewBox="0 0 72 72" style="left: 52px; bottom: 96px; opacity: 1"><polygon points="0,0 72,0 43.2,72 0,72" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="110" height="110" viewBox="0 0 110 110" style="left: 96px; bottom: 140px; opacity: 0.55"><polygon points="24.62,0.75 109.25,0.75 109.25,109.25 0.75,109.25" fill="none" stroke="#2459F5" stroke-width="1.5"></polygon></svg>
-<span class="deco" aria-hidden="true" style="left: 70px; bottom: 236px; width: 9px; height: 9px; box-sizing: border-box; background: #2459F5"></span><span class="deco" aria-hidden="true" style="left: 44px; bottom: 210px; width: 7px; height: 7px; box-sizing: border-box; border: 2px solid #2459F5"></span>
+<svg class="deco" aria-hidden="true" width="110" height="110" viewBox="0 0 110 110" style="left: 96px; bottom: 140px; opacity: 0.55"><polygon points="24.62,0.75 109.25,0.75 109.25,109.25 0.75,109.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
+<span class="deco" aria-hidden="true" style="left: 70px; bottom: 236px; width: 9px; height: 9px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="left: 44px; bottom: 210px; width: 7px; height: 7px; box-sizing: border-box; border: 2px solid var(--eb)"></span>
 <div class="deco dots blue" aria-hidden="true" style="right: 0; top: 40px; width: 120px; height: 110px"></div>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 72px; align-items: start"><div style="position: sticky; top: 0; display: flex; flex-direction: column; gap: 22px"><p class="eb"><span>How we work</span></p><h2 style="font-size: 54px; line-height: 1.02">We like the tricky businesses best.</h2><p class="mu" style="font-size: 16px">We're best at three things: showing what each job really costs for businesses that sell their time, keeping track of stock, and making sure Shopify and Amazon sales match QuickBooks. We're also happy to handle nonprofit rules and businesses with more than one company. If your business is simple, one good bookkeeper is enough. If it isn't, this is the work we want.</p><a class="lk" href="#schedule"><span class="lk-ink">Not on the list? Schedule a free consultation</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
 <div style="display: flex; flex-direction: column">
-<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #EEF2FE"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Nonprofits</h3><span class="mu" style="font-size: 14.5px">Money set aside for certain uses tracked apart from money that isn't, and reported the way your board and your auditor expect.</span></span></div>
-<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #EEF2FE"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M5 18v-3a7 7 0 0 1 14 0v3M10 8V5h4v3"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Construction</h3><span class="mu" style="font-size: 14.5px">What each job really costs, unfinished work and changes to the job, all kept straight in QuickBooks.</span></span></div>
-<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #EEF2FE"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-3 5-3 8h3v10"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Restaurants</h3><span class="mu" style="font-size: 14.5px">Food and staff costs, daily sales and checkout numbers that actually match the bank.</span></span></div>
-<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #EEF2FE"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><path d="M14 9h6v12h-6M8 7h2M8 11h2M8 15h2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Property management</h3><span class="mu" style="font-size: 14.5px">Rent lists, owner statements and tenant payments, matched to the bank every month.</span></span></div>
-<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #EEF2FE"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l6 4V10l6 4V6h6v15z"/><path d="M7 17h2M12 17h2M17 17h2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Manufacturing</h3><span class="mu" style="font-size: 14.5px">Stock, its full cost including shipping, and unfinished work, in reports that still add up at year end.</span></span></div>
-<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA; border-bottom: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: #EEF2FE"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11.5l2-8H6.2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Ecommerce</h3><span class="mu" style="font-size: 14.5px">Shopify and Amazon sales matched to QuickBooks, for businesses that sell in more than one place.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Nonprofits</h3><span class="mu" style="font-size: 14.5px">Money set aside for certain uses tracked apart from money that isn't, and reported the way your board and your auditor expect.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M5 18v-3a7 7 0 0 1 14 0v3M10 8V5h4v3"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Construction</h3><span class="mu" style="font-size: 14.5px">What each job really costs, unfinished work and changes to the job, all kept straight in QuickBooks.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3v8M5 3v5a2 2 0 0 0 4 0V3M7 11v10M17 3c-2 2-3 5-3 8h3v10"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Restaurants</h3><span class="mu" style="font-size: 14.5px">Food and staff costs, daily sales and checkout numbers that actually match the bank.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><path d="M14 9h6v12h-6M8 7h2M8 11h2M8 15h2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Property management</h3><span class="mu" style="font-size: 14.5px">Rent lists, owner statements and tenant payments, matched to the bank every month.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l6 4V10l6 4V6h6v15z"/><path d="M7 17h2M12 17h2M17 17h2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Manufacturing</h3><span class="mu" style="font-size: 14.5px">Stock, its full cost including shipping, and unfinished work, in reports that still add up at year end.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 22px; padding: 24px 0; border-top: 1px solid #E2E5EA; border-bottom: 1px solid #E2E5EA;"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11.5l2-8H6.2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 20px">Ecommerce</h3><span class="mu" style="font-size: 14.5px">Shopify and Amazon sales matched to QuickBooks, for businesses that sell in more than one place.</span></span></div>
 </div>
 </div>
 </section>
@@ -363,9 +370,9 @@ body{margin:0;background:#101419}
 
 <!-- 09 What clients say: loyalty stats and the testimonials, word for word -->
 <section aria-label="What clients say" class="dk" style="padding: 100px 0">
-<span class="deco" aria-hidden="true" style="right: 92px; top: 100px; width: 14px; height: 14px; box-sizing: border-box; background: #2459F5"></span><span class="deco" aria-hidden="true" style="right: 124px; top: 128px; width: 9px; height: 9px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="right: 70px; top: 146px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid #C1F432"></span>
+<span class="deco" aria-hidden="true" style="right: 92px; top: 100px; width: 14px; height: 14px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="right: 124px; top: 128px; width: 9px; height: 9px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="right: 70px; top: 146px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid #C1F432"></span>
 <div class="deco dots on-dk" aria-hidden="true" style="left: 30px; bottom: 80px; width: 120px; height: 220px"></div>
-<svg class="deco" aria-hidden="true" width="160" height="160" viewBox="0 0 160 160" style="left: -60px; top: 120px; opacity: 0.6"><polygon points="0.75,0.75 159.25,0.75 95.85,159.25 0.75,159.25" fill="none" stroke="#2459F5" stroke-width="1.5"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="160" height="160" viewBox="0 0 160 160" style="left: -60px; top: 120px; opacity: 0.6"><polygon points="0.75,0.75 159.25,0.75 95.85,159.25 0.75,159.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 48px">
 <div style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: 40px; align-items: end"><div style="display: flex; flex-direction: column; gap: 18px"><p class="eb"><span>What clients say</span></p><h2 style="font-size: 54px; line-height: 1.02">Our Clients</h2><p style="font-size: 16.5px">Several clients have been with us for 10+ years.</p></div>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px">
@@ -375,24 +382,24 @@ body{margin:0;background:#101419}
 </div>
 </div>
 <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 20px">
-<figure class="qcard" style="margin: 0; grid-column: span 3; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 34px 32px; border-radius: 6px; background: #2459F5">
+<figure class="qcard" style="margin: 0; grid-column: span 3; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 34px 32px; border-radius: 6px; background: var(--eb)">
 <div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="#FFFFFF" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 26px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"We have been working with Bernard for over 10 years. He has been terrific."</blockquote></div>
-<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Jacquie Herz</strong><span style="font-size: 13px; color: #DCE5FF">Jornik Manufacturing, Stamford, CT</span></figcaption>
+<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Jacquie Herz</strong><span style="font-size: 13px; color: var(--eb-pale)">Jornik Manufacturing, Stamford, CT</span></figcaption>
 </figure>
 <figure class="qcard" style="margin: 0; grid-column: span 3; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 34px 32px; border-radius: 6px; background: #1B2029">
-<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="#2459F5" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 26px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"I have been working with Bernard at MISSION since 2007."</blockquote></div>
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--eb)" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 26px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"I have been working with Bernard at MISSION since 2007."</blockquote></div>
 <figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Richard Cipolla</strong><span style="font-size: 13px; color: #9AA3AE">Richard Cipolla Designs, Stamford, CT</span></figcaption>
 </figure>
 <figure class="qcard" style="margin: 0; grid-column: span 2; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 28px; border-radius: 6px; background: #1B2029">
-<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="#2459F5" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"I have worked with Bernard for 10 years."</blockquote></div>
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--eb)" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"I have worked with Bernard for 10 years."</blockquote></div>
 <figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Kristin Fine</strong><span style="font-size: 13px; color: #9AA3AE">Fine Concepts, Darien, CT</span></figcaption>
 </figure>
 <figure class="qcard" style="margin: 0; grid-column: span 2; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 28px; border-radius: 6px; background: #1B2029">
-<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="#2459F5" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"Great customer service from Bernard and his team – very friendly and helpful."</blockquote></div>
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--eb)" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"Great customer service from Bernard and his team – very friendly and helpful."</blockquote></div>
 <figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Mary Iaffaldano</strong><span style="font-size: 13px; color: #9AA3AE">Milford, CT</span></figcaption>
 </figure>
 <figure class="qcard" style="margin: 0; grid-column: span 2; display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 28px; border-radius: 6px; background: #1B2029">
-<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="#2459F5" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"Bernard and Gina have been a great team."</blockquote></div>
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--eb)" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"Bernard and Gina have been a great team."</blockquote></div>
 <figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Jane Didona</strong><span style="font-size: 13px; color: #9AA3AE">Didona Associates, Danbury, CT</span></figcaption>
 </figure>
 </div>
@@ -402,10 +409,10 @@ body{margin:0;background:#101419}
 
 <!-- 10 The team -->
 <section aria-label="The team" class="wh" style="padding: 100px 0">
-<span class="deco" aria-hidden="true" style="right: 84px; top: 100px; width: 12px; height: 12px; box-sizing: border-box; background: #2459F5"></span><span class="deco" aria-hidden="true" style="right: 112px; top: 126px; width: 8px; height: 8px; box-sizing: border-box; background: #101419"></span>
-<svg class="deco" aria-hidden="true" width="160" height="160" viewBox="0 0 160 160" style="right: -50px; bottom: 60px; opacity: 0.4"><polygon points="35.62,0.75 159.25,0.75 159.25,159.25 0.75,159.25" fill="none" stroke="#2459F5" stroke-width="1.5"></polygon></svg>
+<span class="deco" aria-hidden="true" style="right: 84px; top: 100px; width: 12px; height: 12px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="right: 112px; top: 126px; width: 8px; height: 8px; box-sizing: border-box; background: #101419"></span>
+<svg class="deco" aria-hidden="true" width="160" height="160" viewBox="0 0 160 160" style="right: -50px; bottom: 60px; opacity: 0.4"><polygon points="35.62,0.75 159.25,0.75 159.25,159.25 0.75,159.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: 64px; align-items: stretch">
-<div style="position: relative; min-height: 520px"><div class="deco" aria-hidden="true" style="inset: -16px 16px 16px -16px; border: 1.5px solid #2459F5; border-radius: 6px; opacity: 0.6"></div><div class="deco dots blue" aria-hidden="true" style="right: -28px; bottom: -28px; width: 140px; height: 120px"></div><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/3b6448ffe67d241e50c579a0950384e9.webp" alt="Specialists reviewing a client's numbers together" style="position: absolute; inset: 0; object-position: 55% 34%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 240px; height: 84px; background: #2459F5; z-index: 1"></span></div></div>
+<div style="position: relative; min-height: 520px"><div class="deco" aria-hidden="true" style="inset: -16px 16px 16px -16px; border: 1.5px solid var(--eb); border-radius: 6px; opacity: 0.6"></div><div class="deco dots blue" aria-hidden="true" style="right: -28px; bottom: -28px; width: 140px; height: 120px"></div><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/3b6448ffe67d241e50c579a0950384e9.webp" alt="Specialists reviewing a client's numbers together" style="position: absolute; inset: 0; object-position: 55% 34%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 240px; height: 84px; background: var(--eb); z-index: 1"></span></div></div>
 <div style="display: flex; flex-direction: column; justify-content: center; gap: 22px"><p class="eb"><span>The team</span></p><h2 style="font-size: 54px; line-height: 1.02">A whole team, not just one bookkeeper.</h2><p class="mu" style="font-size: 16px">We're business advisors who know accounting software really well. Our core team holds advanced QuickBooks certifications, and we bring in trusted accountants and specialists from our wider network when your work needs them.</p>
 <div style="display: flex; flex-direction: column">
 <div style="display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E2E5EA;"><strong style="font: 600 16px/1.3 'Space Grotesk', sans-serif; color: #101419">Bernard P. Roesch</strong><span class="mu" style="font-size: 13.5px">Co-founder and Managing Partner · Harvard Business School MBA, Elite-tier QuickBooks ProAdvisor</span></div>
@@ -420,7 +427,7 @@ body{margin:0;background:#101419}
 <!-- 11 Questions before the first call -->
 <section aria-label="Before you call" class="ch" style="padding: 100px 0">
 <div class="deco dots blue" aria-hidden="true" style="left: 60px; bottom: 60px; width: 150px; height: 140px"></div>
-<svg class="deco" aria-hidden="true" width="140" height="140" viewBox="0 0 140 140" style="right: -40px; top: 40px; opacity: 0.45"><polygon points="0.75,0.75 86.62,0.75 139.25,139.25 0.75,139.25" fill="none" stroke="#2459F5" stroke-width="1.5"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="140" height="140" viewBox="0 0 140 140" style="right: -40px; top: 40px; opacity: 0.45"><polygon points="0.75,0.75 86.62,0.75 139.25,139.25 0.75,139.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="36" height="36" viewBox="0 0 36 36" style="right: 110px; top: 70px; opacity: 1"><polygon points="0,0 36,0 36,36 13.68,36" fill="#101419"></polygon></svg>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; gap: 72px">
 <div style="display: flex; flex-direction: column; gap: 18px"><p class="eb"><span>Before you call</span></p><h2 style="font-size: 54px; line-height: 1.04">Questions people ask before the first call.</h2></div>
@@ -436,30 +443,30 @@ body{margin:0;background:#101419}
 
 <!-- 12 From the blog -->
 <section id="blog" aria-label="From the blog" class="wh" style="padding: 100px 0">
-<span class="deco" aria-hidden="true" style="left: 80px; top: 110px; width: 12px; height: 12px; box-sizing: border-box; background: #2459F5"></span><span class="deco" aria-hidden="true" style="left: 112px; top: 136px; width: 8px; height: 8px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="left: 66px; top: 150px; width: 9px; height: 9px; box-sizing: border-box; border: 2px solid #2459F5"></span>
+<span class="deco" aria-hidden="true" style="left: 80px; top: 110px; width: 12px; height: 12px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="left: 112px; top: 136px; width: 8px; height: 8px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="left: 66px; top: 150px; width: 9px; height: 9px; box-sizing: border-box; border: 2px solid var(--eb)"></span>
 <div class="deco dots blue" aria-hidden="true" style="right: 0; bottom: 90px; width: 110px; height: 200px"></div>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 44px">
 <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 20px"><div style="display: flex; flex-direction: column; gap: 16px"><p class="eb"><span>From the blog</span></p><h2 style="font-size: 54px; line-height: 1.04">Simple answers to the questions we hear most.</h2><p class="mu" style="font-size: 15px">300+ articles on QuickBooks, bookkeeping, accounting and financial planning.</p></div><a class="btn btn-o" href="#blog" style="flex: none">Read all articles<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
 <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
-<article class="post" style="display: flex; flex-direction: column; gap: 12px"><div class="post-media" style="position: relative; height: 230px; margin-bottom: 14px"><div class="deco" aria-hidden="true" style="inset: 14px -14px -14px 14px; border: 1.5px solid #2459F5; border-radius: 6px; opacity: 0.6"></div><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/37cbc555ab9573d99c3c204f11469679.webp" alt="" style="object-position: 78% 60%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 132px; height: 52px; background: #2459F5; z-index: 1"></span></div></div><span class="tag" style="padding-top: 6px">QuickBooks</span><h3 style="font-size: 20px; line-height: 1.25">QuickBooks Desktop to Online: what actually changes</h3><p class="mu" style="font-size: 14.5px">Switching from the desktop version to the online one changes your daily routine. Here's what to expect.</p></article>
-<article class="post" style="display: flex; flex-direction: column; gap: 12px"><div class="post-media" style="position: relative; height: 230px; margin-bottom: 14px"><div class="deco" aria-hidden="true" style="inset: 14px -14px -14px 14px; border: 1.5px solid #2459F5; border-radius: 6px; opacity: 0.6"></div><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/959f667ae9fbf3a0eb90cf0ce15668ff.webp" alt="" style="object-position: center 40%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 132px; height: 52px; background: #2459F5; z-index: 1"></span></div></div><span class="tag" style="padding-top: 6px">Customers</span><h3 style="font-size: 20px; line-height: 1.25">QuickBooks Online vs Enterprise: going beyond the basics</h3><p class="mu" style="font-size: 14.5px">The big differences show up when you track stock, orders and where things are kept.</p></article>
-<article class="post" style="display: flex; flex-direction: column; gap: 12px"><div class="post-media" style="position: relative; height: 230px; margin-bottom: 14px"><div class="deco" aria-hidden="true" style="inset: 14px -14px -14px 14px; border: 1.5px solid #2459F5; border-radius: 6px; opacity: 0.6"></div><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="" style="object-position: center 40%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 132px; height: 52px; background: #2459F5; z-index: 1"></span></div></div><span class="tag" style="padding-top: 6px">Technology</span><h3 style="font-size: 20px; line-height: 1.25">Is automated accounting software the future of financial accounting?</h3><p class="mu" style="font-size: 14.5px">Software can do the boring, repeat work. People still make the judgment calls. Here's what that means for you.</p></article>
+<article class="post" style="display: flex; flex-direction: column; gap: 12px"><div class="post-media" style="position: relative; height: 230px; margin-bottom: 14px"><div class="deco" aria-hidden="true" style="inset: 14px -14px -14px 14px; border: 1.5px solid var(--eb); border-radius: 6px; opacity: 0.6"></div><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/37cbc555ab9573d99c3c204f11469679.webp" alt="" style="object-position: 78% 60%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 132px; height: 52px; background: var(--eb); z-index: 1"></span></div></div><span class="tag" style="padding-top: 6px">QuickBooks</span><h3 style="font-size: 20px; line-height: 1.25">QuickBooks Desktop to Online: what actually changes</h3><p class="mu" style="font-size: 14.5px">Switching from the desktop version to the online one changes your daily routine. Here's what to expect.</p></article>
+<article class="post" style="display: flex; flex-direction: column; gap: 12px"><div class="post-media" style="position: relative; height: 230px; margin-bottom: 14px"><div class="deco" aria-hidden="true" style="inset: 14px -14px -14px 14px; border: 1.5px solid var(--eb); border-radius: 6px; opacity: 0.6"></div><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/959f667ae9fbf3a0eb90cf0ce15668ff.webp" alt="" style="object-position: center 40%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 132px; height: 52px; background: var(--eb); z-index: 1"></span></div></div><span class="tag" style="padding-top: 6px">Customers</span><h3 style="font-size: 20px; line-height: 1.25">QuickBooks Online vs Enterprise: going beyond the basics</h3><p class="mu" style="font-size: 14.5px">The big differences show up when you track stock, orders and where things are kept.</p></article>
+<article class="post" style="display: flex; flex-direction: column; gap: 12px"><div class="post-media" style="position: relative; height: 230px; margin-bottom: 14px"><div class="deco" aria-hidden="true" style="inset: 14px -14px -14px 14px; border: 1.5px solid var(--eb); border-radius: 6px; opacity: 0.6"></div><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="" style="object-position: center 40%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 132px; height: 52px; background: var(--eb); z-index: 1"></span></div></div><span class="tag" style="padding-top: 6px">Technology</span><h3 style="font-size: 20px; line-height: 1.25">Is automated accounting software the future of financial accounting?</h3><p class="mu" style="font-size: 14.5px">Software can do the boring, repeat work. People still make the judgment calls. Here's what that means for you.</p></article>
 </div>
 </div>
 </section>
 
 <!-- 13 Footer, with the call to action and the style board's graphic elements -->
 <footer id="contact" class="dk foot" style="position: relative; overflow: hidden">
-<svg class="deco" aria-hidden="true" width="200" height="200" viewBox="0 0 200 200" style="left: -70px; top: 80px; opacity: 0.55"><polygon points="0.75,0.75 199.25,0.75 119.85,199.25 0.75,199.25" fill="none" stroke="#2459F5" stroke-width="1.5"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="200" height="200" viewBox="0 0 200 200" style="left: -70px; top: 80px; opacity: 0.55"><polygon points="0.75,0.75 199.25,0.75 119.85,199.25 0.75,199.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
 <span class="deco" aria-hidden="true" style="left: 90px; top: 300px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid #C1F432"></span><span class="deco" aria-hidden="true" style="left: 60px; top: 330px; width: 8px; height: 8px; box-sizing: border-box; background: #FFFFFF"></span>
 <div id="schedule" style="position: relative; max-width: 1160px; margin: 0 auto; padding-left: 40px; padding-right: 40px; padding-top: 120px; padding-bottom: 104px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; align-items: center">
 <div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span>Your next step</span></p><h2 style="font-size: 84px; line-height: .98; letter-spacing: -.035em">Your books.<br>In order.</h2><p style="font-size: 17px; max-width: 520px">Book a free call with Bernard or Rob. Come as you are, mess and all. We'll tell you what we'd fix first and what it would take.</p><div style="display: flex; align-items: center; gap: 12px; padding-top: 4px"><a class="btn btn-p tg-btn" href="#schedule"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a><a class="btn btn-o" href="tel:+12032279475"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>Call (203) 227-9475</a></div></div>
 <div aria-hidden="true" style="position: relative; width: 100%; height: 300px">
-<div style="position: absolute; left: 0; top: 0; width: 62%; height: 62%; background: #2459F5; clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%)"></div>
+<div style="position: absolute; left: 0; top: 0; width: 62%; height: 62%; background: var(--eb); clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%)"></div>
 <div style="position: absolute; right: 0; bottom: 0; width: 70%; height: 46%; background: #1B2029; clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%)"></div>
 <div class="dots on-dk" style="position: absolute; right: 0; top: 0; width: 34%; height: 40%"></div>
 <svg aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" style="position: absolute; left: 66%; top: 6%"><polygon points="1,1 63,1 39,63 1,63" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>
-<span style="position: absolute; left: 8%; top: 72%; width: 12px; height: 12px; background: #FFFFFF"></span><span style="position: absolute; left: 14%; top: 80%; width: 8px; height: 8px; background: #2459F5"></span>
+<span style="position: absolute; left: 8%; top: 72%; width: 12px; height: 12px; background: #FFFFFF"></span><span style="position: absolute; left: 14%; top: 80%; width: 8px; height: 8px; background: var(--eb)"></span>
 <p style="position: absolute; left: 0; bottom: 0; margin: 0; font: 600 12px/1.5 'Space Grotesk', sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #9AA3AE">Simple structure<br>for a more<br>confident business.</p>
 </div>
 </div>
@@ -496,6 +503,11 @@ class Component extends DCLogic {
     this.setState({ btn: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
   }
+  setBlue(v) {
+    // the brand blue switch (Electric or Mission), shared with the other Lane H2 board
+    this.setState({ blue: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ blue: v }); } catch (e) {}
+  }
   setDiv(v) {
     // the hero divider switch (on or off), shared with the other Lane H2 board
     this.setState({ div: v });
@@ -513,6 +525,7 @@ class Component extends DCLogic {
         if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
         if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
         if (e.data && e.data.div) this.setState({ div: e.data.div });
+        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });
       };
     } catch (e) {}
   }
@@ -535,6 +548,11 @@ class Component extends DCLogic {
       isDivOff: ((this.state && this.state.div) || 'on') === 'off' ? 'true' : 'false',
       setDivOn: this.setDivOn || (this.setDivOn = () => this.setDiv('on')),
       setDivOff: this.setDivOff || (this.setDivOff = () => this.setDiv('off')),
+      blueMode: (this.state && this.state.blue) || 'electric',
+      isElectric: ((this.state && this.state.blue) || 'electric') === 'electric' ? 'true' : 'false',
+      isMission: ((this.state && this.state.blue) || 'electric') === 'mission' ? 'true' : 'false',
+      setElectric: this.setElectric || (this.setElectric = () => this.setBlue('electric')),
+      setMission: this.setMission || (this.setMission = () => this.setBlue('mission')),
     };
   }
   componentDidMount() {
