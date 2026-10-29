@@ -182,6 +182,8 @@ body{margin:0;background:#101419}
 [data-div="off"] .hero-fade{display:block}
 [data-div="off"] .hero-script{left:1133px !important}
 [data-div="off"] .hero-geo{display:none}
+/* Shapes review switch (29 Oct): off hides every decorative shape; photo frames, wedges and the hero divider stay */
+[data-geo="off"] svg.deco,[data-geo="off"] span.deco,[data-geo="off"] .dots{display:none !important}
 [data-div="off"] .hero-full{display:block}
 [data-div="off"] .hero-band{clip-path:none !important}
 [data-div="off"] .hero-band > img,[data-div="off"] .hero-band > .wedge{visibility:hidden}
@@ -394,7 +396,7 @@ def page(m):
     h2 = 34 if m else 54
     o = []
     A = o.append
-    A('<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" data-blue="{{ blueMode }}" class="lh" style="width: %dpx; background: #101419">' % W)
+    A('<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" data-blue="{{ blueMode }}" data-geo="{{ geoMode }}" class="lh" style="width: %dpx; background: #101419">' % W)
     A('<div class="tg-bar" aria-label="Review control, not part of the design">')
     A('<span class="tg-label">Review · %s</span>' % ('buttons' if m else 'button color'))
     A('<div class="tg-group" role="group" aria-label="Button color">')
@@ -416,6 +418,11 @@ def page(m):
     A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Blue</span><span class="tg-group" role="group" aria-label="Brand blue">')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isElectric }}" onClick="{{ setElectric }}"><span class="tg-dot" style="background: #2459F5"></span>Electric</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>')
+    A('</span></span>')
+    # geometric shapes on or off (29 Oct): the floating angled shapes, small squares and dot patterns
+    A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Shapes</span><span class="tg-group" role="group" aria-label="Geometric shapes">')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isGeoOn }}" onClick="{{ setGeoOn }}">On</button>')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isGeoOff }}" onClick="{{ setGeoOff }}">Off</button>')
     A('</span></span>\n</div>\n')
 
     # ---------- 01 Hero ----------
@@ -824,6 +831,11 @@ SCRIPT = """class Component extends DCLogic {
     this.setState({ blue: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ blue: v }); } catch (e) {}
   }
+  setGeo(v) {
+    // the geometric shapes switch (on or off), shared with the other Lane H2 board
+    this.setState({ geo: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ geo: v }); } catch (e) {}
+  }
   setDiv(v) {
     // the hero divider switch (on or off), shared with the other Lane H2 board
     this.setState({ div: v });
@@ -842,6 +854,7 @@ SCRIPT = """class Component extends DCLogic {
         if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
         if (e.data && e.data.div) this.setState({ div: e.data.div });
         if (e.data && e.data.blue) this.setState({ blue: e.data.blue });
+        if (e.data && e.data.geo) this.setState({ geo: e.data.geo });
       };
     } catch (e) {}
   }
@@ -861,6 +874,11 @@ SCRIPT = """class Component extends DCLogic {
       setKitchen: this.setKitchen || (this.setKitchen = () => this.setHero('kitchen')),
       setOffice: this.setOffice || (this.setOffice = () => this.setHero('office')),
       setEcommerce: this.setEcommerce || (this.setEcommerce = () => this.setHero('ecommerce')),
+      geoMode: (this.state && this.state.geo) || 'on',
+      isGeoOn: ((this.state && this.state.geo) || 'on') === 'on' ? 'true' : 'false',
+      isGeoOff: ((this.state && this.state.geo) || 'on') === 'off' ? 'true' : 'false',
+      setGeoOn: this.setGeoOn || (this.setGeoOn = () => this.setGeo('on')),
+      setGeoOff: this.setGeoOff || (this.setGeoOff = () => this.setGeo('off')),
       divMode: (this.state && this.state.div) || 'on',
       isDivOn: ((this.state && this.state.div) || 'on') === 'on' ? 'true' : 'false',
       isDivOff: ((this.state && this.state.div) || 'on') === 'off' ? 'true' : 'false',
