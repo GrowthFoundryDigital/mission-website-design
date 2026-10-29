@@ -184,6 +184,8 @@ body{margin:0;background:#101419}
 [data-div="off"] .hero-geo{display:none}
 /* Shapes review switch (29 Oct): off hides every decorative shape; photo frames, wedges and the hero divider stay */
 [data-geo="off"] svg.deco,[data-geo="off"] span.deco,[data-geo="off"] .dots{display:none !important}
+[data-geo="off"] .foot-geo{visibility:hidden}
+[data-geo="off"] .foot-geo.m{display:none}
 [data-div="off"] .hero-full{display:block}
 [data-div="off"] .hero-band{clip-path:none !important}
 [data-div="off"] .hero-band > img,[data-div="off"] .hero-band > .wedge{visibility:hidden}
@@ -785,7 +787,7 @@ def page(m):
 
     A('<div id="schedule" style="position: relative; %s; padding-top: %dpx; padding-bottom: %dpx; display: %s; gap: %dpx; align-items: center">' % (wrap if m else 'max-width: 1160px; margin: 0 auto; padding-left: 40px; padding-right: 40px', 72 if m else 120, 64 if m else 104, 'flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr)', 32 if m else 64))
     A('<div style="display: flex; flex-direction: column; gap: 22px">%s<h2 style="font-size: %dpx; line-height: .98; letter-spacing: -.035em">Your books.<br>In order.</h2><p style="font-size: %spx; max-width: 520px">Book a free call with Bernard or Rob. Come as you are, mess and all. We\'ll tell you what we\'d fix first and what it would take.</p><div style="display: flex; %s gap: 12px; padding-top: 4px">%s<a class="btn btn-o" href="tel:+12032279475">%sCall (203) 227-9475</a></div></div>' % (eyebrow('11', 'Your next step'), 48 if m else 84, '15.5' if m else '17', 'flex-direction: column;' if m else 'align-items: center;', sched(extra=' style="width: 100%"' if m else ''), PHONE))
-    A('<div aria-hidden="true" style="position: relative; width: 100%%; height: %dpx">' % (130 if m else 300))
+    A('<div aria-hidden="true" class="foot-geo%s" style="position: relative; width: 100%%; height: %dpx">' % (' m' if m else '', 130 if m else 300))
     A('<div style="position: absolute; left: 0; top: 0; width: 62%; height: 62%; background: #2459F5; clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%)"></div>')
     A('<div style="position: absolute; right: 0; bottom: 0; width: 70%; height: 46%; background: #1B2029; clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%)"></div>')
     A('<div class="dots on-dk" style="position: absolute; right: 0; top: 0; width: 34%; height: 40%"></div>')

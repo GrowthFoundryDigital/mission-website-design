@@ -40,6 +40,8 @@ body{margin:0;background:#101419}
 [data-div="off"] .hero-geo{display:none}
 /* Shapes review switch (29 Oct): off hides every decorative shape; photo frames, wedges and the hero divider stay */
 [data-geo="off"] svg.deco,[data-geo="off"] span.deco,[data-geo="off"] .dots{display:none !important}
+[data-geo="off"] .foot-geo{visibility:hidden}
+[data-geo="off"] .foot-geo.m{display:none}
 [data-div="off"] .hero-full{display:block}
 [data-div="off"] .hero-band{clip-path:none !important}
 [data-div="off"] .hero-band > img,[data-div="off"] .hero-band > .wedge{visibility:hidden}
@@ -442,7 +444,7 @@ body{margin:0;background:#101419}
 <span class="deco" aria-hidden="true" style="right: 22px; top: 24px; width: 10px; height: 10px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="right: 42px; top: 38px; width: 7px; height: 7px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="right: 58px; top: 20px; width: 8px; height: 8px; box-sizing: border-box; border: 2px solid #C1F432"></span>
 <div id="schedule" style="position: relative; padding: 0 20px; padding-top: 72px; padding-bottom: 64px; display: flex; flex-direction: column; align-items: stretch; gap: 32px; align-items: center">
 <div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span>Your next step</span></p><h2 style="font-size: 48px; line-height: .98; letter-spacing: -.035em">Your books.<br>In order.</h2><p style="font-size: 15.5px; max-width: 520px">Book a free call with Bernard or Rob. Come as you are, mess and all. We'll tell you what we'd fix first and what it would take.</p><div style="display: flex; flex-direction: column; gap: 12px; padding-top: 4px"><a class="btn btn-p tg-btn" href="#schedule" style="width: 100%"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a><a class="btn btn-o" href="tel:+12032279475"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>Call (203) 227-9475</a></div></div>
-<div aria-hidden="true" style="position: relative; width: 100%; height: 130px">
+<div aria-hidden="true" class="foot-geo m" style="position: relative; width: 100%; height: 130px">
 <div style="position: absolute; left: 0; top: 0; width: 62%; height: 62%; background: var(--eb); clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%)"></div>
 <div style="position: absolute; right: 0; bottom: 0; width: 70%; height: 46%; background: #1B2029; clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%)"></div>
 <div class="dots on-dk" style="position: absolute; right: 0; top: 0; width: 34%; height: 40%"></div>
