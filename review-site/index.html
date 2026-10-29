@@ -86,6 +86,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     <div class="group"><span class="lbl">Lane</span><div class="seg" id="lane" role="group" aria-label="Lane"></div></div>
     <div class="group"><span class="lbl">View</span><div class="seg" id="dev" role="group" aria-label="Device"></div></div>
     <div class="group" id="div-group" hidden><span class="lbl">Divider</span><div class="seg" id="div" role="group" aria-label="Hero divider"></div></div>
+    <div class="group" id="blue-group" hidden><span class="lbl">Blue</span><div class="seg" id="blue" role="group" aria-label="Brand blue"></div></div>
     <a class="open" id="open" href="pages/d3-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
 </header>
@@ -112,15 +113,21 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   var VER = { d: '3', g: '3', c: '3', h: '2' };
   var NOTE = 'Plain-language copy on the October 2026 Business DNA, leading with client case studies.';
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
-  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop', div: 'on' };
-  // Lane H2's hero divider switch: the console and the page's own review bar talk over the page's broadcast channel
+  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop', div: 'on', blue: 'electric' };
+  // Lane H2's hero divider and brand blue switches: the console and the page's own review bar talk over the page's broadcast channel
   var h2 = null;
   try { h2 = new BroadcastChannel('mission-buttons-lane-h2'); } catch (e) {}
   function sendDiv() { try { if (h2) h2.postMessage({ div: state.div }); } catch (e) {} }
-  if (h2) h2.onmessage = function (e) { if (e.data && e.data.div && e.data.div !== state.div) { state.div = e.data.div; render(); } };
+  function sendBlue() { try { if (h2) h2.postMessage({ blue: state.blue }); } catch (e) {} }
+  if (h2) h2.onmessage = function (e) {
+    var d = e.data || {}, changed = false;
+    if (d.div && d.div !== state.div) { state.div = d.div; changed = true; }
+    if (d.blue && d.blue !== state.blue) { state.blue = d.blue; changed = true; }
+    if (changed) render();
+  };
 
   var m = (location.hash || '').match(/^#([cdgh])([23])-(desktop|mobile)$/);
-  if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3], div: 'on' };
+  if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3], div: 'on', blue: 'electric' };
 
   function seg(el, items, key) {
     el.innerHTML = '';
@@ -135,6 +142,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   seg(document.getElementById('dev'), [{ v: 'desktop', label: 'Desktop' }, { v: 'mobile', label: 'Mobile' }], 'dev');
   seg(document.getElementById('div'), [{ v: 'on', label: 'On' }, { v: 'off', label: 'Off' }], 'div');
   document.querySelectorAll('#div button').forEach(function (b) { b.addEventListener('click', sendDiv); });
+  seg(document.getElementById('blue'), [{ v: 'electric', label: 'Electric' }, { v: 'mission', label: 'Mission' }], 'blue');
+  document.querySelectorAll('#blue button').forEach(function (b) { b.addEventListener('click', sendBlue); });
 
   var stage = document.getElementById('stage');
   var frame = document.getElementById('frame');
@@ -159,7 +168,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     var id = state.lane + state.ver + '-' + state.dev;
     var src = 'pages/' + id + '.html';
     document.getElementById('div-group').hidden = state.lane !== 'h';
-    ['lane', 'dev', 'div'].forEach(function (k) {
+    document.getElementById('blue-group').hidden = state.lane !== 'h';
+    ['lane', 'dev', 'div', 'blue'].forEach(function (k) {
       document.querySelectorAll('#' + k + ' button').forEach(function (b) {
         b.setAttribute('aria-pressed', b.dataset.v === state[k] ? 'true' : 'false');
       });
@@ -175,8 +185,12 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     fit();
   }
 
-  // a newly loaded H2 page starts with the divider on; tell it the console's choice once it is listening
-  view.addEventListener('load', function () { if (state.lane === 'h' && state.div !== 'on') { setTimeout(sendDiv, 150); setTimeout(sendDiv, 600); } });
+  // a newly loaded H2 page starts with the divider on and Electric Blue; tell it the console's choices once it is listening
+  view.addEventListener('load', function () {
+    if (state.lane !== 'h') return;
+    if (state.div !== 'on') { setTimeout(sendDiv, 150); setTimeout(sendDiv, 600); }
+    if (state.blue !== 'electric') { setTimeout(sendBlue, 150); setTimeout(sendBlue, 600); }
+  });
   window.addEventListener('resize', fit);
   render();
   // for the comment layer below: which design is showing, and a way to switch to another
