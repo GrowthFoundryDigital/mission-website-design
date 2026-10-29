@@ -442,7 +442,6 @@ def page(m):
         for k, (alt, pos) in HERO_BG.items():
             A('<img class="hero-bg-%s" src="%s" alt="" style="position: absolute; inset: 0; width: 100%%; height: 100%%; object-fit: cover; object-position: %s">' % (k, PH[k], pos[1]))
         A('<div aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 46%; height: 56px; background: #101419"></div>')
-        A('<p class="script" aria-hidden="true" style="position: absolute; right: 18px; top: 26px; font-size: 30px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 12px rgba(0, 0, 0, .35)">Numbers create<br>possibility.</p>')
         A('</div>')
         A('</div>')
         A('<div class="dk" style="padding: 8px 20px 28px; display: flex; flex-direction: column">')
@@ -462,7 +461,6 @@ def page(m):
         # divider off: a dark fade from the left keeps the hero text legible on the full-width photo
         A('<div class="hero-fade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16, 20, 25, .9) 0%, rgba(16, 20, 25, .78) 30%, rgba(16, 20, 25, .4) 52%, rgba(16, 20, 25, 0) 70%)"></div>')
         # the script line sits on the photo where it was placed on the canvas (28 Oct)
-        A('<p class="script hero-script" aria-hidden="true" style="position: absolute; top: 613px; z-index: 2; font-size: 46px; transform: rotate(-7deg); text-align: right; text-shadow: 0 1px 14px rgba(0, 0, 0, .35); left: 557px">Numbers create<br>possibility.</p>')
         A('</div>')
         # geometry on the blue side (hidden when the divider is off)
         A('<div class="hero-geo">')
