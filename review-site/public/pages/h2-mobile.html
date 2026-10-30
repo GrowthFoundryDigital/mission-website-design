@@ -181,6 +181,7 @@ body{margin:0;background:#101419}
 /* brand blue tokens */
 .lh{--eb:#2459F5;--eb-lt:#8FAEFF;--eb-pale:#DCE5FF;--eb-mist:#EEF2FF;--eb-tint:#EEF2FE;--eb-tint2:#E8EEFF;--eb-dk:#1A3FB8}
 .lh[data-blue="mission"]{--eb:#0087C0;--eb-lt:#7CC8EB;--eb-pale:#D2EDF8;--eb-mist:#EAF6FB;--eb-tint:#E7F4FA;--eb-tint2:#E0F1F9;--eb-dk:#00648F}
+.lh[data-blue="blend"]{--eb:#1270DA;--eb-lt:#85BBF5;--eb-pale:#D7E9FB;--eb-mist:#ECF4FD;--eb-tint:#EAF3FC;--eb-tint2:#E4EFFC;--eb-dk:#0D51A3}
 </style>
 
 <style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
@@ -206,6 +207,7 @@ body{margin:0;background:#101419}
 </span></span>
 <span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Blue</span><span class="tg-group" role="group" aria-label="Brand blue">
 <button type="button" class="tg-opt" aria-pressed="{{ isElectric }}" onClick="{{ setElectric }}"><span class="tg-dot" style="background: #2459F5"></span>Electric</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isBlend }}" onClick="{{ setBlend }}"><span class="tg-dot" style="background: #1270DA"></span>Blend</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>
 </span></span>
 <span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Shapes</span><span class="tg-group" role="group" aria-label="Geometric shapes">
@@ -546,6 +548,8 @@ class Component extends DCLogic {
       blueMode: (this.state && this.state.blue) || 'electric',
       isElectric: ((this.state && this.state.blue) || 'electric') === 'electric' ? 'true' : 'false',
       isMission: ((this.state && this.state.blue) || 'electric') === 'mission' ? 'true' : 'false',
+      isBlend: ((this.state && this.state.blue) || 'electric') === 'blend' ? 'true' : 'false',
+      setBlend: this.setBlend || (this.setBlend = () => this.setBrand('blend')),
       setElectric: this.setElectric || (this.setElectric = () => this.setBrand('electric')),
       setMission: this.setMission || (this.setMission = () => this.setBrand('mission')),
     };

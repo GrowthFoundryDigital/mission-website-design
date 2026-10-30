@@ -419,6 +419,7 @@ def page(m):
     # Electric Blue or Mission Blue (29 Oct): every blue on the page, with its tints, switches together
     A('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Blue</span><span class="tg-group" role="group" aria-label="Brand blue">')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isElectric }}" onClick="{{ setElectric }}"><span class="tg-dot" style="background: #2459F5"></span>Electric</button>')
+    A('<button type="button" class="tg-opt" aria-pressed="{{ isBlend }}" onClick="{{ setBlend }}"><span class="tg-dot" style="background: #1270DA"></span>Blend</button>')
     A('<button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>')
     A('</span></span>')
     # geometric shapes on or off (29 Oct): the floating angled shapes, small squares and dot patterns
@@ -889,6 +890,8 @@ SCRIPT = """class Component extends DCLogic {
       blueMode: (this.state && this.state.blue) || 'electric',
       isElectric: ((this.state && this.state.blue) || 'electric') === 'electric' ? 'true' : 'false',
       isMission: ((this.state && this.state.blue) || 'electric') === 'mission' ? 'true' : 'false',
+      isBlend: ((this.state && this.state.blue) || 'electric') === 'blend' ? 'true' : 'false',
+      setBlend: this.setBlend || (this.setBlend = () => this.setBrand('blend')),
       setElectric: this.setElectric || (this.setElectric = () => this.setBrand('electric')),
       setMission: this.setMission || (this.setMission = () => this.setBrand('mission')),
     };
@@ -929,8 +932,14 @@ def post_media(k, h, src, pos, m):
 # matching tints. The review bar's own swatch dots keep their fixed colours.
 BLUES = [('#2459F5', 'eb', '#0087C0'), ('#8FAEFF', 'eb-lt', '#7CC8EB'), ('#DCE5FF', 'eb-pale', '#D2EDF8'), ('#EEF2FF', 'eb-mist', '#EAF6FB'),
          ('#EEF2FE', 'eb-tint', '#E7F4FA'), ('#E8EEFF', 'eb-tint2', '#E0F1F9'), ('#1A3FB8', 'eb-dk', '#00648F')]
+def mix(a, b):
+    # the even midpoint of two hex colours (Blend, 29 Oct: halfway between Electric and Mission)
+    return '#' + ''.join('%02X' % ((int(a[i:i + 2], 16) + int(b[i:i + 2], 16)) // 2) for i in (1, 3, 5))
+
+
 BLUE_CSS = ('/* brand blue tokens */\n.lh{' + ';'.join('--%s:%s' % (v, e) for e, v, _ in BLUES) + '}\n'
-            '.lh[data-blue="mission"]{' + ';'.join('--%s:%s' % (v, mi) for _, v, mi in BLUES) + '}\n')
+            '.lh[data-blue="mission"]{' + ';'.join('--%s:%s' % (v, mi) for _, v, mi in BLUES) + '}\n'
+            '.lh[data-blue="blend"]{' + ';'.join('--%s:%s' % (v, mix(e, mi)) for e, v, mi in BLUES) + '}\n')
 
 
 def blues(h):
