@@ -156,6 +156,7 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Testimonial cards (28 Oct, by request):** the thin divider above each name was removed; the space above the name stays.
 - **Proof stats (28 Oct, by request):** the blue rules above 10+, ~50 and 5.0 were removed.
 - **Testimonials heading (28 Oct, by request):** "Our Clients" replaces "Clients stay for years." (also on C3).
+- **G3 hero headline smaller (30 Oct, by request):** "We handle the messy work" on G3 desktop drops from 112 px to 88 px, with the second line's indent scaled to match (150 → 118 px). Mobile was already 50 px and is unchanged. Desktop is now 9,660 (continued board 1,660).
 - **H2 Blend blue (30 Oct, by request):** H2's Blue switch now reads Electric · Blend · Mission. Blend is the even midpoint of the two, #1270DA, and every blue token on the page gets its own midpoint tint (light #85BBF5, pale #D7E9FB, mist #ECF4FD, tints #EAF3FC and #E4EFFC, dark #0D51A3), computed by `mix()` in the generator. The extra option wraps the mobile review bar onto one more row: mobile is 15,537 (continued board 7,537); desktop unchanged at 11,174.
 - **D3 hero blue switch (29 Oct, by request, like H2's Blue switch):** "Blue: Navy / Electric / Mission" in D3's review bar, kept in step across the D3 boards. It recolours the hero panel behind the angled divider: Navy #0E3A66 (the default), Electric Blue #2459F5 or Mission Blue #0087C0; the avatar rings follow, and on Electric and Mission the light-blue software label and ticks turn near-white so they stay readable. Only the hero changes. The mobile review bar now wraps onto two rows (+48 px): mobile is 14,616 (continued board 6,616); desktop unchanged.
 - **"Photos" label (29 Oct, by request):** the review bar's Kitchen / Office / Ecommerce switch is now labelled "Photos" instead of "Hero" on C3 and H2 (the only lanes with it), desktop and mobile. Heights unchanged.
@@ -191,7 +192,7 @@ A new lane built from the style board Growth Foundry supplied (`assets/inspirati
 D3 and G3 are exact copies of D2 and G2 with every heading, intro, card, service description and FAQ question rewritten in plain language a 15-year-old would follow, in the same voice as C3 (C3's wording is reused wherever the meaning matches). Layout, imagery, facts and section order are unchanged. Testimonials, names and roles, nav, service names, the Schedule label, blog titles, stats and legal lines stay as they are. Each has its own review-bar channel, so D2/D3 and G2/G3 can be compared in different button colors.
 
 - **Canvas:** in the Lane D and Lane G rows after version 2: desktop with its continuation stacked below, then mobile with its continuation below.
-- **Heights, measured:** D3 desktop 9,676, mobile 14,616 (after the 29 Oct changes) · G3 desktop 9,704, mobile 13,021.
+- **Heights, measured:** D3 desktop 9,676, mobile 14,616 (after the 29 Oct changes) · G3 desktop 9,660, mobile 13,021.
 - **Review site:** now shows D3, G3 and C3 (in that order) instead of C2, D2 and G2; H2 was added as a fourth lane on 28 Oct.
 
 ## Proof stats: client loyalty, not firm age (27 Oct 2026)
