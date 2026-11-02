@@ -72,6 +72,31 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 #cmt-hint { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 6; margin: 0; padding: 8px 14px; border-radius: 999px; background: var(--ink); color: var(--panel); font: 600 12.5px/1.2 var(--font-ui); pointer-events: none; white-space: nowrap; }
 #cmt-layer[hidden], #cmt-hint[hidden] { display: none; }
 .stage.mobile .frame { top: 20px; border-radius: 28px; overflow: hidden; box-shadow: 0 0 0 10px #10161D, 0 18px 40px rgba(16, 22, 29, .28); }
+/* Overview (2 Nov): all four lanes side by side, each a scrollable, scaled-down desktop page that opens its lane on click */
+.ov { flex: 1; min-height: 0; overflow: auto; background: var(--stage); padding: 20px max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px)); display: flex; flex-direction: column; gap: 16px; }
+.ov[hidden], .stage[hidden], .open[hidden] { display: none; }
+.ov-intro { max-width: 1272px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
+.ov-intro h1 { margin: 0; font: 700 18px/1.3 var(--font-ui); }
+.ov-intro p { margin: 0; color: var(--muted); font-size: 13.5px; }
+.ov-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 300px)); justify-content: center; gap: 24px; }
+.ov-col { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
+.ov-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
+.ov-head b { display: block; font: 700 16px/1.2 var(--font-ui); }
+.ov-head span { display: block; color: var(--muted); font-size: 12.5px; line-height: 1.4; margin-top: 2px; min-height: 2.8em; }
+.ov-open { all: unset; cursor: pointer; flex: none; font: 600 12.5px/1 var(--font-ui); color: var(--accent); padding: 4px 0; white-space: nowrap; }
+.ov-open:hover { text-decoration: underline; }
+.ov-open:focus-visible, .ov-hit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ov-scroll { flex: 1; min-height: 220px; overflow-y: auto; overflow-x: hidden; border-radius: 10px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--line), 0 10px 26px rgba(16, 22, 29, .10); scrollbar-width: thin; }
+.ov-page { position: relative; overflow: hidden; }
+.ov-page iframe { position: absolute; left: 0; top: 0; width: 1440px; border: 0; transform-origin: top left; pointer-events: none; background: #FFFFFF; }
+.ov-hit { all: unset; position: absolute; inset: 0; cursor: pointer; }
+.ov-hit:hover { box-shadow: inset 0 0 0 3px var(--accent); }
+.ov-note { display: none; position: fixed; left: 50%; bottom: 16px; transform: translateX(-50%); z-index: 6; margin: 0; padding: 8px 14px; border-radius: 999px; background: var(--ink); color: var(--panel); font: 600 12.5px/1.2 var(--font-ui); white-space: nowrap; }
+body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
+@media (max-width: 900px) {
+  .ov-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; justify-content: flex-start; }
+  .ov-col { flex: none; width: min(300px, 78vw); scroll-snap-align: start; }
+}
 @media (max-width: 700px) {
   .brand span { display: none; }
   .stage.mobile .frame { top: 0; border-radius: 0; box-shadow: none; }
@@ -84,10 +109,15 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   <div class="brand"><img src="img/mission-logo.svg" alt="MISSION"><span>Homepage review</span></div>
   <div class="controls">
     <div class="group"><span class="lbl">Lane</span><div class="seg" id="lane" role="group" aria-label="Lane"></div></div>
-    <div class="group"><span class="lbl">View</span><div class="seg" id="dev" role="group" aria-label="Device"></div></div>
+    <div class="group" id="dev-group"><span class="lbl">View</span><div class="seg" id="dev" role="group" aria-label="Device"></div></div>
     <a class="open" id="open" href="pages/d3-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
 </header>
+<section class="ov" id="ov" aria-label="Overview of all four designs" hidden>
+  <div class="ov-intro"><h1>Four homepage directions</h1><p>Scroll any column to compare. Click a design to open it full size.</p></div>
+  <div class="ov-grid" id="ov-grid"></div>
+</section>
+<p class="ov-note" id="ov-note">To leave a comment, open a design first.</p>
 <main class="stage" id="stage">
   <div class="frame" id="frame"><iframe id="view" title="Homepage preview" src="pages/d3-desktop.html"></iframe></div>
   <div id="cmt-layer" hidden></div>
@@ -104,7 +134,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   };
   var VER = { d: '3', g: '3', c: '3', h: '2' };
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
-  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
+  // the overview is the landing view; a link such as #d3-desktop still opens that design directly
+  var state = { lane: 'o', ver: '', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
 
   var m = (location.hash || '').match(/^#([cdgh])([23])-(desktop|mobile)$/);
   if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3] };
@@ -118,12 +149,55 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
       el.appendChild(b);
     });
   }
-  seg(document.getElementById('lane'), Object.keys(LANES).map(function (k) { return { v: k, label: k.toUpperCase() + VER[k] }; }), 'lane');
+  seg(document.getElementById('lane'), [{ v: 'o', label: 'Overview' }].concat(Object.keys(LANES).map(function (k) { return { v: k, label: k.toUpperCase() + VER[k] }; })), 'lane');
   seg(document.getElementById('dev'), [{ v: 'desktop', label: 'Desktop' }, { v: 'mobile', label: 'Mobile' }], 'dev');
 
   var stage = document.getElementById('stage');
   var frame = document.getElementById('frame');
   var view = document.getElementById('view');
+  var ov = document.getElementById('ov');
+
+  // the overview: one column per lane, the desktop page scaled to the column's width; built the first time it is shown
+  var cols = [];
+  function buildOverview() {
+    var grid = document.getElementById('ov-grid');
+    Object.keys(LANES).forEach(function (k) {
+      var name = k.toUpperCase() + VER[k], src = 'pages/' + k + VER[k] + '-desktop.html';
+      var col = document.createElement('article'); col.className = 'ov-col';
+      col.innerHTML = '<div class="ov-head"><div><b>' + name + '</b><span>' + LANES[k] + '</span></div><button type="button" class="ov-open">Open \u2192</button></div>' +
+        '<div class="ov-scroll"><div class="ov-page"><iframe title="' + name + ' desktop, scaled down" loading="lazy" tabindex="-1" src="' + src + '"></iframe>' +
+        '<button type="button" class="ov-hit" aria-label="Open ' + name + '"></button></div></div>';
+      var open = function () { state.lane = k; state.dev = 'desktop'; render(); };
+      col.querySelector('.ov-open').addEventListener('click', open);
+      col.querySelector('.ov-hit').addEventListener('click', open);
+      var c = { el: col, frame: col.querySelector('iframe'), page: col.querySelector('.ov-page'), h: 9800 };
+      // measure the page at a normal window height, then let the frame grow to the whole page
+      var measure = function () {
+        try {
+          c.frame.style.height = '900px';
+          var h = c.frame.contentDocument.documentElement.scrollHeight;
+          if (h > 900) c.h = h;
+        } catch (e) {}
+        sizeCol(c);
+      };
+      c.frame.addEventListener('load', function () {
+        try {
+          var d = c.frame.contentDocument, st = d.createElement('style');
+          st.textContent = '.tg-bar{display:none !important}';   // the review switches are not part of the design
+          d.head.appendChild(st);
+        } catch (e) {}
+        measure(); setTimeout(measure, 1200); setTimeout(measure, 3500);
+      });
+      cols.push(c); grid.appendChild(col);
+    });
+  }
+  function sizeCol(c) {
+    var w = c.page.clientWidth || 300, s = w / 1440;
+    c.frame.style.height = c.h + 'px';
+    c.frame.style.transform = 'scale(' + s + ')';
+    c.page.style.height = Math.ceil(c.h * s) + 'px';
+  }
+  function fitOverview() { cols.forEach(sizeCol); }
 
   function fit() {
     var w = DEVICES[state.dev].w;
@@ -140,6 +214,18 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   }
 
   function render() {
+    var over = state.lane === 'o';
+    ov.hidden = !over; stage.hidden = over;
+    document.getElementById('dev-group').hidden = over;
+    document.getElementById('open').hidden = over;
+    document.querySelectorAll('#lane button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.v === state.lane ? 'true' : 'false'); });
+    if (over) {
+      if (!cols.length) buildOverview();
+      fitOverview();
+      try { history.replaceState(null, '', '#overview'); } catch (e) {}
+      document.dispatchEvent(new Event('review:layout'));
+      return;
+    }
     state.ver = VER[state.lane];
     var id = state.lane + state.ver + '-' + state.dev;
     var src = 'pages/' + id + '.html';
@@ -155,11 +241,11 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
     fit();
   }
 
-  window.addEventListener('resize', fit);
+  window.addEventListener('resize', function () { if (state.lane === 'o') fitOverview(); else fit(); });
   render();
   // for the comment layer below: which design is showing, and a way to switch to another
   window.reviewView = {
-    current: function () { return { lane: state.lane, ver: state.ver, dev: state.dev }; },
+    current: function () { return { lane: state.lane, ver: state.lane === 'o' ? '' : state.ver, dev: state.dev }; },
     go: function (lane, dev) { if (VER[lane]) { state.lane = lane; state.dev = dev; render(); } },
     LANES: VER
   };
@@ -223,6 +309,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
   }
   function setMode(v) {
     on = v; layer.hidden = !v; if (hint) hint.hidden = !v;
+    document.body.classList.toggle('cmt-on', !!v);
     if (!v) { threads = []; pending = null; }
   }
   layer.addEventListener('click', function (ev) {
@@ -256,6 +343,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
           var cur = window.reviewView.current(), lane = m[1].toLowerCase(), y = +m[5];
           function scrollTo() { var w = win(); if (w) w.scrollTo({ top: Math.max(0, y - 220), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); setTimeout(report, 450); }
           if (cur.lane === lane && cur.dev === m[3]) scrollTo();
+          else if (view.getAttribute('src') === 'pages/' + lane + m[2] + '-' + m[3] + '.html') { window.reviewView.go(lane, m[3]); setTimeout(scrollTo, 300); }
           else { view.addEventListener('load', function once() { view.removeEventListener('load', once); setTimeout(scrollTo, 300); }); window.reviewView.go(lane, m[3]); }
         }
       });
