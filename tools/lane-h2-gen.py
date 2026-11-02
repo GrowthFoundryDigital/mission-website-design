@@ -87,7 +87,7 @@ TIERS = [
 CASES = [
     ('Food production', 'A bakery tracking food that spoils fast', 'How a bakery keeps count of fresh goods in QuickBooks Enterprise.', 'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise'),
     ('Jewelry', 'A jewelry business keeping track of custom orders', 'How a jewelry business tracks custom orders, and where each piece is kept, in QuickBooks Enterprise.', 'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise'),
-    ('Bills and expenses', 'Bills to approve and spending to track', "How Wren's Nest Interiors made bill approvals and expense tracking automatic.", 'https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software'),
+    ('Interiors', 'Bills to approve and spending to track', "How Wren's Nest Interiors made bill approvals and expense tracking automatic.", 'https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software'),
 ]
 SOFTWARE = ['QuickBooks Online', 'QuickBooks Desktop', 'QuickBooks Enterprise', 'Intuit Enterprise Suite', 'QuickBooks Workforce', 'QuickBooks Payments']
 SPECIAL = [('box', 'Keeping track of stock'), ('hat', 'What each job really costs'), ('cart', 'Selling in more than one place online'), ('layers', 'More than one company')]
