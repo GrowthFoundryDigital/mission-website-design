@@ -156,6 +156,7 @@ H2 is a copy of Lane H that takes the style board's geometry further, by request
 - **Testimonial cards (28 Oct, by request):** the thin divider above each name was removed; the space above the name stays.
 - **Proof stats (28 Oct, by request):** the blue rules above 10+, ~50 and 5.0 were removed.
 - **Testimonials heading (28 Oct, by request):** "Our Clients" replaces "Clients stay for years." (also on C3).
+- **D3 bigger labels (2 Nov, review comment):** every small uppercase label on D3 (section labels such as "What we do" and "Case studies", and the card tags) goes from 11.5 to 14 px on desktop and 11 to 13 px on mobile; the "What we do →" and "All services →" links go from 13 to 16 px (desktop) and 15 px (mobile). Heights: desktop 9,711 (continued board 1,711), mobile 14,673 (continued board 6,673).
 - **Review site overview (2 Nov, by request):** the review site now opens on an Overview of all four designs instead of D3: four columns (max 300 px each) with the full desktop page scaled down and scrollable, the lane name and look above, click to open the lane. Details in `review-site/README.md`.
 - **G3 "MESSY" type treatment (30 Oct, by request):** in the hero headline, MESSY now looks digitally broken while the rest stays crisp: its white fill breaks into square pixels towards the end of the word (the Y mostly dissolves), one horizontal slice through the middle is cut out and nudged sideways (it twitches briefly every 6 s; still for reduced motion), and a few loose white and blue pixels drift off the Y. Sized in em, so desktop (88 px) and mobile (50 px) match. The text is still real text for screen readers. Built by `tools/g3-messy-type.py`. Desktop is now 9,663 (continued board 1,663); mobile unchanged.
 - **G3 hero headline smaller (30 Oct, by request):** "We handle the messy work" on G3 desktop drops from 112 px to 88 px, with the second line's indent scaled to match (150 → 118 px). Mobile was already 50 px and is unchanged. Desktop is now 9,660 (continued board 1,660).
@@ -194,7 +195,7 @@ A new lane built from the style board Growth Foundry supplied (`assets/inspirati
 D3 and G3 are exact copies of D2 and G2 with every heading, intro, card, service description and FAQ question rewritten in plain language a 15-year-old would follow, in the same voice as C3 (C3's wording is reused wherever the meaning matches). Layout, imagery, facts and section order are unchanged. Testimonials, names and roles, nav, service names, the Schedule label, blog titles, stats and legal lines stay as they are. Each has its own review-bar channel, so D2/D3 and G2/G3 can be compared in different button colors.
 
 - **Canvas:** in the Lane D and Lane G rows after version 2: desktop with its continuation stacked below, then mobile with its continuation below.
-- **Heights, measured:** D3 desktop 9,676, mobile 14,616 (after the 29 Oct changes) · G3 desktop 9,660, mobile 13,021.
+- **Heights, measured:** D3 desktop 9,711, mobile 14,673 (after the 29 Oct – 2 Nov changes) · G3 desktop 9,660, mobile 13,021.
 - **Review site:** now shows D3, G3 and C3 (in that order) instead of C2, D2 and G2; H2 was added as a fourth lane on 28 Oct.
 
 ## Proof stats: client loyalty, not firm age (27 Oct 2026)
