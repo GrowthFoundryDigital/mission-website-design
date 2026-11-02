@@ -512,7 +512,7 @@ def page(m):
     A('<section id="case-studies" aria-label="Case studies" class="ch" style="position: relative; padding: %dpx 0">' % sec)
     if m:
         A(scatter([('right: 22px; top: 22px', 10, BLUE), ('right: 42px; top: 34px', 7, INK), ('right: 60px; top: 18px', 8, BLUE, True)]))
-        A(poly('right: -46px; top: 640px', 120, 120, 24, stroke=BLUE, sw=1.5, op=.4))
+        A(poly('right: -46px; bottom: 6px', 120, 120, 24, stroke=BLUE, sw=1.5, op=.4))  # moved down (2 Nov) so it clears the "More client stories" row
     else:
         A(scatter([('right: 96px; top: 96px', 14, BLUE), ('right: 132px; top: 122px', 9, INK), ('right: 70px; top: 140px', 10, BLUE, True), ('right: 118px; top: 162px', 7, BLUE)]))
         A(dotp('left: 96px; top: 430px', 150, 300))
@@ -537,6 +537,8 @@ def page(m):
         A('<div style="position: relative; padding: 48px 44px; display: flex; flex-direction: column; justify-content: space-between; gap: 28px"><div aria-hidden="true" class="dots on-dk" style="position: absolute; top: 28px; right: 28px; width: 120px; height: 72px"></div><span class="tag" style="color: #8FAEFF">Construction · Featured story</span><div style="display: flex; flex-direction: column; gap: 16px"><h3 style="font-size: 34px; line-height: 1.1; color: #FFFFFF">A construction company had useful QuickBooks tools it wasn\'t using</h3><p style="font-size: 16px; color: #B9C0CA">We found the tools already built into their QuickBooks Enterprise that nobody was using, and set them up for the way they work.</p></div><span class="lk" style="color: #FFFFFF">Read the story%s</span></div>' % ARR)
         A('</a>')
         A('</div>')
+    # "More client stories" (2 Nov, review comment): ties the featured story to the smaller ones below it
+    A('<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-top: %dpx"><span class="tag">More client stories</span><a class="lk" href="#case-studies">See all case studies%s</a></div>' % (4 if m else 12, ARR))
     A('<div style="display: grid; grid-template-columns: %s; gap: %dpx">' % ('minmax(0, 1fr)' if m else 'repeat(3, minmax(0, 1fr))', 14 if m else 20))
     for lab, t, p, u in CASES:
         A('<a class="card" href="%s" target="_blank" rel="noopener" style="flex-direction: column; justify-content: space-between; gap: 18px; padding: %s; min-height: %s"><span style="display: flex; flex-direction: column; gap: 12px"><span class="tag">%s</span><h3 style="font-size: %dpx; line-height: 1.2">%s</h3><span class="mu" style="font-size: 14.5px">%s</span></span><span class="lk">Read the story%s</span></a>' % (u, '22px' if m else '28px', 'auto' if m else '250px', lab, 20 if m else 22, t, p, ARR))
