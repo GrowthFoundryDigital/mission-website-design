@@ -20,13 +20,19 @@ def port(block):
     return block
 
 # 1. layouts from C3
-for jstart, cstart in [('<!-- 02 Case studies', '<!-- 01b Case studies'), ('<!-- 06 The six moments', '<!-- 04b Triggers')]:
+for jstart, cstart in [('<!-- 02 Case studies', '<!-- 01b Case studies'), ('<!-- 06 The six moments', '<!-- 04b Triggers'),
+                       ('<!-- 05 Services', '<!-- 05 Services carousel')]:  # services from C3 too (8 Nov, by request)
     a, b = section(j, jstart); x, y = section(c, cstart)
     j = j[:a] + '<!-- from Lane C3 (Lane J morph) -->\n' + port(c[x:y]) + j[b:]
 
+# C3's order: the triggers (ice blue) sit between "who we are" and the services carousel, so the two navy sections never touch
+m1 = '<!-- from Lane C3 (Lane J morph) -->\n<!-- 05 Services carousel'; m2 = '<!-- from Lane C3 (Lane J morph) -->\n<!-- 04b Triggers'
+a = j.index(m1); b = j.index('</section>', a) + len('</section>'); svc = j[a:b]; j = j[:a] + j[b:]
+a = j.index(m2); b = j.index('</section>', a) + len('</section>'); j = j[:b] + '\n\n' + svc + j[b:]
+
 # 2. the C3 hover styles those sections use (case-study rows, featured photo zoom, the lime wipe cells, the highlighter links)
 ccss = c[c.index('<style>') + 7:c.index('</style>')].split('\n')
-keep = [l for l in ccss if re.search(r'hv-feat|hv-row|hv-cell|\.hl\b|hl-ink|hv-arrow', l) and not l.lstrip().startswith(('/*', 'the letters'))]
+keep = [l for l in ccss if re.search(r'hv-feat|hv-row|hv-cell|\.hl\b|hl-ink|hv-arrow|hv-card|hv-circ', l) and not l.lstrip().startswith(('/*', 'the letters'))]
 keep = [l.replace('[style*="#0A7FD0"]', '[style*="var(--eb)"]') for l in keep]
 morph_css = '''
 /* ---------- Lane J morph (8 Nov): H2 x C3 ---------- */
@@ -41,6 +47,12 @@ morph_css = '''
 /* hovers from C3 for the ported sections */
 ''' + '\n'.join(keep) + '\n'
 i = j.index('</style>'); j = j[:i] + morph_css + j[i:]
+
+# the services carousel's arrows (desktop): the same scroll helper C3 uses
+if '{{ prev }}' in j:
+    j = j.replace('class Component extends DCLogic {\n', "class Component extends DCLogic {\n  scrollCards(dir) {\n    // one card plus its gap per click (C3's services carousel)\n    if (this.track) this.track.scrollBy({ left: dir * 300, behavior: 'smooth' });\n  }\n", 1)
+    j = j.replace('  renderVals() {\n    return {\n', "  renderVals() {\n    return {\n      setTrack: this.setTrack || (this.setTrack = (el) => { this.track = el; }),\n      prev: this.prev || (this.prev = () => this.scrollCards(-1)),\n      next: this.next || (this.next = () => this.scrollCards(1)),\n", 1)
+    assert 'scrollCards(dir)' in j and 'setTrack:' in j
 
 # 3. fonts and corners across the page
 j = j.replace('family=Open+Sans:wght@400;600', 'family=Plus+Jakarta+Sans:wght@400;500;600;700;800')
