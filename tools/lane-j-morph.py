@@ -145,6 +145,15 @@ j = j[:k] + '<span class="tg-label">Review ·</span>' + j[e:]
 # "What we do": its 8px gap above is a margin, not padding, so the lime wipe hugs the words (8 Nov, by request)
 j = j.replace('<a class="lk" href="#services" style="padding-top: 8px">', '<a class="lk" href="#services" style="margin-top: 8px">', 1)
 assert '<a class="lk" href="#services" style="margin-top: 8px">' in j
+# mobile hero (8 Nov, by request: too much space at the bottom): the photo strip under the hero copy goes (with the divider off it
+# was an empty 270px window onto the background photo); the copy ends 44px above the services list, and the shade over the
+# photo stays dark to the bottom so the reviews line keeps its contrast
+if '<div class="hero-band" style=' in j:
+    j = j.replace('</style>', """/* mobile hero without the empty photo strip (8 Nov) */
+.lj .hero-band{display:none}
+.lj #top{padding-bottom:44px !important}
+.lj .hero-full > div{background:linear-gradient(180deg,rgba(16,20,25,.82) 0%,rgba(16,20,25,.74) 60%,rgba(16,20,25,.62) 100%) !important}
+</style>""", 1)
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
