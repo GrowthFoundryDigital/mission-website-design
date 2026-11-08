@@ -102,6 +102,13 @@ j = j.replace('</style>', """/* the review switches stay at the top while the pa
 .lj .hv-li:hover .ic{color:var(--eb)}
 .lj .dk .hv-li:hover .ic{color:var(--eb-lt)}
 @media (prefers-reduced-motion: reduce){.lj .hl::before,.lj .post .tw,.lj #case-studies .hv-row > span > span:last-child::before{transition:none}}
+/* footer call to action centred in the band (8 Nov, by request: too much empty space on the right; Mobbin references:
+   Figma, Coda, Podia, Homerun) */
+.lj #schedule > div{align-items:center;text-align:center}
+.lj #schedule > div > p:not(.eb){margin-left:auto;margin-right:auto}
+.lj #schedule > div > div{justify-content:center}
+/* mobile: the buttons stay full width */
+.lj #schedule > div > div[style*="flex-direction: column"]{align-self:stretch}
 /* Font review switch (8 Nov): C3 (Plus Jakarta Sans throughout; the default) or H2 (Space Grotesk headings + Open Sans) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
