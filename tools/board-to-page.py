@@ -29,5 +29,9 @@ assert helmet(rc).strip() in p or fwd(helmet(rc)).strip() in p, 'helmet not foun
 if fwd(helmet(rc)).strip() in p and helmet(rc).strip() not in p:
     p2 = p.replace(fwd(helmet(rc)).strip(), helmet(rc).strip(), 1); p = p2
 assert script(rc).strip() in p
-open(out, 'w').write(make(c, p))
+q = make(c, p)
+# a board with a sticky review bar needs the page to clip sideways overflow without becoming its own scroll box
+if '.tg-bar{position:sticky' in c:
+    q = q.replace('html,body{margin:0;overflow-x:hidden}', 'html,body{margin:0;overflow-x:clip}')
+open(out, 'w').write(q)
 print('written', out)

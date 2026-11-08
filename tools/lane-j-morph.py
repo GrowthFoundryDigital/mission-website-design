@@ -68,14 +68,16 @@ j, n = re.subn(r'<p [^>]*>(?:Real stories from our blog\. )?Each one shows the p
 assert n == 1, n
 # 5. no lime in the case studies (8 Nov, by request): the story rows get a light ice-blue hover instead of the lime wipe,
 #    and the section's links lose the highlighter (they underline, and the arrow moves)
-j = j.replace('</style>', """/* case studies without lime (8 Nov) */
+j = j.replace('</style>', """/* the review switches stay at the top while the page scrolls (8 Nov, by request) */
+.lj .tg-bar{position:sticky;top:0;z-index:100}
+/* case studies without lime (8 Nov) */
 .lj #case-studies .hv-row{background:transparent !important;transition:background-color .3s ease}
 .lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background:#F2F8FE !important}
 .lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:var(--eb) !important}
 .lj #case-studies .hl{background-image:none !important}
 .lj #case-studies .hl-ink{background:none !important;-webkit-text-fill-color:currentColor !important}
 .lj #case-studies a.hl svg{color:inherit !important}
-/* Font review switch (8 Nov): Mixed (H2 headings, C3 body; the default), H2 (Space Grotesk + Open Sans) or C3 (Plus Jakarta Sans) */
+/* Font review switch (8 Nov): H2 (Space Grotesk headings + Open Sans; the default) or C3 (Plus Jakarta Sans throughout) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
 .lj[data-font="c3"] h1,.lj[data-font="c3"] h2,.lj[data-font="c3"] h3{font-weight:800 !important;letter-spacing:-.03em}
@@ -84,12 +86,11 @@ j = j.replace('&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800', '&amp;fa
 j = j.replace('data-geo="off" class="lh lj"', 'data-geo="off" data-font="{{ fontMode }}" class="lh lj"', 1)
 bar = j.index('class="tg-bar"'); k = j.index('<span></span>\n</div>', bar)
 j = j[:k] + ('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Font</span><span class="tg-group" role="group" aria-label="Font">'
-             '<button type="button" class="tg-opt" aria-pressed="{{ isFontMixed }}" onClick="{{ setFontMixed }}">Mixed</button>'
              '<button type="button" class="tg-opt" aria-pressed="{{ isFontH2 }}" onClick="{{ setFontH2 }}">H2</button>'
              '<button type="button" class="tg-opt" aria-pressed="{{ isFontC3 }}" onClick="{{ setFontC3 }}">C3</button></span></span>\n') + j[k:]
 j = j.replace('class Component extends DCLogic {\n', """class Component extends DCLogic {
   setFont(v) {
-    // the font switch (mixed, h2 or c3), shared with the other Lane J board
+    // the font switch (h2 or c3), shared with the other Lane J board
     this.setState({ font: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ font: v }); } catch (e) {}
   }
@@ -97,11 +98,9 @@ j = j.replace('class Component extends DCLogic {\n', """class Component extends 
 j = j.replace("        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });\n", "        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });\n        if (e.data && e.data.font) this.setState({ font: e.data.font });\n", 1)
 j = j.replace("  renderVals() {\n    return {\n", """  renderVals() {
     return {
-      fontMode: (this.state && this.state.font) || 'mixed',
-      isFontMixed: ((this.state && this.state.font) || 'mixed') === 'mixed' ? 'true' : 'false',
-      isFontH2: ((this.state && this.state.font) || 'mixed') === 'h2' ? 'true' : 'false',
-      isFontC3: ((this.state && this.state.font) || 'mixed') === 'c3' ? 'true' : 'false',
-      setFontMixed: this.setFontMixed || (this.setFontMixed = () => this.setFont('mixed')),
+      fontMode: (this.state && this.state.font) || 'h2',
+      isFontH2: ((this.state && this.state.font) || 'h2') === 'h2' ? 'true' : 'false',
+      isFontC3: ((this.state && this.state.font) || 'h2') === 'c3' ? 'true' : 'false',
       setFontH2: this.setFontH2 || (this.setFontH2 = () => this.setFont('h2')),
       setFontC3: this.setFontC3 || (this.setFontC3 = () => this.setFont('c3')),
 """, 1)
