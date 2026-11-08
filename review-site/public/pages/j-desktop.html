@@ -6,7 +6,7 @@
 <title>MISSION homepage · Lane J · Desktop</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Caveat:wght@600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Open+Sans:wght@400;600&amp;family=Caveat:wght@600&amp;display=swap">
 <style>
 body{margin:0;background:#101419}
 .lh{font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif;color:#3A424D;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.6}
@@ -224,6 +224,17 @@ a.hl:hover .hl-ink,a.hl:focus-visible .hl-ink,.hv-post:hover .hl-ink{background-
 .hv-post .hl-ink{transition:background-position .95s cubic-bezier(.45,.05,.55,.95) .05s}
 a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transform .25s ease,color .2s ease .4s}
 @media (prefers-reduced-motion: reduce){.hl,.hl-ink,.hv-cell{transition:none !important}}
+/* case studies without lime (8 Nov) */
+.lj #case-studies .hv-row{background:transparent !important;transition:background-color .3s ease}
+.lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background:#F2F8FE !important}
+.lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:var(--eb) !important}
+.lj #case-studies .hl{background-image:none !important}
+.lj #case-studies .hl-ink{background:none !important;-webkit-text-fill-color:currentColor !important}
+.lj #case-studies a.hl svg{color:inherit !important}
+/* Font review switch (8 Nov): Mixed (H2 headings, C3 body; the default), H2 (Space Grotesk + Open Sans) or C3 (Plus Jakarta Sans) */
+.lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
+.lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
+.lj[data-font="c3"] h1,.lj[data-font="c3"] h2,.lj[data-font="c3"] h3{font-weight:800 !important;letter-spacing:-.03em}
 </style>
 
 <style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
@@ -231,7 +242,7 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 <body>
 <div id="dc-root"></div>
 <template id="dc-tpl">
-<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="off" data-blue="{{ blueMode }}" data-geo="off" class="lh lj" style="width: 1440px; background: #101419">
+<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="off" data-blue="{{ blueMode }}" data-geo="off" data-font="{{ fontMode }}" class="lh lj" style="width: 1440px; background: #101419">
 <div class="tg-bar" aria-label="Review control, not part of the design">
 <span class="tg-label">Review · button color</span>
 <div class="tg-group" role="group" aria-label="Button color">
@@ -248,6 +259,7 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 <button type="button" class="tg-opt" aria-pressed="{{ isBlend }}" onClick="{{ setBlend }}"><span class="tg-dot" style="background: #1270DA"></span>Blend</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>
 </span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Font</span><span class="tg-group" role="group" aria-label="Font"><button type="button" class="tg-opt" aria-pressed="{{ isFontMixed }}" onClick="{{ setFontMixed }}">Mixed</button><button type="button" class="tg-opt" aria-pressed="{{ isFontH2 }}" onClick="{{ setFontH2 }}">H2</button><button type="button" class="tg-opt" aria-pressed="{{ isFontC3 }}" onClick="{{ setFontC3 }}">C3</button></span></span>
 <span></span>
 </div>
 
@@ -581,6 +593,11 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 <script src="../rt.js"></script>
 <script>
 class Component extends DCLogic {
+  setFont(v) {
+    // the font switch (mixed, h2 or c3), shared with the other Lane J board
+    this.setState({ font: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ font: v }); } catch (e) {}
+  }
   scrollCards(dir) {
     // one card plus its gap per click (C3's services carousel)
     if (this.track) this.track.scrollBy({ left: dir * 300, behavior: 'smooth' });
@@ -618,12 +635,20 @@ class Component extends DCLogic {
         if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
         if (e.data && e.data.div) this.setState({ div: e.data.div });
         if (e.data && e.data.blue) this.setState({ blue: e.data.blue });
+        if (e.data && e.data.font) this.setState({ font: e.data.font });
         if (e.data && e.data.geo) this.setState({ geo: e.data.geo });
       };
     } catch (e) {}
   }
   renderVals() {
     return {
+      fontMode: (this.state && this.state.font) || 'mixed',
+      isFontMixed: ((this.state && this.state.font) || 'mixed') === 'mixed' ? 'true' : 'false',
+      isFontH2: ((this.state && this.state.font) || 'mixed') === 'h2' ? 'true' : 'false',
+      isFontC3: ((this.state && this.state.font) || 'mixed') === 'c3' ? 'true' : 'false',
+      setFontMixed: this.setFontMixed || (this.setFontMixed = () => this.setFont('mixed')),
+      setFontH2: this.setFontH2 || (this.setFontH2 = () => this.setFont('h2')),
+      setFontC3: this.setFontC3 || (this.setFontC3 = () => this.setFont('c3')),
       setTrack: this.setTrack || (this.setTrack = (el) => { this.track = el; }),
       prev: this.prev || (this.prev = () => this.scrollCards(-1)),
       next: this.next || (this.next = () => this.scrollCards(1)),

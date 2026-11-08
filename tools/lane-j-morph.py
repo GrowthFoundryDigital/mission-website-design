@@ -66,5 +66,45 @@ j = j.replace('border-radius: 10px; background: #1B2029"', 'border-radius: 10px;
 j = j.replace('class="card" style="background: #101419; border-color: #101419;', 'class="card" style="background: #0A2240; border-color: #0A2240;')
 j, n = re.subn(r'<p [^>]*>(?:Real stories from our blog\. )?Each one shows the problem a business had and how we set up QuickBooks to fix it\.</p>', '', j)
 assert n == 1, n
+# 5. no lime in the case studies (8 Nov, by request): the story rows get a light ice-blue hover instead of the lime wipe,
+#    and the section's links lose the highlighter (they underline, and the arrow moves)
+j = j.replace('</style>', """/* case studies without lime (8 Nov) */
+.lj #case-studies .hv-row{background:transparent !important;transition:background-color .3s ease}
+.lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background:#F2F8FE !important}
+.lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:var(--eb) !important}
+.lj #case-studies .hl{background-image:none !important}
+.lj #case-studies .hl-ink{background:none !important;-webkit-text-fill-color:currentColor !important}
+.lj #case-studies a.hl svg{color:inherit !important}
+/* Font review switch (8 Nov): Mixed (H2 headings, C3 body; the default), H2 (Space Grotesk + Open Sans) or C3 (Plus Jakarta Sans) */
+.lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
+.lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
+.lj[data-font="c3"] h1,.lj[data-font="c3"] h2,.lj[data-font="c3"] h3{font-weight:800 !important;letter-spacing:-.03em}
+</style>""", 1)
+j = j.replace('&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800', '&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Open+Sans:wght@400;600', 1)
+j = j.replace('data-geo="off" class="lh lj"', 'data-geo="off" data-font="{{ fontMode }}" class="lh lj"', 1)
+bar = j.index('class="tg-bar"'); k = j.index('<span></span>\n</div>', bar)
+j = j[:k] + ('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Font</span><span class="tg-group" role="group" aria-label="Font">'
+             '<button type="button" class="tg-opt" aria-pressed="{{ isFontMixed }}" onClick="{{ setFontMixed }}">Mixed</button>'
+             '<button type="button" class="tg-opt" aria-pressed="{{ isFontH2 }}" onClick="{{ setFontH2 }}">H2</button>'
+             '<button type="button" class="tg-opt" aria-pressed="{{ isFontC3 }}" onClick="{{ setFontC3 }}">C3</button></span></span>\n') + j[k:]
+j = j.replace('class Component extends DCLogic {\n', """class Component extends DCLogic {
+  setFont(v) {
+    // the font switch (mixed, h2 or c3), shared with the other Lane J board
+    this.setState({ font: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ font: v }); } catch (e) {}
+  }
+""", 1)
+j = j.replace("        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });\n", "        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });\n        if (e.data && e.data.font) this.setState({ font: e.data.font });\n", 1)
+j = j.replace("  renderVals() {\n    return {\n", """  renderVals() {
+    return {
+      fontMode: (this.state && this.state.font) || 'mixed',
+      isFontMixed: ((this.state && this.state.font) || 'mixed') === 'mixed' ? 'true' : 'false',
+      isFontH2: ((this.state && this.state.font) || 'mixed') === 'h2' ? 'true' : 'false',
+      isFontC3: ((this.state && this.state.font) || 'mixed') === 'c3' ? 'true' : 'false',
+      setFontMixed: this.setFontMixed || (this.setFontMixed = () => this.setFont('mixed')),
+      setFontH2: this.setFontH2 || (this.setFontH2 = () => this.setFont('h2')),
+      setFontC3: this.setFontC3 || (this.setFontC3 = () => this.setFont('c3')),
+""", 1)
+assert 'setFontC3' in j and 'data-font=' in j and 'aria-label="Font"' in j
 open(out, 'w').write(j)
 print('morphed', out)
