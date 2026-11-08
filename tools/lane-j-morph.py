@@ -66,34 +66,42 @@ j = j.replace('border-radius: 10px; background: #1B2029"', 'border-radius: 10px;
 j = j.replace('class="card" style="background: #101419; border-color: #101419;', 'class="card" style="background: #0A2240; border-color: #0A2240;')
 j, n = re.subn(r'<p [^>]*>(?:Real stories from our blog\. )?Each one shows the problem a business had and how we set up QuickBooks to fix it\.</p>', '', j)
 assert n == 1, n
-# 5. no lime in the case studies (8 Nov, by request): the story rows keep C3's left-to-right wipe, in navy instead of lime,
-#    and do not slide sideways (an H2 hover rule shares the hv-row class);
-#    one text-link hover everywhere (8 Nov, by request): C3's highlighter links take H2's square wipe
+# 5. hovers (8 Nov, by request): no fill on the case-study rows; one lime text-link wipe everywhere (C3's highlighter links,
+#    the rows' "Read the story", blog titles); no lime on non-text hovers (cells, industry rows, the who-we-are list)
 j = j.replace('</style>', """/* the review switches stay at the top while the page scrolls (8 Nov, by request) */
 .lj .tg-bar{position:sticky;top:0;z-index:100}
-/* case studies without lime (8 Nov): the story rows fill navy from left to right (light blue blended into the section, 8 Nov),
-   and the words turn light as the navy passes them */
-.lj #case-studies .hv-row{background:linear-gradient(#0A2240,#0A2240) no-repeat 0 0/0% 100% !important;transition:background-size .5s cubic-bezier(.22,.61,.36,1)}
-.lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background-size:100% 100% !important;transform:none}
-.lj #case-studies .hv-row [style*="color"]{transition:color .3s ease .12s}
-.lj #case-studies .hv-row:hover [style*="color: #0A2240"],.lj #case-studies .hv-row:focus-visible [style*="color: #0A2240"],.lj #case-studies .hv-row:hover h3,.lj #case-studies .hv-row:focus-visible h3{color:#FFFFFF !important}
-.lj #case-studies .hv-row:hover [style*="color: #3B4A63"],.lj #case-studies .hv-row:focus-visible [style*="color: #3B4A63"]{color:#C9D6E8 !important}
-.lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:#7CC4F8 !important}
-/* one text-link hover across the page (8 Nov, by request): the square wipe the "What we do" links use, left to right, 8px past each end,
-   in place of C3's hand-drawn highlighter; lime on the page, navy in the case studies */
+/* case studies (8 Nov, by request): no fill on the story rows at all (lime, then light blue, then navy were tried); the row does not
+   slide (an H2 hover rule shares the hv-row class) and only the caret nudges; its "Read the story" takes the text-link wipe below */
+.lj #case-studies .hv-row{background:none !important;transform:none !important}
+.lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:var(--eb) !important}
+.lj #case-studies .hv-row:hover h3,.lj #case-studies .hv-row:focus-visible h3{color:#0A2240}
+/* one text-link hover across the page (8 Nov, by request): every text link gets the lime square wipe of "Not on the list? Schedule a
+   free consultation": left to right, 8px past each end, the words inking near-black as it reaches them. C3's hand-drawn highlighter
+   links take it, as do the "Read the story" lines in the case-study rows and the blog titles (when the card is hovered) */
 .lj .hl{background-image:none !important;padding:0;margin:0;position:relative;isolation:isolate;text-decoration-color:currentColor;transition:text-decoration-color .3s ease}
-.lj .hl::before{content:'';position:absolute;top:-5px;bottom:-5px;left:-8px;right:-8px;z-index:-1;background:#C1F432;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.22,.61,.36,1);pointer-events:none}
-.lj a.hl:hover::before,.lj a.hl:focus-visible::before{transform:scaleX(1)}
+.lj .hl::before,.lj #case-studies .hv-row > span > span:last-child::before{content:'';position:absolute;top:-5px;bottom:-5px;left:-8px;right:-8px;z-index:-1;background:#C1F432;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+.lj a.hl:hover::before,.lj a.hl:focus-visible::before,.lj #case-studies .hv-row:hover > span > span:last-child::before,.lj #case-studies .hv-row:focus-visible > span > span:last-child::before{transform:scaleX(1)}
+.lj a.hl:hover,.lj a.hl:focus-visible{text-decoration-color:transparent !important}
 /* a link inside a sentence keeps the block tight, so it does not cover the next word */
 .lj p > .hl::before{left:-3px;right:-3px;top:-2px;bottom:-2px}
-.lj a.hl:hover,.lj a.hl:focus-visible{text-decoration-color:transparent !important}
 .lj .hl-ink{background-image:linear-gradient(90deg,#101419 50%,currentColor 50%);transition:background-position .45s cubic-bezier(.22,.61,.36,1) .03s}
 .lj a.hl:hover svg,.lj a.hl:focus-visible svg{color:#101419 !important;transition:transform .4s cubic-bezier(.22,.61,.36,1),color .15s ease .3s}
-.lj #case-studies .hl::before{background:#0A2240}
-.lj #case-studies .hl-ink{background-image:linear-gradient(90deg,#FFFFFF 50%,currentColor 50%)}
-.lj #case-studies a.hl:hover svg,.lj #case-studies a.hl:focus-visible svg{color:#FFFFFF !important}
 .lj #case-studies .hv-arrow:hover,.lj #case-studies .hv-arrow:focus-visible{text-decoration:none !important}
-@media (prefers-reduced-motion: reduce){.lj .hl::before,.lj #case-studies .hv-row [style*="color"]{transition:none}}
+.lj #case-studies .hv-row > span > span:last-child{align-self:flex-start;position:relative;isolation:isolate;transition:color .2s ease .15s,text-decoration-color .3s ease}
+.lj #case-studies .hv-row:hover > span > span:last-child,.lj #case-studies .hv-row:focus-visible > span > span:last-child{color:#101419 !important;text-decoration-color:transparent !important}
+/* blog titles: the same wipe, as one continuous pass across wrapped lines */
+.lj .post .tw{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;padding:1px 8px;margin:0 -8px;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-size .6s cubic-bezier(.22,.61,.36,1)}
+.lj .post:hover .tw{background-size:100% 100%}
+.lj .post:hover h3{color:#101419}
+/* no lime on hover except text links and buttons (8 Nov, by request): the "When people usually call us" cells, the industry rows
+   and the "who we are" list keep their other hovers but lose the lime */
+.lj .hv-cell{background:none !important}
+.lj .hv-cell:hover h3{color:inherit !important}
+.lj .hv-ind::before{display:none}
+.lj .hv-li:hover{border-top-color:rgba(255,255,255,.14) !important}
+.lj .hv-li:hover .ic{color:var(--eb)}
+.lj .dk .hv-li:hover .ic{color:var(--eb-lt)}
+@media (prefers-reduced-motion: reduce){.lj .hl::before,.lj .post .tw,.lj #case-studies .hv-row > span > span:last-child::before{transition:none}}
 /* Font review switch (8 Nov): C3 (Plus Jakarta Sans throughout; the default) or H2 (Space Grotesk headings + Open Sans) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
@@ -127,5 +135,8 @@ j = j.replace('data-btn="{{ btnMode }}"', 'data-btn="green"', 1)
 k = j.index('<span class="tg-label">Review · '); e = j.index('</div>', k) + len('</div>')
 assert 'aria-label="Button color"' in j[k:e]
 j = j[:k] + '<span class="tg-label">Review ·</span>' + j[e:]
+# blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
+j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
+assert n == 3, n
 open(out, 'w').write(j)
 print('morphed', out)
