@@ -228,13 +228,14 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 /* the review switches stay at the top while the page scrolls (8 Nov, by request) */
 .lj .tg-bar{position:sticky;top:0;z-index:100}
 /* case studies without lime (8 Nov) */
-.lj #case-studies .hv-row{background:transparent !important;transition:background-color .3s ease}
-.lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background:#F2F8FE !important}
+.lj #case-studies .hv-row{background:linear-gradient(#E3EFFC,#E3EFFC) no-repeat 0 0/0% 100% !important;transition:background-size .5s cubic-bezier(.22,.61,.36,1)}
+.lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background-size:100% 100% !important;transform:none}
+.lj #case-studies .hv-row:hover h3,.lj #case-studies .hv-row:focus-visible h3{color:#0A2240}
 .lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:var(--eb) !important}
 .lj #case-studies .hl{background-image:none !important}
 .lj #case-studies .hl-ink{background:none !important;-webkit-text-fill-color:currentColor !important}
 .lj #case-studies a.hl svg{color:inherit !important}
-/* Font review switch (8 Nov): H2 (Space Grotesk headings + Open Sans; the default) or C3 (Plus Jakarta Sans throughout) */
+/* Font review switch (8 Nov): C3 (Plus Jakarta Sans throughout; the default) or H2 (Space Grotesk headings + Open Sans) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
 .lj[data-font="c3"] h1,.lj[data-font="c3"] h2,.lj[data-font="c3"] h3{font-weight:800 !important;letter-spacing:-.03em}
@@ -245,14 +246,9 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 <body>
 <div id="dc-root"></div>
 <template id="dc-tpl">
-<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="off" data-blue="{{ blueMode }}" data-geo="off" data-font="{{ fontMode }}" class="lh lj" style="width: 390px; background: #101419">
+<div data-btn="green" data-hero="{{ heroMode }}" data-div="off" data-blue="{{ blueMode }}" data-geo="off" data-font="{{ fontMode }}" class="lh lj" style="width: 390px; background: #101419">
 <div class="tg-bar" aria-label="Review control, not part of the design">
-<span class="tg-label">Review · buttons</span>
-<div class="tg-group" role="group" aria-label="Button color">
-<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: var(--eb)"></span>Blue</button>
-<button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>Green</button>
-<button type="button" class="tg-opt" aria-pressed="{{ isBlack }}" onClick="{{ setBlack }}"><span class="tg-dot" style="background: #101419; box-shadow: 0 0 0 1px rgba(255,255,255,.55)"></span>Black</button>
-</div>
+<span class="tg-label">Review ·</span>
 <span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Photos</span><span class="tg-group" role="group" aria-label="Hero photo">
 <button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>
@@ -262,7 +258,7 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 <button type="button" class="tg-opt" aria-pressed="{{ isBlend }}" onClick="{{ setBlend }}"><span class="tg-dot" style="background: #1270DA"></span>Blend</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>
 </span></span>
-<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Font</span><span class="tg-group" role="group" aria-label="Font"><button type="button" class="tg-opt" aria-pressed="{{ isFontH2 }}" onClick="{{ setFontH2 }}">H2</button><button type="button" class="tg-opt" aria-pressed="{{ isFontC3 }}" onClick="{{ setFontC3 }}">C3</button></span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Font</span><span class="tg-group" role="group" aria-label="Font"><button type="button" class="tg-opt" aria-pressed="{{ isFontC3 }}" onClick="{{ setFontC3 }}">C3</button><button type="button" class="tg-opt" aria-pressed="{{ isFontH2 }}" onClick="{{ setFontH2 }}">H2</button></span></span>
 <span></span>
 </div>
 
@@ -598,9 +594,9 @@ class Component extends DCLogic {
   }
   renderVals() {
     return {
-      fontMode: (this.state && this.state.font) || 'h2',
-      isFontH2: ((this.state && this.state.font) || 'h2') === 'h2' ? 'true' : 'false',
-      isFontC3: ((this.state && this.state.font) || 'h2') === 'c3' ? 'true' : 'false',
+      fontMode: (this.state && this.state.font) || 'c3',
+      isFontH2: ((this.state && this.state.font) || 'c3') === 'h2' ? 'true' : 'false',
+      isFontC3: ((this.state && this.state.font) || 'c3') === 'c3' ? 'true' : 'false',
       setFontH2: this.setFontH2 || (this.setFontH2 = () => this.setFont('h2')),
       setFontC3: this.setFontC3 || (this.setFontC3 = () => this.setFont('c3')),
       btnMode: (this.state && this.state.btn) || 'green',

@@ -66,18 +66,20 @@ j = j.replace('border-radius: 10px; background: #1B2029"', 'border-radius: 10px;
 j = j.replace('class="card" style="background: #101419; border-color: #101419;', 'class="card" style="background: #0A2240; border-color: #0A2240;')
 j, n = re.subn(r'<p [^>]*>(?:Real stories from our blog\. )?Each one shows the problem a business had and how we set up QuickBooks to fix it\.</p>', '', j)
 assert n == 1, n
-# 5. no lime in the case studies (8 Nov, by request): the story rows get a light ice-blue hover instead of the lime wipe,
+# 5. no lime in the case studies (8 Nov, by request): the story rows keep C3's left-to-right wipe, in light blue instead of lime,
+#    and do not slide sideways (an H2 hover rule shares the hv-row class),
 #    and the section's links lose the highlighter (they underline, and the arrow moves)
 j = j.replace('</style>', """/* the review switches stay at the top while the page scrolls (8 Nov, by request) */
 .lj .tg-bar{position:sticky;top:0;z-index:100}
 /* case studies without lime (8 Nov) */
-.lj #case-studies .hv-row{background:transparent !important;transition:background-color .3s ease}
-.lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background:#F2F8FE !important}
+.lj #case-studies .hv-row{background:linear-gradient(#E3EFFC,#E3EFFC) no-repeat 0 0/0% 100% !important;transition:background-size .5s cubic-bezier(.22,.61,.36,1)}
+.lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background-size:100% 100% !important;transform:none}
+.lj #case-studies .hv-row:hover h3,.lj #case-studies .hv-row:focus-visible h3{color:#0A2240}
 .lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:var(--eb) !important}
 .lj #case-studies .hl{background-image:none !important}
 .lj #case-studies .hl-ink{background:none !important;-webkit-text-fill-color:currentColor !important}
 .lj #case-studies a.hl svg{color:inherit !important}
-/* Font review switch (8 Nov): H2 (Space Grotesk headings + Open Sans; the default) or C3 (Plus Jakarta Sans throughout) */
+/* Font review switch (8 Nov): C3 (Plus Jakarta Sans throughout; the default) or H2 (Space Grotesk headings + Open Sans) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
 .lj[data-font="c3"] h1,.lj[data-font="c3"] h2,.lj[data-font="c3"] h3{font-weight:800 !important;letter-spacing:-.03em}
@@ -86,8 +88,8 @@ j = j.replace('&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800', '&amp;fa
 j = j.replace('data-geo="off" class="lh lj"', 'data-geo="off" data-font="{{ fontMode }}" class="lh lj"', 1)
 bar = j.index('class="tg-bar"'); k = j.index('<span></span>\n</div>', bar)
 j = j[:k] + ('<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Font</span><span class="tg-group" role="group" aria-label="Font">'
-             '<button type="button" class="tg-opt" aria-pressed="{{ isFontH2 }}" onClick="{{ setFontH2 }}">H2</button>'
-             '<button type="button" class="tg-opt" aria-pressed="{{ isFontC3 }}" onClick="{{ setFontC3 }}">C3</button></span></span>\n') + j[k:]
+             '<button type="button" class="tg-opt" aria-pressed="{{ isFontC3 }}" onClick="{{ setFontC3 }}">C3</button>'
+             '<button type="button" class="tg-opt" aria-pressed="{{ isFontH2 }}" onClick="{{ setFontH2 }}">H2</button></span></span>\n') + j[k:]
 j = j.replace('class Component extends DCLogic {\n', """class Component extends DCLogic {
   setFont(v) {
     // the font switch (h2 or c3), shared with the other Lane J board
@@ -98,12 +100,17 @@ j = j.replace('class Component extends DCLogic {\n', """class Component extends 
 j = j.replace("        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });\n", "        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });\n        if (e.data && e.data.font) this.setState({ font: e.data.font });\n", 1)
 j = j.replace("  renderVals() {\n    return {\n", """  renderVals() {
     return {
-      fontMode: (this.state && this.state.font) || 'h2',
-      isFontH2: ((this.state && this.state.font) || 'h2') === 'h2' ? 'true' : 'false',
-      isFontC3: ((this.state && this.state.font) || 'h2') === 'c3' ? 'true' : 'false',
+      fontMode: (this.state && this.state.font) || 'c3',
+      isFontH2: ((this.state && this.state.font) || 'c3') === 'h2' ? 'true' : 'false',
+      isFontC3: ((this.state && this.state.font) || 'c3') === 'c3' ? 'true' : 'false',
       setFontH2: this.setFontH2 || (this.setFontH2 = () => this.setFont('h2')),
       setFontC3: this.setFontC3 || (this.setFontC3 = () => this.setFont('c3')),
 """, 1)
 assert 'setFontC3' in j and 'data-font=' in j and 'aria-label="Font"' in j
+# 6. lime buttons are final (8 Nov, client decision): the button colour switch goes and the page is always in green mode
+j = j.replace('data-btn="{{ btnMode }}"', 'data-btn="green"', 1)
+k = j.index('<span class="tg-label">Review · '); e = j.index('</div>', k) + len('</div>')
+assert 'aria-label="Button color"' in j[k:e]
+j = j[:k] + '<span class="tg-label">Review ·</span>' + j[e:]
 open(out, 'w').write(j)
 print('morphed', out)
