@@ -142,6 +142,9 @@ j = j.replace('data-btn="{{ btnMode }}"', 'data-btn="green"', 1)
 k = j.index('<span class="tg-label">Review · '); e = j.index('</div>', k) + len('</div>')
 assert 'aria-label="Button color"' in j[k:e]
 j = j[:k] + '<span class="tg-label">Review ·</span>' + j[e:]
+# "What we do": its 8px gap above is a margin, not padding, so the lime wipe hugs the words (8 Nov, by request)
+j = j.replace('<a class="lk" href="#services" style="padding-top: 8px">', '<a class="lk" href="#services" style="margin-top: 8px">', 1)
+assert '<a class="lk" href="#services" style="margin-top: 8px">' in j
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
