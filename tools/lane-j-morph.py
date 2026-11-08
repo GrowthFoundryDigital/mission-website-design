@@ -66,19 +66,34 @@ j = j.replace('border-radius: 10px; background: #1B2029"', 'border-radius: 10px;
 j = j.replace('class="card" style="background: #101419; border-color: #101419;', 'class="card" style="background: #0A2240; border-color: #0A2240;')
 j, n = re.subn(r'<p [^>]*>(?:Real stories from our blog\. )?Each one shows the problem a business had and how we set up QuickBooks to fix it\.</p>', '', j)
 assert n == 1, n
-# 5. no lime in the case studies (8 Nov, by request): the story rows keep C3's left-to-right wipe, in light blue instead of lime,
-#    and do not slide sideways (an H2 hover rule shares the hv-row class),
-#    and the section's links lose the highlighter (they underline, and the arrow moves)
+# 5. no lime in the case studies (8 Nov, by request): the story rows keep C3's left-to-right wipe, in navy instead of lime,
+#    and do not slide sideways (an H2 hover rule shares the hv-row class);
+#    one text-link hover everywhere (8 Nov, by request): C3's highlighter links take H2's square wipe
 j = j.replace('</style>', """/* the review switches stay at the top while the page scrolls (8 Nov, by request) */
 .lj .tg-bar{position:sticky;top:0;z-index:100}
-/* case studies without lime (8 Nov) */
-.lj #case-studies .hv-row{background:linear-gradient(#E3EFFC,#E3EFFC) no-repeat 0 0/0% 100% !important;transition:background-size .5s cubic-bezier(.22,.61,.36,1)}
+/* case studies without lime (8 Nov): the story rows fill navy from left to right (light blue blended into the section, 8 Nov),
+   and the words turn light as the navy passes them */
+.lj #case-studies .hv-row{background:linear-gradient(#0A2240,#0A2240) no-repeat 0 0/0% 100% !important;transition:background-size .5s cubic-bezier(.22,.61,.36,1)}
 .lj #case-studies .hv-row:hover,.lj #case-studies .hv-row:focus-visible{background-size:100% 100% !important;transform:none}
-.lj #case-studies .hv-row:hover h3,.lj #case-studies .hv-row:focus-visible h3{color:#0A2240}
-.lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:var(--eb) !important}
-.lj #case-studies .hl{background-image:none !important}
-.lj #case-studies .hl-ink{background:none !important;-webkit-text-fill-color:currentColor !important}
-.lj #case-studies a.hl svg{color:inherit !important}
+.lj #case-studies .hv-row [style*="color"]{transition:color .3s ease .12s}
+.lj #case-studies .hv-row:hover [style*="color: #0A2240"],.lj #case-studies .hv-row:focus-visible [style*="color: #0A2240"],.lj #case-studies .hv-row:hover h3,.lj #case-studies .hv-row:focus-visible h3{color:#FFFFFF !important}
+.lj #case-studies .hv-row:hover [style*="color: #3B4A63"],.lj #case-studies .hv-row:focus-visible [style*="color: #3B4A63"]{color:#C9D6E8 !important}
+.lj #case-studies .hv-row:hover [style*="var(--eb)"],.lj #case-studies .hv-row:focus-visible [style*="var(--eb)"]{color:#7CC4F8 !important}
+/* one text-link hover across the page (8 Nov, by request): the square wipe the "What we do" links use, left to right, 8px past each end,
+   in place of C3's hand-drawn highlighter; lime on the page, navy in the case studies */
+.lj .hl{background-image:none !important;padding:0;margin:0;position:relative;isolation:isolate;text-decoration-color:currentColor;transition:text-decoration-color .3s ease}
+.lj .hl::before{content:'';position:absolute;top:-5px;bottom:-5px;left:-8px;right:-8px;z-index:-1;background:#C1F432;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+.lj a.hl:hover::before,.lj a.hl:focus-visible::before{transform:scaleX(1)}
+/* a link inside a sentence keeps the block tight, so it does not cover the next word */
+.lj p > .hl::before{left:-3px;right:-3px;top:-2px;bottom:-2px}
+.lj a.hl:hover,.lj a.hl:focus-visible{text-decoration-color:transparent !important}
+.lj .hl-ink{background-image:linear-gradient(90deg,#101419 50%,currentColor 50%);transition:background-position .45s cubic-bezier(.22,.61,.36,1) .03s}
+.lj a.hl:hover svg,.lj a.hl:focus-visible svg{color:#101419 !important;transition:transform .4s cubic-bezier(.22,.61,.36,1),color .15s ease .3s}
+.lj #case-studies .hl::before{background:#0A2240}
+.lj #case-studies .hl-ink{background-image:linear-gradient(90deg,#FFFFFF 50%,currentColor 50%)}
+.lj #case-studies a.hl:hover svg,.lj #case-studies a.hl:focus-visible svg{color:#FFFFFF !important}
+.lj #case-studies .hv-arrow:hover,.lj #case-studies .hv-arrow:focus-visible{text-decoration:none !important}
+@media (prefers-reduced-motion: reduce){.lj .hl::before,.lj #case-studies .hv-row [style*="color"]{transition:none}}
 /* Font review switch (8 Nov): C3 (Plus Jakarta Sans throughout; the default) or H2 (Space Grotesk headings + Open Sans) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
