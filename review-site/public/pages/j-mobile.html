@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390">
+<title>MISSION homepage · Lane J · Mobile</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&amp;family=Open+Sans:wght@400;600&amp;family=Caveat:wght@600&amp;display=swap">
+<style>
+body{margin:0;background:#101419}
+.lh{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif;color:#3A424D;-webkit-font-smoothing:antialiased;font-size:15px;line-height:1.6}
+.lh *{box-sizing:border-box}
+.lh h1,.lh h2,.lh h3{margin:0;font-family:'Space Grotesk','Open Sans',sans-serif;font-weight:600;color:#101419;letter-spacing:-.025em;text-wrap:balance}
+.lh p{margin:0}
+.lh .dk{background:#101419;color:#B9C0CA}
+.lh .dk h1,.lh .dk h2,.lh .dk h3{color:#FFFFFF}
+.lh .bl{background:var(--eb);color:var(--eb-pale)}
+.lh .bl h1,.lh .bl h2,.lh .bl h3{color:#FFFFFF}
+.lh .ch{background:#F5F6F7}
+/* Lane J: C3's softer ice blue for the light sections */
+.lj .ch,.lj .ice{background:#E8F3FD}
+.lh .wh{background:#FFFFFF}
+.lh .eb{margin:0;display:flex;align-items:center;gap:14px;font:600 12px/1.3 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--eb)}
+.lh .eb b{font-weight:600;color:#101419}
+.lh .dk .eb{color:var(--eb-lt)}
+.lh .dk .eb b{color:#FFFFFF}
+.lh .bl .eb,.lh .bl .eb b{color:#FFFFFF}
+.lh .bl .btn-o{color:#FFFFFF;border-color:rgba(255,255,255,.55)}
+.lh .bl .btn-o:hover,.lh .bl .btn-o:focus-visible{border-color:#FFFFFF}
+.lh .bl .btn-p{background:#101419}
+.lh .bl .btn-p:hover,.lh .bl .btn-p:focus-visible{background:#000000}
+.lh .bl .nav a{color:#FFFFFF}
+.lh .bl .nav a:hover,.lh .bl .nav a:focus-visible{color:#FFFFFF}
+.hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
+/* Hero divider review switch (28 Oct): off = the photo full width behind the text, no blue angle, no blue-side geometry */
+.hero-fade,.hero-full{display:none}
+.hero-full{position:absolute;inset:0;z-index:0;overflow:hidden}
+[data-div="off"] .hero-ph{left:0 !important;clip-path:none !important}
+[data-div="off"] .hero-fade{display:block}
+[data-div="off"] .hero-script{left:1133px !important}
+[data-div="off"] .hero-geo{display:none}
+/* Shapes review switch (29 Oct): off hides every decorative shape, including the outline frames around photos and cards and the wedges on photos; the hero divider has its own switch */
+[data-geo="off"] svg.deco,[data-geo="off"] span.deco,[data-geo="off"] div.deco,[data-geo="off"] .dots,[data-geo="off"] .wedge{display:none !important}
+[data-geo="off"] .foot-geo{visibility:hidden}
+[data-geo="off"] .foot-geo.m{display:none}
+[data-div="off"] .hero-full{display:block}
+[data-div="off"] .hero-band{clip-path:none !important}
+[data-div="off"] .hero-band > img,[data-div="off"] .hero-band > .wedge{visibility:hidden}
+[data-hero="kitchen"] .hero-bg-kitchen,[data-hero="office"] .hero-bg-office,[data-hero="ecommerce"] .hero-bg-ecommerce{display:block}
+.lh .mu{color:#5E6670}
+.lh .dk .mu{color:#9AA3AE}
+.lh .bl .mu{color:var(--eb-pale)}
+.lh .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:4px;border:1px solid transparent;font:600 15px/1 'Space Grotesk',sans-serif;text-decoration:none;white-space:nowrap;cursor:pointer;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+.lh .btn-p{background:var(--eb);color:#FFFFFF}
+.lh .btn-p:hover,.lh .btn-p:focus-visible{background:#1B47CC}
+.lh .btn-o{background:transparent;color:#101419;border-color:#C9CED6}
+.lh .btn-o:hover,.lh .btn-o:focus-visible{border-color:#101419}
+.lh .dk .btn-o{color:#FFFFFF;border-color:rgba(255,255,255,.3)}
+.lh .dk .btn-o:hover,.lh .dk .btn-o:focus-visible{border-color:#FFFFFF}
+.lh .btn-ghost{background:transparent;color:#FFFFFF;border-color:rgba(255,255,255,.6)}
+.lh .btn-ghost:hover,.lh .btn-ghost:focus-visible{background:rgba(255,255,255,.12);border-color:#FFFFFF}
+.lh .btn-w{background:#FFFFFF;color:#101419}
+.lh .btn-w:hover,.lh .btn-w:focus-visible{background:var(--eb-tint2)}
+.lh .lk{display:inline-flex;align-items:center;gap:8px;font:600 14.5px/1.3 'Space Grotesk',sans-serif;color:var(--eb);text-decoration:none}
+.lh .dk .lk{color:#FFFFFF}
+.lh .lk .ar,.lh .btn .ar{transition:transform .25s ease}
+.lh .lk:hover .ar,.lh .btn:hover .ar,.lh a:hover .lk .ar{transform:translateX(3px)}
+.lh .nav a{color:#C3C9D2;text-decoration:none;font-size:14px;font-weight:600;transition:color .2s ease}
+.lh .nav a:hover,.lh .nav a:focus-visible{color:#FFFFFF}
+.lh .ph{position:relative;overflow:hidden;background:#1B2029}
+.lh .ph img{display:block;width:100%;height:100%;object-fit:cover}
+.lh .dots{background-image:radial-gradient(#8FA3C8 1.3px,transparent 1.4px);background-size:16px 16px}
+.lh .dk .dots,.lh .dots.on-dk{background-image:radial-gradient(rgba(255,255,255,.28) 1.3px,transparent 1.4px)}
+.lh .wedge{clip-path:polygon(0 0,100% 0,62% 100%,0 100%)}
+.lh .ic{display:inline-flex;align-items:center;justify-content:center;flex:none;color:var(--eb)}
+.lh .dk .ic{color:var(--eb-lt)}
+.lh .card{background:#FFFFFF;border:1px solid #E2E5EA;border-radius:6px;transition:border-color .25s ease,transform .25s ease}
+.lh a.card{text-decoration:none;color:inherit;display:flex}
+.lh a.card:hover,.lh a.card:focus-visible{border-color:var(--eb);transform:translateY(-3px)}
+.lh .tag{font:600 11.5px/1.3 'Space Grotesk',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:var(--eb)}
+.lh .dk .tag{color:var(--eb-lt)}
+.lh .faq{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-top:1px solid #DDE1E6;cursor:pointer;font:600 17px/1.35 'Space Grotesk',sans-serif;color:#101419}
+.lh .faq svg{color:var(--eb);flex:none;transition:transform .25s ease}
+.lh .faq[aria-expanded="true"] svg{transform:rotate(45deg)}
+.lh .foot a{color:#AEB5BF;text-decoration:none;font-size:13.5px;transition:color .3s ease}
+/* footer text links turn lime on hover (28 Oct, by request); the footer's buttons keep their own hovers */
+.lh .foot a:not(.btn):hover,.lh .foot a:not(.btn):focus-visible{color:#C1F432 !important}
+.lh .foot .fh{margin:0 0 6px;font:600 11.5px/1.3 'Space Grotesk',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--eb-lt)}
+.lh .foot input{flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:4px;background:rgba(255,255,255,.05);font:400 14px/1 'Open Sans',sans-serif;color:#FFFFFF}
+.lh .foot input::placeholder{color:#7D8692}
+.lh .foot input:focus{outline:none;border-color:var(--eb-lt)}
+.lh .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.lh .script{font-family:'Caveat',cursive;font-weight:600;color:#FFFFFF;line-height:.95}
+/* Geometry: decorative shapes sit behind content (z 0); section content sits above (z 1) */
+.lh section,.lh footer{position:relative;overflow:hidden}
+.lh section > *:not(.deco),.lh footer > *:not(.deco){position:relative;z-index:1}
+.lh .deco{position:absolute;pointer-events:none;z-index:0}
+.lh .dots.blue{background-image:radial-gradient(var(--eb) 1.4px,transparent 1.5px);opacity:.35}
+@media (prefers-reduced-motion: reduce){.lh *{transition:none !important}}
+/* Review toggle: blue (var(--eb)) or green (#C1F432) solid buttons */
+.tg-bar{min-height:40px;box-sizing:border-box;background:#141414;color:#FFFFFF;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;padding:6px 8px;font:500 12.5px/1 system-ui,-apple-system,'Segoe UI',sans-serif}
+.tg-bar .tg-label{color:#BDBDBD}
+.tg-bar .tg-group{display:inline-flex;background:#2B2B2B;border-radius:999px;padding:3px;gap:2px}
+.tg-bar .tg-opt{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 12px;border-radius:999px;color:#D0D0D0;font:600 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;transition:background-color .2s ease,color .2s ease}
+.tg-bar .tg-opt:hover{color:#FFFFFF}
+.tg-bar .tg-opt:focus-visible{outline:2px solid var(--eb-lt);outline-offset:2px}
+.tg-bar .tg-opt[aria-pressed="true"]{background:#FFFFFF;color:#141414}
+.tg-bar .tg-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+[data-btn="green"] .tg-btn{background:#C1F432 !important;color:#101419 !important;border-color:#C1F432 !important}
+[data-btn="green"] .tg-btn:hover,[data-btn="green"] .tg-btn:focus-visible{opacity:1}
+/* Hovers (28 Oct): every button turns lime; cards lift */
+.lh .btn{transition:background-color .25s ease,color .25s ease,border-color .25s ease,transform .25s ease,box-shadow .25s ease}
+.lh .btn:hover,.lh .btn:focus-visible,[data-btn="green"] .lh .btn:hover,[data-btn="green"].lh .btn:hover,[data-btn="green"].lh .btn:focus-visible{background:#C1F432 !important;color:#101419 !important;border-color:#C1F432 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(193,244,50,.28)}
+.lh .btn:hover *,.lh .btn:focus-visible *{color:#101419 !important}
+.lh .card{transition:border-color .3s ease,transform .3s ease,box-shadow .3s ease}
+.lh .card:hover,.lh a.card:focus-visible{border-color:var(--eb) !important;transform:translateY(-4px);box-shadow:0 18px 40px rgba(16,20,25,.10)}
+.lh .feat{transition:transform .3s ease,box-shadow .3s ease}
+.lh .feat img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.lh .feat:hover,.lh .feat:focus-visible{transform:translateY(-4px);box-shadow:0 24px 50px rgba(16,20,25,.22)}
+.lh .feat:hover img,.lh .feat:focus-visible img{transform:scale(1.04)}
+.lh .qcard{transition:transform .3s ease,box-shadow .3s ease,background-color .3s ease}
+.lh .qcard:hover{transform:translateY(-4px);box-shadow:0 20px 44px rgba(0,0,0,.35)}
+.lh .qcard:not([style*="var(--eb)"]):hover{background:#222833 !important}
+.lh .post .ph img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.lh .post h3{transition:color .25s ease}
+.lh .post:hover .ph img{transform:scale(1.05)}
+.lh .post:hover h3{color:var(--eb)}
+/* Hover pack (28 Oct): FAQ, trigger rows, support items, dark list rows */
+.lh .faq{transition:color .2s ease}
+.lh .faq:hover,.lh .faq:focus-visible{color:var(--eb)}
+.lh .faq:hover svg{transform:rotate(90deg)}
+.lh .faq[aria-expanded="true"]:hover svg{transform:rotate(45deg)}
+.lh .hv-row{transition:transform .25s ease}
+.lh .hv-row .ic{transition:transform .25s ease}
+.lh .hv-row:hover{transform:translateX(8px)}
+.lh .hv-row:hover .ic{transform:scale(1.15)}
+.lh .hv-row:hover h3{color:var(--eb)}
+/* Industries rows (28 Oct, by request): a lime wipe from left to right, reaching 24px past the text on both sides, square corners;
+   only the fill moves, nothing inside the row */
+.lh .hv-ind{position:relative;isolation:isolate}
+.lh .hv-ind::before{content:'';position:absolute;top:0;bottom:0;left:-24px;right:-24px;z-index:-1;background:#C1F432;transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+.lh .hv-ind:hover::before{transform:scaleX(1)}
+@media (max-width: 600px){.lh .hv-ind::before{left:-14px;right:-14px}}
+@media (prefers-reduced-motion: reduce){.lh .hv-ind::before{transition:none}}
+.lh .hv-sup{transition:border-color .25s ease,transform .25s ease}
+/* support items: icons sit at the left edge, in line with the titles (28 Oct, by request) */
+.lh .hv-sup > .ic{align-self:flex-start}
+.lh .hv-sup:hover{border-top-color:var(--eb) !important;transform:translateY(-3px)}
+.lh .hv-sup:hover h3{color:var(--eb)}
+.lh .hv-li{transition:border-color .25s ease,color .25s ease}
+.lh .hv-li .ic{transition:transform .25s ease}
+.lh .hv-li:hover{border-top-color:#C1F432 !important}
+.lh .hv-li:hover .ic{transform:translateX(4px);color:#C1F432}
+.lh h3{transition:color .25s ease}
+/* Buttons ease over 0.4s (28 Oct, by request) */
+.lh .btn,[data-btn] .lh .tg-btn,[data-btn].lh .tg-btn{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease,filter .4s ease,opacity .4s ease !important}
+.lh .btn .ar{transition:transform .4s cubic-bezier(.22,.61,.36,1) !important}
+/* Text links (28 Oct, by request): a square lime wipe behind the words, left to right, reaching 8px past each end; the words ink to
+   near-black as the lime reaches them (.lk-ink), and the arrow follows. Links inside a card fire when the card is hovered */
+.lh .lk{position:relative;isolation:isolate;width:fit-content;max-width:100%}
+.lh .lk::before{content:'';position:absolute;top:-5px;bottom:-5px;left:-8px;right:-8px;z-index:-1;background:#C1F432;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+.lh a.lk:hover::before,.lh a.lk:focus-visible::before,.lh a:hover .lk::before,.lh a:focus-visible .lk::before{transform:scaleX(1)}
+.lh .lk-ink{background-image:linear-gradient(90deg,#101419 50%,currentColor 50%);background-size:200% 100%;background-position:100% 0;background-repeat:no-repeat;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;transition:background-position .45s cubic-bezier(.22,.61,.36,1) .03s}
+.lh a.lk:hover .lk-ink,.lh a.lk:focus-visible .lk-ink,.lh a:hover .lk .lk-ink,.lh a:focus-visible .lk .lk-ink{background-position:0 0}
+.lh .lk .ar{transition:transform .4s cubic-bezier(.22,.61,.36,1),color .15s ease .3s !important}
+.lh a.lk:hover .ar,.lh a.lk:focus-visible .ar,.lh a:hover .lk .ar,.lh a:focus-visible .lk .ar{color:#101419}
+@media (prefers-reduced-motion: reduce){.lh .lk::before,.lh .lk-ink{transition:none}}
+[data-btn="green"] .tg-btn *{color:#101419 !important}
+/* Black buttons (29 Oct): near-black everywhere; a light outline keeps them visible on the dark footer */
+[data-btn="black"] .tg-btn{background:#101419 !important;color:#FFFFFF !important;border-color:#101419 !important}
+[data-btn="black"] .tg-btn *{color:#FFFFFF !important}
+[data-btn="black"] .foot .tg-btn{border-color:rgba(255,255,255,.45) !important}
+[data-btn="black"] .tg-btn:hover *,[data-btn="black"] .tg-btn:focus-visible *{color:#101419 !important}
+.lh .foot a.btn-p{color:#FFFFFF}
+/* Blue buttons (29 Oct): blue everywhere; on blue backgrounds a darker shade of the same blue so they stay visible */
+[data-btn="blue"] .tg-btn{background:var(--eb) !important;color:#FFFFFF !important;border-color:var(--eb) !important}
+[data-btn="blue"] .tg-btn *{color:#FFFFFF !important}
+[data-btn="blue"] .bl .tg-btn,[data-btn="blue"] .bl-band .tg-btn{background:var(--eb-dk) !important;border-color:var(--eb-dk) !important}
+[data-btn="blue"][data-div="off"] .bl .tg-btn{background:var(--eb) !important;border-color:var(--eb) !important}
+[data-btn="blue"] .tg-btn:hover *,[data-btn="blue"] .tg-btn:focus-visible *{color:#101419 !important}
+.lh[data-btn="blue"] .tg-btn.btn:hover,.lh[data-btn="blue"] .tg-btn.btn:focus-visible{background:#C1F432 !important;border-color:#C1F432 !important;color:#101419 !important}
+/* brand blue tokens */
+.lh{--eb:#2459F5;--eb-lt:#8FAEFF;--eb-pale:#DCE5FF;--eb-mist:#EEF2FF;--eb-tint:#EEF2FE;--eb-tint2:#E8EEFF;--eb-dk:#1A3FB8}
+.lh[data-blue="mission"]{--eb:#0087C0;--eb-lt:#7CC8EB;--eb-pale:#D2EDF8;--eb-mist:#EAF6FB;--eb-tint:#E7F4FA;--eb-tint2:#E0F1F9;--eb-dk:#00648F}
+.lh[data-blue="blend"]{--eb:#1270DA;--eb-lt:#85BBF5;--eb-pale:#D7E9FB;--eb-mist:#ECF4FD;--eb-tint:#EAF3FC;--eb-tint2:#E4EFFC;--eb-dk:#0D51A3}
+</style>
+
+<style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
+</head>
+<body>
+<div id="dc-root"></div>
+<template id="dc-tpl">
+<div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="off" data-blue="{{ blueMode }}" data-geo="off" class="lh lj" style="width: 390px; background: #101419">
+<div class="tg-bar" aria-label="Review control, not part of the design">
+<span class="tg-label">Review · buttons</span>
+<div class="tg-group" role="group" aria-label="Button color">
+<button type="button" class="tg-opt" aria-pressed="{{ isBlue }}" onClick="{{ setBlue }}"><span class="tg-dot" style="background: var(--eb)"></span>Blue</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isGreen }}" onClick="{{ setGreen }}"><span class="tg-dot" style="background: #C1F432"></span>Green</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isBlack }}" onClick="{{ setBlack }}"><span class="tg-dot" style="background: #101419; box-shadow: 0 0 0 1px rgba(255,255,255,.55)"></span>Black</button>
+</div>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Photos</span><span class="tg-group" role="group" aria-label="Hero photo">
+<button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isOffice }}" onClick="{{ setOffice }}">Office</button>
+</span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Blue</span><span class="tg-group" role="group" aria-label="Brand blue">
+<button type="button" class="tg-opt" aria-pressed="{{ isElectric }}" onClick="{{ setElectric }}"><span class="tg-dot" style="background: #2459F5"></span>Electric</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isBlend }}" onClick="{{ setBlend }}"><span class="tg-dot" style="background: #1270DA"></span>Blend</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isMission }}" onClick="{{ setMission }}"><span class="tg-dot" style="background: #0087C0"></span>Mission</button>
+</span></span>
+<span></span>
+</div>
+
+<!-- 01 Hero: Electric Blue on the left, a photo on the right (kitchen, office or ecommerce, chosen in the review bar), three core services along the bottom -->
+<section class="bl" style="position: relative; overflow: hidden">
+<div class="hero-top" style="position: relative">
+<div class="hero-full" aria-hidden="true"><img class="hero-bg-office" src="../img/c76296e63f1cbdfd3cc1859696beddca.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 74% 30%"><img class="hero-bg-ecommerce" src="../img/b70d1fd6eb5a9839c3acd3ccea5d44a1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 82% 30%"><div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(16, 20, 25, .82) 0%, rgba(16, 20, 25, .74) 58%, rgba(16, 20, 25, .25) 82%, rgba(16, 20, 25, 0) 100%)"></div></div>
+<header style="position: relative; z-index: 3; height: 68px; padding: 0 20px; display: flex; align-items: center; justify-content: space-between">
+<a href="#top" aria-label="MISSION home" style="display: flex"><img src="../img/c81310e520e144cd622a899707febdc7.svg" alt="MISSION" style="height: 24px; width: auto; display: block"></a>
+<div style="display: flex; gap: 8px"><a class="btn btn-p tg-btn" href="#schedule" style="height: 40px; padding: 0 14px; font-size: 13.5px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule</a>
+<button type="button" aria-label="Open menu" style="all: unset; cursor: pointer; width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(255,255,255,.5); border-radius: 4px; color: #FFFFFF"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button></div>
+</header>
+<div class="hero-geo"></div>
+<div id="top" style="position: relative; z-index: 2; padding: 36px 20px 0; display: flex; flex-direction: column; gap: 20px">
+<p class="eb" style="letter-spacing: .16em">Practical. Reassuring. Experienced.</p>
+<h1 style="font-size: 44px; line-height: 1; letter-spacing: -.035em">Complex books.<br>Clear answers.</h1>
+<p style="font-size: 16.5px; line-height: 1.6; color: var(--eb-mist)">We fix messy books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.</p>
+<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 6px"><a class="btn btn-p tg-btn" href="#schedule" style="width: 100%"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a><a class="btn btn-o" href="#case-studies">Read client stories<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+<div style="display: flex; align-items: center; gap: 12px; font-size: 13.5px; color: var(--eb-mist)"><span aria-hidden="true" style="display: inline-flex; align-items: center"><img src="../img/b0f8fafa98dcbe0082a836a30303b5e5.png" alt="" style="position: relative; z-index: 3; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--eb); margin-left: 0px"><img src="../img/8dcd87561fad4fb41686cffb42d245b4.png" alt="" style="position: relative; z-index: 2; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--eb); margin-left: -10px"><img src="../img/4a8aee7bf8f13bc1315ec9fa3aa9642d.png" alt="" style="position: relative; z-index: 1; width: 34px; height: 34px; border-radius: 50%; object-fit: cover; border: 2px solid var(--eb); margin-left: -10px"></span><span><strong style="color: #FFFFFF">5.0 average</strong> from 32 Google reviews</span></div>
+</div>
+<div class="hero-band" style="position: relative; margin-top: 32px; height: 270px; overflow: hidden; clip-path: polygon(0 18%, 100% 0, 100% 100%, 0 100%)">
+<img class="hero-bg-office" src="../img/c76296e63f1cbdfd3cc1859696beddca.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 74% 30%">
+<img class="hero-bg-ecommerce" src="../img/b70d1fd6eb5a9839c3acd3ccea5d44a1.webp" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 82% 30%">
+<div aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 46%; height: 56px; background: #101419"></div>
+</div>
+</div>
+<div class="dk" style="padding: 8px 20px 28px; display: flex; flex-direction: column">
+<div class="hv-li" style="display: flex; align-items: center; gap: 14px; padding: 16px 0;"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">QuickBooks Cleanup</strong><span style="font-size: 13px; color: #9AA3AE">Behind on your books? We get you current</span></span></div>
+<div class="hv-li" style="display: flex; align-items: center; gap: 14px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,.12);"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Bookkeeping &amp; Accounting</strong><span style="font-size: 13px; color: #9AA3AE">Every client needs this</span></span></div>
+<div class="hv-li" style="display: flex; align-items: center; gap: 14px; padding: 16px 0; border-top: 1px solid rgba(255,255,255,.12);"><span class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M2.5 12h3M18.5 12h3M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg></span><span style="display: flex; flex-direction: column; gap: 2px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">QuickBooks Setup &amp; Advisory</strong><span style="font-size: 13px; color: #9AA3AE">Set up right, then put to good use</span></span></div>
+</div>
+</section>
+
+<!-- 02 Case studies lead the page: featured construction story, three story cards, a closing call -->
+<section id="case-studies" aria-label="Case studies" class="ch" style="position: relative; padding: 52px 0">
+
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 16px"><p class="eb"><span>Case studies</span></p><h2 style="font-size: 34px; line-height: 1.04">Real problems, real solutions.</h2></div>
+<a class="feat" href="https://missionaccountinghelp.com/customers/quickbooks-enterprise-support" target="_blank" rel="noopener" style="display: flex; flex-direction: column; text-decoration: none; border-radius: 6px; overflow: hidden; background: #101419">
+<div class="ph" style="height: 230px"><img src="../img/3554cab00abc02f5b19956702ff92a9f.webp" alt="A construction crew reviewing plans on a job site" style="object-position: center 40%"></div>
+<div style="padding: 24px 22px 26px; display: flex; flex-direction: column; gap: 12px"><span class="tag" style="color: var(--eb-lt)">Construction · Featured story</span><h3 style="font-size: 25px; line-height: 1.15; color: #FFFFFF">A construction company had useful QuickBooks tools it wasn't using</h3><p style="font-size: 15px; color: #B9C0CA">We found the tools already built into their QuickBooks Enterprise that nobody was using, and set them up for the way they work.</p><span class="lk" style="color: #FFFFFF; padding-top: 4px"><span class="lk-ink">Read the story</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></div>
+</a>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-top: 4px"><span class="tag">More client stories</span><a class="lk" href="#case-studies"><span class="lk-ink">See all case studies</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px">
+<a class="card" href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" style="flex-direction: column; justify-content: space-between; gap: 18px; padding: 22px; min-height: auto"><span style="display: flex; flex-direction: column; gap: 12px"><span class="tag">Food production</span><h3 style="font-size: 20px; line-height: 1.2">A bakery tracking food that spoils fast</h3><span class="mu" style="font-size: 14.5px">How a bakery keeps count of fresh goods in QuickBooks Enterprise.</span></span><span class="lk"><span class="lk-ink">Read the story</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+<a class="card" href="https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise" target="_blank" rel="noopener" style="flex-direction: column; justify-content: space-between; gap: 18px; padding: 22px; min-height: auto"><span style="display: flex; flex-direction: column; gap: 12px"><span class="tag">Jewelry</span><h3 style="font-size: 20px; line-height: 1.2">A jewelry business keeping track of custom orders</h3><span class="mu" style="font-size: 14.5px">How a jewelry business tracks custom orders, and where each piece is kept, in QuickBooks Enterprise.</span></span><span class="lk"><span class="lk-ink">Read the story</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+<a class="card" href="https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software" target="_blank" rel="noopener" style="flex-direction: column; justify-content: space-between; gap: 18px; padding: 22px; min-height: auto"><span style="display: flex; flex-direction: column; gap: 12px"><span class="tag">Interiors</span><h3 style="font-size: 20px; line-height: 1.2">Bills to approve and spending to track</h3><span class="mu" style="font-size: 14.5px">How Wren's Nest Interiors made bill approvals and expense tracking automatic.</span></span><span class="lk"><span class="lk-ink">Read the story</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px"><div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 28px"><a href="#case-studies" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid #DCE1E8; color: #101419; text-decoration: none"><span style="display: flex; flex-direction: column; gap: 6px"><span class="tag">Industry</span><span style="font: 600 15px/1.3 \'Space Grotesk\', sans-serif">Client story 5: problem-first title</span></span><span style="flex: none; color: var(--eb)"><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a href="#case-studies" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid #DCE1E8; color: #101419; text-decoration: none"><span style="display: flex; flex-direction: column; gap: 6px"><span class="tag">Industry</span><span style="font: 600 15px/1.3 \'Space Grotesk\', sans-serif">Client story 6: problem-first title</span></span><span style="flex: none; color: var(--eb)"><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a href="#case-studies" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid #DCE1E8; color: #101419; text-decoration: none"><span style="display: flex; flex-direction: column; gap: 6px"><span class="tag">Industry</span><span style="font: 600 15px/1.3 \'Space Grotesk\', sans-serif">Client story 7: problem-first title</span></span><span style="flex: none; color: var(--eb)"><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a href="#case-studies" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid #DCE1E8; color: #101419; text-decoration: none"><span style="display: flex; flex-direction: column; gap: 6px"><span class="tag">Industry</span><span style="font: 600 15px/1.3 \'Space Grotesk\', sans-serif">Client story 8: problem-first title</span></span><span style="flex: none; color: var(--eb)"><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a href="#case-studies" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid #DCE1E8; color: #101419; text-decoration: none"><span style="display: flex; flex-direction: column; gap: 6px"><span class="tag">Industry</span><span style="font: 600 15px/1.3 \'Space Grotesk\', sans-serif">Client story 9: problem-first title</span></span><span style="flex: none; color: var(--eb)"><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a><a href="#case-studies" style="display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 14px 0; border-top: 1px solid #DCE1E8; color: #101419; text-decoration: none"><span style="display: flex; flex-direction: column; gap: 6px"><span class="tag">Industry</span><span style="font: 600 15px/1.3 \'Space Grotesk\', sans-serif">Client story 10: problem-first title</span></span><span style="flex: none; color: var(--eb)"><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span></a></div><p class="mu" style="font-size: 12.5px">Placeholders: six more client stories to come.</p></div>
+<div class="bl-band" style="display: flex; flex-direction: column; gap: 16px; padding: 24px 22px; border-radius: 6px; background: var(--eb)"><h3 style="font-size: 22px; color: #FFFFFF">Do your books look like this?</h3><p style="font-size: 15px; color: var(--eb-pale)">Come as you are, mess and all. We'll tell you what we'd fix first.</p><a class="btn btn-p tg-btn" href="#schedule" style="width: 100%; background: #FFFFFF; color: #101419"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a></div>
+</div>
+</section>
+
+<!-- 04 Positioning, after the style board: a specialist team, with the photography grid -->
+<section id="about" aria-label="Who we are" class="dk" style="position: relative; overflow: hidden; padding: 52px 0">
+
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 20px"><p class="eb"><span>Who we are</span></p><h2 style="font-size: 34px; line-height: 1.04">A specialist team that knows your business.</h2><p style="font-size: 15.5px">You started a business, not a bookkeeping job. We keep your books clean and correct. You don't have to hire a full finance team or get lost at a big firm.</p>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 14px; padding-top: 8px">
+<div class="hv-li" style="display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14)"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></svg></span><span style="font: 600 14px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Keeping track of stock</span></div>
+<div class="hv-li" style="display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14)"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M5 18v-3a7 7 0 0 1 14 0v3M10 8V5h4v3"/></svg></span><span style="font: 600 14px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">What each job really costs</span></div>
+<div class="hv-li" style="display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14)"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11.5l2-8H6.2"/></svg></span><span style="font: 600 14px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Selling in more than one place online</span></div>
+<div class="hv-li" style="display: flex; align-items: center; gap: 12px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14)"><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><span style="font: 600 14px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">More than one company</span></div>
+</div>
+<a class="lk" href="#services" style="padding-top: 8px"><span class="lk-ink">What we do</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+<div style="position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<div class="ph" style="height: 150px; border-radius: 4px"><img src="../img/b70d1fd6eb5a9839c3acd3ccea5d44a1.webp" alt="A business owner packing an online order" style="object-position: 60% 35%"></div>
+<div class="ph" style="height: 150px; border-radius: 4px"><img src="../img/3554cab00abc02f5b19956702ff92a9f.webp" alt="A construction crew reviewing plans" style="object-position: center 40%"></div>
+<div class="ph" style="height: 150px; border-radius: 4px"><img src="../img/c76296e63f1cbdfd3cc1859696beddca.webp" alt="A business owner thinking at a desk" style="object-position: 62% 30%"></div>
+<div class="ph" style="height: 150px; border-radius: 4px"><img src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="A business owner thinking at a laptop" style="object-position: center 40%"></div>
+
+</div>
+</div>
+</section>
+
+<!-- 05 Services, in tier order: Bookkeeping, then QuickBooks Setup & Advisory, then Fractional CFO (limited) -->
+<section id="services" aria-label="Services" class="wh" style="padding: 52px 0">
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 16px"><p class="eb"><span>What we do</span></p><h2 style="font-size: 34px; line-height: 1.04">Where most clients start, and what comes next.</h2><p class="mu" style="font-size: 15.5px">Every client needs bookkeeping and accounting. QuickBooks setup and advice build on that. A part-time finance chief (Fractional CFO) sits at the top, for a small number of clients.</p></div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px">
+<div id="bookkeeping" class="card" style="background: #101419; border-color: #101419; display: flex; flex-direction: column; gap: 18px; padding: 24px 22px; min-height: auto"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb); color: #FFFFFF"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 14l2 2 4-4"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: var(--eb-lt)">Every client ends up here</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: var(--eb-lt)">Bookkeeping &amp; Accounting</p><h3 style="font-size: 24px; line-height: 1.15; color: #FFFFFF;">Up to date, every month</h3><p style="font-size: 14.5px; color: #B9C0CA">Books that match your bank and that you can trust, every month, kept by a team that knows QuickBooks inside out.</p></div></div>
+<div id="setup" class="card" style=" display: flex; flex-direction: column; gap: 18px; padding: 24px 22px; min-height: auto"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint); color: var(--eb)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M2.5 12h3M18.5 12h3M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: var(--eb)">Moving off spreadsheets, or outgrowing your setup</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: var(--eb)">QuickBooks Setup &amp; Advisory</p><h3 style="font-size: 24px; line-height: 1.15;">A system built around how you work</h3><p style="font-size: 14.5px; color: #5E6670">QuickBooks set up and connected the right way, then we help you use your numbers to make better choices about prices, cash and growth.</p></div></div>
+<div id="cfo" class="card" style=" display: flex; flex-direction: column; gap: 18px; padding: 24px 22px; min-height: auto"><span class="ic" style="width: 52px; height: 52px; border-radius: 6px; background: var(--eb-tint); color: var(--eb)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><circle cx="17" cy="9" r="2.5"/><path d="M16 14.2a5 5 0 0 1 5.5 5.8"/></svg></span><div style="display: flex; flex-direction: column; gap: 8px"><span class="tag" style="color: var(--eb)">Only for a few clients</span><p style="font: 600 13.5px/1.3 'Space Grotesk', sans-serif; color: var(--eb)">Fractional CFO</p><h3 style="font-size: 24px; line-height: 1.15;">Big decisions</h3><p style="font-size: 14.5px; color: #5E6670">A part-time finance chief, Bernard, without hiring one full-time. Our managing partner leads this.</p></div></div>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px">
+<div class="hv-sup" id="cleanup" style="display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px 0 6px; border-top: 2px solid #101419"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.8 4.7 4.7 1.8-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #101419">QuickBooks Cleanup</strong><span class="mu" style="font-size: 13.5px; line-height: 1.55">Months of bank statements nobody has matched to the books, brought up to date.</span></span></div>
+<div class="hv-sup" id="tax" style="display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px 0 6px; border-top: 2px solid #101419"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5h12v19l-3-2-3 2-3-2-3 2z"/><path d="M9 7h6M9 11h6M9 15h4"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #101419">Tax Readiness</strong><span class="mu" style="font-size: 13.5px; line-height: 1.55">We fix the books, help you find a tax accountant (a CPA), and talk with them before they start.</span></span></div>
+<div class="hv-sup" id="pos" style="display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px 0 6px; border-top: 2px solid #101419"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6.5 15h4"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #101419">POS Integration</strong><span class="mu" style="font-size: 13.5px; line-height: 1.55">We connect your checkout system, like Square or Shopify, to QuickBooks so your sales show up on their own.</span></span></div>
+<div class="hv-sup" id="reporting" style="display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px 0 6px; border-top: 2px solid #101419"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18"/><path d="M6 17v-5M11 17V7M16 17v-8M21 17V4" transform="translate(-1.5 0)"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #101419">Custom Reporting</strong><span class="mu" style="font-size: 13.5px; line-height: 1.55">Normal reports answer your accountant's questions. Custom reports answer yours.</span></span></div>
+<div class="hv-sup" id="training" style="display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px 0 6px; border-top: 2px solid #101419"><span class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><strong style="font: 600 15.5px/1.3 'Space Grotesk', sans-serif; color: #101419">QuickBooks Training</strong><span class="mu" style="font-size: 13.5px; line-height: 1.55">We teach your team how to use your own setup.</span></span></div>
+</div>
+<div id="products" style="display: flex; flex-direction: column; align-items: flex-start; gap: 16px; padding: 20px 24px; border-radius: 6px; background: #F5F6F7"><p style="font-size: 15px; color: #3A424D">We also sell <strong style="color: #101419">QuickBooks products</strong>, because we're an Intuit reseller. Call us for prices.</p><a class="lk" href="#services"><span class="lk-ink">All services</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+</div>
+</section>
+
+<!-- 06 The six moments clients call us -->
+<section aria-label="Does this sound like you?" class="ch" style="padding: 52px 0">
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 16px"><p class="eb"><span>When people usually call us</span></p><h2 style="font-size: 34px; line-height: 1.04">Does this sound like you?</h2><p class="mu" style="font-size: 15.5px">If one of these sounds like you, you're in the right place. Most of our clients came to us this way.</p></div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 0px">
+<div class="hv-row" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid #DDE1E6;"><span class="ic" style="padding-top: 2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="4"/><path d="M2 21a7 7 0 0 1 14 0M16 11h6"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px; line-height: 1.25">Our bookkeeper just left</h3><span class="mu" style="font-size: 14px">Maybe they retired, moved on, or you couldn't count on them. We go through what they left, fill in the gaps, and take over the monthly work.</span></span></div>
+<div class="hv-row" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid #DDE1E6;"><span class="ic" style="padding-top: 2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M12 8v5M12 16h.01"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px; line-height: 1.25">We don't trust our accountant anymore</h3><span class="mu" style="font-size: 14px">The work comes late, has mistakes, or your emails go unanswered. First, we tell you honestly how your books look.</span></span></div>
+<div class="hv-row" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid #DDE1E6;"><span class="ic" style="padding-top: 2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px; line-height: 1.25">We're months, or years, behind</h3><span class="mu" style="font-size: 14px">Nobody has matched the bank statements to the books in so long that no one wants to open QuickBooks. We clean it up first, then keep it up every month.</span></span></div>
+<div class="hv-row" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid #DDE1E6;"><span class="ic" style="padding-top: 2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M10 12l4 4M14 12l-4 4"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px; line-height: 1.25">Our taxes haven't been filed</h3><span class="mu" style="font-size: 14px">Your books are too messy to do taxes from. We fix the books, help you find a tax accountant (a CPA), and talk with them before they start.</span></span></div>
+<div class="hv-row" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid #DDE1E6;"><span class="ic" style="padding-top: 2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10l9-6 9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 21h18"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px; line-height: 1.25">The bank wants clear, correct numbers</h3><span class="mu" style="font-size: 14px">A bank, investor or buyer wants numbers you can trust. We get you reports you can hand over with confidence.</span></span></div>
+<div class="hv-row" style="display: flex; gap: 14px; padding: 18px 0; border-top: 1px solid #DDE1E6; border-bottom: 1px solid #DDE1E6;"><span class="ic" style="padding-top: 2px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 5-9 5-9-5z"/><path d="M3 13l9 5 9-5"/></svg></span><span style="display: flex; flex-direction: column; gap: 6px"><h3 style="font-size: 18px; line-height: 1.25">Our business got too big for our bookkeeper</h3><span class="mu" style="font-size: 14px">Lots of stock, more than one company, or nonprofit rules can be too much for one bookkeeper. That's the kind of work we like best.</span></span></div>
+</div>
+<a class="btn btn-p tg-btn" href="#schedule" style="width: 100%"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a>
+</div>
+</section>
+
+<!-- 07 Specialties and industries -->
+<section id="industries" aria-label="How we work" class="wh" style="padding: 52px 0">
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 22px"><div style="display: flex; flex-direction: column; gap: 16px"><p class="eb"><span>How we work</span></p><h2 style="font-size: 34px; line-height: 1.04">We like the tricky businesses best.</h2><p class="mu" style="font-size: 15.5px">We're best at three things: showing what each job really costs for businesses that sell their time, keeping track of stock, and making sure Shopify and Amazon sales match QuickBooks. We're also happy to handle nonprofit rules and businesses with more than one company. If your business is simple, one good bookkeeper is enough. If it isn't, this is the work we want.</p></div>
+<div style="display: flex; flex-direction: column">
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 44px; height: 44px; border-radius: 6px; background: var(--eb-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.5-9-9a5 5 0 0 1 9-3 5 5 0 0 1 9 3c-2 4.5-9 9-9 9z"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 18px">Nonprofits</h3><span class="mu" style="font-size: 14.5px">Money set aside for certain uses tracked apart from money that isn't, and reported the way your board and your auditor expect.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 44px; height: 44px; border-radius: 6px; background: var(--eb-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 18h18M5 18v-3a7 7 0 0 1 14 0v3M10 8V5h4v3"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 18px">Construction</h3><span class="mu" style="font-size: 14.5px">What each job really costs, unfinished work and changes to the job, all kept straight in QuickBooks.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 44px; height: 44px; border-radius: 6px; background: var(--eb-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21 8 9l4-6 4 6-4 12"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 18px">Jewelry</h3><span class="mu" style="font-size: 14.5px">Custom orders, and where each piece is kept, tracked in QuickBooks Enterprise.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 44px; height: 44px; border-radius: 6px; background: var(--eb-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="10" height="18"/><path d="M14 9h6v12h-6M8 7h2M8 11h2M8 15h2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 18px">Property management</h3><span class="mu" style="font-size: 14.5px">Rent lists, owner statements and tenant payments, matched to the bank every month.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-top: 1px solid #E2E5EA;"><span class="ic" style="width: 44px; height: 44px; border-radius: 6px; background: var(--eb-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V10l6 4V10l6 4V6h6v15z"/><path d="M7 17h2M12 17h2M17 17h2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 18px">Manufacturing</h3><span class="mu" style="font-size: 14.5px">Stock, its full cost including shipping, and unfinished work, in reports that still add up at year end.</span></span></div>
+<div class="hv-ind" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 0; border-top: 1px solid #E2E5EA; border-bottom: 1px solid #E2E5EA;"><span class="ic" style="width: 44px; height: 44px; border-radius: 6px; background: var(--eb-tint)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11.5l2-8H6.2"/></svg></span><span style="display: flex; flex-direction: column; gap: 4px"><h3 style="font-size: 18px">Ecommerce</h3><span class="mu" style="font-size: 14.5px">Shopify and Amazon sales matched to QuickBooks, for businesses that sell in more than one place.</span></span></div>
+</div>
+<a class="lk" href="#schedule"><span class="lk-ink">Not on the list? Schedule a free consultation</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</section>
+
+<!-- 08 Certified by Intuit, on the C3 ice blue (Lane J: fewer blue areas) -->
+<section aria-label="Certified by Intuit" class="ice" style="position: relative; overflow: hidden; padding: 52px 0">
+
+
+<div aria-hidden="true" class="dots on-dk" style="position: absolute; right: 0; top: 24px; width: 220px; height: 140px"></div>
+<div style="position: relative; padding: 0 20px; display: flex; flex-direction: column; gap: 32px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb"><span>Certified by Intuit</span></p><h2 style="font-size: 34px; line-height: 1.02">Proof you can look up yourself.</h2><p style="font-size: 15.5px">Intuit, the company that makes QuickBooks, has tested and certified our team on QuickBooks Online, Desktop and Enterprise. You can see our certificates and client reviews on Intuit's website.</p><p style="font: 600 15px/1.4 'Space Grotesk', sans-serif; color: #101419">Certified at Intuit's Elite and Level 2 Advanced levels.</p><a class="btn btn-o" href="https://proadvisor.intuit.com/app/accountant/search?searchId=bernard-roesch" target="_blank" rel="noopener" style="align-self: flex-start">See certifications and reviews<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+<div style="background: #FFFFFF; border-radius: 6px; padding: 18px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px 8px; align-items: center; justify-items: center; width: 100%">
+<img src="../img/5a6f8298d29fe5b417692e04bb5cefb5.png" alt="QuickBooks ProAdvisor Elite badge" style="width: 100%; max-width: 70px; height: auto; display: block">
+<img src="../img/cd885cfb7d6c05d7b71c90e8441a681f.png" alt="Certified QuickBooks Level 2 ProAdvisor badge" style="width: 100%; max-width: 70px; height: auto; display: block">
+<img src="../img/34b1807ca27f04b30ace3c235cf23ea4.png" alt="Certified QuickBooks Level 1 ProAdvisor badge" style="width: 100%; max-width: 70px; height: auto; display: block">
+<img src="../img/1f90e7cd2b6fe11043a8aed199ff3bea.png" alt="Certified Advanced QuickBooks Online ProAdvisor badge" style="width: 100%; max-width: 70px; height: auto; display: block">
+<img src="../img/8a6858620a6c323d48dea6c25360ff27.png" alt="Certified ProAdvisor, Advanced QuickBooks Desktop badge" style="width: 100%; max-width: 70px; height: auto; display: block">
+<img src="../img/bdd1481bd009109078c5f28e16b35880.png" alt="Certified QuickBooks Online ProAdvisor badge" style="width: 100%; max-width: 70px; height: auto; display: block">
+<img src="../img/9eef1fc8b132f5488cb3871c7327a754.png" alt="Certified ProAdvisor, QuickBooks Enterprise badge" style="width: 100%; max-width: 70px; height: auto; display: block">
+<div style="width: 100%; aspect-ratio: 1; max-width: 70px; border-radius: 4px; background: #101419; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6px; gap: 2px"><strong style="font: 600 18px/1 'Space Grotesk', sans-serif; color: #FFFFFF">50</strong><span style="font-size: 8px; line-height: 1.3; color: #B9C0CA">client reviews on our ProAdvisor profile</span></div>
+</div>
+</div>
+</section>
+
+<!-- 09 What clients say: loyalty stats and the testimonials, word for word -->
+<section aria-label="What clients say" class="dk" style="padding: 52px 0">
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 16px"><p class="eb"><span>What clients say</span></p><h2 style="font-size: 34px; line-height: 1.04">Our Clients</h2><p style="font-size: 15.5px">Several clients have been with us for 10+ years.</p></div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 12px"><strong style="font: 600 34px/1 'Space Grotesk', sans-serif; letter-spacing: -.03em; color: #FFFFFF">10+</strong><span style="font-size: 12px; line-height: 1.4; color: #9AA3AE">years several of our clients have stayed</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 12px"><strong style="font: 600 34px/1 'Space Grotesk', sans-serif; letter-spacing: -.03em; color: #FFFFFF">50</strong><span style="font-size: 12px; line-height: 1.4; color: #9AA3AE">client reviews on our ProAdvisor profile</span></div>
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 12px"><strong style="font: 600 34px/1 'Space Grotesk', sans-serif; letter-spacing: -.03em; color: #FFFFFF">5.0</strong><span style="font-size: 12px; line-height: 1.4; color: #9AA3AE">our average star rating from 32 Google reviews</span></div>
+</div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px">
+<figure class="qcard" style="margin: 0;  display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 24px 22px; border-radius: 6px; background: var(--eb)">
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="#FFFFFF" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"We have been working with Bernard for over 10 years. He has been terrific."</blockquote></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Jacquie Herz</strong><span style="font-size: 13px; color: var(--eb-pale)">Jornik Manufacturing, Stamford, CT</span></figcaption>
+</figure>
+<figure class="qcard" style="margin: 0;  display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 24px 22px; border-radius: 6px; background: #1B2029">
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--eb)" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"I have been working with Bernard at MISSION since 2007."</blockquote></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Richard Cipolla</strong><span style="font-size: 13px; color: #9AA3AE">Richard Cipolla Designs, Stamford, CT</span></figcaption>
+</figure>
+<figure class="qcard" style="margin: 0;  display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 24px 22px; border-radius: 6px; background: #1B2029">
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--eb)" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"I have worked with Bernard for 10 years."</blockquote></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Kristin Fine</strong><span style="font-size: 13px; color: #9AA3AE">Fine Concepts, Darien, CT</span></figcaption>
+</figure>
+<figure class="qcard" style="margin: 0;  display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 24px 22px; border-radius: 6px; background: #1B2029">
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--eb)" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"Great customer service from Bernard and his team – very friendly and helpful."</blockquote></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Mary Iaffaldano</strong><span style="font-size: 13px; color: #9AA3AE">Milford, CT</span></figcaption>
+</figure>
+<figure class="qcard" style="margin: 0;  display: flex; flex-direction: column; justify-content: space-between; gap: 22px; padding: 24px 22px; border-radius: 6px; background: #1B2029">
+<div style="display: flex; flex-direction: column; gap: 16px"><svg width="30" height="24" viewBox="0 0 30 24" fill="var(--eb)" aria-hidden="true"><path d="M0 24V14C0 6 4 1.5 12 0l1.5 3C9 4.5 7 7.5 7 11h5v13zm17 0V14c0-8 4-12.5 12-14l1 3c-4.5 1.5-6.5 4.5-6.5 8H29v13z"></path></svg><blockquote style="margin: 0; font: 500 20px/1.35 'Space Grotesk', sans-serif; letter-spacing: -.01em; color: #FFFFFF">"Bernard and Gina have been a great team."</blockquote></div>
+<figcaption style="display: flex; flex-direction: column; gap: 2px; padding-top: 14px"><strong style="font: 600 14.5px/1.3 'Space Grotesk', sans-serif; color: #FFFFFF">Jane Didona</strong><span style="font-size: 13px; color: #9AA3AE">Didona Associates, Danbury, CT</span></figcaption>
+</figure>
+</div>
+<a class="lk" href="https://proadvisor.intuit.com/app/accountant/search?searchId=bernard-roesch" target="_blank" rel="noopener"><span class="lk-ink">See client reviews</span><svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</section>
+
+<!-- 10 The team -->
+<section aria-label="The team" class="wh" style="padding: 52px 0">
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 28px; align-items: stretch">
+<div style="position: relative; min-height: 260px"><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/3b6448ffe67d241e50c579a0950384e9.webp" alt="Specialists reviewing a client's numbers together" style="position: absolute; inset: 0; object-position: 55% 34%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 150px; height: 52px; background: var(--eb); z-index: 1"></span></div></div>
+<div style="display: flex; flex-direction: column; justify-content: center; gap: 22px"><p class="eb"><span>The team</span></p><h2 style="font-size: 34px; line-height: 1.02">A whole team, not just one bookkeeper.</h2><p class="mu" style="font-size: 15.5px">We're business advisors who know accounting software really well. Our core team holds advanced QuickBooks certifications, and we bring in trusted accountants and specialists from our wider network when your work needs them.</p>
+<div style="display: flex; flex-direction: column">
+<div style="display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E2E5EA;"><strong style="font: 600 16px/1.3 'Space Grotesk', sans-serif; color: #101419">Bernard P. Roesch</strong><span class="mu" style="font-size: 13.5px">Co-founder and Managing Partner · Harvard Business School MBA, Elite-tier QuickBooks ProAdvisor</span></div>
+<div style="display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E2E5EA;"><strong style="font: 600 16px/1.3 'Space Grotesk', sans-serif; color: #101419">Carol A. Onorato</strong><span class="mu" style="font-size: 13.5px">Director of Operations · Level 2 Advanced QuickBooks ProAdvisor</span></div>
+<div style="display: flex; flex-direction: column; gap: 3px; padding: 14px 0; border-top: 1px solid #E2E5EA; border-bottom: 1px solid #E2E5EA;"><strong style="font: 600 16px/1.3 'Space Grotesk', sans-serif; color: #101419">Rob James</strong><span class="mu" style="font-size: 13.5px">Prospect pipeline and new-client onboarding · Level 2 Advanced QuickBooks ProAdvisor</span></div>
+</div>
+<a class="btn btn-o" href="#about" style="align-self: flex-start">Meet the team<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+</div>
+</section>
+
+<!-- 11 Questions before the first call -->
+<section aria-label="Before you call" class="ch" style="padding: 52px 0">
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 18px"><p class="eb"><span>Before you call</span></p><h2 style="font-size: 34px; line-height: 1.04">Questions people ask before the first call.</h2></div>
+<div style="display: flex; flex-direction: column; border-bottom: 1px solid #DDE1E6">
+<div><button type="button" class="faq" aria-expanded="true" style="font-size: 16px">What happens in the free consultation?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button><p class="mu" style="font-size: 15px; padding: 0 40px 22px 0">It's a chat, not a sales pitch. Bernard or Rob will ask how your books are going, look at anything you can share, and tell you what they would fix first.</p></div>
+<div><button type="button" class="faq" aria-expanded="false" style="font-size: 16px">Do I need to prepare anything?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div>
+<div><button type="button" class="faq" aria-expanded="false" style="font-size: 16px">Is my business too small for you?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div>
+<div><button type="button" class="faq" aria-expanded="false" style="font-size: 16px">We already have a tax accountant. Does that change anything?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div>
+<div><button type="button" class="faq" aria-expanded="false" style="font-size: 16px">How quickly can you start?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button></div>
+</div>
+</div>
+</section>
+
+<!-- 12 From the blog -->
+<section id="blog" aria-label="From the blog" class="wh" style="padding: 52px 0">
+
+<div style="padding: 0 20px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; align-items: flex-start; gap: 20px"><div style="display: flex; flex-direction: column; gap: 16px"><p class="eb"><span>From the blog</span></p><h2 style="font-size: 34px; line-height: 1.04">Simple answers to the questions we hear most.</h2><p class="mu" style="font-size: 15px">300+ articles on QuickBooks, bookkeeping, accounting and financial planning.</p></div><a class="btn btn-o" href="#blog" style="flex: none">Read all articles<svg class="ar" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+<div style="display: grid; grid-template-columns: minmax(0, 1fr); gap: 24px">
+<article class="post" style="display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start"><div class="post-media" style="position: relative; height: 112px"><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/37cbc555ab9573d99c3c204f11469679.webp" alt="" style="object-position: 78% 60%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 44px; height: 18px; background: var(--eb); z-index: 1"></span></div></div><div style="display: flex; flex-direction: column; gap: 6px"><span class="tag">QuickBooks</span><h3 style="font-size: 16.5px; line-height: 1.25">QuickBooks Desktop to Online: what actually changes</h3><p class="mu" style="font-size: 13.5px; line-height: 1.5">Switching from the desktop version to the online one changes your daily routine. Here's what to expect.</p></div></article>
+<article class="post" style="display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start"><div class="post-media" style="position: relative; height: 112px"><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/959f667ae9fbf3a0eb90cf0ce15668ff.webp" alt="" style="object-position: center 40%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 44px; height: 18px; background: var(--eb); z-index: 1"></span></div></div><div style="display: flex; flex-direction: column; gap: 6px"><span class="tag">Customers</span><h3 style="font-size: 16.5px; line-height: 1.25">QuickBooks Online vs Enterprise: going beyond the basics</h3><p class="mu" style="font-size: 13.5px; line-height: 1.5">The big differences show up when you track stock, orders and where things are kept.</p></div></article>
+<article class="post" style="display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 14px; align-items: start"><div class="post-media" style="position: relative; height: 112px"><div class="ph" style="position: absolute; inset: 0; z-index: 1; border-radius: 6px"><img src="../img/c7127cc17cfd8909184853095227a34d.webp" alt="" style="object-position: center 40%"><span aria-hidden="true" class="wedge" style="position: absolute; left: 0; bottom: 0; width: 44px; height: 18px; background: var(--eb); z-index: 1"></span></div></div><div style="display: flex; flex-direction: column; gap: 6px"><span class="tag">Technology</span><h3 style="font-size: 16.5px; line-height: 1.25">Is automated accounting software the future of financial accounting?</h3><p class="mu" style="font-size: 13.5px; line-height: 1.5">Software can do the boring, repeat work. People still make the judgment calls. Here's what that means for you.</p></div></article>
+</div>
+</div>
+</section>
+
+<!-- 13 Footer, with the call to action and the style board's graphic elements -->
+<footer id="contact" class="dk foot" style="position: relative; overflow: hidden">
+
+<div id="schedule" style="position: relative; padding: 0 20px; padding-top: 72px; padding-bottom: 64px; display: flex; flex-direction: column; align-items: stretch; gap: 32px; align-items: center">
+<div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span>Your next step</span></p><h2 style="font-size: 48px; line-height: .98; letter-spacing: -.035em">Your books.<br>In order.</h2><p style="font-size: 15.5px; max-width: 520px">Book a free call with Bernard or Rob. Come as you are, mess and all. We'll tell you what we'd fix first and what it would take.</p><div style="display: flex; flex-direction: column; gap: 12px; padding-top: 4px"><a class="btn btn-p tg-btn" href="#schedule" style="width: 100%"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a><a class="btn btn-o" href="tel:+12032279475"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>Call (203) 227-9475</a></div></div>
+</div>
+<div style="border-top: 1px solid rgba(255,255,255,.1)">
+<div style="padding: 0 20px; padding-top: 48px; padding-bottom: 32px; display: flex; flex-direction: column; gap: 36px">
+<form class="nl-band" style="display: flex; flex-direction: column; gap: 18px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.1)">
+<div style="display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font: 600 24px/1.15 'Space Grotesk', sans-serif; letter-spacing: -.02em; color: #FFFFFF">QuickBooks tips by email</p><p style="font-size: 14px">Simple answers to the questions business owners ask us most. No sales emails.</p></div>
+<div><label for="nl-email-hm" class="sr">Email address</label><div style="display: flex; gap: 8px"><input id="nl-email-hm" type="email" placeholder="Your email address" style="height: 52px"><button class="btn btn-w tg-btn" type="submit" style="height: 52px; padding: 0 22px; font-size: 14.5px; border: 0; flex: none">Subscribe</button></div></div>
+</form>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px">
+<div style="display: flex; flex-direction: column; gap: 16px; min-width: 0; grid-column: span 2;">
+<img src="../img/b29865f8838e8d694583c88108f0c2aa.svg" alt="MISSION" style="height: 26px; width: auto; align-self: flex-start">
+<p style="font-size: 14px; max-width: 360px">Business advisors who know accounting software really well. Bookkeeping, accounting and QuickBooks for grown-up businesses with tricky books.</p>
+<address style="font-style: normal; font-size: 14px; line-height: 1.75">Nationwide, fully remote<br><a href="mailto:info@missionaccountinghelp.com" style="color: #FFFFFF">info@missionaccountinghelp.com</a><br><a href="tel:+12032279475" style="color: #FFFFFF">(203) 227-9475</a></address>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 18px"><a href="https://www.facebook.com/MissionAccounting/" target="_blank" rel="noopener">Facebook</a><a href="https://www.linkedin.com/company/mission-quickbooks/" target="_blank" rel="noopener">MISSION on LinkedIn</a><a href="https://www.linkedin.com/in/bernard-roesch/" target="_blank" rel="noopener">Bernard on LinkedIn</a></div>
+</div>
+<nav aria-label="Services" style="display: flex; flex-direction: column; gap: 10px"><p class="fh">Services</p><a href="#bookkeeping">Bookkeeping &amp; Accounting</a><a href="#setup">QuickBooks Setup &amp; Advisory</a><a href="#cfo">Fractional CFO</a><a href="#cleanup">QuickBooks Cleanup</a><a href="#tax">Tax Readiness</a><a href="#reporting">Custom Reporting</a><a href="#pos">POS Integration</a><a href="#training">QuickBooks Training</a></nav>
+<nav aria-label="Company" style="display: flex; flex-direction: column; gap: 10px"><p class="fh">Company</p><a href="#about">About</a><a href="#products">QuickBooks Products</a><a href="#partners">Partner Program</a><a href="#blog">Blog</a><a href="http://missionaccountinghelp.com/feed/podcast" target="_blank" rel="noopener">Podcast</a><a href="#contact">Contact</a></nav>
+<nav aria-label="Legal" style="display: flex; flex-direction: column; gap: 10px"><p class="fh">Legal</p><a href="#terms">Terms of Service</a><a href="#privacy">Privacy Policy</a><a href="#cookies">Cookie Policy</a><a href="#returns">Returns Policy</a></nav>
+</div>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); font-size: 12.5px; color: #7D8692"><span>© 2026 MISSION. All rights reserved.</span><span>Intuit, QuickBooks and ProAdvisor are trademarks of Intuit Inc.</span></div>
+</div>
+</div>
+</footer>
+
+</div>
+</template>
+<script type="application/json" id="dc-props">{"$preview":{"width":390,"height":8000}}</script>
+<script src="../rt.js"></script>
+<script>
+class Component extends DCLogic {
+  setBtn(v) {
+    // the review toggle; boards of the same lane stay in step through a broadcast channel
+    this.setState({ btn: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ btn: v }); } catch (e) {}
+  }
+  setBrand(v) {
+    // the brand blue switch (Electric or Mission), shared with the other Lane J board
+    this.setState({ blue: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ blue: v }); } catch (e) {}
+  }
+  setGeo(v) {
+    // the geometric shapes switch (on or off), shared with the other Lane J board
+    this.setState({ geo: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ geo: v }); } catch (e) {}
+  }
+  setDiv(v) {
+    // the hero divider switch (on or off), shared with the other Lane J board
+    this.setState({ div: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ div: v }); } catch (e) {}
+  }
+  setHero(v) {
+    // the hero background toggle (kitchen, office or ecommerce photo), shared with the other Lane J board
+    this.setState({ hero: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ hero: v }); } catch (e) {}
+  }
+  listenBtn() {
+    try {
+      this.btnChannel = new BroadcastChannel('mission-buttons-lane-j');
+      this.btnChannel.onmessage = (e) => {
+        if (e.data && e.data.btn) this.setState({ btn: e.data.btn });
+        if (e.data && e.data.hero) this.setState({ hero: e.data.hero });
+        if (e.data && e.data.div) this.setState({ div: e.data.div });
+        if (e.data && e.data.blue) this.setState({ blue: e.data.blue });
+        if (e.data && e.data.geo) this.setState({ geo: e.data.geo });
+      };
+    } catch (e) {}
+  }
+  renderVals() {
+    return {
+      btnMode: (this.state && this.state.btn) || 'green',
+      isBlue: ((this.state && this.state.btn) || 'green') === 'blue' ? 'true' : 'false',
+      isGreen: ((this.state && this.state.btn) || 'green') === 'green' ? 'true' : 'false',
+      setBlue: this.setBlue || (this.setBlue = () => this.setBtn('blue')),
+      setGreen: this.setGreen || (this.setGreen = () => this.setBtn('green')),
+      isBlack: ((this.state && this.state.btn) || 'green') === 'black' ? 'true' : 'false',
+      setBlack: this.setBlack || (this.setBlack = () => this.setBtn('black')),
+      heroMode: (this.state && this.state.hero) || 'ecommerce',
+      isKitchen: ((this.state && this.state.hero) || 'ecommerce') === 'kitchen' ? 'true' : 'false',
+      isOffice: ((this.state && this.state.hero) || 'ecommerce') === 'office' ? 'true' : 'false',
+      isEcommerce: ((this.state && this.state.hero) || 'ecommerce') === 'ecommerce' ? 'true' : 'false',
+      setKitchen: this.setKitchen || (this.setKitchen = () => this.setHero('kitchen')),
+      setOffice: this.setOffice || (this.setOffice = () => this.setHero('office')),
+      setEcommerce: this.setEcommerce || (this.setEcommerce = () => this.setHero('ecommerce')),
+      geoMode: (this.state && this.state.geo) || 'on',
+      isGeoOn: ((this.state && this.state.geo) || 'on') === 'on' ? 'true' : 'false',
+      isGeoOff: ((this.state && this.state.geo) || 'on') === 'off' ? 'true' : 'false',
+      setGeoOn: this.setGeoOn || (this.setGeoOn = () => this.setGeo('on')),
+      setGeoOff: this.setGeoOff || (this.setGeoOff = () => this.setGeo('off')),
+      divMode: (this.state && this.state.div) || 'on',
+      isDivOn: ((this.state && this.state.div) || 'on') === 'on' ? 'true' : 'false',
+      isDivOff: ((this.state && this.state.div) || 'on') === 'off' ? 'true' : 'false',
+      setDivOn: this.setDivOn || (this.setDivOn = () => this.setDiv('on')),
+      setDivOff: this.setDivOff || (this.setDivOff = () => this.setDiv('off')),
+      blueMode: (this.state && this.state.blue) || 'electric',
+      isElectric: ((this.state && this.state.blue) || 'electric') === 'electric' ? 'true' : 'false',
+      isMission: ((this.state && this.state.blue) || 'electric') === 'mission' ? 'true' : 'false',
+      isBlend: ((this.state && this.state.blue) || 'electric') === 'blend' ? 'true' : 'false',
+      setBlend: this.setBlend || (this.setBlend = () => this.setBrand('blend')),
+      setElectric: this.setElectric || (this.setElectric = () => this.setBrand('electric')),
+      setMission: this.setMission || (this.setMission = () => this.setBrand('mission')),
+    };
+  }
+  componentDidMount() {
+    this.listenBtn();
+  }
+  componentWillUnmount() {
+    try { if (this.btnChannel) this.btnChannel.close(); } catch (e) {}
+  }
+}
+DC.boot(Component);
+</script>
+</body>
+</html>

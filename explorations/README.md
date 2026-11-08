@@ -2,6 +2,18 @@
 
 Standing rules for the MISSION homepage explorations, agreed with Growth Foundry on 6 Oct 2026. They apply to every lane and every round.
 
+
+## Round 2 — Lane J (8 Nov)
+
+After the client meeting (8 Nov): C3 was the top choice and H2 a strong second; H2's blue and its hero divider felt too harsh, the shapes were not liked, and the green buttons, hover highlights and lime accents were liked by everyone. D3 and G3 leave the lineup. Lane J blends H2 and C3 for round 2 (due Tuesday 10 Nov, decided at the next Friday meeting).
+
+- **What J is:** H2's sections and type, always in H2's "divider off, shapes off" state, with no shape drawn at all; Electric Blue #2459F5 on fewer and smaller areas (the full-width blue hero panel and the blue proof band are gone; the proof band and the light sections use C3's ice blue #E8F3FD); the ecommerce hero photo by default (Office as the second option; the kitchen photo is dropped, no restaurant imagery, and the kitchen tile in the team photo grid is the office photo); a still headline (no typing); "5.0 average from 32 Google reviews" in the hero and the stats (32 from the meeting notes); Jewelry in place of Restaurants in the industries list; Industries added to the menu (`#industries`); the footer call to action runs full width without the angled graphic.
+- **Review bar:** Buttons (Blue / Green / Black), Photos (Ecommerce / Office), Blue (Electric / Blend / Mission), kept in step across the J boards (channel `mission-buttons-lane-j`).
+- **Files:** `tools/lane-j-make-gen.py` patches `tools/lane-h2-gen.py` into `tools/lane-j-gen.py`, which writes `lane-j-home.dc.html` and `lane-j-home-mobile.dc.html`; `tools/board-to-page.py` turns a board into its review page (checked: it rebuilds the H2 page byte for byte).
+- **Canvas:** a new row under Lane H, with a "Lane J — Round 2" title; desktop 11,480 (continued board 3,480), mobile 15,789 (continued board 7,789).
+- **Review site:** the lineup is J, C3, H2 (Overview included); D3 and G3 stay on the canvas and in `review-site/public/pages/` as an archive, and their old links open the Overview.
+- **Still to do from the notes:** more women across the photo set, and industry photos (office/CEOs, construction, real estate, a man with jewelry, manufacturing, boats, ecommerce); Sarah's feedback on the blend before the call; more depth and data in the case studies (Sarah is expanding them).
+
 ## Canvas
 
 All lanes live on one Design canvas: https://claude.ai/artifact/3vmvJuakcT7WR5rU2gbeLw
