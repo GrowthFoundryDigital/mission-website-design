@@ -70,7 +70,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ov-intro { max-width: 1272px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
 .ov-intro h1 { margin: 0; font: 700 18px/1.3 var(--font-ui); }
 .ov-intro p { margin: 0; color: var(--muted); font-size: 13.5px; }
-.ov-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 300px)); justify-content: center; gap: 24px; }
+.ov-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 300px)); justify-content: center; gap: 24px; }
 .ov-col { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
 .ov-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .ov-head b { display: block; font: 700 16px/1.2 var(--font-ui); }
@@ -103,8 +103,8 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
     <a class="open" id="open" href="pages/d3-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
 </header>
-<section class="ov" id="ov" aria-label="Overview of all five designs" hidden>
-  <div class="ov-intro"><h1>Five homepage directions</h1><p>Scroll any column to compare. Click a design to open it full size.</p></div>
+<section class="ov" id="ov" aria-label="Overview of four designs" hidden>
+  <div class="ov-intro"><h1>Four homepage directions</h1><p>Scroll any column to compare. Click a design to open it full size.</p></div>
   <div class="ov-grid" id="ov-grid"></div>
 </section>
 <p class="ov-note" id="ov-note">To leave a comment, open a design first.</p>
@@ -127,9 +127,11 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
   };
   var VER = { d: '3', g: '3', c: '3', h: '2', j: '' };
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
-  // D3 is the landing view, always (9 Nov, by request). The address no longer remembers the design on show: an ending such as
-  // #j-desktop, left by a reload, a bookmark or a copied link, used to reopen that design instead of D3, so it is ignored and cleared
-  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
+  // The overview is the landing view, always (9 Nov, by request; D3 was the landing view briefly). The address does not remember
+  // the design on show: an ending such as #j-desktop, left by a reload, a bookmark or a copied link, is ignored and cleared
+  var state = { lane: 'o', ver: '', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
+  // lanes left out of the overview (9 Nov, by request); they stay in the lane switcher
+  var NOT_IN_OVERVIEW = { j: true };
 
   function seg(el, items, key) {
     el.innerHTML = '';
@@ -152,7 +154,7 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
   var cols = [];
   function buildOverview() {
     var grid = document.getElementById('ov-grid');
-    Object.keys(LANES).forEach(function (k) {
+    Object.keys(LANES).filter(function (k) { return !NOT_IN_OVERVIEW[k]; }).forEach(function (k) {
       var name = k.toUpperCase() + VER[k], src = 'pages/' + k + VER[k] + '-desktop.html';
       var col = document.createElement('article'); col.className = 'ov-col';
       col.innerHTML = '<div class="ov-head"><div><b>' + name + '</b><span>' + LANES[k] + '</span></div><button type="button" class="ov-open">Open \u2192</button></div>' +
