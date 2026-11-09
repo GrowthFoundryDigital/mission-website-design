@@ -137,12 +137,9 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
   };
   var VER = { d: '3', g: '3', c: '3', h: '2', j: '' };
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
-  // D3 is the landing view (9 Nov, by request); a link such as #j-desktop still opens that design directly, and #overview the overview
+  // D3 is the landing view, always (9 Nov, by request). The address no longer remembers the design on show: an ending such as
+  // #j-desktop, left by a reload, a bookmark or a copied link, used to reopen that design instead of D3, so it is ignored and cleared
   var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
-
-  var m = (location.hash || '').match(/^#([cdghj])(\d?)-(desktop|mobile)$/);
-  if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3] };
-  else if (location.hash === '#overview') state.lane = 'o';
 
   function seg(el, items, key) {
     el.innerHTML = '';
@@ -226,7 +223,7 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
     if (over) {
       if (!cols.length) buildOverview();
       fitOverview();
-      try { history.replaceState(null, '', '#overview'); } catch (e) {}
+      try { if (location.hash) history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
       document.dispatchEvent(new Event('review:layout'));
       return;
     }
@@ -241,7 +238,7 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
     stage.classList.toggle('mobile', state.dev === 'mobile');
     if (view.getAttribute('src') !== src) view.setAttribute('src', src);
     document.getElementById('open').setAttribute('href', src);
-    try { history.replaceState(null, '', '#' + id); } catch (e) {}
+    try { if (location.hash) history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
     fit();
   }
 
