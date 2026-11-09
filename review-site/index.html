@@ -70,7 +70,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ov-intro { max-width: 1272px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
 .ov-intro h1 { margin: 0; font: 700 18px/1.3 var(--font-ui); }
 .ov-intro p { margin: 0; color: var(--muted); font-size: 13.5px; }
-.ov-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 300px)); justify-content: center; gap: 24px; }
+.ov-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 300px)); justify-content: center; gap: 24px; }
 .ov-col { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
 .ov-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .ov-head b { display: block; font: 700 16px/1.2 var(--font-ui); }
@@ -103,8 +103,8 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
     <a class="open" id="open" href="pages/d3-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
 </header>
-<section class="ov" id="ov" aria-label="Overview of the round 2 designs" hidden>
-  <div class="ov-intro"><h1>Homepage directions, round 2</h1><p>Scroll any column to compare. Click a design to open it full size.</p></div>
+<section class="ov" id="ov" aria-label="Overview of all five designs" hidden>
+  <div class="ov-intro"><h1>Five homepage directions</h1><p>Scroll any column to compare. Click a design to open it full size.</p></div>
   <div class="ov-grid" id="ov-grid"></div>
 </section>
 <p class="ov-note" id="ov-note">To leave a comment, open a design first.</p>
@@ -116,19 +116,21 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
 
 <script>
 (function () {
-  // Round 2 (8 Nov): Lane J, the H2 and C3 blend, joins C3 and H2; D3 and G3 left the lineup after the client meeting
-  // (they stay on the canvas and in pages/ as an archive)
+  // Round 2 (8 Nov): Lane J, the H2 and C3 blend, joins the lineup. D3 and G3 left it after the client meeting and were
+  // brought back on 9 Nov, by request, for another reviewer; they will be hidden again after that review
   var LANES = {
-    j: 'Round 2: H2 and C3 blended, no shapes',
+    d: 'Dark hero with angled details',
+    g: 'Near-black, white and one blue band',
     c: 'Navy, ice blue and lime, with a photo hero',
-    h: 'Electric Blue and near-black, with angled geometry'
+    h: 'Electric Blue and near-black, with angled geometry',
+    j: 'Round 2: H2 and C3 blended, no shapes'
   };
-  var VER = { j: '', c: '3', h: '2' };
+  var VER = { d: '3', g: '3', c: '3', h: '2', j: '' };
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
   // the overview is the landing view; a link such as #d3-desktop still opens that design directly
   var state = { lane: 'o', ver: '', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
 
-  var m = (location.hash || '').match(/^#([cghj])(\d?)-(desktop|mobile)$/);
+  var m = (location.hash || '').match(/^#([cdghj])(\d?)-(desktop|mobile)$/);
   if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3] };
 
   function seg(el, items, key) {
