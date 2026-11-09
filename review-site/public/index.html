@@ -137,11 +137,12 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
   };
   var VER = { d: '3', g: '3', c: '3', h: '2', j: '' };
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
-  // the overview is the landing view; a link such as #d3-desktop still opens that design directly
-  var state = { lane: 'o', ver: '', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
+  // D3 is the landing view (9 Nov, by request); a link such as #j-desktop still opens that design directly, and #overview the overview
+  var state = { lane: 'd', ver: '3', dev: window.innerWidth < 700 ? 'mobile' : 'desktop' };
 
   var m = (location.hash || '').match(/^#([cdghj])(\d?)-(desktop|mobile)$/);
   if (m && VER[m[1]] === m[2]) state = { lane: m[1], ver: m[2], dev: m[3] };
+  else if (location.hash === '#overview') state.lane = 'o';
 
   function seg(el, items, key) {
     el.innerHTML = '';
