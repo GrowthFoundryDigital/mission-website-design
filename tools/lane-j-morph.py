@@ -109,6 +109,8 @@ j = j.replace('</style>', """/* the review switches stay at the top while the pa
 .lj #schedule > div > div{justify-content:center}
 /* mobile: the buttons stay full width */
 .lj #schedule > div > div[style*="flex-direction: column"]{align-self:stretch}
+/* pointer cursor on everything with a hover effect that is not a link (9 Nov, by request; the other lanes get it from tools/cursor-pack.py) */
+.lh .qcard,.lh .post,.lh .hv-ind,.lh .hv-li,.hv-feat,.hv-card,.hv-cell{cursor:pointer}
 /* Font review switch (8 Nov): C3 (Plus Jakarta Sans throughout; the default) or H2 (Space Grotesk headings + Open Sans) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}

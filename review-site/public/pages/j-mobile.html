@@ -225,6 +225,7 @@ a.hl:hover .hl-ink,a.hl:focus-visible .hl-ink,.hv-post:hover .hl-ink{background-
 a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transform .25s ease,color .2s ease .4s}
 @media (prefers-reduced-motion: reduce){.hl,.hl-ink,.hv-cell{transition:none !important}}
 .hv-cells{border-radius:16px}
+.hv-feat,.hv-card,.hv-fig,.hv-cell{cursor:pointer}
 /* the review switches stay at the top while the page scrolls (8 Nov, by request) */
 .lj .tg-bar{position:sticky;top:0;z-index:100}
 /* case studies (8 Nov, by request): no fill on the story rows at all (lime, then light blue, then navy were tried); the row does not
@@ -266,6 +267,8 @@ a.hl:hover svg,a.hl:focus-visible svg{color:#0A2240 !important;transition:transf
 .lj #schedule > div > div{justify-content:center}
 /* mobile: the buttons stay full width */
 .lj #schedule > div > div[style*="flex-direction: column"]{align-self:stretch}
+/* pointer cursor on everything with a hover effect that is not a link (9 Nov, by request; the other lanes get it from tools/cursor-pack.py) */
+.lh .qcard,.lh .post,.lh .hv-ind,.lh .hv-li,.hv-feat,.hv-card,.hv-cell{cursor:pointer}
 /* Font review switch (8 Nov): C3 (Plus Jakarta Sans throughout; the default) or H2 (Space Grotesk headings + Open Sans) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
