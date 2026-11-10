@@ -244,6 +244,32 @@ assert n == 1, n
 k = j.index('<div class="bl-band"'); ke = j.index('>', k)
 assert j[k:ke].count('background: var(--eb)') == 1
 j = j[:k] + j[k:ke].replace('background: var(--eb)', 'background: #061428') + j[ke:]
+# the closing call to action leaves the footer for its own section on the page blue (10 Nov, by request): it follows the Blue switch,
+# with Mission's darker shade on Mission (as "Does this sound like you?"); its eyebrow and text turn white, and the Call button's
+# outline is brighter so it holds on the blue. The footer keeps its glow and the faded wordmark
+fa = j.index('<footer id="contact"'); k = j.index('<div id="schedule"', fa)
+depth, i = 0, k
+while True:
+    o_ = j.find('<div', i); c_ = j.find('</div>', i)
+    if o_ != -1 and o_ < c_: depth += 1; i = o_ + 4
+    else:
+        depth -= 1; i = c_ + 6
+        if depth == 0: break
+cta = j[k:i]; j = j[:k] + j[i:].lstrip('\n')
+cta = cta.replace('<div id="schedule" style="position: relative; z-index: 1;', '<div style="position: relative; z-index: 1;', 1)
+cta, n = re.subn(r'; border-bottom: 1px solid rgba\(255, 255, 255, 0\.1\)"', '"', cta, count=1); assert n == 1
+cta, n = re.subn(r'(text-transform: uppercase; color: )#7CC4F8(">Your next step)', r'\1#FFFFFF\2', cta); assert n == 1
+cta, n = re.subn(r'(line-height: 1\.65; color: )#C9D6E8(;?[^"]*">Book a free call)', r'\1#FFFFFF\2', cta); assert n == 1
+cta, n = re.subn(r'background: rgba\(255, 255, 255, 0\.06\); border: 1px solid rgba\(255, 255, 255, 0\.24\)', 'background: transparent; border: 1px solid rgba(255, 255, 255, 0.7)', cta); assert n == 1
+sec = ('<!-- 12b Your next step: the closing call to action, on the page blue (10 Nov) -->\n'
+       '<section id="schedule" aria-label="Your next step" style="position: relative; overflow: hidden; background: var(--eb)">\n' + cta + '\n</section>\n\n')
+fc = j.rindex('<!--', 0, fa)
+j = j[:fc] + sec + j[fc:]
+j = j.replace('</style>', '.lj[data-blue="mission"] #schedule{background:var(--eb-dk) !important}\n</style>', 1)
+# every outlined button fills with lime on hover (10 Nov, by request): the other outlined buttons already do (H2's button hover);
+# the closing Call button now matches them
+j = j.replace('</style>', '.lj .hv-ghost{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease}\n'
+              '.lj .hv-ghost:hover,.lj .hv-ghost:focus-visible{background:#C1F432 !important;color:#101419 !important;border-color:#C1F432 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(193,244,50,.28)}\n</style>', 1)
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
