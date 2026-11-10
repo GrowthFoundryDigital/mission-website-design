@@ -19,11 +19,32 @@ def port(block):
     block = re.sub(r'(class="tg-btn[^"]*" [^>]*?)border-radius: 12px', r'\1border-radius: 4px', block)
     return block
 
+# H2's "Do your books look like this?" band, kept from J's own case-study section before C3's replaces it (10 Nov, by request)
+_b = j.index('<div class="bl-band"'); _e = j.index('</a>', _b) + len('</a>')
+_e = j.index('</div>', _e) + len('</div>')
+band = j[_b:_e]
+assert band.count('<div') == band.count('</div>') and 'Do your books look like this?' in band, band[:200]
 # 1. layouts from C3
 for jstart, cstart in [('<!-- 02 Case studies', '<!-- 01b Case studies'), ('<!-- 06 The six moments', '<!-- 04b Triggers'),
                        ('<!-- 05 Services', '<!-- 05 Services carousel')]:  # services from C3 too (8 Nov, by request)
     a, b = section(j, jstart); x, y = section(c, cstart)
     j = j[:a] + '<!-- from Lane C3 (Lane J morph) -->\n' + port(c[x:y]) + j[b:]
+
+# case studies (10 Nov, by request): C3's navy "Do your books look like this?" card leaves the story column, H2's blue band closes the
+# section instead (after the placeholder tiles, as on H2), and the featured story's photo may shrink so the featured card ends level
+# with the three stories beside it (the two columns start and end together)
+a = j.index('<!-- from Lane C3 (Lane J morph) -->\n<!-- 01b Case studies'); b = j.index('</section>', a)
+sec = j[a:b]
+k = sec.index('<div style="background: radial-gradient(55% 70% at 88% 18%, rgba(10, 127, 208, 0.30)')
+ke = sec.index('</div>', k) + len('</div>')
+assert 'Do your books look like this?' in sec[k:ke] and sec[k:ke].count('<div') == 1, sec[k:ke][:300]
+sec = sec[:k].rstrip('\n') + '\n' + sec[ke:].lstrip('\n')
+if 'min-height: 400px' in sec:
+    assert sec.count('class="hv-feat-ph" style="position: relative; flex: 1; min-height: 400px"') == 1
+    sec = sec.replace('class="hv-feat-ph" style="position: relative; flex: 1; min-height: 400px"', 'class="hv-feat-ph" style="position: relative; flex: 1; min-height: 240px"')
+end = sec.rindex('</div>')
+sec = sec[:end] + band + '\n' + sec[end:]
+j = j[:a] + sec + j[b:]
 
 # C3's order: the triggers (ice blue) sit between "who we are" and the services carousel, so the two navy sections never touch
 m1 = '<!-- from Lane C3 (Lane J morph) -->\n<!-- 05 Services carousel'; m2 = '<!-- from Lane C3 (Lane J morph) -->\n<!-- 04b Triggers'
