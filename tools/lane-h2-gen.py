@@ -11,7 +11,7 @@ LOGO = '/_blob/b29865f8838e8d694583c88108f0c2aa'
 LOGO_W = '/_blob/c81310e520e144cd622a899707febdc7'  # white logo, for the Electric Blue hero only (allowed there by request)
 PH = {
     'office': '/_blob/c76296e63f1cbdfd3cc1859696beddca',
-    'construction': '/_blob/3554cab00abc02f5b19956702ff92a9f',
+    'construction': '/_blob/b0f169f77a9c9c69b7b62fef8e9ec86b',
     'ecommerce': '/_blob/ee162fa1fb2080df76d56523f1f88f65',
     'kitchen': '/_blob/2066a54da13614d9c2246994e32d1902',
     'laptop': '/_blob/c7127cc17cfd8909184853095227a34d',
