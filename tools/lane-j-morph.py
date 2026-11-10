@@ -46,6 +46,30 @@ end = sec.rindex('</div>')
 sec = sec[:end] + band + '\n' + sec[end:]
 j = j[:a] + sec + j[b:]
 
+# footer (10 Nov, by request): C3's footer on J's navy, with J's words. J's call to action ("Your next step", "Your books. In order.")
+# and J's footer extras (the one-line description and QuickBooks Training) go into C3's layout; the big faded MISSION wordmark sits
+# lower, so its bottom half is cut off by the footer's bottom edge; buttons and fields get J's crisp 4px corners
+fa = j.index('<!-- 13 Footer'); fb = j.index('</footer>', fa) + len('</footer>')
+ca = c.rindex('<!--', 0, c.index('<footer')); cb = c.index('</footer>') + len('</footer>')
+ft = port(c[ca:cb])
+ft = ft.replace('<!-- 11 + 12 Footer, with the call to action merged in -->', "<!-- 13 Footer: C3's footer on J's navy, with J's words (10 Nov) -->", 1)
+ft, n = re.subn(r'(<p style="[^"]*text-transform: uppercase; color: #7CC4F8">)Free consultation(</p>)', r'\1Your next step\2', ft); assert n == 1
+ft, n = re.subn(r"(<h2 [^>]*>)Let's look at your books\.(</h2>)", r'\1Your books.<br>In order.\2', ft); assert n == 1
+ft = re.sub(r'(class="(?:tg-btn|hv-ghost)[^"]*"[^>]*?)border-radius: 12px', r'\1border-radius: 4px', ft)
+ft = ft.replace('border-radius: 12px; color: #FFFFFF; font-family: inherit', 'border-radius: 4px; color: #FFFFFF; font-family: inherit')
+assert 'border-radius: 12px' not in ft, ft[ft.index('border-radius: 12px')-200:ft.index('border-radius: 12px')+40]
+lg = re.search(r'<img src="/_blob/b29865f8838e8d694583c88108f0c2aa" alt="MISSION" style="[^"]*">\n', ft).group(0)
+ft = ft.replace('class="sr-only"', 'class="sr"')  # J's visually-hidden class
+ft = ft.replace(lg, lg + '<p style="margin: 0; font-size: 14px; line-height: 1.6; color: #C9D6E8; max-width: 360px">Business advisors who know accounting software really well. Bookkeeping, accounting and QuickBooks for grown-up businesses with tricky books.</p>\n', 1)
+tr = '<a class="hv-foot" href="#training" style="color: #E3EAF3; text-decoration: none">QuickBooks Training</a></nav>'
+ft, n = re.subn(r'(<a class="hv-foot" href="#pos" [^>]*>POS Integration</a>)</nav>', lambda m: m.group(1) + tr, ft); assert n == 1
+if 'font-size: 300px' in ft:   # desktop
+    ft, n = re.subn(r'bottom: -30px; (z-index: 0; font-weight: 800; font-size: 300px)', r'bottom: -116px; \1', ft); assert n == 1
+else:                          # mobile
+    ft, n = re.subn(r'bottom: 6px; (z-index: 0; font-weight: 800; font-size: 104px)', r'bottom: -44px; \1', ft); assert n == 1
+    ft, n = re.subn(r'padding: 44px 20px 112px;', 'padding: 44px 20px 72px;', ft); assert n == 1
+j = j[:fa] + ft + j[fb:]
+
 # C3's order: the triggers (ice blue) sit between "who we are" and the services carousel, so the two navy sections never touch
 m1 = '<!-- from Lane C3 (Lane J morph) -->\n<!-- 05 Services carousel'; m2 = '<!-- from Lane C3 (Lane J morph) -->\n<!-- 04b Triggers'
 a = j.index(m1); b = j.index('</section>', a) + len('</section>'); svc = j[a:b]; j = j[:a] + j[b:]
@@ -53,7 +77,7 @@ a = j.index(m2); b = j.index('</section>', a) + len('</section>'); j = j[:b] + '
 
 # 2. the C3 hover styles those sections use (case-study rows, featured photo zoom, the lime wipe cells, the highlighter links)
 ccss = c[c.index('<style>') + 7:c.index('</style>')].split('\n')
-keep = [l for l in ccss if re.search(r'hv-feat|hv-row|hv-cell|\.hl\b|hl-ink|hv-arrow|hv-card|hv-circ', l) and not l.lstrip().startswith(('/*', 'the letters'))]
+keep = [l for l in ccss if re.search(r'hv-feat|hv-row|hv-cell|\.hl\b|hl-ink|hv-arrow|hv-card|hv-circ|hv-soc|hv-ghost', l) and not l.lstrip().startswith(('/*', 'the letters'))]
 keep = [l.replace('[style*="#0A7FD0"]', '[style*="var(--eb)"]') for l in keep]
 morph_css = '''
 /* ---------- Lane J morph (8 Nov): H2 x C3 ---------- */
@@ -123,17 +147,13 @@ j = j.replace('</style>', """/* the review switches stay at the top while the pa
 .lj .hv-li:hover .ic{color:var(--eb)}
 .lj .dk .hv-li:hover .ic{color:var(--eb-lt)}
 @media (prefers-reduced-motion: reduce){.lj .hl::before,.lj .post .tw,.lj #case-studies .hv-row > span > span:last-child::before{transition:none}}
-/* footer call to action centred in the band (8 Nov, by request: too much empty space on the right; Mobbin references:
-   Figma, Coda, Podia, Homerun) */
-.lj #schedule > div{align-items:center;text-align:center}
-.lj #schedule > div > p:not(.eb){margin-left:auto;margin-right:auto}
-.lj #schedule > div > div{justify-content:center}
-/* mobile: the buttons stay full width */
-.lj #schedule > div > div[style*="flex-direction: column"]{align-self:stretch}
+/* (the centred footer call to action of 8 Nov is now C3's footer, 10 Nov, which is centred already) */
 /* pointer cursor on everything with a hover effect that is not a link (9 Nov, by request; the other lanes get it from tools/cursor-pack.py) */
 .lh .qcard,.lh .post,.lh .hv-ind,.lh .hv-li,.hv-feat,.hv-card,.hv-cell{cursor:pointer}
 /* the Office hero photo (10 Nov) has its subject on the left, behind the headline: mirrored so she sits in the open side */
 .lj .hero-bg-office{transform:scaleX(-1)}
+/* footer text links turn lime on hover, as on J's earlier footer (C3's sky blue otherwise) */
+.lj #contact nav a.hv-foot:hover,.lj #contact nav a.hv-foot:focus-visible,.lj #contact address a.hv-foot:hover,.lj #contact address a.hv-foot:focus-visible{color:#C1F432 !important}
 /* Font review switch (8 Nov): C3 (Plus Jakarta Sans throughout; the default) or H2 (Space Grotesk headings + Open Sans) */
 .lj[data-font="h2"]{font-family:'Open Sans','Helvetica Neue',Arial,sans-serif}
 .lj[data-font="c3"] *:not(.tg-bar):not(.tg-bar *){font-family:'Plus Jakarta Sans','Helvetica Neue',Arial,sans-serif !important}
