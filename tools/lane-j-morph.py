@@ -216,6 +216,27 @@ j = j.replace('.lj .ch,.lj .ice{background:#E8F3FD}', '.lj .ch,.lj .ice{backgrou
 j = j.replace('background: #E8F3FD', 'background: #F5F6F7')
 j = j.replace('#DCE7F3', '#E2E5EA')
 assert '#E8F3FD' not in j, [m.start() for m in re.finditer('#E8F3FD', j)][:5]
+# "Does this sound like you?" on the page blue (10 Nov, by request): the section takes the Blue switch's colour (Electric by default);
+# its eyebrow, heading and intro turn white (5.5:1 on Electric, 4.8:1 on Blend); on Mission blue, where white falls short
+# (4.0:1), the section uses Mission's darker shade (6.5:1). The white card of six situations, the photo and the lime button stay
+a = j.index('<!-- 04b Triggers -->'); b = j.index('</section>', a)
+sec = j[a:b]; k = sec.index('class="hv-cells"'); head, rest = sec[:k], sec[k:]
+o = '<section style="position: relative; overflow: hidden; background: #FFFFFF">'
+assert head.count(o) == 1
+head = head.replace(o, '<section id="triggers" style="position: relative; overflow: hidden; background: var(--eb)">')
+head, n1 = re.subn(r'(text-transform: uppercase; color: )var\(--eb\)(">When people usually call us)', r'\1#FFFFFF\2', head)
+head, n2 = re.subn(r'(color: )#0A2240(; text-wrap: balance">Does this sound like you\?)', r'\1#FFFFFF\2', head)
+head, n3 = re.subn(r'(color: )#3B4A63([^"]*">If one of these sounds like you)', r'\1#FFFFFF\2', head)
+assert (n1, n2, n3) == (1, 1, 1), (n1, n2, n3)
+j = j[:a] + head + rest + j[b:]
+j = j.replace('</style>', '.lj[data-blue="mission"] #triggers{background:var(--eb-dk) !important}\n</style>', 1)
+# the footer one step darker (10 Nov, by request): deep navy #061428, a fainter glow, and the faded wordmark toned to match
+fa = j.index('<footer id="contact"'); fb = j.index('</footer>', fa)
+ft = j[fa:fb]
+for o, n in [('background: #0A2240; color: #C9D6E8', 'background: #061428; color: #C9D6E8'), ('rgba(10, 127, 208, 0.28) 0%', 'rgba(10, 127, 208, 0.16) 0%'), ('color: #0F2B50; pointer-events: none', 'color: #0B1F3B; pointer-events: none')]:
+    assert ft.count(o) == 1, o
+    ft = ft.replace(o, n)
+j = j[:fa] + ft + j[fb:]
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
