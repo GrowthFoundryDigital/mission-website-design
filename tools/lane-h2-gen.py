@@ -547,8 +547,9 @@ def page(m):
     A('<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-top: %dpx"><span class="tag">More client stories</span><a class="lk" href="#case-studies">See all case studies%s</a></div>' % (4 if m else 12, ARR))
     A('<div style="display: grid; grid-template-columns: %s; gap: %dpx">' % ('minmax(0, 1fr)' if m else 'repeat(3, minmax(0, 1fr))', 14 if m else 20))
     for lab, t, p, u in CASES:
-        # the jewelry story carries the ring-tray photo (10 Nov, by request; the other two cards stay text-only)
-        ph = ('<img src="/_blob/2a1cf94d53635b523c60effebc3a5529" alt="" style="display: block; width: 100%%%%; height: %dpx; object-fit: cover; object-position: 60%%%% 50%%%%; border-radius: 4px; margin-bottom: 6px">' % (180 if m else 150)) if lab == 'Jewelry' else ''
+        # a photo on each card (10 Nov, by request): the ring tray on the jewelry story first, then photos from the library on the other two
+        CARD_PH = {'Jewelry': ('/_blob/2a1cf94d53635b523c60effebc3a5529', '60%% 50%%'), 'Food production': ('/_blob/c7127cc17cfd8909184853095227a34d', 'center 40%%'), 'Interiors': ('/_blob/959f667ae9fbf3a0eb90cf0ce15668ff', '58%% 38%%')}  # %% because the card line is %-formatted after
+        ph = ('<img src="%s" alt="" style="display: block; width: 100%%%%; height: %dpx; object-fit: cover; object-position: %s; border-radius: 4px; margin-bottom: 6px">' % (CARD_PH[lab][0], 180 if m else 150, CARD_PH[lab][1])) if lab in CARD_PH else ''
         A(('<a class="card" href="%s" target="_blank" rel="noopener" style="flex-direction: column; justify-content: space-between; gap: 18px; padding: %s; min-height: %s"><span style="display: flex; flex-direction: column; gap: 12px">' + ph + '<span class="tag">%s</span><h3 style="font-size: %dpx; line-height: 1.2">%s</h3><span class="mu" style="font-size: 14.5px">%s</span></span><span class="lk">Read the story%s</span></a>') % (u, '22px' if m else '28px', 'auto' if m else '250px', lab, 20 if m else 22, t, p, ARR))
     A('</div>')
     # more client stories, compact (2 Nov, review comment): six placeholders until MISSION supplies more stories (the DNA lists four)
