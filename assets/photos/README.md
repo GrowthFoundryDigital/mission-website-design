@@ -27,3 +27,7 @@ Supplied by Growth Foundry on 6 Oct 2026 for the design explorations. These are 
 
 - `restaurant-chef-plating.webp` (1672 × 941): a chef plating dishes at the pass of an open restaurant kitchen under pendant lights, another cook behind and a server walking past the dining room in motion blur. Supplied by Growth Foundry. It's the default Lane C3 hero background, with `hero-thinking-at-desk.webp` as the "Office" variant. It also fills the brief's gap for a restaurant-industry image. Not a MISSION client, so don't caption it as one.
 - `ecommerce-packing-orders.webp` (1672 × 941): a man in a beanie packing an order into a shipping box in a warehouse-style studio, shelves of labelled boxes and tall windows behind, a colleague carrying a box past in motion blur. Supplied by Growth Foundry. It's the "Ecommerce" Lane C3 hero variant and fits the multi-channel ecommerce specialty. Not a MISSION client, so don't caption it as one.
+
+## Added 10 Nov 2026
+
+- `ecommerce-packing-orders-2.webp` (1670 × 941): a woman in glasses and a cream sweater packing an order into a shipping box at a long wooden table, a laptop beside her, shelves of labelled boxes and tall windows behind, a colleague carrying a box past in motion blur. Supplied by Growth Foundry. By request it replaces `ecommerce-packing-orders.webp` as the "Ecommerce" hero photo on every lane that has one (C3, H2 and J; D3 and G3 have no ecommerce photo). The older file is kept here but unused. Not a MISSION client, so don't caption it as one.

@@ -9,6 +9,7 @@ const OUT = S + '/review';
 
 const blobs = {
   b70d1fd6eb5a9839c3acd3ccea5d44a1: A + '/photos/ecommerce-packing-orders.webp',
+  ee162fa1fb2080df76d56523f1f88f65: A + '/photos/ecommerce-packing-orders-2.webp',  // the Ecommerce hero photo from 10 Nov (replaces the one above)
   '2066a54da13614d9c2246994e32d1902': A + '/photos/restaurant-chef-plating.webp',
   b29865f8838e8d694583c88108f0c2aa: S + '/artifact-files/17b46128-259c-40d5-b7d3-374c526f9a58/b29865f8838e8d694583c88108f0c2aa.svg',
   c81310e520e144cd622a899707febdc7: S + '/artifact-files/17b46128-259c-40d5-b7d3-374c526f9a58/c81310e520e144cd622a899707febdc7.svg',

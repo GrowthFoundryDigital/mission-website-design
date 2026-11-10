@@ -12,7 +12,7 @@ LOGO_W = '/_blob/c81310e520e144cd622a899707febdc7'  # white logo, for the Electr
 PH = {
     'office': '/_blob/c76296e63f1cbdfd3cc1859696beddca',
     'construction': '/_blob/3554cab00abc02f5b19956702ff92a9f',
-    'ecommerce': '/_blob/b70d1fd6eb5a9839c3acd3ccea5d44a1',
+    'ecommerce': '/_blob/ee162fa1fb2080df76d56523f1f88f65',
     'kitchen': '/_blob/2066a54da13614d9c2246994e32d1902',
     'laptop': '/_blob/c7127cc17cfd8909184853095227a34d',
     'team': '/_blob/3b6448ffe67d241e50c579a0950384e9',
