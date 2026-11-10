@@ -10,7 +10,7 @@ OUT = sys.argv[1]
 LOGO = '/_blob/b29865f8838e8d694583c88108f0c2aa'
 LOGO_W = '/_blob/c81310e520e144cd622a899707febdc7'  # white logo, for the Electric Blue hero only (allowed there by request)
 PH = {
-    'office': '/_blob/c76296e63f1cbdfd3cc1859696beddca',
+    'office': '/_blob/3d6b714436163c0b81700732407cd2ff',
     'construction': '/_blob/b0f169f77a9c9c69b7b62fef8e9ec86b',
     'ecommerce': '/_blob/ee162fa1fb2080df76d56523f1f88f65',
     'kitchen': '/_blob/2066a54da13614d9c2246994e32d1902',
@@ -582,7 +582,7 @@ def page(m):
     A('<a class="lk" href="#services" style="padding-top: 8px">What we do%s</a>' % ARR)
     if not m:
         A('</div>')
-    grid = [('ecommerce', 'A business owner packing an online order', '60% 35%'), ('construction', 'A construction crew reviewing plans', 'center 40%'), ('kitchen', 'A chef plating dishes in a restaurant kitchen', '72% 40%'), ('laptop', 'A business owner thinking at a laptop', 'center 40%')]
+    grid = [('ecommerce', 'A business owner packing an online order', '60% 35%'), ('construction', 'A construction crew reviewing plans', 'center 40%'), ('office', 'A business owner thinking at a desk', '30% 40%'), ('laptop', 'A business owner thinking at a laptop', 'center 40%')]
     A('<div style="position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: %dpx">' % (8 if m else 12))
     for i, (k, alt, pos) in enumerate(grid):
         A('<div class="ph" style="height: %dpx; border-radius: 4px"><img src="%s" alt="%s" style="object-position: %s"></div>' % (150 if m else 250, PH[k], alt, pos))

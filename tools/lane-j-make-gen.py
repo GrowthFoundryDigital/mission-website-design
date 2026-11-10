@@ -37,7 +37,7 @@ src = src[:i] + "    A('<span></span>\\n</div>\\n')" + src[j + len("A('</span></
 rep("""    'kitchen': ('A chef plating dishes in a restaurant kitchen', ('62% 40%', '80% 28%')),\n""", "")
 rep("|| 'kitchen'", "|| 'ecommerce'", 4)
 # the photo grid beside "A specialist team": the kitchen photo (restaurant imagery, dropped in the meeting) becomes the office photo
-rep("('kitchen', 'A chef plating dishes in a restaurant kitchen', '72% 40%')", "('office', 'A business owner thinking at a desk', '62% 30%')")
+# the who-we-are grid's bottom-left photo is the office photo in lane-h2-gen.py itself since 10 Nov, so nothing to swap here
 # 32 Google reviews (meeting notes, 8 Nov)
 rep('<strong style="color: #FFFFFF">5.0 average</strong> on Google reviews', '<strong style="color: #FFFFFF">5.0 average</strong> from 32 Google reviews', 2)
 rep("('5.0', 'our average star rating on Google')", "('5.0', 'our average star rating from 32 Google reviews')")

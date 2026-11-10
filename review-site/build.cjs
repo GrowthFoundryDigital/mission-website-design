@@ -22,6 +22,7 @@ const blobs = {
   '9eef1fc8b132f5488cb3871c7327a754': S + '/badges/certified-enterprise.png',
   '39493efadd289f62e0315fad774e3ce0': S + '/badges/certified-pos.png',
   c76296e63f1cbdfd3cc1859696beddca: A + '/photos/hero-thinking-at-desk.webp',
+  '3d6b714436163c0b81700732407cd2ff': A + '/photos/office-thinking-at-laptop.webp',  // the Office photo from 10 Nov (replaces the one above)
   '37cbc555ab9573d99c3c204f11469679': A + '/photos/lounge-laptop-portrait.webp',
   '959f667ae9fbf3a0eb90cf0ce15668ff': A + '/photos/reviewing-papers-window.webp',
   '3b6448ffe67d241e50c579a0950384e9': A + '/photos/team-around-laptop.webp',
