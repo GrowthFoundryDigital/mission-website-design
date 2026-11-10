@@ -189,6 +189,15 @@ j = j[:a].rstrip('\n') + '\n\n' + j[b:].lstrip('\n')
 assert j.count('<section aria-label="The team" ') == 1
 j = j.replace('<section aria-label="The team" ', '<section id="team" aria-label="The team" ', 1)
 j = j.replace('href="#about"', 'href="#team"')
+# greys instead of the light blue (10 Nov, by request: "copy H2 using greys"): H2's chalk grey #F5F6F7 and white replace C3's ice
+# blue, in H2's rhythm: case studies grey, "When people usually call us" white (as on H2), certified and the questions grey; the
+# ice-blue service card becomes grey and the blue-grey dividers become H2's grey. The sky-blue cards and text on navy stay
+j = j.replace('aria-label="Case studies" style="position: relative; overflow: hidden; background: #E8F3FD"', 'aria-label="Case studies" style="position: relative; overflow: hidden; background: #F5F6F7"', 1)
+j = j.replace('<!-- 04b Triggers -->\n<section style="position: relative; overflow: hidden; background: #E8F3FD">', '<!-- 04b Triggers -->\n<section style="position: relative; overflow: hidden; background: #FFFFFF">', 1)
+j = j.replace('.lj .ch,.lj .ice{background:#E8F3FD}', '.lj .ch,.lj .ice{background:#F5F6F7}', 1)
+j = j.replace('background: #E8F3FD', 'background: #F5F6F7')
+j = j.replace('#DCE7F3', '#E2E5EA')
+assert '#E8F3FD' not in j, [m.start() for m in re.finditer('#E8F3FD', j)][:5]
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
