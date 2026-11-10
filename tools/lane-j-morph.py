@@ -179,6 +179,16 @@ if '<div class="hero-band" style=' in j:
 .lj #top{padding-bottom:44px !important}
 .lj .hero-full > div{background:linear-gradient(180deg,rgba(16,20,25,.82) 0%,rgba(16,20,25,.74) 60%,rgba(16,20,25,.62) 100%) !important}
 </style>""", 1)
+# the hero eyebrow in Electric Blue (10 Nov, by request; it follows the Blue switch like the rest of J's blue)
+j, n = re.subn(r'<p class="eb" style="letter-spacing: (\.1[68]em)">Practical\. Reassuring\. Experienced\.</p>', r'<p class="eb" style="letter-spacing: \1; color: var(--eb)">Practical. Reassuring. Experienced.</p>', j)
+assert n == 1, n
+# no "Who we are" section on J (10 Nov, by request); its "About" links (header, footer, "Meet the team") now go to the team section
+a = j.index('<!-- 04 Positioning'); b = j.index('</section>', a) + len('</section>')
+assert 'id="about"' in j[a:b] and j[a:b].count('<section') == 1
+j = j[:a].rstrip('\n') + '\n\n' + j[b:].lstrip('\n')
+assert j.count('<section aria-label="The team" ') == 1
+j = j.replace('<section aria-label="The team" ', '<section id="team" aria-label="The team" ', 1)
+j = j.replace('href="#about"', 'href="#team"')
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
