@@ -27,6 +27,7 @@ const blobs = {
   '37cbc555ab9573d99c3c204f11469679': A + '/photos/lounge-laptop-portrait.webp',
   '959f667ae9fbf3a0eb90cf0ce15668ff': A + '/photos/reviewing-papers-window.webp',
   '3b6448ffe67d241e50c579a0950384e9': A + '/photos/team-around-laptop.webp',
+  fffa2c71ba1ad1c02f0d03a0cc647d85: A + '/photos/team-around-laptop-2.webp',  // the team photo from 10 Nov (replaces the one above)
   '16a347e2aaf4894dd3d60cbfb48a31af': A + '/photos/consultation-desk-wide.webp',
   c7127cc17cfd8909184853095227a34d: A + '/photos/thinking-at-laptop.webp',
   '3554cab00abc02f5b19956702ff92a9f': A + '/photos/construction-plans-review.webp',

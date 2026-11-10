@@ -15,7 +15,7 @@ PH = {
     'ecommerce': '/_blob/ee162fa1fb2080df76d56523f1f88f65',
     'kitchen': '/_blob/2066a54da13614d9c2246994e32d1902',
     'laptop': '/_blob/c7127cc17cfd8909184853095227a34d',
-    'team': '/_blob/3b6448ffe67d241e50c579a0950384e9',
+    'team': '/_blob/fffa2c71ba1ad1c02f0d03a0cc647d85',
     'lounge': '/_blob/37cbc555ab9573d99c3c204f11469679',
     'papers': '/_blob/959f667ae9fbf3a0eb90cf0ce15668ff',
 }
