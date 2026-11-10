@@ -237,6 +237,13 @@ for o, n in [('background: #0A2240; color: #C9D6E8', 'background: #061428; color
     assert ft.count(o) == 1, o
     ft = ft.replace(o, n)
 j = j[:fa] + ft + j[fb:]
+# the blue MISSION logo in the header (10 Nov, by request; the white one before), as in C3's header and J's footer
+j, n = re.subn(r'(<a href="#top" aria-label="MISSION home" style="display: flex"><img src=")/_blob/c81310e520e144cd622a899707febdc7(")', r'\1/_blob/b29865f8838e8d694583c88108f0c2aa\2', j)
+assert n == 1, n
+# the "Do your books look like this?" band on the footer's deep navy (10 Nov, by request), since the section below it is now blue
+k = j.index('<div class="bl-band"'); ke = j.index('>', k)
+assert j[k:ke].count('background: var(--eb)') == 1
+j = j[:k] + j[k:ke].replace('background: var(--eb)', 'background: #061428') + j[ke:]
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
