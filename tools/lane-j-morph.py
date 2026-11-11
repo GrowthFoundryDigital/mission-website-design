@@ -264,7 +264,8 @@ cta, n = re.subn(r'(line-height: 1\.65; color: )#C9D6E8(;?[^"]*">Book a free cal
 cta, n = re.subn(r'background: rgba\(255, 255, 255, 0\.06\); border: 1px solid rgba\(255, 255, 255, 0\.24\)', 'background: transparent; border: 1px solid rgba(255, 255, 255, 0.7)', cta); assert n == 1
 sec = ('<!-- 12b Your next step: the closing call to action, on the page blue (10 Nov) -->\n'
        '<section id="schedule" aria-label="Your next step" style="position: relative; overflow: hidden; background: var(--eb)">\n' + cta + '\n</section>\n\n')
-fc = j.rindex('<!--', 0, fa)
+# placed above the blog (11 Nov, by request; it sat directly above the footer at first)
+fc = j.index('<!-- 12 From the blog')
 j = j[:fc] + sec + j[fc:]
 j = j.replace('</style>', '.lj[data-blue="mission"] #schedule{background:var(--eb-dk) !important}\n</style>', 1)
 # every outlined button fills with lime on hover (10 Nov, by request): the other outlined buttons already do (H2's button hover);
