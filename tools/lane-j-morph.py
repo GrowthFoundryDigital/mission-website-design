@@ -134,10 +134,10 @@ j = j.replace('</style>', """/* the review switches stay at the top while the pa
 .lj #case-studies .hv-arrow:hover,.lj #case-studies .hv-arrow:focus-visible{text-decoration:none !important}
 .lj #case-studies .hv-row > span > span:last-child{align-self:flex-start;position:relative;isolation:isolate;transition:color .2s ease .15s,text-decoration-color .3s ease}
 .lj #case-studies .hv-row:hover > span > span:last-child,.lj #case-studies .hv-row:focus-visible > span > span:last-child{color:#101419 !important;text-decoration-color:transparent !important}
-/* blog titles: the same wipe, as one continuous pass across wrapped lines (sized 300%: the browser measures the fill against the widest
-   line, so 100% stopped short on a second line when the first was longer) */
-.lj .post .tw{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;padding:1px 8px;margin:0 -8px;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-size .6s cubic-bezier(.22,.61,.36,1)}
-.lj .post:hover .tw{background-size:300% 100%}
+/* blog titles: the same wipe; on a wrapped title each line fills from its own left edge, at the pace of the one-line text links
+   (11 Nov: a continuous pass across the lines had to be stretched to cover them and felt rushed going in) */
+.lj .post .tw{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;padding:1px 8px;margin:0 -8px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .5s cubic-bezier(.22,.61,.36,1)}
+.lj .post:hover .tw{background-size:100% 100%;transition:background-size .6s cubic-bezier(.22,.61,.36,1)}
 .lj .post:hover h3{color:#101419}
 /* no lime on hover except text links and buttons (8 Nov, by request): the "When people usually call us" cells, the industry rows
    and the "who we are" list keep their other hovers but lose the lime */
@@ -326,9 +326,9 @@ else:
 k = ft.index('<div style="position: relative; z-index: 1;'); k = ft.index('>', k) + 1
 ft = ft[:k] + '\n' + card + ft[k:].lstrip('\n')
 j = j[:fa] + ft + j[fb:]
-j = j.replace('</style>', '/* the footer sign-up card: the recent-answer titles take the lime text-link wipe, the field shows focus */\n'
-              '.lj .nl-tip .nl-t{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;padding:1px 6px;margin:0 -6px;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-size .5s cubic-bezier(.22,.61,.36,1),color .2s ease .12s}\n'
-              '.lj .nl-tip:hover .nl-t,.lj .nl-tip:focus-visible .nl-t{background-size:300% 100%;color:#101419}\n'
+j = j.replace('</style>', '/* the footer sign-up card: the recent-answer titles take the lime text-link wipe (slower going in, 11 Nov, by request; the way out\n   keeps its pace), the field shows focus */\n'
+              '.lj .nl-tip .nl-t{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;padding:1px 6px;margin:0 -6px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background-size .5s cubic-bezier(.22,.61,.36,1),color .2s ease .12s}\n'
+              '.lj .nl-tip:hover .nl-t,.lj .nl-tip:focus-visible .nl-t{background-size:100% 100%;color:#101419;transition:background-size .6s cubic-bezier(.22,.61,.36,1),color .2s ease .2s}\n'
               '.lj .nl-field:focus-within{border-color:rgba(255,255,255,.55) !important;background:rgba(255,255,255,.09) !important}\n'
               '.lj .nl-field input::placeholder{color:#8FA3BC}\n</style>', 1)
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
