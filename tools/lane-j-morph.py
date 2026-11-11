@@ -281,6 +281,9 @@ for title, frm, to in [('Up to date, every month', ('#F5F6F7', '#3B4A63'), ('#7C
     assert c_.count('background: %s; border-radius: 14px' % frm[0]) == 1 and c_.count('line-height: 1.55; color: %s' % frm[1]) == 1, title
     c_ = c_.replace('background: %s; border-radius: 14px' % frm[0], 'background: %s; border-radius: 14px' % to[0]).replace('line-height: 1.55; color: %s' % frm[1], 'line-height: 1.55; color: %s' % to[1])
     j = j[:a_] + c_ + j[b_:]
+# the Blue switch opens on Blend (11 Nov, by request; Electric before)
+assert j.count("(this.state && this.state.blue) || 'electric')") == 3 and j.count("blueMode: (this.state && this.state.blue) || 'electric',") == 1
+j = j.replace("(this.state && this.state.blue) || 'electric'", "(this.state && this.state.blue) || 'blend'")
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
