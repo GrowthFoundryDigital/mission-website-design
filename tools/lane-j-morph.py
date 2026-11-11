@@ -134,9 +134,10 @@ j = j.replace('</style>', """/* the review switches stay at the top while the pa
 .lj #case-studies .hv-arrow:hover,.lj #case-studies .hv-arrow:focus-visible{text-decoration:none !important}
 .lj #case-studies .hv-row > span > span:last-child{align-self:flex-start;position:relative;isolation:isolate;transition:color .2s ease .15s,text-decoration-color .3s ease}
 .lj #case-studies .hv-row:hover > span > span:last-child,.lj #case-studies .hv-row:focus-visible > span > span:last-child{color:#101419 !important;text-decoration-color:transparent !important}
-/* blog titles: the same wipe, as one continuous pass across wrapped lines */
+/* blog titles: the same wipe, as one continuous pass across wrapped lines (sized 300%: the browser measures the fill against the widest
+   line, so 100% stopped short on a second line when the first was longer) */
 .lj .post .tw{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;padding:1px 8px;margin:0 -8px;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-size .6s cubic-bezier(.22,.61,.36,1)}
-.lj .post:hover .tw{background-size:100% 100%}
+.lj .post:hover .tw{background-size:300% 100%}
 .lj .post:hover h3{color:#101419}
 /* no lime on hover except text links and buttons (8 Nov, by request): the "When people usually call us" cells, the industry rows
    and the "who we are" list keep their other hovers but lose the lime */
@@ -284,6 +285,52 @@ for title, frm, to in [('Up to date, every month', ('#F5F6F7', '#3B4A63'), ('#7C
 # the Blue switch opens on Blend (11 Nov, by request; Electric before)
 assert j.count("(this.state && this.state.blue) || 'electric')") == 3 and j.count("blueMode: (this.state && this.state.blue) || 'electric',") == 1
 j = j.replace("(this.state && this.state.blue) || 'electric'", "(this.state && this.state.blue) || 'blend'")
+# the email sign-up leaves the footer's left column for a card at the top of the footer (11 Nov, by request: "be creative"):
+# the heading and line on the left, one joined field and button on the right, and under a hairline a "Recent answers" strip with
+# the three blog posts on the page (their tags and titles, word for word), so the sign-up shows what people get
+fa = j.index('<footer id="contact"'); fb = j.index('</footer>', fa); ft = j[fa:fb]
+f0 = ft.index('<form'); f1 = ft.index('</form>') + len('</form>'); old_form = ft[f0:f1]
+arrow = re.search(r'<svg.*?</svg>', old_form, re.S).group(0)
+mob = 'nl-email-cm' in old_form
+ft = ft[:f0].rstrip('\n') + '\n' + ft[f1:].lstrip('\n')
+tips = [('QuickBooks', 'QuickBooks Desktop to Online: what actually changes'), ('Customers', 'QuickBooks Online vs Enterprise: going beyond the basics'),
+        ('Technology', 'Is automated accounting software the future of financial accounting?')]
+for _, t_ in tips: assert t_ in j, t_
+tip_html = ''.join('<a class="nl-tip" href="#blog" style="display: flex; flex-direction: column; gap: 6px; padding: %s; %s text-decoration: none">'
+                   '<span style="font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #7CC4F8">%s</span>'
+                   '<span style="font-size: 14.5px; font-weight: 600; line-height: 1.4; color: #FFFFFF"><span class="nl-t">%s</span></span></a>'
+                   % (('16px 0' if mob else '20px 22px'), ('border-top: 1px solid rgba(255, 255, 255, 0.10);' if mob else 'border-left: 1px solid rgba(255, 255, 255, 0.10);'), tag, t_)
+                   for tag, t_ in tips)
+eid = 'nl-email-jm' if mob else 'nl-email-j'
+field = ('<label for="%s" class="sr">Email address</label>'
+         '<div class="nl-field" style="display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 6px; background: rgba(255, 255, 255, 0.06); border: 1px solid rgba(255, 255, 255, 0.18)">'
+         '<input id="%s" type="email" placeholder="Your email address" style="flex: 1; min-width: 0; height: 46px; box-sizing: border-box; background: transparent; border: 0; outline: 0; color: #FFFFFF; font-family: inherit; font-size: 15px; padding: 0 12px">'
+         '<button class="tg-btn" type="submit" style="flex: none; height: 46px; padding: 0 %s; border-radius: 4px; border: 0; background: #FFFFFF; color: #0A2240; font-family: inherit; font-size: 14.5px; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">Subscribe%s</button></div>'
+         % (eid, eid, '16px' if mob else '22px', arrow))
+head = ('<div style="display: flex; flex-direction: column; gap: 10px">'
+        '<p style="margin: 0; font-size: %s; font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; color: #FFFFFF">QuickBooks tips by email</p>'
+        '<p style="margin: 0; font-size: %s; line-height: 1.6; color: #C9D6E8">Simple answers to the questions business owners ask us most. No sales emails.</p></div>'
+        % ('26px' if mob else '34px', '14.5px' if mob else '15.5px'))
+if mob:
+    card = ('<form class="nl-card" style="display: flex; flex-direction: column; gap: 20px; padding: 26px 20px 4px; border-radius: 14px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.10)">'
+            + head + field +
+            '<div style="display: flex; flex-direction: column; padding-top: 6px"><p style="margin: 0 0 4px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8FA3BC">Recent answers</p>'
+            + tip_html + '</div></form>\n')
+else:
+    card = ('<form class="nl-card" style="border-radius: 16px; background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.10); overflow: hidden">'
+            '<div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; padding: 36px 40px">' + head + '<div>' + field + '</div></div>'
+            '<div style="display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)); align-items: stretch; border-top: 1px solid rgba(255, 255, 255, 0.10); padding-left: 40px">'
+            '<p style="margin: 0; align-self: center; padding-right: 22px; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #8FA3BC">Recent answers</p>'
+            + tip_html + '</div></form>\n')
+# first thing inside the footer's link area
+k = ft.index('<div style="position: relative; z-index: 1;'); k = ft.index('>', k) + 1
+ft = ft[:k] + '\n' + card + ft[k:].lstrip('\n')
+j = j[:fa] + ft + j[fb:]
+j = j.replace('</style>', '/* the footer sign-up card: the recent-answer titles take the lime text-link wipe, the field shows focus */\n'
+              '.lj .nl-tip .nl-t{background:linear-gradient(#C1F432,#C1F432) no-repeat 0 0/0% 100%;padding:1px 6px;margin:0 -6px;-webkit-box-decoration-break:slice;box-decoration-break:slice;transition:background-size .5s cubic-bezier(.22,.61,.36,1),color .2s ease .12s}\n'
+              '.lj .nl-tip:hover .nl-t,.lj .nl-tip:focus-visible .nl-t{background-size:300% 100%;color:#101419}\n'
+              '.lj .nl-field:focus-within{border-color:rgba(255,255,255,.55) !important;background:rgba(255,255,255,.09) !important}\n'
+              '.lj .nl-field input::placeholder{color:#8FA3BC}\n</style>', 1)
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
