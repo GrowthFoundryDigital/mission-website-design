@@ -270,6 +270,17 @@ j = j.replace('</style>', '.lj[data-blue="mission"] #schedule{background:var(--e
 # the closing Call button now matches them
 j = j.replace('</style>', '.lj .hv-ghost{transition:transform .4s cubic-bezier(.22,.61,.36,1),background-color .4s ease,color .4s ease,border-color .4s ease,box-shadow .4s ease}\n'
               '.lj .hv-ghost:hover,.lj .hv-ghost:focus-visible{background:#C1F432 !important;color:#101419 !important;border-color:#C1F432 !important;transform:translateY(-2px);box-shadow:0 10px 24px rgba(193,244,50,.28)}\n</style>', 1)
+# services carousel (11 Nov, by request): the sky-blue card moves from POS Integration to Bookkeeping & Accounting, which takes
+# POS's grey in exchange; each card's body text keeps the colour that suits its background
+def _card(title):
+    k = j.index('>' + title + '</h3>'); a_ = j.rindex('<article class="hv-card"', 0, k); b_ = j.index('</article>', k)
+    return a_, b_
+for title, frm, to in [('Up to date, every month', ('#F5F6F7', '#3B4A63'), ('#7CC4F8', '#0A2240')),
+                       ("Sales that don't match the books", ('#7CC4F8', '#0A2240'), ('#F5F6F7', '#3B4A63'))]:
+    a_, b_ = _card(title); c_ = j[a_:b_]
+    assert c_.count('background: %s; border-radius: 14px' % frm[0]) == 1 and c_.count('line-height: 1.55; color: %s' % frm[1]) == 1, title
+    c_ = c_.replace('background: %s; border-radius: 14px' % frm[0], 'background: %s; border-radius: 14px' % to[0]).replace('line-height: 1.55; color: %s' % frm[1], 'line-height: 1.55; color: %s' % to[1])
+    j = j[:a_] + c_ + j[b_:]
 # blog titles: an inline wrapper for the text-link wipe (8 Nov, by request)
 j, n = re.subn(r'(<article class="post"[^\n]*?<h3 [^>]*>)([^<]+)(</h3>)', r'\1<span class="tw">\2</span>\3', j)
 assert n == 3, n
