@@ -474,7 +474,9 @@ def build(m):
     # ---------- 11 Call to action ----------
     a('\n<!-- 11 Your next step: the closing call to action -->')
     a('<section id="schedule" class="dk" aria-label="Your next step" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY, '72px 0' if m else '96px 0'))
-    a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0"><img src="%s" alt="" style="object-position: %s"></div>' % (IMG['cta'], '75% 40%' if m else 'center 45%'))
+    # blurred like the services photo, under the same light navy overlay (13 Nov, by request)
+    a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0"><img src="%s" alt="" style="object-position: %s; filter: blur(%s); transform: scale(1.08)"></div>' % (IMG['cta'], '75% 40%' if m else 'center 45%', '8px' if m else '12px'))
+    a('<div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(6,20,40,.22)"></div>')
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: %s"></div>' % ('linear-gradient(180deg, rgba(6,20,40,.85), rgba(6,20,40,.75))' if m else 'linear-gradient(90deg, rgba(6,20,40,.95) 0%, rgba(6,20,40,.8) 45%, rgba(6,20,40,.35) 100%)'))
     txt = ('<div style="display: flex; flex-direction: column; gap: 18px"><p class="eb c" style="color: #FFFFFF"><span class="cp-s">Ready to take control of your books?</span><span class="cp-m">Ready for your briefing?</span></p>'
            '<h2 style="font-size: %s"><span class="cp-s">Your next chapter starts<br>with a conversation.</span><span class="cp-m">Every assignment starts<br>with a briefing.</span></h2>'
