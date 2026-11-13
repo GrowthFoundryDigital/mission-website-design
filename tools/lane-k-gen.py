@@ -177,6 +177,7 @@ body{margin:0;background:%(NAVY)s}
   .lk .k-cs-body{padding:0 28px 24px}
   .lk .k-cs[data-on="false"]{display:none}
   .lk .k-cs:hover,.lk .k-cs:focus-visible{transform:skewX(-2deg)}
+  .lk[data-angles="off"] .k-cs:hover,.lk[data-angles="off"] .k-cs:focus-visible{transform:none !important}
   .lk .k-cs-navbar{display:flex !important}
   .lk .k-cs-ph{height:200px}
 }
@@ -186,6 +187,23 @@ body{margin:0;background:%(NAVY)s}
 .lk .k-track{animation:kMarquee 34s linear infinite}
 .lk .k-marquee:hover .k-track{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){.lk *{transition:none !important}}
+/* review bar (not part of the design) and its two switches (13 Nov, by request) */
+.lk .tg-bar{position:sticky;top:0;z-index:100;min-height:40px;box-sizing:border-box;background:#141414;color:#FFFFFF;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;padding:6px 8px;font:500 12.5px/1 system-ui,-apple-system,'Segoe UI',sans-serif}
+.lk .tg-bar .tg-label{color:#BDBDBD}
+.lk .tg-bar .tg-group{display:inline-flex;background:#2B2B2B;border-radius:999px;padding:3px;gap:2px}
+.lk .tg-bar .tg-opt{all:unset;cursor:pointer;display:inline-flex;align-items:center;gap:7px;height:26px;padding:0 12px;border-radius:999px;color:#D0D0D0;font:600 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif;transition:background-color .2s ease,color .2s ease}
+.lk .tg-bar .tg-opt:hover{color:#FFFFFF}
+.lk .tg-bar .tg-opt:focus-visible{outline:2px solid %(BLUE)s;outline-offset:2px}
+.lk .tg-bar .tg-opt[aria-pressed="true"]{background:#FFFFFF;color:#141414}
+/* Angles off: straight case-study cards, a square mission photo and upright bars on the headshot frames (the italic headings stay) */
+.lk[data-angles="off"] .k-cs,.lk[data-angles="off"] .k-cs-in{transform:none !important}
+.lk[data-angles="off"] .k-cs-in{margin:0 !important}
+.lk[data-angles="off"] .k-cs-body{padding:0 28px 28px !important}
+.lk[data-angles="off"] .k-cs:hover,.lk[data-angles="off"] .k-cs:focus-visible{transform:translateY(-10px) !important}
+.lk[data-angles="off"] .k-ang-clip{clip-path:none !important}
+.lk[data-angles="off"] .slash{transform:none}
+/* Eyebrow lines None: no line or fuse after the eyebrows */
+.lk[data-eb="none"] .eb::after{display:none}
 @media (prefers-reduced-motion: reduce){.lk .k-track{animation:none}.lk .eb::after{animation:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 50%%/100%% 2px}}
 ''' % dict(BLUE=BLUE, LIME=LIME, NAVY=NAVY, INK=INK, MUTED=MUTED)
 
@@ -247,7 +265,7 @@ def build(m):
            '<p style="font-size: 17px; max-width: 470px">You started a business, not a bookkeeping job. We keep your books clean and correct. You don\'t have to hire a full finance team or get lost at a big firm.</p>'
            '<div style="padding-top: 6px">%s</div></div>' % ('46px' if m else '72px', btn("Let's talk about your needs", icon=False, extra='width: 100%' if m else '')))
     photo = ('<div style="position: relative; height: %s">'
-             '<div class="ph" style="position: absolute; inset: 0; clip-path: polygon(%s)"><img src="%s" alt="Specialists reviewing a client\'s numbers together" style="object-position: center 30%%"></div>'
+             '<div class="ph k-ang-clip" style="position: absolute; inset: 0; clip-path: polygon(%s)"><img src="%s" alt="Specialists reviewing a client\'s numbers together" style="object-position: center 30%%"></div>'
              '</div>'
              % ('300px' if m else '470px', '2.5% 0, 100% 0, 100% 100%, 0 100%' if m else '4% 0, 100% 0, 100% 100%, 0 100%', IMG['mission']))
     # the blue slanted bar beside the photo was removed (13 Nov, by request); the photo keeps its slanted left edge.
@@ -515,11 +533,71 @@ def build(m):
     fonts = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
              '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">')
     title = 'Lane K homepage, %s' % ('mobile' if m else 'desktop')
-    return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>%s</title>\n<script src="./support.js"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n%s\n<style>%s</style>\n</helmet>\n'
-            '<div class="lk" style="width: %dpx; background: %s">\n%s\n</div>\n</x-dc>\n'
+    # review bar (13 Nov, by request): Angles on/off and eyebrow lines Fuse/None, kept in step across the Lane K boards
+    bar = ('<div class="tg-bar" aria-label="Review control, not part of the design">'
+           '<span class="tg-label">Review ·</span>'
+           '<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Angles</span><span class="tg-group" role="group" aria-label="Angles">'
+           '<button type="button" class="tg-opt" aria-pressed="{{ isAngOn }}" onClick="{{ setAngOn }}">On</button>'
+           '<button type="button" class="tg-opt" aria-pressed="{{ isAngOff }}" onClick="{{ setAngOff }}">Off</button></span></span>'
+           '<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Eyebrow lines</span><span class="tg-group" role="group" aria-label="Eyebrow lines">'
+           '<button type="button" class="tg-opt" aria-pressed="{{ isEbFuse }}" onClick="{{ setEbFuse }}">Fuse</button>'
+           '<button type="button" class="tg-opt" aria-pressed="{{ isEbNone }}" onClick="{{ setEbNone }}">None</button></span></span>'
+           '</div>')
+    head = ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>%s</title>\n<script src="./support.js"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n%s\n<style>%s</style>\n</helmet>\n'
+            '<div class="lk" data-angles="{{ angMode }}" data-eb="{{ ebMode }}" style="width: %dpx; background: %s">\n%s\n%s\n</div>\n</x-dc>\n'
             '<script type="text/x-dc" data-dc-script data-props=\'{"$preview":{"width":%d,"height":8000}}\'>\n'
-            'class Component extends DCLogic {\n  // the case-study carousel: which card is highlighted (desktop) or shown (mobile)\n  go(i) { this.setState({ cs: (i + 3) %% 3 }); }\n  // the services carousel: SVN stops (4 cards in view on desktop, 1 on mobile)\n  sgo(i) { this.setState({ sv: (i + SVN) %% SVN }); }\n  renderVals() {\n    const c = (this.state && this.state.cs) || 0;\n    const v = (this.state && this.state.sv) || 0;\n    this.sg = this.sg || [];\n    const sv = { svPos: String(v), svPrev: this.sp || (this.sp = () => this.sgo(((this.state && this.state.sv) || 0) - 1)), svNext: this.sn || (this.sn = () => this.sgo(((this.state && this.state.sv) || 0) + 1)) };\n    for (let i = 0; i < SVN; i++) { sv[\'svOn\' + i] = v === i ? \'true\' : \'false\'; sv[\'svGo\' + i] = this.sg[i] || (this.sg[i] = () => this.sgo(i)); }\n    return {\n      ...sv,\n      csOn0: c === 0 ? \'true\' : \'false\', csOn1: c === 1 ? \'true\' : \'false\', csOn2: c === 2 ? \'true\' : \'false\',\n      csGo0: this.g0 || (this.g0 = () => this.go(0)), csGo1: this.g1 || (this.g1 = () => this.go(1)), csGo2: this.g2 || (this.g2 = () => this.go(2)),\n      csPrev: this.gp || (this.gp = () => this.go(((this.state && this.state.cs) || 0) - 1)),\n      csNext: this.gn || (this.gn = () => this.go(((this.state && this.state.cs) || 0) + 1)),\n    };\n  }\n}\n</script>\n</body>\n</html>\n'
-            % (title, fonts, CSS + svcss(m), W, NAVY, body, W)).replace('SVN', str(svpos(m)))
+            % (title, fonts, CSS + svcss(m), W, NAVY, bar, body, W))
+    return head + SCRIPT.replace('SVN', str(svpos(m))) + '</script>\n</body>\n</html>\n'
+
+
+SCRIPT = r"""class Component extends DCLogic {
+  // the case-study carousel: which card is highlighted (desktop) or shown (mobile)
+  go(i) { this.setState({ cs: (i + 3) % 3 }); }
+  // the services carousel: SVN stops (4 cards in view on desktop, 1 on mobile)
+  sgo(i) { this.setState({ sv: (i + SVN) % SVN }); }
+  // the review switches (angles on/off, eyebrow lines fuse/none), shared with the other Lane K boards
+  setAng(v) {
+    this.setState({ ang: v });
+    try { if (this.ch) this.ch.postMessage({ ang: v }); } catch (e) {}
+  }
+  setEb(v) {
+    this.setState({ eb: v });
+    try { if (this.ch) this.ch.postMessage({ eb: v }); } catch (e) {}
+  }
+  componentDidMount() {
+    try {
+      this.ch = new BroadcastChannel('mission-buttons-lane-k');
+      this.ch.onmessage = (e) => {
+        if (e.data && e.data.ang) this.setState({ ang: e.data.ang });
+        if (e.data && e.data.eb) this.setState({ eb: e.data.eb });
+      };
+    } catch (e) {}
+  }
+  componentWillUnmount() {
+    try { if (this.ch) this.ch.close(); } catch (e) {}
+  }
+  renderVals() {
+    const c = (this.state && this.state.cs) || 0;
+    const v = (this.state && this.state.sv) || 0;
+    const ang = (this.state && this.state.ang) || 'on';
+    const eb = (this.state && this.state.eb) || 'fuse';
+    this.sg = this.sg || [];
+    const sv = { svPos: String(v), svPrev: this.sp || (this.sp = () => this.sgo(((this.state && this.state.sv) || 0) - 1)), svNext: this.sn || (this.sn = () => this.sgo(((this.state && this.state.sv) || 0) + 1)) };
+    for (let i = 0; i < SVN; i++) { sv['svOn' + i] = v === i ? 'true' : 'false'; sv['svGo' + i] = this.sg[i] || (this.sg[i] = () => this.sgo(i)); }
+    return {
+      ...sv,
+      angMode: ang, isAngOn: ang === 'on' ? 'true' : 'false', isAngOff: ang === 'off' ? 'true' : 'false',
+      setAngOn: this.a1 || (this.a1 = () => this.setAng('on')), setAngOff: this.a0 || (this.a0 = () => this.setAng('off')),
+      ebMode: eb, isEbFuse: eb === 'fuse' ? 'true' : 'false', isEbNone: eb === 'none' ? 'true' : 'false',
+      setEbFuse: this.e1 || (this.e1 = () => this.setEb('fuse')), setEbNone: this.e0 || (this.e0 = () => this.setEb('none')),
+      csOn0: c === 0 ? 'true' : 'false', csOn1: c === 1 ? 'true' : 'false', csOn2: c === 2 ? 'true' : 'false',
+      csGo0: this.g0 || (this.g0 = () => this.go(0)), csGo1: this.g1 || (this.g1 = () => this.go(1)), csGo2: this.g2 || (this.g2 = () => this.go(2)),
+      csPrev: this.gp || (this.gp = () => this.go(((this.state && this.state.cs) || 0) - 1)),
+      csNext: this.gn || (this.gn = () => this.go(((this.state && this.state.cs) || 0) + 1)),
+    };
+  }
+}
+"""
 
 os.makedirs(OUT, exist_ok=True)
 for m, name in [(False, 'lane-k-home.dc.html'), (True, 'lane-k-home-mobile.dc.html')]:
