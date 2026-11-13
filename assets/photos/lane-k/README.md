@@ -12,3 +12,5 @@ Supplied by Growth Foundry on 13 Nov 2026 for Lane K: a reference homepage desig
 | `k-contour-lines.webp` | Glowing blue contour lines on dark navy | Case studies, the testimonial band and the footer |
 
 More images were attached in the same conversation but did not arrive as files: a misty mountain range, a blurred office with diagonal bands, glass towers seen from below, and blue target rings. Their slots in `tools/lane-k-gen.py` are marked STAND-IN; swap the ids when the files come through.
+
+- `k-ice-overlay.webp` (2000 × 667, transparent on the right): light ice-blue panels and slanted bands on the left with a thin bright blue edge, a few faint bands on the far right, and a clear middle. Supplied by Growth Foundry on 13 Nov. Lane K's "The mission" lays it over the team photo so the photo shows through the clear part and the words sit on the light panels (desktop: a full-width banner; mobile: its slanted edge across the left of the photo).

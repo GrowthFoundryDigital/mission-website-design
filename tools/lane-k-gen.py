@@ -123,6 +123,7 @@ body{margin:0;background:%(NAVY)s}
 .lk .ph > img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover}
 .lk .slash{position:absolute;background:%(BLUE)s;transform:skewX(-18deg)}
 .lk .cursor{cursor:pointer}
+.lk .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* the badge marquee: two copies of the row, the track slides left by one copy and loops */
 @keyframes kMarquee{from{transform:translateX(0)}to{transform:translateX(-50%%)}}
 .lk .k-track{animation:kMarquee 34s linear infinite}
@@ -181,18 +182,29 @@ def build(m):
     a('</section>')
 
     # ---------- 02 The mission (who we are) ----------
-    a('\n<!-- 02 The mission: a specialist team, with the team photo in a slanted frame -->')
-    a('<section id="who-we-are" class="lt" aria-label="The mission" style="position: relative; overflow: hidden; background: linear-gradient(180deg, #F4F8FC 0%%, %s 100%%); padding: %s">' % (ICE, '64px 0' if m else '110px 0'))
-    txt = ('<div style="display: flex; flex-direction: column; gap: 22px">'
+    # 13 Nov, by request: the team photo sits underneath Growth Foundry's ice-blue overlay (k-ice-overlay.webp, transparent on the
+    # right), so the photo shows through the clear part and the light blue panels and slanted bands cover the left, behind the words.
+    # Desktop: a full-width banner, photo on the right, overlay at its own proportions from the left edge (its far-right bands fall
+    # past the edge). Mobile: the words, then the photo with the overlay's slanted edge across its left side.
+    OV = B + '3b0c242e134c1a46fd4ff444a29b6b23'
+    a('\n<!-- 02 The mission: the team photo seen through the ice-blue overlay -->')
+    txt = ('<div style="position: relative; z-index: 3; display: flex; flex-direction: column; gap: 22px; max-width: %s">'
            '<p class="eb">The mission</p><h2 style="font-size: %s">A specialist team that knows your business.</h2>'
            '<p style="font-size: 17px; max-width: 470px">You started a business, not a bookkeeping job. We keep your books clean and correct. You don\'t have to hire a full finance team or get lost at a big firm.</p>'
-           '<div style="padding-top: 6px">%s</div></div>' % ('46px' if m else '72px', btn("Let's talk about your needs", icon=False, extra='width: 100%' if m else '')))
-    photo = ('<div style="position: relative; height: %s">'
-             '<div class="ph" style="position: absolute; inset: 0; clip-path: polygon(%s)"><img src="%s" alt="Specialists reviewing a client\'s numbers together" style="object-position: center 30%%"></div>'
-             '</div>'
-             % ('300px' if m else '470px', '10% 0, 100% 0, 100% 100%, 0 100%' if m else '16% 0, 100% 0, 100% 100%, 0 100%', IMG['mission']))
-    # the blue slanted bar beside the photo was removed (13 Nov, by request); the photo keeps its slanted left edge
-    a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s%s</div>' % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr)', '36px' if m else '56px', txt, photo)))
+           '<div style="padding-top: 6px">%s</div></div>' % ('100%' if m else '470px', '46px' if m else '64px', btn("Let's talk about your needs", icon=False, extra='width: 100%' if m else '')))
+    if m:
+        a('<section id="who-we-are" class="lt" aria-label="The mission" style="position: relative; overflow: hidden; background: #EEF6FD; padding: 64px 0 0">')
+        photo = ('<div style="position: relative; height: 320px; margin: 36px -20px 0; overflow: hidden">'
+                 '<div class="ph" style="position: absolute; inset: 0"><img src="%s" alt="Specialists reviewing a client\'s numbers together" style="object-position: 62%% 30%%"></div>'
+                 '<img src="%s" alt="" aria-hidden="true" style="position: absolute; top: 0; left: -300px; height: 100%%; width: auto; max-width: none; pointer-events: none"></div>'
+                 % (IMG['mission'], OV))
+        a(wrap(txt + photo))
+    else:
+        a('<section id="who-we-are" class="lt" aria-label="The mission" style="position: relative; overflow: hidden; background: #EEF6FD; min-height: 600px; display: flex; align-items: center; padding: 96px 0">')
+        a('<div class="ph" aria-hidden="true" style="position: absolute; top: 0; bottom: 0; right: 0; width: 58%%"><img src="%s" alt="" style="object-position: center 30%%"></div>' % IMG['mission'])
+        a('<img src="%s" alt="" aria-hidden="true" style="position: absolute; top: 0; left: 0; height: 100%%; width: auto; max-width: none; z-index: 1; pointer-events: none">' % OV)
+        a('<span class="sr">Specialists reviewing a client\'s numbers together.</span>')
+        a('<div style="position: relative; z-index: 2; width: 100%%">%s</div>' % wrap(txt))
     a('</section>')
 
     # ---------- 03 Services ----------
