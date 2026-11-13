@@ -256,12 +256,15 @@ def build(m):
         '<span style="align-self: flex-start; font: 700 11px/1 \'Inter\', sans-serif; letter-spacing: .06em; padding: 6px 9px; border-radius: 3px; background: #E3F1FF; color: #0B5FA8">%s</span>'
         '<h3 style="font-size: 25px; line-height: 1">%s</h3><p style="font-size: 14px; line-height: 1.55">%s</p>'
         '<span class="go" style="margin-top: auto; align-self: flex-end; display: inline-flex">%s</span></div></a>'
-        % (u, '180px' if m else '170px', IMG[k], pos, tag, t, d, ic('arrow', 20)) for k, tag, t, d, u, pos in cs)
-    txt = ('<div style="display: flex; flex-direction: column; gap: 22px"><p class="eb">Case studies</p><h2 style="font-size: %s">Real problems.<br>Real progress.</h2>'
-           '<p style="font-size: 17px; color: #DCE6F2; max-width: 380px">Messy books, fixed. These are real MISSION clients and what changed for them.</p>'
-           '<div style="padding-top: 6px">%s</div></div>' % ('46px' if m else '68px', btn('See all case studies', href='#case-studies', icon=False, extra='width: 100%' if m else '')))
-    a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div></div>'
-           % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr)', '34px' if m else '48px', txt, '1fr' if m else 'repeat(3, minmax(0, 1fr))', '16px' if m else '20px', ccards)))
+        % (u, '180px' if m else '230px', IMG[k], pos, tag, t, d, ic('arrow', 20)) for k, tag, t, d, u, pos in cs)
+    # the heading sits above the cards (13 Nov, by request: the side-by-side layout looked cluttered); the cards take the full width
+    head = ('<div style="display: %s; gap: %s; align-items: end; margin-bottom: %s">'
+            '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb">Case studies</p><h2 style="font-size: %s">Real problems.<br>Real progress.</h2></div>'
+            '<div style="display: flex; flex-direction: column; gap: 20px; %s"><p style="font-size: 17px; color: #DCE6F2; max-width: 440px">Messy books, fixed. These are real MISSION clients and what changed for them.</p>'
+            '<div>%s</div></div></div>'
+            % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 1fr) auto', '22px' if m else '48px', '32px' if m else '52px', '46px' if m else '72px',
+               '' if m else 'align-items: flex-start', btn('See all case studies', href='#case-studies', icon=False, extra='width: 100%' if m else '')))
+    a(wrap(head + '<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div>' % ('1fr' if m else 'repeat(3, minmax(0, 1fr))', '16px' if m else '24px', ccards)))
     a('</section>')
 
     # ---------- 06 Testimonial and facts ----------
