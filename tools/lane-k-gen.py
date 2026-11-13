@@ -127,17 +127,35 @@ body{margin:0;background:%(NAVY)s}
 .lk .ph > img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover}
 .lk .slash{position:absolute;background:%(BLUE)s;transform:skewX(-18deg)}
 .lk .cursor{cursor:pointer}
-/* case studies, Before -> After rows (13 Nov): the row lifts, the photo zooms, the arrow nudges, the After side warms */
-.lk .k-ba{transition:transform .3s ease,background-color .3s ease,border-color .3s ease}
-.lk .k-ba:hover,.lk .k-ba:focus-visible{transform:translateY(-3px);background:rgba(255,255,255,.08);border-color:rgba(193,244,50,.45)}
-.lk .k-ba-ph img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
-.lk .k-ba:hover .k-ba-ph img{transform:scale(1.06)}
-.lk .k-ba-arrow span{transition:transform .35s cubic-bezier(.22,.61,.36,1)}
-.lk .k-ba:hover .k-ba-arrow span{transform:translateX(4px)}
-.lk .k-ba-after{transition:background-color .3s ease}
-.lk .k-ba:hover .k-ba-after{background:rgba(193,244,50,.06)}
-.lk .k-ba-link svg{transition:transform .3s ease}
-.lk .k-ba:hover .k-ba-link svg{transform:translateX(4px)}
+/* case studies (13 Nov): slanted cards with a glowing edge; the highlighted one (arrows and dots) glows brighter and lifts */
+.lk .k-cs-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;padding:12px 40px}
+.lk .k-cs{display:block;text-decoration:none;transform:skewX(-14deg);border:1.5px solid rgba(31,162,255,.55);border-radius:4px;background:#0A2240;overflow:hidden;
+  box-shadow:0 0 0 rgba(31,162,255,0);transition:transform .45s cubic-bezier(.22,.61,.36,1),box-shadow .45s ease,border-color .45s ease}
+.lk .k-cs-in{transform:skewX(14deg);margin:0 -46px;position:relative}
+.lk .k-cs-ph{position:relative;height:230px;overflow:hidden}
+.lk .k-cs-ph img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
+.lk .k-cs-ph::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,34,64,0) 30%%,#0A2240 100%%)}
+.lk .k-cs-body{position:relative;margin-top:-56px;padding:0 92px 28px 70px;display:flex;flex-direction:column;gap:10px}
+.lk .k-cs-t{font-family:'Inter',sans-serif !important;font-style:italic !important;text-transform:none !important;font-weight:800 !important;font-size:23px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:#FFFFFF}
+.lk .k-cs-go{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font:700 14.5px/1 'Inter',sans-serif;color:%(LIME)s}
+.lk .k-cs-go svg{transition:transform .3s ease}
+.lk .k-cs:hover,.lk .k-cs:focus-visible,.lk .k-cs[data-on="true"]{border-color:#4FC3FF;box-shadow:0 0 0 1px rgba(79,195,255,.6),0 0 26px rgba(31,162,255,.55),0 0 60px rgba(31,162,255,.25)}
+.lk .k-cs[data-on="true"]{transform:skewX(-14deg) translateY(-10px)}
+.lk .k-cs:hover .k-cs-ph img{transform:scale(1.06)}
+.lk .k-cs:hover .k-cs-go svg{transform:translateX(4px)}
+.lk .k-cs-nav{all:unset;cursor:pointer;width:46px;height:46px;border-radius:50%%;border:2px solid #FFFFFF;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
+.lk .k-cs-nav:hover,.lk .k-cs-nav:focus-visible{background:%(LIME)s;border-color:%(LIME)s;color:%(NAVY)s}
+.lk .k-cs-dot{all:unset;cursor:pointer;width:11px;height:11px;border-radius:50%%;background:rgba(255,255,255,.35);transition:background-color .25s ease,transform .25s ease}
+.lk .k-cs-dot[aria-pressed="true"]{background:%(BLUE)s;transform:scale(1.15)}
+@media (max-width: 600px){
+  .lk .k-cs-row{grid-template-columns:1fr;padding:12px 22px}
+  .lk .k-cs{transform:skewX(-8deg)}
+  .lk .k-cs-in{transform:skewX(8deg);margin:0 -30px}
+  .lk .k-cs-body{padding:0 42px 24px}
+  .lk .k-cs[data-on="false"]{display:none}
+  .lk .k-cs[data-on="true"]{transform:skewX(-8deg)}
+  .lk .k-cs-ph{height:200px}
+}
 .lk .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* the badge marquee: two copies of the row, the track slides left by one copy and loops */
 @keyframes kMarquee{from{transform:translateX(0)}to{transform:translateX(-50%%)}}
@@ -257,46 +275,41 @@ def build(m):
     a('<section id="case-studies" class="dk" aria-label="Case studies" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY2, '64px 0' if m else '100px 0'))
     a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0; opacity: .9"><img src="%s" alt=""></div>' % IMG['cases'])
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,20,40,.85) 0%, rgba(6,20,40,.45) 60%, rgba(6,20,40,.3) 100%)"></div>')
-    # case studies as Before -> After rows (13 Nov, by request: the cards read like blog posts; designed from scratch, not from a
-    # reference). Each row: photo and industry, the problem ("Before"), an arrow, what changed ("After"), and a link. Wording comes
-    # only from the sourced case-study copy (no results or quotes until the real ones arrive).
-    CASES = [('cs_construction', 'center 35%', 'Construction', 'QuickBooks Enterprise',
-              'Useful QuickBooks Enterprise tools sat unused.', 'We found the tools already built into their QuickBooks Enterprise that nobody was using.',
-              'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support'),
-             ('cs_jewelry', '60% 50%', 'Jewelry', 'QuickBooks Enterprise',
-              'Custom orders, and stock kept in more than one place.', 'Custom orders tracked, and where each item is kept, in QuickBooks Enterprise.',
-              'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise'),
-             ('cs_interiors', '58% 38%', 'Interiors', 'Wren’s Nest Interiors',
-              'Bill approvals and expense tracking done by hand.', 'Bills approved and spending tracked, automatically.',
-              'https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software')]
-    lab = lambda t, c: '<span style="font: 700 11px/1 \'Inter\', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: %s">%s</span>' % (c, t)
-    def row(k, pos, ind, sub, before, after, url):
-        photo = ('<div class="ph k-ba-ph" style="%s"><img src="%s" alt="" style="object-position: %s">'
-                 '<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(4,14,29,.85) 0%%, rgba(4,14,29,0) 60%%)"></div>'
-                 '<div style="position: absolute; left: 16px; bottom: 14px; right: 16px; display: flex; flex-direction: column; gap: 4px">'
-                 '<span class="cond" style="font-size: 24px; color: #FFFFFF">%s</span><span style="font-size: 12.5px; color: #C9D6E8">%s</span></div></div>'
-                 % ('height: 150px' if m else 'align-self: stretch; min-height: 150px', IMG[k], pos, ind, sub))
-        bef = ('<div style="display: flex; flex-direction: column; gap: 10px; padding: %s">%s'
-               '<p style="font: 600 %s/1.3 \'Inter\', sans-serif; color: #DCE6F2">%s</p></div>' % ('20px 20px 6px' if m else '24px 28px', lab('Before', '#8496AD'), '17px' if m else '19px', before))
-        mid = ('<div aria-hidden="true" class="k-ba-arrow" style="display: flex; align-items: center; justify-content: center; %s">'
-               '<span style="display: inline-flex; width: 40px; height: 40px; border-radius: 50%%; background: %s; color: %s; align-items: center; justify-content: center; %s">%s</span></div>'
-               % ('padding: 4px 20px' if m else '', LIME, NAVY, 'transform: rotate(90deg)' if m else '', ic('arrow', 18, sw=2.2)))
-        aft = ('<div class="k-ba-after" style="display: flex; flex-direction: column; gap: 10px; padding: %s">%s'
-               '<p style="font: 600 %s/1.3 \'Inter\', sans-serif; color: #FFFFFF">%s</p>'
-               '<span class="k-ba-link" style="display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1 \'Inter\', sans-serif; color: %s; margin-top: 4px">Read the case study%s</span></div>'
-               % ('6px 20px 22px' if m else '24px 28px', lab('After', LIME), '17px' if m else '19px', after, LIME, ic('arrow', 16)))
-        return ('<a class="k-ba" href="%s" target="_blank" rel="noopener" style="display: grid; grid-template-columns: %s; align-items: stretch; border-radius: 8px; overflow: hidden; '
-                'background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.12); text-decoration: none">%s%s%s%s</a>'
-                % (url, '1fr' if m else '260px minmax(0, 1fr) 64px minmax(0, 1fr)', photo, bef, mid, aft))
-    ccards = ''.join(row(*c) for c in CASES)
-    # the heading sits above the cards (13 Nov, by request: the side-by-side layout looked cluttered); the cards take the full width
-    head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
-            '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb">Case studies</p><h2 style="font-size: %s">Real problems.<br>Real progress.</h2></div>'
-            '<div style="display: flex; flex-direction: column; gap: 20px; %s"><p style="font-size: 17px; color: #DCE6F2; max-width: 440px">Messy books, fixed. These are real MISSION clients and what changed for them.</p>'
-            '<div>%s</div></div></div>')
-            % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 1fr) auto', '22px' if m else '48px', '32px' if m else '52px', '46px' if m else '72px',
-               '' if m else 'align-items: flex-start', btn('See all case studies', href='#case-studies', icon=False, extra='width: 100%' if m else '')))
-    a(wrap(head + '<div style="display: flex; flex-direction: column; gap: %s">%s</div>' % ('16px' if m else '18px', ccards)))
+    # case studies (13 Nov, by request, from Growth Foundry's inspiration image): a stacked heading with "Real progress." in blue, then
+    # slanted (parallelogram) cards with a glowing blue edge, the photo fading into navy, an icon and industry, the title, one line and
+    # "View case study"; arrows and dots move the highlighted card (on mobile they page through one card at a time). Wording stays
+    # sourced (the inspiration's own titles and lines are not used); the photos are stand-ins until the case-study images arrive.
+    CASES = [('cs_construction', 'center 35%', 'crane', 'Construction', 'Useful QuickBooks tools, finally in use.',
+              'We found the tools already built into their QuickBooks Enterprise that nobody was using.', 'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support'),
+             ('cs_jewelry', '60% 50%', 'gem', 'Jewelry', 'Custom orders, and knowing where each piece is.',
+              'How a jewelry business tracks custom orders, and where each item is kept, in QuickBooks Enterprise.', 'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise'),
+             ('cs_interiors', '58% 38%', 'sofa', 'Interiors', 'Bills approved and spending tracked, automatically.',
+              'How Wren’s Nest Interiors made bill approvals and expense tracking automatic.', 'https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software')]
+    ICX = {'crane': '<path d="M4 21V5M4 5h16M4 5l5 5M14 5v4M12 9h4v3h-4zM2 21h6M8 5V3"/>',
+           'gem': '<path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6 3-6M12 9v12"/>',
+           'sofa': '<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3"/><path d="M2 13a2 2 0 0 1 4 0v2h12v-2a2 2 0 0 1 4 0v4H2zM5 17v2M19 17v2"/>'}
+    def kcard(i, k, pos, icon, ind, t, d, url):
+        return ('<a class="k-cs" data-on="{{ csOn%d }}" href="%s" target="_blank" rel="noopener">'
+                '<div class="k-cs-in">'
+                '<div class="k-cs-ph"><img src="%s" alt="" style="object-position: %s"></div>'
+                '<div class="k-cs-body">'
+                '<span style="display: inline-flex; align-items: center; gap: 10px; font: 700 12px/1 \'Inter\', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #FFFFFF">'
+                '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>%s</span>'
+                '<h3 class="k-cs-t">%s</h3><p style="font-size: 14px; line-height: 1.5; color: #D5E3F2">%s</p>'
+                '<span class="k-cs-go">View case study%s</span></div></div></a>'
+                % (i, url, IMG[k], pos, ICX[icon], ind, t, d, ic('arrow', 16, sw=2.2)))
+    cards = ''.join(kcard(i, *c) for i, c in enumerate(CASES))
+    navbtn = lambda lab, dirn, fn: ('<button type="button" class="k-cs-nav" aria-label="%s" onClick="{{ %s }}">%s</button>'
+                                   % (lab, fn, '<span style="display: inline-flex; transform: rotate(%s)">%s</span>' % ('180deg' if dirn < 0 else '0deg', ic('arrow', 20, sw=2))))
+    dots = ''.join('<button type="button" class="k-cs-dot" aria-label="Case study %d" aria-pressed="{{ csOn%d }}" onClick="{{ csGo%d }}"></button>' % (i + 1, i, i) for i in range(3))
+    nav = ('<div style="display: flex; align-items: center; justify-content: space-between; margin-top: %s; padding: 0 %s">%s<div style="display: flex; gap: 10px">%s</div>%s</div>'
+           % ('22px' if m else '36px', '4px' if m else '70px', navbtn('Previous case study', -1, 'csPrev'), dots, navbtn('Next case study', 1, 'csNext')))
+    head = ('<div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: %s; max-width: 640px">'
+            '<p class="eb">Case studies</p><h2 style="font-size: %s">Real problems.<br><span class="blue">Real progress.</span></h2>'
+            '<p style="font-size: 17px; color: #DCE6F2">Messy books, fixed. These are real MISSION clients and what changed for them.</p>'
+            '<div style="padding-top: 4px">%s</div></div>'
+            % ('40px' if m else '64px', '50px' if m else '84px', btn('See all case studies', href='#case-studies', icon=False, extra='width: 100%' if m else '')))
+    a(wrap(head + '<div class="k-cs-row">%s</div>' % cards + nav))
     a('</section>')
 
     # ---------- 06 Testimonial and facts ----------
@@ -464,7 +477,7 @@ def build(m):
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>%s</title>\n<script src="./support.js"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n%s\n<style>%s</style>\n</helmet>\n'
             '<div class="lk" style="width: %dpx; background: %s">\n%s\n</div>\n</x-dc>\n'
             '<script type="text/x-dc" data-dc-script data-props=\'{"$preview":{"width":%d,"height":8000}}\'>\n'
-            'class Component extends DCLogic {\n  // Lane K is a static design board (no review switches yet)\n  renderVals() {\n    return {};\n  }\n}\n</script>\n</body>\n</html>\n'
+            'class Component extends DCLogic {\n  // the case-study carousel: which card is highlighted (desktop) or shown (mobile)\n  go(i) { this.setState({ cs: (i + 3) %% 3 }); }\n  renderVals() {\n    const c = (this.state && this.state.cs) || 0;\n    return {\n      csOn0: c === 0 ? \'true\' : \'false\', csOn1: c === 1 ? \'true\' : \'false\', csOn2: c === 2 ? \'true\' : \'false\',\n      csGo0: this.g0 || (this.g0 = () => this.go(0)), csGo1: this.g1 || (this.g1 = () => this.go(1)), csGo2: this.g2 || (this.g2 = () => this.go(2)),\n      csPrev: this.gp || (this.gp = () => this.go(((this.state && this.state.cs) || 0) - 1)),\n      csNext: this.gn || (this.gn = () => this.go(((this.state && this.state.cs) || 0) + 1)),\n    };\n  }\n}\n</script>\n</body>\n</html>\n'
             % (title, fonts, CSS, W, NAVY, body, W))
 
 os.makedirs(OUT, exist_ok=True)
