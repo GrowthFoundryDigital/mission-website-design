@@ -24,7 +24,7 @@ IMG = {
     'footer':   B + 'a0baf662031ad30aadb27f1de3969ea1',   # contour lines
     'logo':     B + 'b29865f8838e8d694583c88108f0c2aa',   # MISSION logo, blue
     'elite':    B + '5a6f8298d29fe5b417692e04bb5cefb5',   # QuickBooks ProAdvisor Elite badge
-    'team_photo': B + '16a347e2aaf4894dd3d60cbfb48a31af',  # advisor in a client meeting (library photo); the team photo is already in The mission
+    'team_photo': B + '3d6b714436163c0b81700732407cd2ff',  # busy office, an advisor at her laptop (library photo; 13 Nov, by request, replaces the client-meeting photo)
     'cs_construction': B + 'dfd86de5e4c6c2aa6ee6ec5df6d9d9d0',   # crane over a steel frame at sunset (13 Nov, supplied for this card)
     'cs_jewelry':      B + '856fca6512e92dce3beccc32c801534c',   # diamond ring on dark fabric (13 Nov, supplied for this card)
     'cs_interiors':    B + '03953d5f25e1452b9fc441dfa089cdda',   # armchair and table by a sunlit window (13 Nov, supplied for this card)
@@ -407,7 +407,7 @@ def build(m):
              '<circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="62"/><circle cx="100" cy="100" r="28" stroke-dasharray="3 4"/>'
              '<path d="M100 0v40M100 160v40M0 100h40M160 100h40"/></svg>' % (('-80px', '-80px', '240px', '240px') if m else ('-120px', '-120px', '380px', '380px')))
     photo = ('<div style="position: relative; height: %s">'
-             '<div class="ph k-ang-clip" style="position: absolute; inset: 0; clip-path: polygon(%s)"><img src="%s" alt="A MISSION advisor in a client meeting" style="object-position: 54%% 40%%">'
+             '<div class="ph k-ang-clip" style="position: absolute; inset: 0; clip-path: polygon(%s)"><img src="%s" alt="A MISSION advisor at work in the office" style="object-position: 30%% 50%%">'
              '<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(200deg, rgba(6,20,40,0) 40%%, rgba(6,20,40,.55) 100%%)"></div>%s</div>'
              '<div style="position: absolute; left: %s; bottom: %s; background: %s; color: #FFFFFF; padding: 12px 16px; font: 700 11px/1.45 \'Inter\', sans-serif; letter-spacing: .14em; text-transform: uppercase">Advanced-certified<br>QuickBooks ProAdvisors</div></div>'
              % ('300px' if m else '600px', '0 0, 100% 0, 97.5% 100%, 0 100%' if m else '0 0, 100% 0, 96% 100%, 0 100%', IMG['team_photo'], rings, '0' if m else '-1px', '18px' if m else '36px', BLUE))
