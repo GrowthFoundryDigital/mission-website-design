@@ -173,10 +173,11 @@ def build(m):
                '<div style="display: flex; gap: 12px"><a class="btn btn-o" href="tel:+12032279475" style="height: 44px; padding: 0 18px; font-size: 14px">%s(203) 227-9475</a>'
                '<a class="btn" href="#schedule" style="height: 44px; padding: 0 18px; font-size: 14px">%sSchedule a free consultation</a></div></header>'
                % (IMG['logo'], nav, ic('phone', 15), ic('cal', 15)))
+    # the hero headline is 88 px on desktop and 52 px on mobile (13 Nov, by request; it was 112 / 62)
     hero = (hdr +
         '<div id="top" style="display: flex; flex-direction: column; gap: %s; max-width: %s; padding: %s">' % ('20px' if m else '24px', '100%' if m else '720px', '44px 0 0' if m else '96px 0 0') +
         '<p class="eb c" style="color: #FFFFFF; letter-spacing: %s; font-size: %s">Bookkeeping / Accounting / QuickBooks / Fractional CFO</p>' % ('.12em' if m else '.2em', '10.5px' if m else '12px') +
-        '<h1 style="font-size: %s; color: #FFFFFF">Complex books.<br><span class="blue">Clear answers.</span></h1>' % ('62px' if m else '112px') +
+        '<h1 style="font-size: %s; color: #FFFFFF">Complex books.<br><span class="blue">Clear answers.</span></h1>' % ('52px' if m else '88px') +
         '<p style="font-size: %s; line-height: 1.6; color: #DCE6F2; max-width: 560px">We fix messy books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.</p>' % ('16px' if m else '18px') +
         '<div style="display: flex; %s gap: 12px; padding-top: 6px">%s<a class="btn btn-o" href="#case-studies"%s>Read client stories%s</a></div>' % (
             'flex-direction: column;' if m else 'flex-wrap: wrap;', btn('Schedule a free consultation', extra='width: 100%' if m else ''), ' style="width: 100%"' if m else '', arr) +
