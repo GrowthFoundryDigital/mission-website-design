@@ -98,6 +98,10 @@ body{margin:0;background:%(NAVY)s}
 .lk .btn:hover .ar{transform:translateX(3px)}
 .lk .btn-o{background:transparent;color:#FFFFFF;border-color:rgba(255,255,255,.55)}
 .lk .btn-o:hover,.lk .btn-o:focus-visible{background:%(LIME)s;color:%(NAVY)s;border-color:%(LIME)s}
+.lk .lt .btn-o{color:%(INK)s;border-color:#9FB0C4}
+.lk .lt .btn-o:hover,.lk .lt .btn-o:focus-visible{color:%(NAVY)s;border-color:%(LIME)s}
+.lk .nl-field:focus-within{border-color:rgba(255,255,255,.6) !important;background:rgba(255,255,255,.1) !important}
+.lk .nl-field input::placeholder{color:#8496AD}
 /* text links: the lime square wipe, left to right, the words inking dark as it reaches them */
 .lk .lw{position:relative;isolation:isolate;display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;cursor:pointer}
 .lk .lw::before{content:'';position:absolute;top:-5px;bottom:-5px;left:-8px;right:-8px;z-index:-1;background:%(LIME)s;transform:scaleX(0);transform-origin:left center;transition:transform .45s cubic-bezier(.22,.61,.36,1)}
@@ -365,6 +369,28 @@ def build(m):
               btn('Schedule a free consultation', extra='width: 100%' if m else ''), ' style="width: 100%"' if m else '', ic('phone', 16))))
     a('</section>')
 
+    # ---------- 11b From the blog (13 Nov, by request): the three posts Lane J shows, between the call to action and the footer ----------
+    a('\n<!-- 11b From the blog: three recent posts -->')
+    a('<section id="blog" class="lt" aria-label="From the blog" style="position: relative; overflow: hidden; background: linear-gradient(180deg, #F6F9FC 0%%, %s 100%%); padding: %s">' % (ICE, '60px 0' if m else '96px 0'))
+    posts = [('37cbc555ab9573d99c3c204f11469679', '78% 60%', 'QuickBooks', 'QuickBooks Desktop to Online: what actually changes', 'Switching from the desktop version to the online one changes your daily routine. Here\'s what to expect.'),
+             ('959f667ae9fbf3a0eb90cf0ce15668ff', 'center 40%', 'Customers', 'QuickBooks Online vs Enterprise: going beyond the basics', 'The big differences show up when you track stock, orders and where things are kept.'),
+             ('c7127cc17cfd8909184853095227a34d', 'center 40%', 'Technology', 'Is automated accounting software the future of financial accounting?', 'Software can do the boring, repeat work. People still make the judgment calls. Here\'s what that means for you.')]
+    pc = ''.join(
+        '<a class="card" href="#blog" style="display: flex; flex-direction: column; overflow: hidden">'
+        '<div class="ph" style="height: %s"><img src="%s%s" alt="" style="object-position: %s"></div>'
+        '<div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 22px 22px; flex: 1">'
+        '<span style="align-self: flex-start; font: 700 11px/1 \'Inter\', sans-serif; letter-spacing: .06em; padding: 6px 9px; border-radius: 3px; background: #E3F1FF; color: #0B5FA8">%s</span>'
+        '<h3 style="font-size: 25px; line-height: 1">%s</h3><p style="font-size: 14px; line-height: 1.55">%s</p>'
+        '<span class="go" style="margin-top: auto; align-self: flex-end; display: inline-flex">%s</span></div></a>'
+        % ('190px' if m else '210px', B, bid, pos, tag, t, d, ic('arrow', 20)) for bid, pos, tag, t, d in posts)
+    head = ('<div style="display: flex; %s gap: 20px; margin-bottom: %s">'
+            '<div style="display: flex; flex-direction: column; gap: 18px"><p class="eb">From the blog</p><h2 style="font-size: %s">Simple answers to the%squestions we hear most.</h2>'
+            '<p style="font-size: 16px">300+ articles on QuickBooks, bookkeeping, accounting and financial planning.</p></div>'
+            '<a class="btn btn-o" href="#blog" style="flex: none%s">Read all articles%s</a></div>'
+            % ('flex-direction: column; align-items: stretch;' if m else 'align-items: flex-end; justify-content: space-between;', '30px' if m else '44px', '42px' if m else '60px', ' ' if m else '<br>', '' if m else '', '<span class="ar" style="display: inline-flex">%s</span>' % ic('arrow', 16)))
+    a(wrap(head + '<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div>' % ('1fr' if m else 'repeat(3, minmax(0, 1fr))', '16px' if m else '22px', pc)))
+    a('</section>')
+
     # ---------- 12 Footer ----------
     a('\n<!-- 12 Footer: logo, four link columns, contact and the button -->')
     a('<footer id="contact" class="dk foot" style="position: relative; overflow: hidden; background: #040E1D; padding: %s">' % ('52px 0 28px' if m else '72px 0 32px'))
@@ -386,7 +412,18 @@ def build(m):
                ('<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px 20px">%s</div>' % cl) if m else cl, contact))
     bottom = ('<div style="margin-top: %s; border-top: 1px solid rgba(255,255,255,.12); padding-top: 20px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 12.5px; color: #8496AD">'
               '<span>© 2026 MISSION. All rights reserved.</span><span style="display: flex; gap: 22px"><a href="#privacy">Privacy Policy</a><a href="#terms">Terms of Service</a></span></div>' % ('40px' if m else '56px'))
-    a(wrap(grid + bottom))
+    # the email sign-up at the top of the footer (13 Nov, by request: it was missing), as on Lane J, with the real copy
+    eid = 'nl-email-km' if m else 'nl-email-k'
+    sub = ('<form class="nl-card" style="display: %s; gap: %s; align-items: AIX; padding: %s; margin-bottom: %s; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12)">'
+           '<div style="display: flex; flex-direction: column; gap: 8px"><p class="eb c">Stay in the know</p><h2 style="font-size: %s">QuickBooks tips by email</h2>'
+           '<p style="font-size: 15px; color: #C9D6E8">Simple answers to the questions business owners ask us most. No sales emails.</p></div>'
+           '<div><label for="%s" class="sr">Email address</label>'
+           '<div class="nl-field" style="display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 6px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.2)">'
+           '<input id="%s" type="email" placeholder="%s" style="flex: 1; min-width: 0; height: 46px; box-sizing: border-box; background: transparent; border: 0; outline: 0; color: #FFFFFF; font-family: inherit; font-size: 15px; padding: 0 12px">'
+           '<button class="btn" type="submit" style="flex: none; height: 46px; padding: 0 %s">Subscribe<span class="ar" style="display: inline-flex">%s</span></button></div></div></form>'
+           % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)', '20px' if m else '48px', '24px 20px' if m else '34px 40px', '40px' if m else '56px',
+              '34px' if m else '44px', eid, eid, 'Email address' if m else 'Your email address', '16px' if m else '22px', ic('arrow', 16)))
+    a(wrap(sub + grid + bottom))
     a('</footer>')
 
     # stacked layouts stretch their children on mobile (centred, they shrank to their content and the mission photo vanished)
