@@ -170,8 +170,9 @@ def build(m):
            '<div style="padding-top: 6px">%s</div></div>' % ('46px' if m else '72px', btn("Let's talk about your needs", icon=False, extra='width: 100%' if m else '')))
     photo = ('<div style="position: relative; height: %s">'
              '<div class="ph" style="position: absolute; inset: 0; clip-path: polygon(%s)"><img src="%s" alt="Specialists reviewing a client\'s numbers together" style="object-position: center 30%%"></div>'
-             '<div class="slash" aria-hidden="true" style="left: %s; top: 0; bottom: 0; width: %s"></div></div>'
-             % ('300px' if m else '470px', '10% 0, 100% 0, 100% 100%, 0 100%' if m else '16% 0, 100% 0, 100% 100%, 0 100%', IMG['mission'], '0' if m else '2%', '10px' if m else '16px'))
+             '</div>'
+             % ('300px' if m else '470px', '10% 0, 100% 0, 100% 100%, 0 100%' if m else '16% 0, 100% 0, 100% 100%, 0 100%', IMG['mission']))
+    # the blue slanted bar beside the photo was removed (13 Nov, by request); the photo keeps its slanted left edge
     a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s%s</div>' % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr)', '36px' if m else '56px', txt, photo)))
     a('</section>')
 
