@@ -24,6 +24,7 @@ IMG = {
     'footer':   B + 'a0baf662031ad30aadb27f1de3969ea1',   # contour lines
     'logo':     B + 'b29865f8838e8d694583c88108f0c2aa',   # MISSION logo, blue
     'elite':    B + '5a6f8298d29fe5b417692e04bb5cefb5',   # QuickBooks ProAdvisor Elite badge
+    'team_photo': B + '16a347e2aaf4894dd3d60cbfb48a31af',  # advisor in a client meeting (library photo); the team photo is already in The mission
     'cs_construction': B + 'dfd86de5e4c6c2aa6ee6ec5df6d9d9d0',   # crane over a steel frame at sunset (13 Nov, supplied for this card)
     'cs_jewelry':      B + '856fca6512e92dce3beccc32c801534c',   # diamond ring on dark fabric (13 Nov, supplied for this card)
     'cs_interiors':    B + '03953d5f25e1452b9fc441dfa089cdda',   # armchair and table by a sunlit window (13 Nov, supplied for this card)
@@ -387,20 +388,37 @@ def build(m):
     a('</section>')
 
     # ---------- 07 Team ----------
-    a('\n<!-- 07 The team: real names and roles; headshots are placeholders until MISSION supplies photos -->')
+    # 07 The team, rebuilt 13 Nov by request in the other lanes' pattern (a photo beside the roster of the core team, with each person's
+    # role and certification as in Lane G3), in Lane K's mission look: a slanted photo frame, faint target rings, a certification tag and a roster
+    a('\n<!-- 07 The team: a photo beside the core-team roster (names, roles and certifications from the Business DNA) -->')
     a('<section id="team" class="lt" aria-label="The team" style="position: relative; overflow: hidden; background: linear-gradient(180deg, #F6F9FC 0%%, %s 100%%); padding: %s">' % (ICE, '64px 0' if m else '100px 0'))
-    people = [('Bernard P. Roesch', 'Co-founder & Managing Partner'), ('Carol A. Onorato', 'Director of Operations'), ('Robert (Rob) James', 'New-client onboarding & marketing')]
-    pc = ''.join(
-        '<div style="display: flex; flex-direction: column; gap: 12px"><div style="position: relative; height: %s; border-radius: 6px; overflow: hidden; background: linear-gradient(160deg, #13345C 0%%, %s 100%%); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 10px; color: rgba(255,255,255,.55)">'
-        '<div class="slash" aria-hidden="true" style="right: -20px; top: -10px; width: 46px; height: 130%%; opacity: .9"></div>%s'
-        '<span style="position: relative; font: 600 12px/1 \'Inter\', sans-serif; letter-spacing: .14em; text-transform: uppercase">Headshot to come</span></div>'
-        '<div><p style="font: 700 16px/1.3 \'Inter\', sans-serif; color: %s">%s</p><p style="font-size: 13.5px; color: %s">%s</p></div></div>'
-        % ('210px' if m else '290px', NAVY, ic('person', 64, sw=1.2), INK, n, MUTED, r) for n, r in people)
-    txt = ('<div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span class="cp-s">Our team</span><span class="cp-m">Your field team</span></p><h2 style="font-size: %s"><span class="cp-s">Experience. Expertise.<br>A team on your side.</span><span class="cp-m">Experience. Expertise.<br>A team in your corner.</span></h2>'
-           '<p style="font-size: 17px; max-width: 470px">You get more than one bookkeeper. Our core team holds advanced QuickBooks certifications, and we bring in trusted accountants and specialists from our wider network when your work needs them.</p>'
-           '<div style="padding-top: 6px">%s</div></div>' % ('44px' if m else '64px', btn('Meet our team', href='#team', icon=False, extra='width: 100%' if m else '')))
-    a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div></div>'
-           % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr)', '34px' if m else '56px', txt, 'repeat(2, minmax(0, 1fr))' if m else 'repeat(3, minmax(0, 1fr))', '14px' if m else '20px', pc)))
+    people = [('Bernard P. Roesch', 'Co-founder &amp; Managing Partner', 'Harvard Business School MBA · Elite-tier QuickBooks ProAdvisor'),
+              ('Carol A. Onorato', 'Director of Operations', 'Level 2 Advanced QuickBooks ProAdvisor'),
+              ('Robert (Rob) James', 'Prospect pipeline, onboarding &amp; marketing', 'Level 2 Advanced QuickBooks ProAdvisor')]
+    roster = ('<div style="display: flex; flex-direction: column"><p style="font: 700 11.5px/1 \'Inter\', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: %s; padding-bottom: 14px">'
+              '<span class="cp-s">The core team</span><span class="cp-m">Team roster</span></p>' % MUTED
+              + ''.join('<div style="display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; align-items: start; padding: %s; border-top: 1px solid #D5DFEA">'
+                        '<span style="color: %s; padding-top: 2px">%s</span><div style="display: flex; flex-direction: column; gap: 3px">'
+                        '<p style="font: 700 17px/1.3 \'Inter\', sans-serif; color: %s">%s</p><p style="font-size: 14px; color: %s">%s</p>'
+                        '<p style="font-size: 13px; color: %s">%s</p></div></div>'
+                        % ('14px 0' if m else '16px 0', BLUE, ic('target', 26, sw=1.6), INK, n, INK, r, MUTED, c) for n, r, c in people)
+              + '<div style="border-top: 1px solid #D5DFEA"></div></div>')
+    rings = ('<svg aria-hidden="true" viewBox="0 0 200 200" style="position: absolute; right: %s; bottom: %s; width: %s; height: %s; opacity: .55" fill="none" stroke="#7FD0FF" stroke-width=".8">'
+             '<circle cx="100" cy="100" r="96"/><circle cx="100" cy="100" r="62"/><circle cx="100" cy="100" r="28" stroke-dasharray="3 4"/>'
+             '<path d="M100 0v40M100 160v40M0 100h40M160 100h40"/></svg>' % (('-80px', '-80px', '240px', '240px') if m else ('-120px', '-120px', '380px', '380px')))
+    photo = ('<div style="position: relative; height: %s">'
+             '<div class="ph k-ang-clip" style="position: absolute; inset: 0; clip-path: polygon(%s)"><img src="%s" alt="A MISSION advisor in a client meeting" style="object-position: 54%% 40%%">'
+             '<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(200deg, rgba(6,20,40,0) 40%%, rgba(6,20,40,.55) 100%%)"></div>%s</div>'
+             '<div style="position: absolute; left: %s; bottom: %s; background: %s; color: #FFFFFF; padding: 12px 16px; font: 700 11px/1.45 \'Inter\', sans-serif; letter-spacing: .14em; text-transform: uppercase">Advanced-certified<br>QuickBooks ProAdvisors</div></div>'
+             % ('300px' if m else '600px', '0 0, 100% 0, 97.5% 100%, 0 100%' if m else '0 0, 100% 0, 96% 100%, 0 100%', IMG['team_photo'], rings, '0' if m else '-1px', '18px' if m else '36px', BLUE))
+    txt = ('<div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span class="cp-s">Our team</span><span class="cp-m">Your field team</span></p>'
+           '<h2 style="font-size: %s"><span class="cp-s">A whole team, not just<br>one bookkeeper.</span><span class="cp-m">A whole team behind<br>every assignment.</span></h2>'
+           '<p style="font-size: 17px; max-width: 520px">You get more than one bookkeeper. Our core team holds advanced QuickBooks certifications, and we bring in trusted accountants and specialists from our wider network when your work needs them.</p>'
+           '%s<div style="padding-top: 6px">%s</div></div>' % ('44px' if m else '64px', roster, btn('Meet our team', href='#team', icon=False, extra='width: 100%' if m else '')))
+    if m:
+        a(wrap('<div style="display: flex; flex-direction: column; gap: 30px">%s%s</div>' % (photo, txt)))
+    else:
+        a(wrap('<div style="display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 72px; align-items: center">%s%s</div>' % (photo, txt)))
     a('</section>')
 
     # ---------- 08 Strategic partner ----------
