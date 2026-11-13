@@ -304,7 +304,7 @@ def build(m):
              % ('space-between' if m else 'flex-end', '26px' if m else '40px', svbtn('Previous services', -1, 'svPrev'), svdots, svbtn('Next services', 1, 'svNext')))
     # a button to the main services page under the line (13 Nov, by request), as in the case studies; '#services' until the page URL is confirmed
     head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
-             '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb"><span class="cp-s">Our services</span><span class="cp-m">Mission capabilities</span></p><h2 style="font-size: %s">Mission-critical<br>financial support.</h2></div>'
+             '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb"><span class="cp-s">Our services</span><span class="cp-m">Capabilities</span></p><h2 style="font-size: %s">Mission-critical<br>financial support.</h2></div>'
              '<div style="display: flex; flex-direction: column; gap: 20px; %s"><p style="font-size: 17px; max-width: 420px; color: #DCE6F2"><span class="cp-s">A complete financial team for businesses that need more than basic bookkeeping.</span><span class="cp-m">A complete financial team, ready to deploy when basic bookkeeping is not enough.</span></p>'
              '<div>%s</div></div></div>')
             % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: 1fr 1fr', '18px' if m else '40px', '34px' if m else '56px', '46px' if m else '72px',
@@ -322,7 +322,7 @@ def build(m):
         % ('align-items: center;' if m else 'flex-direction: column; align-items: center; text-align: center;', '16px' if m else '14px', '16px 0' if m else '0 24px',
            ('border-top: 1px solid #D5DFEA' if i else '') if m else ('border-left: 1px solid #D5DFEA' if i else ''), BLUE, ic(n, 40, sw=1.5), INK, t, MUTED, d)
         for i, (n, t, d) in enumerate(pts))
-    txt = ('<div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span class="cp-s">Who we serve</span><span class="cp-m">Client profile</span></p><h2 style="font-size: %s"><span class="cp-s">Built for established<br>businesses.</span><span class="cp-m">Built for established<br>businesses on a mission.</span></h2>'
+    txt = ('<div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span class="cp-s">Who we serve</span><span class="cp-m">Client profile</span></p><h2 style="font-size: %s"><span class="cp-s">Built for established<br>businesses.</span><span class="cp-m">Built for established<br>businesses with real complexity.</span></h2>'
            '<p style="font-size: 17px; max-width: 500px">We work with established small and mid-sized businesses across the US, typically $1M–$10M in annual revenue, that need more than basic bookkeeping. Fully remote, nationwide.</p></div>' % ('46px' if m else '72px'))
     a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s<div style="display: %s">%s</div></div>'
            % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr)', '30px' if m else '56px', txt,
@@ -364,7 +364,7 @@ def build(m):
            % ('22px' if m else '36px', '4px' if m else '70px', navbtn('Previous case study', -1, 'csPrev'), dots, navbtn('Next case study', 1, 'csNext')))
     # the line and the button sit to the right of the heading on desktop (13 Nov, by request); stacked on mobile
     head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
-             '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb"><span class="cp-s">Case studies</span><span class="cp-m">Mission files</span></p><h2 style="font-size: %s"><span class="cp-s">Real problems.<br><span class="blue">Real progress.</span></span><span class="cp-m">Real missions.<br><span class="blue">Real results.</span></span></h2></div>'
+             '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb"><span class="cp-s">Case studies</span><span class="cp-m">Case files</span></p><h2 style="font-size: %s"><span class="cp-s">Real problems.<br><span class="blue">Real progress.</span></span><span class="cp-m">Real cases.<br><span class="blue">Real results.</span></span></h2></div>'
              '<div style="display: flex; flex-direction: column; gap: 20px; %s"><p style="font-size: 17px; color: #DCE6F2; max-width: 420px"><span class="cp-s">Messy books, fixed. These are real MISSION clients and what changed for them.</span><span class="cp-m">Messy books, cleared. These are real MISSION clients and what changed for them.</span></p>'
              '<div>%s</div></div></div>')
             % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: minmax(0, 1fr) auto', '22px' if m else '56px', '36px' if m else '56px', '50px' if m else '84px',
@@ -396,7 +396,7 @@ def build(m):
         '<span style="position: relative; font: 600 12px/1 \'Inter\', sans-serif; letter-spacing: .14em; text-transform: uppercase">Headshot to come</span></div>'
         '<div><p style="font: 700 16px/1.3 \'Inter\', sans-serif; color: %s">%s</p><p style="font-size: 13.5px; color: %s">%s</p></div></div>'
         % ('210px' if m else '290px', NAVY, ic('person', 64, sw=1.2), INK, n, MUTED, r) for n, r in people)
-    txt = ('<div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span class="cp-s">Our team</span><span class="cp-m">Your mission team</span></p><h2 style="font-size: %s"><span class="cp-s">Experience. Expertise.<br>A team on your side.</span><span class="cp-m">Experience. Expertise.<br>A team on your mission.</span></h2>'
+    txt = ('<div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span class="cp-s">Our team</span><span class="cp-m">Your field team</span></p><h2 style="font-size: %s"><span class="cp-s">Experience. Expertise.<br>A team on your side.</span><span class="cp-m">Experience. Expertise.<br>A team in your corner.</span></h2>'
            '<p style="font-size: 17px; max-width: 470px">You get more than one bookkeeper. Our core team holds advanced QuickBooks certifications, and we bring in trusted accountants and specialists from our wider network when your work needs them.</p>'
            '<div style="padding-top: 6px">%s</div></div>' % ('44px' if m else '64px', btn('Meet our team', href='#team', icon=False, extra='width: 100%' if m else '')))
     a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div></div>'
@@ -442,12 +442,12 @@ def build(m):
     # ---------- 10 FAQ ----------
     a('\n<!-- 10 Questions people ask before the first call (Lane J\'s; the first answer is open) -->')
     a('<section id="faq" class="lt" aria-label="Frequently asked questions" style="position: relative; background: #FFFFFF; padding: %s">' % ('60px 0' if m else '96px 0'))
-    qs = ['<span class="cp-s">What happens in the free consultation?</span><span class="cp-m">What happens at the first briefing, the free consultation?</span>', '<span class="cp-s">Do I need to prepare anything?</span><span class="cp-m">Do I need to prepare anything for the briefing?</span>', '<span class="cp-s">Is my business too small for you?</span><span class="cp-m">Is my business too small for MISSION?</span>', '<span class="cp-s">We already have a tax accountant. Does that change anything?</span><span class="cp-m">We already have a tax accountant. Does that change the plan?</span>', '<span class="cp-s">How quickly can you start?</span><span class="cp-m">How quickly can the mission start?</span>']
+    qs = ['<span class="cp-s">What happens in the free consultation?</span><span class="cp-m">What happens at the first briefing, the free consultation?</span>', '<span class="cp-s">Do I need to prepare anything?</span><span class="cp-m">Do I need to prepare anything for the briefing?</span>', '<span class="cp-s">Is my business too small for you?</span><span class="cp-m">Is my business too small for you?</span>', '<span class="cp-s">We already have a tax accountant. Does that change anything?</span><span class="cp-m">We already have a tax accountant. Does that change the plan?</span>', '<span class="cp-s">How quickly can you start?</span><span class="cp-m">How quickly can the work start?</span>']
     fq = ''.join('<div><div class="faq" role="button" tabindex="0" aria-expanded="%s">%s<span>%s</span></div>%s</div>'
                  % ('true' if i == 0 else 'false', ic('minus' if i == 0 else 'plus', 18, sw=2.2), qq,
                     '<p style="font-size: 15px; padding: 0 0 18px 32px">It\'s a chat, not a sales pitch. Bernard or Rob will ask how your books are going, look at anything you can share, and tell you what they would fix first.</p>' if i == 0 else '')
                  for i, qq in enumerate(qs))
-    txt = ('<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb"><span class="cp-s">Frequently asked questions</span><span class="cp-m">Debriefing</span></p><h2 style="font-size: %s"><span class="cp-s">Got questions?<br>We\'ve got answers.</span><span class="cp-m">Questions before<br>the mission? Answers.</span></h2>'
+    txt = ('<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb"><span class="cp-s">Frequently asked questions</span><span class="cp-m">Debriefing</span></p><h2 style="font-size: %s"><span class="cp-s">Got questions?<br>We\'ve got answers.</span><span class="cp-m">Questions before<br>the briefing? Answers.</span></h2>'
            '<p style="font-size: 17px; max-width: 420px"><span class="cp-s">Questions people ask before the first call.</span><span class="cp-m">What people ask before the first briefing.</span></p></div>' % ('44px' if m else '64px'))
     a(wrap('<div style="display: %s; gap: %s; align-items: start">%s<div style="border-bottom: 1px solid #D9E2EC">%s</div></div>'
            % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr)', '28px' if m else '64px', txt, fq)))
@@ -458,8 +458,8 @@ def build(m):
     a('<section id="schedule" class="dk" aria-label="Your next step" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY, '72px 0' if m else '96px 0'))
     a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0"><img src="%s" alt="" style="object-position: %s"></div>' % (IMG['cta'], '75% 40%' if m else 'center 45%'))
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: %s"></div>' % ('linear-gradient(180deg, rgba(6,20,40,.85), rgba(6,20,40,.75))' if m else 'linear-gradient(90deg, rgba(6,20,40,.95) 0%, rgba(6,20,40,.8) 45%, rgba(6,20,40,.35) 100%)'))
-    txt = ('<div style="display: flex; flex-direction: column; gap: 18px"><p class="eb c" style="color: #FFFFFF"><span class="cp-s">Ready to take control of your books?</span><span class="cp-m">Ready to accept the mission?</span></p>'
-           '<h2 style="font-size: %s"><span class="cp-s">Your next chapter starts<br>with a conversation.</span><span class="cp-m">Every mission starts<br>with a briefing.</span></h2>'
+    txt = ('<div style="display: flex; flex-direction: column; gap: 18px"><p class="eb c" style="color: #FFFFFF"><span class="cp-s">Ready to take control of your books?</span><span class="cp-m">Ready for your briefing?</span></p>'
+           '<h2 style="font-size: %s"><span class="cp-s">Your next chapter starts<br>with a conversation.</span><span class="cp-m">Every assignment starts<br>with a briefing.</span></h2>'
            '<p style="font-size: 17px; color: #DCE6F2; max-width: 540px">Book a free call with Bernard or Rob. Come as you are, mess and all. We\'ll tell you what we\'d fix first and what it would take.</p></div>' % ('42px' if m else '64px'))
     a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s<div style="display: flex; flex-direction: column; gap: 12px; %s">%s<a class="btn btn-o" href="tel:+12032279475"%s>%sCall (203) 227-9475</a></div></div>'
            % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 7fr) auto', '28px' if m else '48px', txt, '' if m else 'align-items: stretch',
