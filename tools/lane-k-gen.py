@@ -127,33 +127,6 @@ body{margin:0;background:%(NAVY)s}
 .lk .ph > img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover}
 .lk .slash{position:absolute;background:%(BLUE)s;transform:skewX(-18deg)}
 .lk .cursor{cursor:pointer}
-/* case-study layouts (13 Nov): featured panel + compact list, or tabs; the review bar switches them */
-.lk .k-chip{display:inline-flex;align-items:center;height:30px;padding:0 12px;border-radius:4px;border:1px solid rgba(255,255,255,.4);color:#FFFFFF;font:700 12px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase}
-.lk .k-chip-f{background:#A9D2F5;border-color:#A9D2F5;color:#0A2240}
-.lk .k-btn-w{background:#F4F2EC;border-color:#F4F2EC;color:#0A2240}
-@media (max-width: 600px){.lk .k-btn-w{white-space:normal;height:auto;min-height:50px;padding:12px 18px;text-align:center}}
-.lk .k-btn-w:hover,.lk .k-btn-w:focus-visible{background:%(LIME)s;border-color:%(LIME)s}
-.lk .k-panel .ph > img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
-.lk .k-panel:hover .ph > img{transform:scale(1.04)}
-.lk .k-row{transition:background-color .3s ease,border-color .3s ease,transform .3s ease}
-.lk .k-row:hover,.lk .k-row:focus-visible{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);transform:translateY(-2px)}
-.lk .k-row .go{transition:transform .3s ease}
-.lk .k-row:hover .go{transform:translateX(4px)}
-.lk .k-tab{all:unset;cursor:pointer;flex:none;height:42px;padding:0 20px;border-radius:999px;border:1px solid rgba(255,255,255,.3);color:#FFFFFF;font:600 14px/42px 'Inter',sans-serif;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
-.lk .k-tab:hover{border-color:#FFFFFF}
-.lk .k-tab[aria-selected="true"]{background:%(LIME)s;border-color:%(LIME)s;color:%(NAVY)s}
-.lk .k-tab:focus-visible{outline:2px solid %(LIME)s;outline-offset:2px}
-.lk[data-cs="featured"] .k-tabbed{display:none !important}
-.lk[data-cs="tabs"] .k-featured{display:none !important}
-.lk .k-tabpanel{display:none !important}
-.lk[data-cstab="0"] .k-tabpanel[data-i="0"],.lk[data-cstab="1"] .k-tabpanel[data-i="1"],.lk[data-cstab="2"] .k-tabpanel[data-i="2"]{display:grid !important}
-/* the review bar (not part of the design) */
-.lk .tg-bar{position:sticky;top:0;z-index:100;min-height:40px;background:#141414;color:#FFFFFF;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;padding:6px 8px;font:500 12.5px/1 system-ui,-apple-system,'Segoe UI',sans-serif}
-.lk .tg-bar .tg-label{color:#BDBDBD}
-.lk .tg-bar .tg-group{display:inline-flex;background:#2B2B2B;border-radius:999px;padding:3px;gap:2px}
-.lk .tg-bar .tg-opt{all:unset;cursor:pointer;display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:999px;color:#D0D0D0;font:600 12px/1 system-ui,-apple-system,'Segoe UI',sans-serif}
-.lk .tg-bar .tg-opt:hover{color:#FFFFFF}
-.lk .tg-bar .tg-opt[aria-pressed="true"]{background:#FFFFFF;color:#141414}
 .lk .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* the badge marquee: two copies of the row, the track slides left by one copy and loops */
 @keyframes kMarquee{from{transform:translateX(0)}to{transform:translateX(-50%%)}}
@@ -273,64 +246,25 @@ def build(m):
     a('<section id="case-studies" class="dk" aria-label="Case studies" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY2, '64px 0' if m else '100px 0'))
     a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0; opacity: .9"><img src="%s" alt=""></div>' % IMG['cases'])
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,20,40,.85) 0%, rgba(6,20,40,.45) 60%, rgba(6,20,40,.3) 100%)"></div>')
-    # case studies as a featured panel plus a compact list, or as tabs (13 Nov, by request: the cards read like blog posts). The review
-    # bar switches between the two. Construction copy follows the case-study draft supplied on 13 Nov; the result and quote fields stay
-    # as visible placeholders until the real numbers and quotes come in. The jewelry and interiors panels use only sourced copy.
-    CASES = [
-        dict(img='cs_construction', pos='center 35%', tags=('Job costing', 'QuickBooks Enterprise'), ind='Construction',
-             h='A construction company couldn’t see which jobs made money until long after they closed.',
-             d='We tied labor, materials, and overhead to each project in QuickBooks Enterprise and built job-level reports they can run anytime.',
-             facts=('Construction', 'QuickBooks Enterprise', 'Job costing', '[Job profit visible within X days of close]'),
-             cta='Show me how they fixed job costing', url='https://missionaccountinghelp.com/customers/quickbooks-enterprise-support',
-             q='[Short client quote about finally seeing job profit]', who='[Name, Title], construction client'),
-        dict(img='cs_jewelry', pos='60% 50%', tags=('Custom orders', 'QuickBooks Enterprise'), ind='Jewelry',
-             h='Custom orders, and knowing where each piece is.',
-             d='How a jewelry business tracks custom orders, and where each item is kept, in QuickBooks Enterprise.',
-             facts=('Jewelry', 'QuickBooks Enterprise', 'Custom orders and stock', '[Result]'),
-             cta='Show me how they track custom orders', url='https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise',
-             q='[Short client quote]', who='[Name, Title], jewelry client'),
-        dict(img='cs_interiors', pos='58% 38%', tags=('Bill approvals', 'Automation'), ind='Interiors',
-             h='Bills approved and spending tracked, automatically.',
-             d='How Wren’s Nest Interiors made bill approvals and expense tracking automatic.',
-             facts=('Interiors', '[Software]', 'Bill approvals and expenses', '[Result]'),
-             cta='Show me how they automated bills', url='https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software',
-             q='[Short client quote]', who='[Name, Title], Wren’s Nest Interiors'),
-    ]
-    def panel(c, extra_cls='', extra_attr=''):
-        chips = ('<div style="display: flex; flex-wrap: wrap; gap: 8px"><span class="k-chip k-chip-f">%s</span><span class="k-chip">%s</span></div>' % c['tags'])
-        facts = ''.join('<div style="display: flex; flex-direction: column; gap: 6px"><span style="font: 700 11px/1.2 \'Inter\', sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #8FC4F0">%s</span>'
-                        '<span style="font-size: %s; line-height: 1.35; color: #FFFFFF">%s</span></div>' % (lab, '15px' if m else '16px', val)
-                        for lab, val in zip(('Industry', 'Software', 'Focus', 'Result'), c['facts']))
-        text = ('<div style="display: flex; flex-direction: column; gap: 20px; padding: %s">%s'
-                '<h3 style="font-family: \'Inter\', sans-serif; font-style: normal; text-transform: none; font-weight: 800; letter-spacing: -.025em; line-height: 1.12; font-size: %s">%s</h3>'
-                '<p style="font-size: %s; line-height: 1.6; color: #D5E3F2; max-width: 560px">%s</p>'
-                '<div style="display: grid; grid-template-columns: %s; gap: 18px 24px; padding: 18px 0; border-top: 1px solid rgba(255,255,255,.16); border-bottom: 1px solid rgba(255,255,255,.16)">%s</div>'
-                '<a class="btn k-btn-w" href="%s" target="_blank" rel="noopener" style="align-self: %s">%s<span class="ar" style="display: inline-flex">%s</span></a>'
-                '<figure style="margin: 0; display: flex; flex-direction: column; gap: 4px"><blockquote style="margin: 0; font-style: italic; font-size: 15px; color: #FFFFFF">“%s”</blockquote>'
-                '<figcaption style="font-size: 13px; color: #8FC4F0">%s</figcaption></figure></div>'
-                % ('26px 22px 28px' if m else '40px 44px', chips, '27px' if m else '36px', c['h'], '15.5px' if m else '17px', c['d'],
-                   'repeat(2, minmax(0, 1fr))' if m else 'repeat(4, minmax(0, 1fr))', facts, c['url'], 'stretch' if m else 'flex-start', c['cta'], ic('arrow', 16), c['q'], c['who']))
-        photo = '<div class="ph" style="%s"><img src="%s" alt="" style="object-position: %s"></div>' % ('height: 200px' if m else 'min-height: 100%', IMG[c['img']], c['pos'])
-        return ('<div class="k-panel%s"%s style="display: grid; grid-template-columns: %s; border-radius: 8px; overflow: hidden; background: #0F3A63; box-shadow: 0 24px 50px rgba(2,10,24,.35)">%s%s</div>'
-                % (extra_cls, extra_attr, 'minmax(0, 1fr)' if m else 'minmax(0, 7fr) minmax(0, 5fr)', photo + text if m else text, '' if m else photo))
-    rows = ''.join('<a class="k-row" href="%s" target="_blank" rel="noopener" style="display: flex; align-items: center; gap: 16px; padding: %s; border-radius: 8px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); text-decoration: none">'
-                   '<span class="k-chip k-chip-f" style="flex: none">%s</span><span style="flex: 1; font: 600 %s/1.35 \'Inter\', sans-serif; color: #FFFFFF">%s</span><span class="go" style="flex: none; color: #FFFFFF; display: inline-flex">%s</span></a>'
-                   % (c['url'], '16px 18px' if m else '20px 24px', c['ind'], '15px' if m else '16.5px', c['h'], ic('arrow', 20)) for c in CASES[1:])
-    featured = ('<div class="k-featured" style="display: flex; flex-direction: column; gap: %s">%s<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div></div>'
-                % ('14px' if m else '20px', panel(CASES[0]), '1fr' if m else 'repeat(2, minmax(0, 1fr))', '12px' if m else '20px', rows))
-    tabs = ('<div class="k-tabbed"><div class="k-tabs" role="tablist" aria-label="Case studies" style="display: flex; gap: 8px; margin-bottom: 18px; %s">%s</div>%s</div>'
-            % ('overflow-x: auto' if m else '',
-               ''.join('<button type="button" role="tab" class="k-tab" aria-selected="{{ isTab%d }}" onClick="{{ setTab%d }}">%s</button>' % (i, i, c['ind']) for i, c in enumerate(CASES)),
-               ''.join(panel(c, ' k-tabpanel', ' data-i="%d" role="tabpanel"' % i) for i, c in enumerate(CASES))))
-    ccards = featured + tabs
+    cs = [('cs_construction', 'Construction', 'A construction company had useful QuickBooks tools it wasn’t using.', 'We found the tools already built into their QuickBooks Enterprise that nobody was using.', 'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support', 'center 35%'),
+          ('cs_jewelry', 'Jewelry', 'Custom orders, and knowing where each piece is.', 'How a jewelry business tracks custom orders, and where each item is kept, in QuickBooks Enterprise.', 'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise', '60% 50%'),
+          ('cs_interiors', 'Interiors', 'Bills approved and spending tracked, automatically.', 'How Wren’s Nest Interiors made bill approvals and expense tracking automatic.', 'https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software', '58% 38%')]
+    ccards = ''.join(
+        '<a class="card" href="%s" target="_blank" rel="noopener" style="display: flex; flex-direction: column; overflow: hidden">'
+        '<div class="ph" style="height: %s"><img src="%s" alt="" style="object-position: %s"></div>'
+        '<div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 20px 20px; flex: 1">'
+        '<span style="align-self: flex-start; font: 700 11px/1 \'Inter\', sans-serif; letter-spacing: .06em; padding: 6px 9px; border-radius: 3px; background: #E3F1FF; color: #0B5FA8">%s</span>'
+        '<h3 style="font-size: 25px; line-height: 1">%s</h3><p style="font-size: 14px; line-height: 1.55">%s</p>'
+        '<span class="go" style="margin-top: auto; align-self: flex-end; display: inline-flex">%s</span></div></a>'
+        % (u, '180px' if m else '230px', IMG[k], pos, tag, t, d, ic('arrow', 20)) for k, tag, t, d, u, pos in cs)
     # the heading sits above the cards (13 Nov, by request: the side-by-side layout looked cluttered); the cards take the full width
-    head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
+    head = ('<div style="display: %s; gap: %s; align-items: end; margin-bottom: %s">'
             '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb">Case studies</p><h2 style="font-size: %s">Real problems.<br>Real progress.</h2></div>'
             '<div style="display: flex; flex-direction: column; gap: 20px; %s"><p style="font-size: 17px; color: #DCE6F2; max-width: 440px">Messy books, fixed. These are real MISSION clients and what changed for them.</p>'
-            '<div>%s</div></div></div>')
+            '<div>%s</div></div></div>'
             % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 1fr) auto', '22px' if m else '48px', '32px' if m else '52px', '46px' if m else '72px',
                '' if m else 'align-items: flex-start', btn('See all case studies', href='#case-studies', icon=False, extra='width: 100%' if m else '')))
-    a(wrap(head + ccards))
+    a(wrap(head + '<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div>' % ('1fr' if m else 'repeat(3, minmax(0, 1fr))', '16px' if m else '24px', ccards)))
     a('</section>')
 
     # ---------- 06 Testimonial and facts ----------
@@ -487,9 +421,6 @@ def build(m):
     a('</footer>')
 
     # stacked layouts stretch their children on mobile (centred, they shrank to their content and the mission photo vanished)
-    A.insert(0, '<div class="tg-bar" aria-label="Review control, not part of the design"><span class="tg-label">Review · Case studies</span><span class="tg-group" role="group" aria-label="Case-study layout">'
-                '<button type="button" class="tg-opt" aria-pressed="{{ isCsFeatured }}" onClick="{{ setCsFeatured }}">Featured + list</button>'
-                '<button type="button" class="tg-opt" aria-pressed="{{ isCsTabs }}" onClick="{{ setCsTabs }}">Tabs</button></span></div>')
     body = '\n'.join(A).replace('align-items: AIX', 'align-items: stretch' if m else 'align-items: center')
     # case studies and services swap places (13 Nov, by request): case studies now follow The mission, services follow Who we serve
     def _cut(b, mark):
@@ -500,9 +431,9 @@ def build(m):
              '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">')
     title = 'Lane K homepage, %s' % ('mobile' if m else 'desktop')
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>%s</title>\n<script src="./support.js"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n%s\n<style>%s</style>\n</helmet>\n'
-            '<div class="lk" data-cs="{{ csMode }}" data-cstab="{{ csTab }}" style="width: %dpx; background: %s">\n%s\n</div>\n</x-dc>\n'
+            '<div class="lk" style="width: %dpx; background: %s">\n%s\n</div>\n</x-dc>\n'
             '<script type="text/x-dc" data-dc-script data-props=\'{"$preview":{"width":%d,"height":8000}}\'>\n'
-            "class Component extends DCLogic {\n  // Lane K review switch: the case-study layout (featured panel + list, or tabs), kept in step across the Lane K boards\n  setCs(v) { this.setState({ cs: v }); try { if (this.ch) this.ch.postMessage({ cs: v }); } catch (e) {} }\n  setTab(i) { this.setState({ tab: i }); }\n  componentDidMount() {\n    try { this.ch = new BroadcastChannel('mission-lane-k'); this.ch.onmessage = (e) => { if (e.data && e.data.cs) this.setState({ cs: e.data.cs }); }; } catch (e) {}\n  }\n  renderVals() {\n    const cs = (this.state && this.state.cs) || 'featured', tab = (this.state && this.state.tab) || 0;\n    return {\n      csMode: cs, csTab: String(tab),\n      isCsFeatured: cs === 'featured' ? 'true' : 'false', isCsTabs: cs === 'tabs' ? 'true' : 'false',\n      setCsFeatured: this.f1 || (this.f1 = () => this.setCs('featured')), setCsTabs: this.f2 || (this.f2 = () => this.setCs('tabs')),\n      isTab0: tab === 0 ? 'true' : 'false', isTab1: tab === 1 ? 'true' : 'false', isTab2: tab === 2 ? 'true' : 'false',\n      setTab0: this.t0 || (this.t0 = () => this.setTab(0)), setTab1: this.t1 || (this.t1 = () => this.setTab(1)), setTab2: this.t2 || (this.t2 = () => this.setTab(2)),\n    };\n  }\n}\n</script>\n</body>\n</html>\n"
+            'class Component extends DCLogic {\n  // Lane K is a static design board (no review switches yet)\n  renderVals() {\n    return {};\n  }\n}\n</script>\n</body>\n</html>\n'
             % (title, fonts, CSS, W, NAVY, body, W))
 
 os.makedirs(OUT, exist_ok=True)
