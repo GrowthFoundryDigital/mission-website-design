@@ -273,8 +273,7 @@ def build(m):
     # ---------- 05 Case studies ----------
     a('\n<!-- 05 Case studies: the real stories, on the contour-line texture -->')
     a('<section id="case-studies" class="dk" aria-label="Case studies" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY2, '64px 0' if m else '100px 0'))
-    a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0; opacity: .9"><img src="%s" alt=""></div>' % IMG['cases'])
-    a('<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,20,40,.85) 0%, rgba(6,20,40,.45) 60%, rgba(6,20,40,.3) 100%)"></div>')
+    # no background image on the case studies (13 Nov, by request): plain navy
     # case studies (13 Nov, by request, from Growth Foundry's inspiration image): a stacked heading with "Real progress." in blue, then
     # slanted (parallelogram) cards with a glowing blue edge, the photo fading into navy, an icon and industry, the title, one line and
     # "View case study"; arrows and dots move the highlighted card (on mobile they page through one card at a time). Wording stays
@@ -304,11 +303,13 @@ def build(m):
     dots = ''.join('<button type="button" class="k-cs-dot" aria-label="Case study %d" aria-pressed="{{ csOn%d }}" onClick="{{ csGo%d }}"></button>' % (i + 1, i, i) for i in range(3))
     nav = ('<div style="display: flex; align-items: center; justify-content: space-between; margin-top: %s; padding: 0 %s">%s<div style="display: flex; gap: 10px">%s</div>%s</div>'
            % ('22px' if m else '36px', '4px' if m else '70px', navbtn('Previous case study', -1, 'csPrev'), dots, navbtn('Next case study', 1, 'csNext')))
-    head = ('<div style="display: flex; flex-direction: column; gap: 20px; margin-bottom: %s; max-width: 640px">'
-            '<p class="eb">Case studies</p><h2 style="font-size: %s">Real problems.<br><span class="blue">Real progress.</span></h2>'
-            '<p style="font-size: 17px; color: #DCE6F2">Messy books, fixed. These are real MISSION clients and what changed for them.</p>'
-            '<div style="padding-top: 4px">%s</div></div>'
-            % ('40px' if m else '64px', '50px' if m else '84px', btn('See all case studies', href='#case-studies', icon=False, extra='width: 100%' if m else '')))
+    # the line and the button sit to the right of the heading on desktop (13 Nov, by request); stacked on mobile
+    head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
+             '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb">Case studies</p><h2 style="font-size: %s">Real problems.<br><span class="blue">Real progress.</span></h2></div>'
+             '<div style="display: flex; flex-direction: column; gap: 20px; %s"><p style="font-size: 17px; color: #DCE6F2; max-width: 420px">Messy books, fixed. These are real MISSION clients and what changed for them.</p>'
+             '<div>%s</div></div></div>')
+            % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: minmax(0, 1fr) auto', '22px' if m else '56px', '36px' if m else '56px', '50px' if m else '84px',
+               '' if m else 'align-items: flex-start; padding-bottom: 8px', btn('See all case studies', href='#case-studies', icon=False, extra='width: 100%' if m else '')))
     a(wrap(head + '<div class="k-cs-row">%s</div>' % cards + nav))
     a('</section>')
 
