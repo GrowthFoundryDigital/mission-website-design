@@ -145,22 +145,23 @@ body{margin:0;background:%(NAVY)s}
 .lk .faq:hover svg{transform:rotate(90deg)}
 .lk .ph{position:relative;overflow:hidden}
 .lk .ph > img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover}
-.lk .slash{position:absolute;background:%(BLUE)s;transform:skewX(-18deg)}
+.lk .slash{position:absolute;background:%(BLUE)s;transform:skewX(-9deg)}
 .lk .cursor{cursor:pointer}
 /* case studies (13 Nov): slanted cards with a glowing edge; the highlighted one (arrows and dots) glows brighter and lifts */
-.lk .k-cs-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;padding:12px 40px}
-.lk .k-cs{display:block;text-decoration:none;transform:skewX(-14deg);border:1.5px solid rgba(31,162,255,.55);border-radius:4px;background:#0A2240;overflow:hidden;
+/* the slant was halved on 13 Nov, by request (14 to 7 degrees on desktop, 8 to 4 on mobile) */
+.lk .k-cs-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;padding:12px 24px}
+.lk .k-cs{display:block;text-decoration:none;transform:skewX(-7deg);border:1.5px solid rgba(31,162,255,.55);border-radius:4px;background:#0A2240;overflow:hidden;
   box-shadow:0 0 0 rgba(31,162,255,0);transition:transform .45s cubic-bezier(.22,.61,.36,1),box-shadow .45s ease,border-color .45s ease}
-.lk .k-cs-in{transform:skewX(14deg);margin:0 -46px;position:relative}
+.lk .k-cs-in{transform:skewX(7deg);margin:0 -23px;position:relative}
 .lk .k-cs-ph{position:relative;height:230px;overflow:hidden}
 .lk .k-cs-ph img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover;transition:transform .7s cubic-bezier(.22,.61,.36,1)}
 .lk .k-cs-ph::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,34,64,0) 30%%,#0A2240 100%%)}
-.lk .k-cs-body{position:relative;margin-top:-56px;padding:0 92px 28px 70px;display:flex;flex-direction:column;gap:10px}
+.lk .k-cs-body{position:relative;margin-top:-56px;padding:0 64px 28px 50px;display:flex;flex-direction:column;gap:10px}
 .lk .k-cs-t{font-family:'Inter',sans-serif !important;font-style:italic !important;text-transform:none !important;font-weight:800 !important;font-size:23px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:#FFFFFF}
 .lk .k-cs-go{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font:700 14.5px/1 'Inter',sans-serif;color:%(LIME)s}
 .lk .k-cs-go svg{transition:transform .3s ease}
 .lk .k-cs:hover,.lk .k-cs:focus-visible{border-color:#4FC3FF;box-shadow:0 0 0 1px rgba(79,195,255,.6),0 0 26px rgba(31,162,255,.55),0 0 60px rgba(31,162,255,.25)}
-.lk .k-cs:hover,.lk .k-cs:focus-visible{transform:skewX(-14deg) translateY(-10px)}
+.lk .k-cs:hover,.lk .k-cs:focus-visible{transform:skewX(-7deg) translateY(-10px)}
 /* desktop shows all three cards, so the arrows and dots are for mobile only (13 Nov: no card looks hovered until it is) */
 .lk .k-cs-navbar{display:none !important}
 .lk .k-cs:hover .k-cs-ph img{transform:scale(1.06)}
@@ -171,11 +172,11 @@ body{margin:0;background:%(NAVY)s}
 .lk .k-cs-dot[aria-pressed="true"]{background:%(BLUE)s;transform:scale(1.15)}
 @media (max-width: 600px){
   .lk .k-cs-row{grid-template-columns:1fr;padding:12px 22px}
-  .lk .k-cs{transform:skewX(-8deg)}
-  .lk .k-cs-in{transform:skewX(8deg);margin:0 -30px}
-  .lk .k-cs-body{padding:0 42px 24px}
+  .lk .k-cs{transform:skewX(-4deg)}
+  .lk .k-cs-in{transform:skewX(4deg);margin:0 -15px}
+  .lk .k-cs-body{padding:0 32px 24px}
   .lk .k-cs[data-on="false"]{display:none}
-  .lk .k-cs:hover,.lk .k-cs:focus-visible{transform:skewX(-8deg)}
+  .lk .k-cs:hover,.lk .k-cs:focus-visible{transform:skewX(-4deg)}
   .lk .k-cs-navbar{display:flex !important}
   .lk .k-cs-ph{height:200px}
 }
@@ -248,7 +249,7 @@ def build(m):
     photo = ('<div style="position: relative; height: %s">'
              '<div class="ph" style="position: absolute; inset: 0; clip-path: polygon(%s)"><img src="%s" alt="Specialists reviewing a client\'s numbers together" style="object-position: center 30%%"></div>'
              '</div>'
-             % ('300px' if m else '470px', '10% 0, 100% 0, 100% 100%, 0 100%' if m else '16% 0, 100% 0, 100% 100%, 0 100%', IMG['mission']))
+             % ('300px' if m else '470px', '5% 0, 100% 0, 100% 100%, 0 100%' if m else '8% 0, 100% 0, 100% 100%, 0 100%', IMG['mission']))
     # the blue slanted bar beside the photo was removed (13 Nov, by request); the photo keeps its slanted left edge.
     # (An ice-blue overlay version was tried on 13 Nov and reverted by request.)
     a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s%s</div>' % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr)', '36px' if m else '56px', txt, photo)))
@@ -470,7 +471,9 @@ def build(m):
     # ---------- 12 Footer ----------
     a('\n<!-- 12 Footer: logo, four link columns, contact and the button -->')
     a('<footer id="contact" class="dk foot" style="position: relative; overflow: hidden; background: #040E1D; padding: %s">' % ('52px 0 28px' if m else '72px 0 32px'))
-    a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0; opacity: .35"><img src="%s" alt=""></div>' % IMG['footer'])
+    # blurred like the services photo, under the same light navy overlay (13 Nov, by request)
+    a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0; opacity: .35"><img src="%s" alt="" style="filter: blur(%s); transform: scale(1.08)"></div>' % (IMG['footer'], '8px' if m else '12px'))
+    a('<div aria-hidden="true" style="position: absolute; inset: 0; background: rgba(6,20,40,.22)"></div>')
     cols = [('Services', [('Bookkeeping & Accounting', '#bookkeeping'), ('QuickBooks Setup & Advisory', '#setup'), ('Fractional CFO', '#cfo'), ('QuickBooks Cleanup', '#cleanup'), ('Custom Reporting', '#reporting'), ('POS Integration', '#pos')]),
             ('Who we serve', [('Established businesses', '#who'), ('Industries', '#who'), ('Case studies', '#case-studies')]),
             ('About', [('Our team', '#team'), ('Partner Program', '#partners'), ('Contact', '#contact')]),
