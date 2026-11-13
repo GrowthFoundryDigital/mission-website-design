@@ -22,7 +22,11 @@ const blobs = {
   '9eef1fc8b132f5488cb3871c7327a754': S + '/badges/certified-enterprise.png',
   '39493efadd289f62e0315fad774e3ce0': S + '/badges/certified-pos.png',
   c76296e63f1cbdfd3cc1859696beddca: A + '/photos/hero-thinking-at-desk.webp',
-  '2a1cf94d53635b523c60effebc3a5529': A + '/photos/jewelry-ring-tray.webp',  // the jewelry case-study thumbnail from 10 Nov
+  '2a1cf94d53635b523c60effebc3a5529': A + '/photos/jewelry-ring-tray.webp',
+  a0baf662031ad30aadb27f1de3969ea1: A + '/photos/lane-k/k-contour-lines.webp',  // Lane K backgrounds (13 Nov)
+  c7b34dc9f98b5531b52c5bc1cb27ff06: A + '/photos/lane-k/k-hiker-summit.webp',
+  c83f8b0698ce7879ae30780c584bcc65: A + '/photos/lane-k/k-sky-sunburst.webp',
+  '9e1790fb97143f88b3da5af39894de49': A + '/photos/lane-k/k-globe-network.webp',  // the jewelry case-study thumbnail from 10 Nov
   '3d6b714436163c0b81700732407cd2ff': A + '/photos/office-thinking-at-laptop.webp',  // the Office photo from 10 Nov (replaces the one above)
   '37cbc555ab9573d99c3c204f11469679': A + '/photos/lounge-laptop-portrait.webp',
   '959f667ae9fbf3a0eb90cf0ce15668ff': A + '/photos/reviewing-papers-window.webp',
