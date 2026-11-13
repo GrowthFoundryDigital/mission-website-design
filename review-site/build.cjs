@@ -24,6 +24,7 @@ const blobs = {
   c76296e63f1cbdfd3cc1859696beddca: A + '/photos/hero-thinking-at-desk.webp',
   '2a1cf94d53635b523c60effebc3a5529': A + '/photos/jewelry-ring-tray.webp',
   a0baf662031ad30aadb27f1de3969ea1: A + '/photos/lane-k/k-contour-lines.webp',  // Lane K backgrounds (13 Nov)
+  '514854f432066bd3440b4d98d9b50a1b': A + '/photos/lane-k/k-climber-overhang.webp',
   c7b34dc9f98b5531b52c5bc1cb27ff06: A + '/photos/lane-k/k-hiker-summit.webp',
   c83f8b0698ce7879ae30780c584bcc65: A + '/photos/lane-k/k-sky-sunburst.webp',
   '9e1790fb97143f88b3da5af39894de49': A + '/photos/lane-k/k-globe-network.webp',  // the jewelry case-study thumbnail from 10 Nov

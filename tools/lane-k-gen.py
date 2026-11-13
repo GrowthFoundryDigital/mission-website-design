@@ -12,8 +12,8 @@ OUT = sys.argv[1]
 # Image slots. STAND-IN marks a slot waiting for its image from the reference set (re-send pending): swap the id when it arrives.
 B = '/_blob/'
 IMG = {
-    'hero':     B + 'c7b34dc9f98b5531b52c5bc1cb27ff06',   # STAND-IN for the climber on the overhang: hiker on the summit
-    'services': B + 'c83f8b0698ce7879ae30780c584bcc65',   # STAND-IN for the hiker on the summit (used by the hero for now): sky
+    'hero':     B + '514854f432066bd3440b4d98d9b50a1b',   # climber hanging from an overhang (arrived 13 Nov)
+    'services': B + 'c7b34dc9f98b5531b52c5bc1cb27ff06',   # hiker on the summit, as in the reference
     'mission':  B + 'fffa2c71ba1ad1c02f0d03a0cc647d85',   # team around a laptop (library photo)
     'cases':    B + 'a0baf662031ad30aadb27f1de3969ea1',   # contour lines
     'quote':    B + 'a0baf662031ad30aadb27f1de3969ea1',   # STAND-IN for the blurred office with diagonal bands: contour lines
@@ -125,7 +125,7 @@ def build(m):
     hero_h = 820 if m else 760
     a('<!-- 01 Hero: the photo behind, the headline on the left, the five facts along the bottom -->')
     a('<section class="dk" aria-label="Hero" style="position: relative; overflow: hidden; background: %s">' % NAVY)
-    a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0"><img src="%s" alt="" style="object-position: %s"></div>' % (IMG['hero'], '70% 30%' if m else 'center 35%'))
+    a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0"><img src="%s" alt="" style="object-position: %s"></div>' % (IMG['hero'], '76% 40%' if m else 'center 30%'))
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: %s"></div>' % (
         'linear-gradient(180deg, rgba(6,20,40,.82) 0%, rgba(6,20,40,.70) 55%, rgba(6,20,40,.95) 100%)' if m else
         'linear-gradient(90deg, rgba(6,20,40,.96) 0%, rgba(6,20,40,.82) 38%, rgba(6,20,40,.25) 70%, rgba(6,20,40,.1) 100%), linear-gradient(0deg, rgba(6,20,40,.9) 0%, rgba(6,20,40,0) 30%)'))
