@@ -354,8 +354,7 @@ def build(m):
     # ---------- 06 Testimonial and facts ----------
     a('\n<!-- 06 One client in their own words (verbatim), with three facts -->')
     a('<section class="dk" aria-label="What clients say" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY, '56px 0' if m else '72px 0'))
-    a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0; opacity: .55"><img src="%s" alt="" style="object-position: center 60%%"></div>' % IMG['quote'])
-    a('<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,20,40,.92) 0%, rgba(6,20,40,.75) 100%)"></div>')
+    # no background image (13 Nov, by request): plain navy
     q = ('<figure style="margin: 0; display: flex; gap: 18px; align-items: flex-start"><span class="blue" style="flex: none; font: 800 italic 90px/0.8 \'Barlow Condensed\', sans-serif">“</span>'
          '<div style="display: flex; flex-direction: column; gap: 14px"><blockquote style="margin: 0; font: 500 %s/1.45 \'Inter\', sans-serif; color: #FFFFFF">“We have been working with Bernard for over 10 years. He has been terrific.”</blockquote>'
          '<figcaption style="font-size: 14px; color: #AFC0D4">— Jacquie Herz, Jornik Manufacturing, Stamford, CT</figcaption></div></figure>' % ('19px' if m else '23px'))

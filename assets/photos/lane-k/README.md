@@ -9,7 +9,7 @@ Supplied by Growth Foundry on 13 Nov 2026 for Lane K: a reference homepage desig
 | `k-hiker-summit.webp` | A hiker with a backpack on a rocky summit at sunrise, above the clouds | Services background, as in the reference, and the closing call to action |
 | `k-sky-sunburst.webp` | Blue sky with the sun breaking through clouds | Faintly, the "Trusted. Certified. Proven." band |
 | `k-globe-network.webp` | The Americas at night on a globe, with network lines | Was the "A strategic partner" background; removed 13 Nov by request, now unused |
-| `k-contour-lines.webp` | Glowing blue contour lines on dark navy | The testimonial band and the footer |
+| `k-contour-lines.webp` | Glowing blue contour lines on dark navy | The footer (the testimonial band's was removed 13 Nov, by request) |
 | `k-cs-construction-crane.webp` | A tower crane over a steel building frame at sunset | The Construction case-study card (13 Nov, supplied for it) |
 | `k-cs-jewelry-ring.webp` | A gold diamond ring on dark fabric with warm bokeh | The Jewelry case-study card (13 Nov, supplied for it) |
 | `k-cs-interiors-chair.webp` | An armchair and round wooden table by a sunlit window, with plants and brass lamps | The Interiors case-study card (13 Nov, supplied for it) |
