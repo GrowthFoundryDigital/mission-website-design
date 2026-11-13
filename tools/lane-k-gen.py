@@ -40,7 +40,9 @@ def svcss(m):
     vis, gap = (1, 14) if m else (4, 22)
     w = '86%' if m else 'calc((100%% - %dpx) / 4)' % (3 * gap)
     step = 'calc(86%% + %dpx)' % gap if m else 'calc((100%% - %dpx) / 4 + %dpx)' % (3 * gap, gap)
-    out = ['.lk .k-sv-vp{clip-path:inset(-30px -100vw -70px 0)}',
+    # no clipping box (13 Nov, by request: cards were cut off while sliding): the row starts in line with the heading and the
+    # cards run out to both edges of the page, which the section's overflow: hidden trims
+    out = [
            '.lk .k-sv-track{display:flex;align-items:stretch;gap:%dpx;transition:transform .6s cubic-bezier(.22,.61,.36,1)}' % gap,
            '.lk .k-sv-track>.card{flex:none;width:%s}' % w]
     out += ['.lk .k-sv-track[data-pos="%d"]{transform:translateX(calc(%s * -%d))}' % (i, step, i) for i in range(1, svpos(m))]
