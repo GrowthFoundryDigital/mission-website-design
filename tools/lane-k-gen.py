@@ -24,9 +24,9 @@ IMG = {
     'footer':   B + 'a0baf662031ad30aadb27f1de3969ea1',   # contour lines
     'logo':     B + 'b29865f8838e8d694583c88108f0c2aa',   # MISSION logo, blue
     'elite':    B + '5a6f8298d29fe5b417692e04bb5cefb5',   # QuickBooks ProAdvisor Elite badge
-    'cs_construction': B + 'b0f169f77a9c9c69b7b62fef8e9ec86b',
-    'cs_jewelry':      B + '2a1cf94d53635b523c60effebc3a5529',
-    'cs_interiors':    B + '959f667ae9fbf3a0eb90cf0ce15668ff',
+    'cs_construction': B + 'dfd86de5e4c6c2aa6ee6ec5df6d9d9d0',   # crane over a steel frame at sunset (13 Nov, supplied for this card)
+    'cs_jewelry':      B + '856fca6512e92dce3beccc32c801534c',   # diamond ring on dark fabric (13 Nov, supplied for this card)
+    'cs_interiors':    B + '03953d5f25e1452b9fc441dfa089cdda',   # armchair and table by a sunlit window (13 Nov, supplied for this card)
 }
 
 NAVY, NAVY2, BLUE, LIME, INK, MUTED, ICE = '#061428', '#0A2240', '#1FA2FF', '#C1F432', '#0A1B2E', '#4A5A70', '#EDF3F9'
@@ -281,11 +281,11 @@ def build(m):
     # slanted (parallelogram) cards with a glowing blue edge, the photo fading into navy, an icon and industry, the title, one line and
     # "View case study"; arrows and dots move the highlighted card (on mobile they page through one card at a time). Wording stays
     # sourced (the inspiration's own titles and lines are not used); the photos are stand-ins until the case-study images arrive.
-    CASES = [('cs_construction', 'center 35%', 'crane', 'Construction', 'Useful QuickBooks tools, finally in use.',
+    CASES = [('cs_construction', '55% 28%', 'crane', 'Construction', 'Useful QuickBooks tools, finally in use.',
               'We found the tools already built into their QuickBooks Enterprise that nobody was using.', 'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support'),
-             ('cs_jewelry', '60% 50%', 'gem', 'Jewelry', 'Custom orders, and knowing where each piece is.',
+             ('cs_jewelry', '58% 42%', 'gem', 'Jewelry', 'Custom orders, and knowing where each piece is.',
               'How a jewelry business tracks custom orders, and where each item is kept, in QuickBooks Enterprise.', 'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise'),
-             ('cs_interiors', '58% 38%', 'sofa', 'Interiors', 'Bills approved and spending tracked, automatically.',
+             ('cs_interiors', '62% 55%', 'sofa', 'Interiors', 'Bills approved and spending tracked, automatically.',
               'How Wren’s Nest Interiors made bill approvals and expense tracking automatic.', 'https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software')]
     ICX = {'crane': '<path d="M4 21V5M4 5h16M4 5l5 5M14 5v4M12 9h4v3h-4zM2 21h6M8 5V3"/>',
            'gem': '<path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M9 3l3 6 3-6M12 9v12"/>',
