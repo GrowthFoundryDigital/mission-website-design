@@ -139,8 +139,10 @@ body{margin:0;background:%(NAVY)s}
 .lk .k-cs-t{font-family:'Inter',sans-serif !important;font-style:italic !important;text-transform:none !important;font-weight:800 !important;font-size:23px !important;line-height:1.15 !important;letter-spacing:-.02em !important;color:#FFFFFF}
 .lk .k-cs-go{display:inline-flex;align-items:center;gap:8px;margin-top:6px;font:700 14.5px/1 'Inter',sans-serif;color:%(LIME)s}
 .lk .k-cs-go svg{transition:transform .3s ease}
-.lk .k-cs:hover,.lk .k-cs:focus-visible,.lk .k-cs[data-on="true"]{border-color:#4FC3FF;box-shadow:0 0 0 1px rgba(79,195,255,.6),0 0 26px rgba(31,162,255,.55),0 0 60px rgba(31,162,255,.25)}
-.lk .k-cs[data-on="true"]{transform:skewX(-14deg) translateY(-10px)}
+.lk .k-cs:hover,.lk .k-cs:focus-visible{border-color:#4FC3FF;box-shadow:0 0 0 1px rgba(79,195,255,.6),0 0 26px rgba(31,162,255,.55),0 0 60px rgba(31,162,255,.25)}
+.lk .k-cs:hover,.lk .k-cs:focus-visible{transform:skewX(-14deg) translateY(-10px)}
+/* desktop shows all three cards, so the arrows and dots are for mobile only (13 Nov: no card looks hovered until it is) */
+.lk .k-cs-navbar{display:none !important}
 .lk .k-cs:hover .k-cs-ph img{transform:scale(1.06)}
 .lk .k-cs:hover .k-cs-go svg{transform:translateX(4px)}
 .lk .k-cs-nav{all:unset;cursor:pointer;width:46px;height:46px;border-radius:50%%;border:2px solid #FFFFFF;color:#FFFFFF;display:inline-flex;align-items:center;justify-content:center;transition:background-color .25s ease,color .25s ease,border-color .25s ease}
@@ -153,7 +155,8 @@ body{margin:0;background:%(NAVY)s}
   .lk .k-cs-in{transform:skewX(8deg);margin:0 -30px}
   .lk .k-cs-body{padding:0 42px 24px}
   .lk .k-cs[data-on="false"]{display:none}
-  .lk .k-cs[data-on="true"]{transform:skewX(-8deg)}
+  .lk .k-cs:hover,.lk .k-cs:focus-visible{transform:skewX(-8deg)}
+  .lk .k-cs-navbar{display:flex !important}
   .lk .k-cs-ph{height:200px}
 }
 .lk .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
@@ -301,7 +304,7 @@ def build(m):
     navbtn = lambda lab, dirn, fn: ('<button type="button" class="k-cs-nav" aria-label="%s" onClick="{{ %s }}">%s</button>'
                                    % (lab, fn, '<span style="display: inline-flex; transform: rotate(%s)">%s</span>' % ('180deg' if dirn < 0 else '0deg', ic('arrow', 20, sw=2))))
     dots = ''.join('<button type="button" class="k-cs-dot" aria-label="Case study %d" aria-pressed="{{ csOn%d }}" onClick="{{ csGo%d }}"></button>' % (i + 1, i, i) for i in range(3))
-    nav = ('<div style="display: flex; align-items: center; justify-content: space-between; margin-top: %s; padding: 0 %s">%s<div style="display: flex; gap: 10px">%s</div>%s</div>'
+    nav = ('<div class="k-cs-navbar" style="display: flex; align-items: center; justify-content: space-between; margin-top: %s; padding: 0 %s">%s<div style="display: flex; gap: 10px">%s</div>%s</div>'
            % ('22px' if m else '36px', '4px' if m else '70px', navbtn('Previous case study', -1, 'csPrev'), dots, navbtn('Next case study', 1, 'csNext')))
     # the line and the button sit to the right of the heading on desktop (13 Nov, by request); stacked on mobile
     head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
