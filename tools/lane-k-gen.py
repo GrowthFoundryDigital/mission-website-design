@@ -130,6 +130,8 @@ def build(m):
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: %s"></div>' % (
         'linear-gradient(180deg, rgba(6,20,40,.82) 0%, rgba(6,20,40,.70) 55%, rgba(6,20,40,.95) 100%)' if m else
         'linear-gradient(90deg, rgba(6,20,40,.96) 0%, rgba(6,20,40,.82) 38%, rgba(6,20,40,.25) 70%, rgba(6,20,40,.1) 100%), linear-gradient(0deg, rgba(6,20,40,.9) 0%, rgba(6,20,40,0) 30%)'))
+    # a dark band behind the header (13 Nov, by request) so the phone button and menu stay legible over the rock in the photo
+    a('<div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: %spx; background: linear-gradient(180deg, rgba(6,20,40,.92) 0%%, rgba(6,20,40,.78) 45%%, rgba(6,20,40,0) 100%%)"></div>' % (150 if m else 190))
     # header
     if m:
         hdr = ('<header style="display: flex; align-items: center; justify-content: space-between; height: 72px">'
