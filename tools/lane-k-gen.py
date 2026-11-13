@@ -353,6 +353,11 @@ def build(m):
 
     # stacked layouts stretch their children on mobile (centred, they shrank to their content and the mission photo vanished)
     body = '\n'.join(A).replace('align-items: AIX', 'align-items: stretch' if m else 'align-items: center')
+    # case studies and services swap places (13 Nov, by request): case studies now follow The mission, services follow Who we serve
+    def _cut(b, mark):
+        i = b.index(mark); k = b.index('</section>', i) + len('</section>'); return b[i:k]
+    cs, sv = _cut(body, '<!-- 05 Case studies'), _cut(body, '<!-- 03 Services')
+    body = body.replace(sv, '@@SV@@').replace(cs, sv).replace('@@SV@@', cs)
     fonts = ('<link rel="preconnect" href="https://fonts.googleapis.com">\n'
              '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@1,700;1,800&amp;family=Inter:wght@400;500;600;700&amp;display=swap">')
     title = 'Lane K homepage, %s' % ('mobile' if m else 'desktop')
