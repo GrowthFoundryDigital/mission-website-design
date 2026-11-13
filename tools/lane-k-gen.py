@@ -70,7 +70,21 @@ body{margin:0;background:%(NAVY)s}
 .lk h1,.lk h2,.lk h3,.lk .cond{margin:0;font-family:'Barlow Condensed','Arial Narrow',sans-serif;font-style:italic;font-weight:800;text-transform:uppercase;letter-spacing:-.005em;line-height:.94}
 .lk p{margin:0}
 .lk .eb{display:flex;align-items:center;gap:14px;font:700 12px/1.3 'Inter',sans-serif;letter-spacing:.2em;text-transform:uppercase;color:%(BLUE)s}
-.lk .eb::after{content:'';width:44px;height:2px;background:currentColor;opacity:.8}
+.lk .eb::after{content:'';flex:none;width:56px;height:12px;
+  background:radial-gradient(circle,#FFFFFF 0 1.2px,#FFD98A 2px,rgba(255,150,40,.55) 3.4px,rgba(255,150,40,0) 6px) no-repeat,
+             linear-gradient(90deg,rgba(255,170,70,.0),rgba(255,170,70,.9)) no-repeat,
+             linear-gradient(currentColor,currentColor) no-repeat;
+  background-size:12px 12px,10px 2px,89%% 2px;background-position:100%% 50%%,87%% 50%%,0 50%%;
+  animation:kFuse 5.2s linear infinite,kSpark .18s steps(2) infinite alternate}
+/* the eyebrow line is a lit fuse (13 Nov, by request, kept subtle): a small spark burns along the line toward the words, the cord
+   shortening behind it with a warm glow at the tip, then the line comes back and it starts again */
+@keyframes kFuse{
+  0%%{background-size:12px 12px,10px 2px,89%% 2px;background-position:100%% 50%%,87%% 50%%,0 50%%;opacity:.85}
+  60%%{background-size:12px 12px,10px 2px,11%% 2px;background-position:0 50%%,-9%% 50%%,0 50%%;opacity:.85}
+  66%%{background-size:0 0,0 2px,0 2px;background-position:0 50%%,-9%% 50%%,0 50%%;opacity:0}
+  78%%{background-size:0 0,0 2px,89%% 2px;background-position:100%% 50%%,87%% 50%%,0 50%%;opacity:0}
+  88%%,100%%{background-size:12px 12px,10px 2px,89%% 2px;background-position:100%% 50%%,87%% 50%%,0 50%%;opacity:.85}}
+@keyframes kSpark{from{filter:brightness(1)}to{filter:brightness(1.35)}}
 .lk .eb.c::after{display:none}
 .lk .dk{color:#C9D6E8}
 .lk .dk h1,.lk .dk h2,.lk .dk h3{color:#FFFFFF}
@@ -114,7 +128,7 @@ body{margin:0;background:%(NAVY)s}
 .lk .k-track{animation:kMarquee 34s linear infinite}
 .lk .k-marquee:hover .k-track{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){.lk *{transition:none !important}}
-@media (prefers-reduced-motion: reduce){.lk .k-track{animation:none}}
+@media (prefers-reduced-motion: reduce){.lk .k-track{animation:none}.lk .eb::after{animation:none;background:linear-gradient(currentColor,currentColor) no-repeat 0 50%%/100%% 2px}}
 ''' % dict(BLUE=BLUE, LIME=LIME, NAVY=NAVY, INK=INK, MUTED=MUTED)
 
 def build(m):
