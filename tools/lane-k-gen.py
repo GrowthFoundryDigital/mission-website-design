@@ -127,6 +127,17 @@ body{margin:0;background:%(NAVY)s}
 .lk .ph > img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover}
 .lk .slash{position:absolute;background:%(BLUE)s;transform:skewX(-18deg)}
 .lk .cursor{cursor:pointer}
+/* case studies, Before -> After rows (13 Nov): the row lifts, the photo zooms, the arrow nudges, the After side warms */
+.lk .k-ba{transition:transform .3s ease,background-color .3s ease,border-color .3s ease}
+.lk .k-ba:hover,.lk .k-ba:focus-visible{transform:translateY(-3px);background:rgba(255,255,255,.08);border-color:rgba(193,244,50,.45)}
+.lk .k-ba-ph img{transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.lk .k-ba:hover .k-ba-ph img{transform:scale(1.06)}
+.lk .k-ba-arrow span{transition:transform .35s cubic-bezier(.22,.61,.36,1)}
+.lk .k-ba:hover .k-ba-arrow span{transform:translateX(4px)}
+.lk .k-ba-after{transition:background-color .3s ease}
+.lk .k-ba:hover .k-ba-after{background:rgba(193,244,50,.06)}
+.lk .k-ba-link svg{transition:transform .3s ease}
+.lk .k-ba:hover .k-ba-link svg{transform:translateX(4px)}
 .lk .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 /* the badge marquee: two copies of the row, the track slides left by one copy and loops */
 @keyframes kMarquee{from{transform:translateX(0)}to{transform:translateX(-50%%)}}
@@ -246,25 +257,46 @@ def build(m):
     a('<section id="case-studies" class="dk" aria-label="Case studies" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY2, '64px 0' if m else '100px 0'))
     a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0; opacity: .9"><img src="%s" alt=""></div>' % IMG['cases'])
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(6,20,40,.85) 0%, rgba(6,20,40,.45) 60%, rgba(6,20,40,.3) 100%)"></div>')
-    cs = [('cs_construction', 'Construction', 'A construction company had useful QuickBooks tools it wasn’t using.', 'We found the tools already built into their QuickBooks Enterprise that nobody was using.', 'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support', 'center 35%'),
-          ('cs_jewelry', 'Jewelry', 'Custom orders, and knowing where each piece is.', 'How a jewelry business tracks custom orders, and where each item is kept, in QuickBooks Enterprise.', 'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise', '60% 50%'),
-          ('cs_interiors', 'Interiors', 'Bills approved and spending tracked, automatically.', 'How Wren’s Nest Interiors made bill approvals and expense tracking automatic.', 'https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software', '58% 38%')]
-    ccards = ''.join(
-        '<a class="card" href="%s" target="_blank" rel="noopener" style="display: flex; flex-direction: column; overflow: hidden">'
-        '<div class="ph" style="height: %s"><img src="%s" alt="" style="object-position: %s"></div>'
-        '<div style="display: flex; flex-direction: column; gap: 10px; padding: 18px 20px 20px; flex: 1">'
-        '<span style="align-self: flex-start; font: 700 11px/1 \'Inter\', sans-serif; letter-spacing: .06em; padding: 6px 9px; border-radius: 3px; background: #E3F1FF; color: #0B5FA8">%s</span>'
-        '<h3 style="font-size: 25px; line-height: 1">%s</h3><p style="font-size: 14px; line-height: 1.55">%s</p>'
-        '<span class="go" style="margin-top: auto; align-self: flex-end; display: inline-flex">%s</span></div></a>'
-        % (u, '180px' if m else '230px', IMG[k], pos, tag, t, d, ic('arrow', 20)) for k, tag, t, d, u, pos in cs)
+    # case studies as Before -> After rows (13 Nov, by request: the cards read like blog posts; designed from scratch, not from a
+    # reference). Each row: photo and industry, the problem ("Before"), an arrow, what changed ("After"), and a link. Wording comes
+    # only from the sourced case-study copy (no results or quotes until the real ones arrive).
+    CASES = [('cs_construction', 'center 35%', 'Construction', 'QuickBooks Enterprise',
+              'Useful QuickBooks Enterprise tools sat unused.', 'We found the tools already built into their QuickBooks Enterprise that nobody was using.',
+              'https://missionaccountinghelp.com/customers/quickbooks-enterprise-support'),
+             ('cs_jewelry', '60% 50%', 'Jewelry', 'QuickBooks Enterprise',
+              'Custom orders, and stock kept in more than one place.', 'Custom orders tracked, and where each item is kept, in QuickBooks Enterprise.',
+              'https://missionaccountinghelp.com/customers/quickbooks-online-vs-enterprise'),
+             ('cs_interiors', '58% 38%', 'Interiors', 'Wren’s Nest Interiors',
+              'Bill approvals and expense tracking done by hand.', 'Bills approved and spending tracked, automatically.',
+              'https://missionaccountinghelp.com/technology/accounting-software/automated-accounting-software')]
+    lab = lambda t, c: '<span style="font: 700 11px/1 \'Inter\', sans-serif; letter-spacing: .18em; text-transform: uppercase; color: %s">%s</span>' % (c, t)
+    def row(k, pos, ind, sub, before, after, url):
+        photo = ('<div class="ph k-ba-ph" style="%s"><img src="%s" alt="" style="object-position: %s">'
+                 '<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(0deg, rgba(4,14,29,.85) 0%%, rgba(4,14,29,0) 60%%)"></div>'
+                 '<div style="position: absolute; left: 16px; bottom: 14px; right: 16px; display: flex; flex-direction: column; gap: 4px">'
+                 '<span class="cond" style="font-size: 24px; color: #FFFFFF">%s</span><span style="font-size: 12.5px; color: #C9D6E8">%s</span></div></div>'
+                 % ('height: 150px' if m else 'align-self: stretch; min-height: 150px', IMG[k], pos, ind, sub))
+        bef = ('<div style="display: flex; flex-direction: column; gap: 10px; padding: %s">%s'
+               '<p style="font: 600 %s/1.3 \'Inter\', sans-serif; color: #DCE6F2">%s</p></div>' % ('20px 20px 6px' if m else '24px 28px', lab('Before', '#8496AD'), '17px' if m else '19px', before))
+        mid = ('<div aria-hidden="true" class="k-ba-arrow" style="display: flex; align-items: center; justify-content: center; %s">'
+               '<span style="display: inline-flex; width: 40px; height: 40px; border-radius: 50%%; background: %s; color: %s; align-items: center; justify-content: center; %s">%s</span></div>'
+               % ('padding: 4px 20px' if m else '', LIME, NAVY, 'transform: rotate(90deg)' if m else '', ic('arrow', 18, sw=2.2)))
+        aft = ('<div class="k-ba-after" style="display: flex; flex-direction: column; gap: 10px; padding: %s">%s'
+               '<p style="font: 600 %s/1.3 \'Inter\', sans-serif; color: #FFFFFF">%s</p>'
+               '<span class="k-ba-link" style="display: inline-flex; align-items: center; gap: 8px; font: 600 14px/1 \'Inter\', sans-serif; color: %s; margin-top: 4px">Read the case study%s</span></div>'
+               % ('6px 20px 22px' if m else '24px 28px', lab('After', LIME), '17px' if m else '19px', after, LIME, ic('arrow', 16)))
+        return ('<a class="k-ba" href="%s" target="_blank" rel="noopener" style="display: grid; grid-template-columns: %s; align-items: stretch; border-radius: 8px; overflow: hidden; '
+                'background: rgba(255,255,255,.045); border: 1px solid rgba(255,255,255,.12); text-decoration: none">%s%s%s%s</a>'
+                % (url, '1fr' if m else '260px minmax(0, 1fr) 64px minmax(0, 1fr)', photo, bef, mid, aft))
+    ccards = ''.join(row(*c) for c in CASES)
     # the heading sits above the cards (13 Nov, by request: the side-by-side layout looked cluttered); the cards take the full width
-    head = ('<div style="display: %s; gap: %s; align-items: end; margin-bottom: %s">'
+    head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
             '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb">Case studies</p><h2 style="font-size: %s">Real problems.<br>Real progress.</h2></div>'
             '<div style="display: flex; flex-direction: column; gap: 20px; %s"><p style="font-size: 17px; color: #DCE6F2; max-width: 440px">Messy books, fixed. These are real MISSION clients and what changed for them.</p>'
-            '<div>%s</div></div></div>'
+            '<div>%s</div></div></div>')
             % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 1fr) auto', '22px' if m else '48px', '32px' if m else '52px', '46px' if m else '72px',
                '' if m else 'align-items: flex-start', btn('See all case studies', href='#case-studies', icon=False, extra='width: 100%' if m else '')))
-    a(wrap(head + '<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div>' % ('1fr' if m else 'repeat(3, minmax(0, 1fr))', '16px' if m else '24px', ccards)))
+    a(wrap(head + '<div style="display: flex; flex-direction: column; gap: %s">%s</div>' % ('16px' if m else '18px', ccards)))
     a('</section>')
 
     # ---------- 06 Testimonial and facts ----------
