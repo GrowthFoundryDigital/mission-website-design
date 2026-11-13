@@ -78,7 +78,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .ov-intro { max-width: 1272px; width: 100%; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
 .ov-intro h1 { margin: 0; font: 700 18px/1.3 var(--font-ui); }
 .ov-intro p { margin: 0; color: var(--muted); font-size: 13.5px; }
-.ov-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 300px)); justify-content: center; gap: 24px; }
+.ov-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 300px)); justify-content: center; gap: 24px; }
 .ov-col { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 10px; }
 .ov-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; }
 .ov-head b { display: block; font: 700 16px/1.2 var(--font-ui); }
@@ -113,8 +113,8 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
     <a class="open" id="open" href="pages/d3-desktop.html" target="_blank" rel="noopener">Open full page <span aria-hidden="true">↗</span></a>
   </div>
 </header>
-<section class="ov" id="ov" aria-label="Overview of all six designs" hidden>
-  <div class="ov-intro"><h1>Six homepage directions</h1><p>Scroll any column to compare. Click a design to open it full size.</p></div>
+<section class="ov" id="ov" aria-label="Overview of all five designs" hidden>
+  <div class="ov-intro"><h1>Five homepage directions</h1><p>Scroll any column to compare. Click a design to open it full size.</p></div>
   <div class="ov-grid" id="ov-grid"></div>
 </section>
 <p class="ov-note" id="ov-note">To leave a comment, open a design first.</p>
@@ -133,10 +133,9 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
     g: 'Near-black, white and one blue band',
     c: 'Navy, ice blue and lime, with a photo hero',
     h: 'Electric Blue and near-black, with angled geometry',
-    j: 'Round 2: H2 and C3 blended, no shapes',
-    k: 'Navy and light blue, slanted condensed headlines, mountain photography'
+    j: 'Round 2: H2 and C3 blended, no shapes'
   };
-  var VER = { d: '3', g: '3', c: '3', h: '2', j: '', k: '' };
+  var VER = { d: '3', g: '3', c: '3', h: '2', j: '' };
   var DEVICES = { desktop: { w: 1440, label: 'Desktop' }, mobile: { w: 390, label: 'Mobile' } };
   // The overview is the landing view, always (9 Nov, by request; D3 was the landing view briefly). The address does not remember
   // the design on show: an ending such as #j-desktop, left by a reload, a bookmark or a copied link, is ignored and cleared
@@ -266,7 +265,7 @@ body.cmt-on .ov:not([hidden]) ~ .ov-note { display: block; }
   var frame = document.getElementById('frame');
   var view = document.getElementById('view');
   var hint = document.getElementById('cmt-hint');
-  var RE = /^([DGCHJK])(\d?) (desktop|mobile) @(\d+),(\d+)$/;
+  var RE = /^([DGCHJ])(\d?) (desktop|mobile) @(\d+),(\d+)$/;
   var ctl = null, threads = [], on = false, pending = null;
 
   function scale() { return parseFloat(frame.dataset.scale) || 1; }
