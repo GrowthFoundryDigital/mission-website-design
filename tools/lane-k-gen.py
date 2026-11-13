@@ -109,7 +109,12 @@ body{margin:0;background:%(NAVY)s}
 .lk .ph > img{position:absolute;inset:0;width:100%%;height:100%%;object-fit:cover}
 .lk .slash{position:absolute;background:%(BLUE)s;transform:skewX(-18deg)}
 .lk .cursor{cursor:pointer}
+/* the badge marquee: two copies of the row, the track slides left by one copy and loops */
+@keyframes kMarquee{from{transform:translateX(0)}to{transform:translateX(-50%%)}}
+.lk .k-track{animation:kMarquee 34s linear infinite}
+.lk .k-marquee:hover .k-track{animation-play-state:paused}
 @media (prefers-reduced-motion: reduce){.lk *{transition:none !important}}
+@media (prefers-reduced-motion: reduce){.lk .k-track{animation:none}}
 ''' % dict(BLUE=BLUE, LIME=LIME, NAVY=NAVY, INK=INK, MUTED=MUTED)
 
 def build(m):
@@ -286,18 +291,25 @@ def build(m):
     a('</section>')
 
     # ---------- 09 Trusted, certified, proven ----------
-    a('\n<!-- 09 Trusted. Certified. Proven.: the Elite badge and three real numbers, over the sky -->')
+    # 13 Nov, by request: the three number boxes and the single Elite badge give way to all eight ProAdvisor badges in an endless
+    # marquee that runs from the right edge to the left and fades out before it reaches the heading
+    a('\n<!-- 09 Trusted. Certified. Proven.: the heading, and all eight ProAdvisor badges in an endless marquee, over the sky -->')
     a('<section class="lt" aria-label="Certified by Intuit" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (ICE, '52px 0' if m else '64px 0'))
     a('<div class="ph" aria-hidden="true" style="position: absolute; inset: 0; opacity: .28"><img src="%s" alt="" style="object-position: center 30%%"></div>' % IMG['trusted'])
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(237,243,249,.97) 0%, rgba(237,243,249,.8) 100%)"></div>')
-    boxes = [('25+', 'Years in business'), ('850', 'Clients served'), ('5.0★', 'Google reviews (32)')]
-    bx = ''.join('<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; padding: %s; border-radius: 6px; background: %s; box-shadow: 0 14px 30px rgba(6,20,40,.18)"><span class="cond" style="font-size: %s; color: #FFFFFF">%s</span><span style="font-size: 12.5px; color: #AFC0D4; text-align: center">%s</span></div>'
-                 % ('16px 8px' if m else '18px 26px', NAVY2, '30px' if m else '40px', v, l) for v, l in boxes)
+    badges = [('5a6f8298d29fe5b417692e04bb5cefb5', 'QuickBooks ProAdvisor Elite badge'), ('1f90e7cd2b6fe11043a8aed199ff3bea', 'Certified Advanced QuickBooks Online ProAdvisor badge'),
+              ('8a6858620a6c323d48dea6c25360ff27', 'Certified ProAdvisor, Advanced QuickBooks Desktop badge'), ('bdd1481bd009109078c5f28e16b35880', 'Certified QuickBooks Online ProAdvisor badge'),
+              ('cd885cfb7d6c05d7b71c90e8441a681f', 'Certified QuickBooks Level 2 ProAdvisor badge'), ('34b1807ca27f04b30ace3c235cf23ea4', 'Certified QuickBooks Level 1 ProAdvisor badge'),
+              ('9eef1fc8b132f5488cb3871c7327a754', 'Certified ProAdvisor, QuickBooks Enterprise badge'), ('39493efadd289f62e0315fad774e3ce0', 'Certified ProAdvisor, Point of Sale badge')]
+    bh = 74 if m else 100
+    one = lambda hidden: ''.join('<img src="%s%s" alt="%s" style="flex: none; height: %dpx; width: auto; margin-right: %dpx">'
+                                 % (B, bid, '' if hidden else alt, bh, 40 if m else 56) for bid, alt in badges)
+    track = ('<div class="k-marquee" style="overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 %dpx); mask-image: linear-gradient(90deg, transparent 0, #000 %dpx); %s">'
+             '<div class="k-track" style="display: flex; align-items: center; width: max-content; padding: 10px 0">%s<span aria-hidden="true" style="display: contents">%s</span></div></div>'
+             % (70 if m else 160, 70 if m else 160, 'margin: 0 -20px' if m else 'margin-right: -120px', one(False), one(True)))
     a(wrap('<div style="display: %s; gap: %s; align-items: AIX">'
-           '<h2 class="blue" style="font-size: %s">Trusted.<br>Certified.<br>Proven.</h2>'
-           '<img src="%s" alt="QuickBooks ProAdvisor Elite badge" style="height: %s; width: auto; align-self: flex-start; %s">'
-           '<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: %s; %s">%s</div></div>'
-           % ('flex; flex-direction: column; align-items: flex-start' if m else 'grid; grid-template-columns: auto auto 1fr', '24px' if m else '48px', '44px' if m else '52px', IMG['elite'], '90px' if m else '110px', '' if m else 'justify-self: center', '10px' if m else '16px', 'width: 100%' if m else '', bx)))
+           '<h2 class="blue" style="font-size: %s; position: relative; z-index: 1">Trusted.<br>Certified.<br>Proven.</h2>%s</div>'
+           % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: auto minmax(0, 1fr)', '22px' if m else '24px', '44px' if m else '52px', track)))
     a('</section>')
 
     # ---------- 10 FAQ ----------
