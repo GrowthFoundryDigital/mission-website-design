@@ -249,10 +249,13 @@ def build(m):
         '<h3 style="font-family: \'Inter\', sans-serif; font-style: normal; text-transform: none; font-size: 19px; font-weight: 700; letter-spacing: -.01em; line-height: 1.2">%s</h3>'
         '<p style="font-size: 14.5px; line-height: 1.55">%s</p><span class="go" style="margin-top: auto; display: inline-flex">%s</span></a>'
         % (h, '22px' if m else '28px 26px', 'auto' if m else '268px', BLUE, ic(n, 34, sw=1.6), t, d, ic('arrow', 20)) for n, t, d, h in svcs)
-    head = ('<div style="display: %s; gap: %s; align-items: end; margin-bottom: %s">'
-            '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb">Our services</p><h2 style="font-size: %s">Mission-critical<br>financial support.</h2></div>'
-            '<p style="font-size: 17px; max-width: 420px; color: #DCE6F2">A complete financial team for businesses that need more than basic bookkeeping.</p></div>'
-            % ('flex; flex-direction: column; align-items: flex-start' if m else 'grid; grid-template-columns: 1fr 1fr', '18px' if m else '40px', '34px' if m else '56px', '46px' if m else '72px'))
+    # a button to the main services page under the line (13 Nov, by request), as in the case studies; '#services' until the page URL is confirmed
+    head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
+             '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb">Our services</p><h2 style="font-size: %s">Mission-critical<br>financial support.</h2></div>'
+             '<div style="display: flex; flex-direction: column; gap: 20px; %s"><p style="font-size: 17px; max-width: 420px; color: #DCE6F2">A complete financial team for businesses that need more than basic bookkeeping.</p>'
+             '<div>%s</div></div></div>')
+            % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: 1fr 1fr', '18px' if m else '40px', '34px' if m else '56px', '46px' if m else '72px',
+               '' if m else 'align-items: flex-start; padding-bottom: 8px', btn('See all services', href='#services', icon=False, extra='width: 100%' if m else '')))
     a(wrap(head + '<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div>' % ('1fr' if m else 'repeat(4, minmax(0, 1fr))', '14px' if m else '22px', cards)))
     a('</section>')
 
