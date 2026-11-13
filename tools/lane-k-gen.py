@@ -63,6 +63,7 @@ def ic(name, size=22, stroke='currentColor', sw=1.8):
             'stroke-linejoin="round" aria-hidden="true">%s</svg>' % (size, size, stroke, sw, P[name]))
 
 CSS = '''
+body{margin:0;background:%(NAVY)s}
 .lk{font-family:'Inter','Helvetica Neue',Arial,sans-serif;color:#C9D6E8;-webkit-font-smoothing:antialiased;font-size:16px;line-height:1.6}
 .lk *{box-sizing:border-box}
 .lk a{color:inherit}
