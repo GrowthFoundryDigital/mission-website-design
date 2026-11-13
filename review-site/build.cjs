@@ -29,7 +29,10 @@ const blobs = {
   '3b0c242e134c1a46fd4ff444a29b6b23': A + '/photos/lane-k/k-ice-overlay.webp',
   c7b34dc9f98b5531b52c5bc1cb27ff06: A + '/photos/lane-k/k-hiker-summit.webp',
   c83f8b0698ce7879ae30780c584bcc65: A + '/photos/lane-k/k-sky-sunburst.webp',
-  '9e1790fb97143f88b3da5af39894de49': A + '/photos/lane-k/k-globe-network.webp',  // the jewelry case-study thumbnail from 10 Nov
+  '9e1790fb97143f88b3da5af39894de49': A + '/photos/lane-k/k-globe-network.webp',
+  dfd86de5e4c6c2aa6ee6ec5df6d9d9d0: A + '/photos/lane-k/k-cs-construction-crane.webp',  // Lane K case-study photos (13 Nov)
+  '856fca6512e92dce3beccc32c801534c': A + '/photos/lane-k/k-cs-jewelry-ring.webp',
+  '03953d5f25e1452b9fc441dfa089cdda': A + '/photos/lane-k/k-cs-interiors-chair.webp',  // the jewelry case-study thumbnail from 10 Nov
   '3d6b714436163c0b81700732407cd2ff': A + '/photos/office-thinking-at-laptop.webp',  // the Office photo from 10 Nov (replaces the one above)
   '37cbc555ab9573d99c3c204f11469679': A + '/photos/lounge-laptop-portrait.webp',
   '959f667ae9fbf3a0eb90cf0ce15668ff': A + '/photos/reviewing-papers-window.webp',
