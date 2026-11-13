@@ -155,16 +155,8 @@ def build(m):
         '<div style="display: flex; %s gap: 12px; padding-top: 6px">%s<a class="btn btn-o" href="#case-studies"%s>Read client stories%s</a></div>' % (
             'flex-direction: column;' if m else 'flex-wrap: wrap;', btn('Schedule a free consultation', extra='width: 100%' if m else ''), ' style="width: 100%"' if m else '', arr) +
         '</div>')
-    stats = [('target', '25+', 'Years in business'), ('users', '850', 'Clients served'), ('bars', '100–140', 'Clients a year'), ('refresh', '50', 'Recurring clients'), ('star', '80%', 'Come by referral')]
-    cells = ''.join(
-        '<div style="display: flex; align-items: center; gap: 14px; padding: %s; %s"><span style="color: %s; flex: none">%s</span>'
-        '<span style="display: flex; flex-direction: column; gap: 2px"><span class="cond" style="font-size: %s; color: #FFFFFF">%s</span><span style="font-size: %s; color: #AFC0D4">%s</span></span></div>'
-        % ('14px 0' if m else '26px 0', ('border-top: 1px solid rgba(255,255,255,.12)' if m and i else '') if m else ('border-left: 1px solid rgba(255,255,255,.14); padding-left: 28px' if i else ''),
-           BLUE, ic(n, 30 if not m else 26, sw=1.6), '28px' if m else '34px', v, '13px' if m else '13.5px', l)
-        for i, (n, v, l) in enumerate(stats))
-    statbar = ('<div style="margin-top: %s; border-top: 1px solid rgba(255,255,255,.16); display: %s">%s</div>'
-               % ('48px' if m else '92px', 'flex; flex-direction: column' if m else 'grid; grid-template-columns: repeat(5, minmax(0, 1fr))', cells))
-    a(wrap(hero + statbar, '; padding-bottom: %s' % ('8px' if m else '0')))
+    # the five facts along the bottom of the hero were removed (13 Nov, by request); the hero ends below the buttons
+    a(wrap(hero, '; padding-bottom: %s' % ('64px' if m else '120px')))
     a('</section>')
 
     # ---------- 02 The mission (who we are) ----------
