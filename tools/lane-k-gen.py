@@ -31,6 +31,22 @@ IMG = {
 
 NAVY, NAVY2, BLUE, LIME, INK, MUTED, ICE = '#061428', '#0A2240', '#1FA2FF', '#C1F432', '#0A1B2E', '#4A5A70', '#EDF3F9'
 
+def svpos(m):
+    # services carousel stops: desktop shows 4 of the 7 cards (4 stops), mobile 1 (7 stops)
+    return 7 if m else 4
+
+
+def svcss(m):
+    vis, gap = (1, 14) if m else (4, 22)
+    w = '86%' if m else 'calc((100%% - %dpx) / 4)' % (3 * gap)
+    step = 'calc(86%% + %dpx)' % gap if m else 'calc((100%% - %dpx) / 4 + %dpx)' % (3 * gap, gap)
+    out = ['.lk .k-sv-vp{clip-path:inset(-30px -100vw -70px 0)}',
+           '.lk .k-sv-track{display:flex;align-items:stretch;gap:%dpx;transition:transform .6s cubic-bezier(.22,.61,.36,1)}' % gap,
+           '.lk .k-sv-track>.card{flex:none;width:%s}' % w]
+    out += ['.lk .k-sv-track[data-pos="%d"]{transform:translateX(calc(%s * -%d))}' % (i, step, i) for i in range(1, svpos(m))]
+    return '\n'.join(out) + '\n'
+
+
 def ic(name, size=22, stroke='currentColor', sw=1.8):
     P = {
         'target': '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/>',
@@ -53,6 +69,8 @@ def ic(name, size=22, stroke='currentColor', sw=1.8):
         'phone': '<path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/>',
         'mail': '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',
         'plus': '<path d="M12 5v14M5 12h14"/>',
+        'pos': '<rect x="2.5" y="5" width="19" height="14" rx="2"/><path d="M2.5 10h19M6.5 15h4"/>',
+        'box': '<path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/>',
         'minus': '<path d="M5 12h14"/>',
         'chev': '<path d="M6 9l6 6 6-6"/>',
         'quote': '<path d="M7 7h4v4c0 3-1.5 5-4 6M15 7h4v4c0 3-1.5 5-4 6"/>',
@@ -240,15 +258,25 @@ def build(m):
     a('<div class="ph" aria-hidden="true" style="position: absolute; %s"><img src="%s" alt="" style="object-position: center 40%%"></div>' % ('inset: 0; opacity: .35' if m else 'top: 0; right: 0; bottom: 0; width: 62%', IMG['services']))
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: %s"></div>' % (
         'linear-gradient(180deg, rgba(6,20,40,.7), rgba(6,20,40,.95))' if m else 'linear-gradient(90deg, %s 38%%, rgba(6,20,40,.55) 70%%, rgba(6,20,40,.35) 100%%), linear-gradient(0deg, %s 0%%, rgba(6,20,40,0) 55%%)' % (NAVY, NAVY)))
+    # all seven services (13 Nov, by request), in Lane G3's order and wording where Lane K had none; four at a time on desktop, one on mobile, in a carousel
     svcs = [('calc', 'Bookkeeping & Accounting', 'Books that match your bank and that you can trust, kept by a team that knows QuickBooks inside out.', '#bookkeeping'),
             ('laptop', 'QuickBooks Setup & Advisory', 'Set up right, then put to good use. Once your books are clean, we help you use the numbers to make better choices.', '#setup'),
             ('chart', 'Fractional CFO', 'A part-time finance chief for your business, without hiring one full-time. Our managing partner leads this.', '#cfo'),
-            ('layers', 'Additional support', 'QuickBooks Cleanup, Custom Reporting and POS Integration, for when your books need more.', '#cleanup')]
+            ('refresh', 'QuickBooks Cleanup', 'Months of bank statements nobody has matched to the books, or books left behind when a bookkeeper moved on. We bring them up to date and make them right.', '#cleanup'),
+            ('pos', 'POS Integration', 'We connect your checkout system, like Square or Shopify, to QuickBooks so your sales show up in your books on their own.', '#pos'),
+            ('bars', 'Custom Reporting', "Normal reports answer your accountant's questions. Custom reports answer yours.", '#reporting'),
+            ('box', 'QuickBooks Products', "QuickBooks Online, Desktop, Enterprise and Intuit Enterprise Suite. You can buy them from us, because we're an Intuit reseller.", '#products')]
     cards = ''.join(
         '<a class="card" href="%s" style="display: flex; flex-direction: column; gap: 12px; padding: %s; min-height: %s"><span style="color: %s">%s</span>'
         '<h3 style="font-family: \'Inter\', sans-serif; font-style: normal; text-transform: none; font-size: 19px; font-weight: 700; letter-spacing: -.01em; line-height: 1.2">%s</h3>'
         '<p style="font-size: 14.5px; line-height: 1.55">%s</p><span class="go" style="margin-top: auto; display: inline-flex">%s</span></a>'
         % (h, '22px' if m else '28px 26px', 'auto' if m else '268px', BLUE, ic(n, 34, sw=1.6), t, d, ic('arrow', 20)) for n, t, d, h in svcs)
+    nsv = svpos(m)
+    svbtn = lambda lab, dirn, fn: ('<button type="button" class="k-cs-nav" aria-label="%s" onClick="{{ %s }}"><span style="display: inline-flex; transform: rotate(%ddeg)">%s</span></button>'
+                                   % (lab, fn, 180 if dirn < 0 else 0, ic('arrow', 20, sw=2)))
+    svdots = ''.join('<button type="button" class="k-cs-dot" aria-label="Services, view %d of %d" aria-pressed="{{ svOn%d }}" onClick="{{ svGo%d }}"></button>' % (i + 1, nsv, i, i) for i in range(nsv))
+    svnav = ('<div style="display: flex; align-items: center; justify-content: %s; gap: 22px; margin-top: %s">%s<div style="display: flex; gap: 10px">%s</div>%s</div>'
+             % ('space-between' if m else 'flex-end', '26px' if m else '40px', svbtn('Previous services', -1, 'svPrev'), svdots, svbtn('Next services', 1, 'svNext')))
     # a button to the main services page under the line (13 Nov, by request), as in the case studies; '#services' until the page URL is confirmed
     head = (('<div style="display: %s; gap: %s; align-items: ' + ('stretch' if m else 'end') + '; margin-bottom: %s">'
              '<div style="display: flex; flex-direction: column; gap: 20px"><p class="eb">Our services</p><h2 style="font-size: %s">Mission-critical<br>financial support.</h2></div>'
@@ -256,7 +284,7 @@ def build(m):
              '<div>%s</div></div></div>')
             % ('flex; flex-direction: column' if m else 'grid; grid-template-columns: 1fr 1fr', '18px' if m else '40px', '34px' if m else '56px', '46px' if m else '72px',
                '' if m else 'align-items: flex-start; padding-bottom: 8px', btn('See all services', href='#services', icon=False, extra='width: 100%' if m else '')))
-    a(wrap(head + '<div style="display: grid; grid-template-columns: %s; gap: %s">%s</div>' % ('1fr' if m else 'repeat(4, minmax(0, 1fr))', '14px' if m else '22px', cards)))
+    a(wrap(head + '<div class="k-sv-vp"><div class="k-sv-track" data-pos="{{ svPos }}">%s</div></div>' % cards + svnav))
     a('</section>')
 
     # ---------- 04 Who we serve ----------
@@ -484,8 +512,8 @@ def build(m):
     return ('<!doctype html>\n<html lang="en">\n<head>\n<meta charset="utf-8">\n<title>%s</title>\n<script src="./support.js"></script>\n</head>\n<body>\n<x-dc>\n<helmet>\n%s\n<style>%s</style>\n</helmet>\n'
             '<div class="lk" style="width: %dpx; background: %s">\n%s\n</div>\n</x-dc>\n'
             '<script type="text/x-dc" data-dc-script data-props=\'{"$preview":{"width":%d,"height":8000}}\'>\n'
-            'class Component extends DCLogic {\n  // the case-study carousel: which card is highlighted (desktop) or shown (mobile)\n  go(i) { this.setState({ cs: (i + 3) %% 3 }); }\n  renderVals() {\n    const c = (this.state && this.state.cs) || 0;\n    return {\n      csOn0: c === 0 ? \'true\' : \'false\', csOn1: c === 1 ? \'true\' : \'false\', csOn2: c === 2 ? \'true\' : \'false\',\n      csGo0: this.g0 || (this.g0 = () => this.go(0)), csGo1: this.g1 || (this.g1 = () => this.go(1)), csGo2: this.g2 || (this.g2 = () => this.go(2)),\n      csPrev: this.gp || (this.gp = () => this.go(((this.state && this.state.cs) || 0) - 1)),\n      csNext: this.gn || (this.gn = () => this.go(((this.state && this.state.cs) || 0) + 1)),\n    };\n  }\n}\n</script>\n</body>\n</html>\n'
-            % (title, fonts, CSS, W, NAVY, body, W))
+            'class Component extends DCLogic {\n  // the case-study carousel: which card is highlighted (desktop) or shown (mobile)\n  go(i) { this.setState({ cs: (i + 3) %% 3 }); }\n  // the services carousel: SVN stops (4 cards in view on desktop, 1 on mobile)\n  sgo(i) { this.setState({ sv: (i + SVN) %% SVN }); }\n  renderVals() {\n    const c = (this.state && this.state.cs) || 0;\n    const v = (this.state && this.state.sv) || 0;\n    this.sg = this.sg || [];\n    const sv = { svPos: String(v), svPrev: this.sp || (this.sp = () => this.sgo(((this.state && this.state.sv) || 0) - 1)), svNext: this.sn || (this.sn = () => this.sgo(((this.state && this.state.sv) || 0) + 1)) };\n    for (let i = 0; i < SVN; i++) { sv[\'svOn\' + i] = v === i ? \'true\' : \'false\'; sv[\'svGo\' + i] = this.sg[i] || (this.sg[i] = () => this.sgo(i)); }\n    return {\n      ...sv,\n      csOn0: c === 0 ? \'true\' : \'false\', csOn1: c === 1 ? \'true\' : \'false\', csOn2: c === 2 ? \'true\' : \'false\',\n      csGo0: this.g0 || (this.g0 = () => this.go(0)), csGo1: this.g1 || (this.g1 = () => this.go(1)), csGo2: this.g2 || (this.g2 = () => this.go(2)),\n      csPrev: this.gp || (this.gp = () => this.go(((this.state && this.state.cs) || 0) - 1)),\n      csNext: this.gn || (this.gn = () => this.go(((this.state && this.state.cs) || 0) + 1)),\n    };\n  }\n}\n</script>\n</body>\n</html>\n'
+            % (title, fonts, CSS + svcss(m), W, NAVY, body, W)).replace('SVN', str(svpos(m)))
 
 os.makedirs(OUT, exist_ok=True)
 for m, name in [(False, 'lane-k-home.dc.html'), (True, 'lane-k-home-mobile.dc.html')]:
