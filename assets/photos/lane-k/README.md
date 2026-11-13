@@ -8,7 +8,7 @@ Supplied by Growth Foundry on 13 Nov 2026 for Lane K: a reference homepage desig
 | `k-climber-overhang.webp` | A climber hanging by one hand from a rock overhang, sky and sunrise behind, mist below | The first hero background; replaced the same day, now unused |
 | `k-hiker-summit.webp` | A hiker with a backpack on a rocky summit at sunrise, above the clouds | Services background, as in the reference, and the closing call to action |
 | `k-sky-sunburst.webp` | Blue sky with the sun breaking through clouds | Faintly, the "Trusted. Certified. Proven." band |
-| `k-globe-network.webp` | The Americas at night on a globe, with network lines | "A strategic partner" background |
+| `k-globe-network.webp` | The Americas at night on a globe, with network lines | Was the "A strategic partner" background; removed 13 Nov by request, now unused |
 | `k-contour-lines.webp` | Glowing blue contour lines on dark navy | Case studies, the testimonial band and the footer |
 
 More images were attached in the same conversation but did not arrive as files: a misty mountain range, a blurred office with diagonal bands, glass towers seen from below, and blue target rings. Their slots in `tools/lane-k-gen.py` are marked STAND-IN; swap the ids when the files come through.

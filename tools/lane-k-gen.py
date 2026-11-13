@@ -334,8 +334,7 @@ def build(m):
     # ---------- 08 Strategic partner ----------
     a('\n<!-- 08 More than a bookkeeper: four strengths from the Business DNA, on the globe image -->')
     a('<section class="dk" aria-label="A strategic partner" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY, '64px 0' if m else '88px 0'))
-    a('<div class="ph" aria-hidden="true" style="position: absolute; %s"><img src="%s" alt="" style="object-position: %s"></div>' % ('inset: 0; opacity: .5' if m else 'top: 0; right: 0; bottom: 0; width: 70%', IMG['partner'], '70% 50%' if m else 'center 50%'))
-    a('<div aria-hidden="true" style="position: absolute; inset: 0; background: %s"></div>' % ('linear-gradient(180deg, rgba(6,20,40,.8), rgba(6,20,40,.95))' if m else 'linear-gradient(90deg, %s 30%%, rgba(6,20,40,.75) 60%%, rgba(6,20,40,.55) 100%%)' % NAVY))
+    # the globe background and its shading were removed (13 Nov, by request); the section is plain deep navy
     st = [('shield', 'QuickBooks experts', 'Advanced-certified QuickBooks ProAdvisors'), ('compass', 'Strategic guidance', 'Advisory and fractional CFO support'),
           ('process', 'A clear process', 'Consultation, onboarding, then monthly work'), ('team', 'Dedicated team', 'Account managers who know your system')]
     sc = ''.join('<div style="display: flex; %s gap: 12px; padding: %s; %s"><span style="color: %s">%s</span><span style="display: flex; flex-direction: column; gap: 4px"><span style="font: 700 16px/1.3 \'Inter\', sans-serif; color: #FFFFFF">%s</span><span style="font-size: 13.5px; color: #AFC0D4">%s</span></span></div>'
