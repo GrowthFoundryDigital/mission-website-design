@@ -257,7 +257,9 @@ def build(m):
     # ---------- 03 Services ----------
     a('\n<!-- 03 Services: four cards on navy, the photo fading in from the right -->')
     a('<section id="services" class="dk" aria-label="Services" style="position: relative; overflow: hidden; background: %s; padding: %s">' % (NAVY, '64px 0' if m else '100px 0 110px'))
-    a('<div class="ph" aria-hidden="true" style="position: absolute; %s"><img src="%s" alt="" style="object-position: center 40%%"></div>' % ('inset: 0; opacity: .35' if m else 'top: 0; right: 0; bottom: 0; width: 62%', IMG['services']))
+    # the hiker photo is blurred behind a frosted overlay (13 Nov, by request), so the cards stand out; scaled up a little so the soft edges stay out of view
+    a('<div class="ph" aria-hidden="true" style="position: absolute; %s"><img src="%s" alt="" style="object-position: center 40%%; filter: blur(%s); transform: scale(1.08)"></div>' % ('inset: 0; opacity: .35' if m else 'top: 0; right: 0; bottom: 0; width: 62%', IMG['services'], '8px' if m else '12px'))
+    a('<div aria-hidden="true" style="position: absolute; %s; background: rgba(6,20,40,.22)"></div>' % ('inset: 0' if m else 'top: 0; right: 0; bottom: 0; width: 62%'))
     a('<div aria-hidden="true" style="position: absolute; inset: 0; background: %s"></div>' % (
         'linear-gradient(180deg, rgba(6,20,40,.7), rgba(6,20,40,.95))' if m else 'linear-gradient(90deg, %s 38%%, rgba(6,20,40,.55) 70%%, rgba(6,20,40,.35) 100%%), linear-gradient(0deg, %s 0%%, rgba(6,20,40,0) 55%%)' % (NAVY, NAVY)))
     # all seven services (13 Nov, by request), in Lane G3's order and wording where Lane K had none; four at a time on desktop, one on mobile, in a carousel
