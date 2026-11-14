@@ -351,5 +351,11 @@ By request, every hero headline that said "messy" now says "complex books", keep
 - **G3:** "We handle the complex books". The digital-decay (glitch) effect moved to "complex" with the change, then was removed the same day, by request, so the headline is plain text (its CSS is left in place, unused).
 - **K (Mission copy):** "Complex books? Mission accepted." (was "Messy books?").
 
-Body text that says "messy" (for example "We fix messy books…") and the "Messy books, fixed." section headings are unchanged, since they are not hero headlines.
+Then, also by request, "messy" came out of the body copy on every lane (C3, D3, G3, H2, J and K):
+
+- "We fix messy books, keep them right every month…" became "We sort out complex books, keep them right every month…"
+- "Messy books, fixed." became "Complex books, sorted." (and K's Mission copy "Messy books, cleared." became "Complex books, cleared.")
+- "Your books are too messy to do taxes from." became "Your books aren't in good enough shape to do taxes from."
+
+The generators (`tools/lane-h2-gen.py`, `lane-j-gen.py`, `lane-k-gen.py`) carry the same wording. The longer hero line adds one line on mobile, so the mobile continued boards grew by 20–22 px (C3 5,977; D3 7,424; G3 5,799; H2 8,678; J 5,862). "Mess" in K's "Come as you are, mess and all." and the CSS class names were left as they are.
 

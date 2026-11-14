@@ -77,7 +77,7 @@ def esc(s):
 
 # ---- content (ELI15, from the C3/D3/G3 wording; brand lines from the style board) ----
 NAV = [('#services', 'Services'), ('#case-studies', 'Case studies'), ('#about', 'About'), ('#blog', 'Blog'), ('#contact', 'Contact')]
-HERO_P = 'We fix messy books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.'
+HERO_P = 'We sort out complex books, keep them right every month, and show you your numbers in plain words. You get to focus on running your business.'
 # the services strip under the hero (28 Oct, by request): QuickBooks Cleanup first, Fractional CFO removed from the strip
 TIERS = [
     ('spark', 'QuickBooks Cleanup', 'Behind on your books? We get you current'),
@@ -107,7 +107,7 @@ TRIGGERS = [
     ('pminus', 'Our bookkeeper just left', 'Maybe they retired, moved on, or you couldn\'t count on them. We go through what they left, fill in the gaps, and take over the monthly work.'),
     ('shield', "We don't trust our accountant anymore", 'The work comes late, has mistakes, or your emails go unanswered. First, we tell you honestly how your books look.'),
     ('clock', "We're months, or years, behind", 'Nobody has matched the bank statements to the books in so long that no one wants to open QuickBooks. We clean it up first, then keep it up every month.'),
-    ('filex', "Our taxes haven't been filed", 'Your books are too messy to do taxes from. We fix the books, help you find a tax accountant (a CPA), and talk with them before they start.'),
+    ('filex', "Our taxes haven't been filed", 'Your books aren’t in good enough shape to do taxes from. We fix the books, help you find a tax accountant (a CPA), and talk with them before they start.'),
     ('bank', 'The bank wants clear, correct numbers', 'A bank, investor or buyer wants numbers you can trust. We get you reports you can hand over with confidence.'),
     ('layers', 'Our business got too big for our bookkeeper', 'Lots of stock, more than one company, or nonprofit rules can be too much for one bookkeeper. That\'s the kind of work we like best.'),
 ]
