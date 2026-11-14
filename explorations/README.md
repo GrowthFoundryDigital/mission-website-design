@@ -348,7 +348,7 @@ By request, every hero headline that said "messy" now says "complex books", keep
 
 - **C3:** "We handle the complex books." (was "the messy work."); the typing hero's first phrase changed to match, the other phrases are unchanged. The longer phrase did not fit on one line, so the hero headline is 66 px on desktop (was 76–78) and 38 px on mobile (was 46). Heights: desktop 9,410 (continued board 1,410), mobile 13,955 (continued board 5,955).
 - **D3:** "We handle the complex books."
-- **G3:** "We handle the complex books", with the digital-decay effect now on "complex".
+- **G3:** "We handle the complex books". The digital-decay (glitch) effect moved to "complex" with the change, then was removed the same day, by request, so the headline is plain text (its CSS is left in place, unused).
 - **K (Mission copy):** "Complex books? Mission accepted." (was "Messy books?").
 
 Body text that says "messy" (for example "We fix messy books…") and the "Messy books, fixed." section headings are unchanged, since they are not hero headlines.
