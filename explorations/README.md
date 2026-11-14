@@ -359,3 +359,8 @@ Then, also by request, "messy" came out of the body copy on every lane (C3, D3, 
 
 The generators (`tools/lane-h2-gen.py`, `lane-j-gen.py`, `lane-k-gen.py`) carry the same wording. The longer hero line adds one line on mobile, so the mobile continued boards grew by 20–22 px (C3 5,977; D3 7,424; G3 5,799; H2 8,678; J 5,862). "Mess" in K's "Come as you are, mess and all." and the CSS class names were left as they are.
 
+
+## G3 hero line and the C3/H2 photo default (14 Nov)
+
+- **G3 hero:** at reduced zoom (as on the canvas) a thin vertical line showed where the hero photo starts, because the photo's edge fell between pixels and the dark fade over it did not quite cover it. The fade now starts 6 px to the left of the photo, solid for those 6 px, so the edge is always covered. Desktop only; the mobile hero has no such edge.
+- **C3 and H2:** the Photos switch now opens on Ecommerce (it opened on Kitchen). Kitchen and Office are still in the switch. The H2 generator (`tools/lane-h2-gen.py`) has the same default. Heights unchanged.
