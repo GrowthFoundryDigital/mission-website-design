@@ -364,3 +364,12 @@ The generators (`tools/lane-h2-gen.py`, `lane-j-gen.py`, `lane-k-gen.py`) carry 
 
 - **G3 hero:** at reduced zoom (as on the canvas) a thin vertical line showed where the hero photo starts, because the photo's edge fell between pixels and the dark fade over it did not quite cover it. The fade now starts 6 px to the left of the photo, solid for those 6 px, so the edge is always covered. Desktop only; the mobile hero has no such edge.
 - **C3 and H2:** the Photos switch now opens on Ecommerce (it opened on Kitchen). Kitchen and Office are still in the switch. The H2 generator (`tools/lane-h2-gen.py`) has the same default. Heights unchanged.
+
+## Lane J services cards: Sarah's revisions (16 Nov)
+
+From Sarah's review comment, by request. The section ("From behind to ahead / Where most clients start, and what comes next.") keeps J's compact cards and underlined service links, and:
+
+- The numbered circles (01–06) and the arrows between the cards are gone, so the cards no longer read as a fixed sequence. The cards sit 20 px apart (14 px on mobile), and the arrow buttons step one card and gap at a time.
+- Each card now opens with its underlined service name, larger (19 px, 18 px on mobile), above the client situation, which steps down to 18 px (17 px on mobile). The first card lists its two services, QuickBooks Cleanup and Setup & Integration, on two lines. Fractional CFO keeps its "Limited availability" tag above the name.
+
+`tools/lane-j-services-sarah.py` made the change on the boards and the review pages; `tools/lane-j-gen.py` still builds the earlier version. Heights: desktop 10,149 (continued board 2,149), mobile 13,812 (continued board 5,812).
