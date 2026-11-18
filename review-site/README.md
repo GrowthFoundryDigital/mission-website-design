@@ -18,3 +18,10 @@ The client review site: lanes D3, G3, C3 and H2 (the plain-language ELI15 versio
 - `public/rt.js`: a small runtime that runs the boards' component scripts (carousels, the typing hero, the button toggle).
 - `public/img/`: the images the pages use.
 - `index.html`, `rt.js`, `build.cjs`: the sources. `build.cjs` regenerates the pages from the canvas `.dc.html` files; after a rebuild, copy the output into `public/` and push.
+
+## No form fields on the review copy (18 Nov)
+
+Google Safe Browsing flagged the workers.dev address as phishing (a branded copy of a real company's site on an unrelated domain, with email boxes). By request, the review pages now have no `<form>`, `<input>` or `<textarea>`: `tools/review-no-forms.py` swaps each field for a look-alike box that cannot be typed into (same size, border and placeholder colour), turns forms into plain blocks and submit buttons into plain buttons. The canvas boards keep their real fields. **After rebuilding any page from the canvas (for example Lane K with `tools/board-to-page.py`), run `python3 tools/review-no-forms.py review-site/public/pages/*.html` again** (it is safe to run twice).
+
+To clear the warning, report the false positive from Chrome's warning page (Details, then "Let us know") and request a review in Google Search Console after verifying the site. To keep it from recurring, put the Worker behind Cloudflare Access, or serve it from a domain Growth Foundry owns.
+

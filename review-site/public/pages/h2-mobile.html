@@ -184,6 +184,12 @@ body{margin:0;background:#101419}
 .lh[data-blue="blend"]{--eb:#1270DA;--eb-lt:#85BBF5;--eb-pale:#D7E9FB;--eb-mist:#ECF4FD;--eb-tint:#EAF3FC;--eb-tint2:#E4EFFC;--eb-dk:#0D51A3}
 /* Pointer cursor pack (9 Nov) */
 .lh .card,.lh .qcard,.lh .post,.lh .hv-row,.lh .hv-ind,.lh .hv-sup,.lh .hv-li{cursor:pointer}
+
+/* review copy: stand-in boxes for the form fields (no real inputs on the shared review site) */
+.rv-field{box-sizing:border-box;font:inherit;color:inherit;background:transparent}
+.rv-field.rv-ph{color:#757575 !important}
+.lh .foot .rv-field{flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid rgba(255,255,255,.2);border-radius:4px;background:rgba(255,255,255,.05);font:400 14px/1 'Open Sans',sans-serif;color:#FFFFFF}
+.lh .foot .rv-field.rv-ph{color:#7D8692 !important}
 </style>
 
 <style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
@@ -460,10 +466,10 @@ body{margin:0;background:#101419}
 </div>
 <div style="border-top: 1px solid rgba(255,255,255,.1)">
 <div style="padding: 0 20px; padding-top: 48px; padding-bottom: 32px; display: flex; flex-direction: column; gap: 36px">
-<form class="nl-band" style="display: flex; flex-direction: column; gap: 18px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.1)">
+<div class="nl-band" style="display: flex; flex-direction: column; gap: 18px; padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,.1)">
 <div style="display: flex; flex-direction: column; gap: 8px"><p style="margin: 0; font: 600 24px/1.15 'Space Grotesk', sans-serif; letter-spacing: -.02em; color: #FFFFFF">QuickBooks tips by email</p><p style="font-size: 14px">Simple answers to the questions business owners ask us most. No sales emails.</p></div>
-<div><label for="nl-email-hm" class="sr">Email address</label><div style="display: flex; gap: 8px"><input id="nl-email-hm" type="email" placeholder="Your email address" style="height: 52px"><button class="btn btn-w tg-btn" type="submit" style="height: 52px; padding: 0 22px; font-size: 14.5px; border: 0; flex: none">Subscribe</button></div></div>
-</form>
+<div><label class="sr">Email address</label><div style="display: flex; gap: 8px"><span class="rv-field rv-ph" aria-hidden="true" style="height: 52px; display: flex; align-items: center; white-space: nowrap; overflow: hidden; cursor: default">Your email address</span><button class="btn btn-w tg-btn" type="button" style="height: 52px; padding: 0 22px; font-size: 14.5px; border: 0; flex: none">Subscribe</button></div></div>
+</div>
 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 20px">
 <div style="display: flex; flex-direction: column; gap: 16px; min-width: 0; grid-column: span 2;">
 <img src="../img/b29865f8838e8d694583c88108f0c2aa.svg" alt="MISSION" style="height: 26px; width: auto; align-self: flex-start">

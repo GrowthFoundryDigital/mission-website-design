@@ -157,6 +157,14 @@ body{margin:0;background:#070D17}
 @media (prefers-reduced-motion: reduce){.lg .messy::before{animation:none}}
 /* Pointer cursor pack (9 Nov) */
 .lg .row,.lg figure{cursor:pointer}
+
+/* review copy: stand-in boxes for the form fields (no real inputs on the shared review site) */
+.rv-field{box-sizing:border-box;font:inherit;color:inherit;background:transparent}
+.rv-field.rv-ph{color:#757575 !important}
+.lg .foot .rv-field{box-sizing:border-box;flex:1;min-width:0;height:46px;padding:0 14px;border:1px solid #C3CCD8;border-radius:0;background:#FFFFFF;font:400 13.5px/1 'Inter',sans-serif;color:#0E3A66;transition:border-color .2s ease}
+.lg .dark.foot .rv-field{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.2);color:#FFFFFF}
+.lg .foot .rv-field.rv-ph{color:#8A94A3 !important}
+.lg .dark.foot .rv-field.rv-ph{color:#6F7D90 !important}
 </style>
 
 <style>html,body{margin:0;overflow-x:hidden}#dc-root{overflow-x:clip}</style>
@@ -479,10 +487,10 @@ body{margin:0;background:#070D17}
 <div class="w" style="padding-top: 52px; padding-bottom: 28px; display: flex; flex-direction: column; gap: 36px">
 <div style="display: flex; flex-direction: column; gap: 20px">
 <p class="sm" style="font-size: 13.5px">Business advisors who know accounting software really well. Bookkeeping, accounting and QuickBooks for grown-up businesses with tricky books.</p>
-<form onsubmit="return false" style="display: flex; flex-direction: column; gap: 10px">
-<label for="gm-nl" class="fh" style="margin-bottom: 0">QuickBooks tips by email</label>
-<div style="display: flex; gap: 8px"><input id="gm-nl" type="email" placeholder="Your email address"><button type="submit" class="btn btn-blue tg-btn" style="width: auto; height: 46px; padding: 0 16px; font-size: 13px; flex: none">Subscribe</button></div>
-</form>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<label class="fh" style="margin-bottom: 0">QuickBooks tips by email</label>
+<div style="display: flex; gap: 8px"><span class="rv-field rv-ph" aria-hidden="true" style="display: flex; align-items: center; white-space: nowrap; overflow: hidden; cursor: default">Your email address</span><button type="button" class="btn btn-blue tg-btn" style="width: auto; height: 46px; padding: 0 16px; font-size: 13px; flex: none">Subscribe</button></div>
+</div>
 </div>
 <div style="display: flex; flex-direction: column; gap: 8px"><a href="tel:+12032279475" style="color: #FFFFFF; font-size: 15px; font-weight: 600">(203) 227-9475</a><a href="mailto:info@missionaccountinghelp.com">info@missionaccountinghelp.com</a><p class="sm" style="font-size: 13px">Nationwide, fully remote</p></div>
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px 16px"><div style="display: flex; flex-direction: column; gap: 11px"><strong class="fh">Services</strong><a href="#bookkeeping">Bookkeeping &amp; Accounting</a><a href="#setup">QuickBooks Setup &amp; Advisory</a><a href="#cfo">Fractional CFO</a><a href="#cleanup">QuickBooks Cleanup</a><a href="#tax">Tax Readiness</a><a href="#reporting">Custom Reporting</a><a href="#pos">POS Integration</a><a href="#training">QuickBooks Training</a></div><div style="display: flex; flex-direction: column; gap: 11px"><strong class="fh">Company</strong><a href="#about">About</a><a href="#products">QuickBooks Products</a><a href="#partners">Partner Program</a><a href="#blog">Blog</a><a href="http://missionaccountinghelp.com/feed/podcast" target="_blank" rel="noopener">Podcast</a><a href="#contact">Contact</a></div><div style="display: flex; flex-direction: column; gap: 11px"><strong class="fh">Follow</strong><a href="https://www.facebook.com/MissionAccounting/" target="_blank" rel="noopener">Facebook ↗</a><a href="https://www.linkedin.com/company/mission-quickbooks/" target="_blank" rel="noopener">MISSION on LinkedIn ↗</a><a href="https://www.linkedin.com/in/bernard-roesch/" target="_blank" rel="noopener">Bernard on LinkedIn ↗</a></div><div style="display: flex; flex-direction: column; gap: 11px"><strong class="fh">Legal</strong><a href="#terms">Terms of Service</a><a href="#privacy">Privacy Policy</a><a href="#cookies">Cookie Policy</a><a href="#returns">Returns Policy</a></div></div>
