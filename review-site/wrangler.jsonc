@@ -1,6 +1,7 @@
 {
   // Static client review site for the MISSION homepage lanes, served as Worker static assets.
-  "name": "mission-homepage-review",
+  // renamed 18 Nov: the old mission-homepage-review.seo-599.workers.dev address was flagged by Google Safe Browsing
+  "name": "gf-design-review",
   "compatibility_date": "2026-10-01",
   "assets": {
     "directory": "./public",

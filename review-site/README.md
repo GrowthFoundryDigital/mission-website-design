@@ -25,3 +25,7 @@ Google Safe Browsing flagged the workers.dev address as phishing (a branded copy
 
 To clear the warning, report the false positive from Chrome's warning page (Details, then "Let us know") and request a review in Google Search Console after verifying the site. To keep it from recurring, put the Worker behind Cloudflare Access, or serve it from a domain Growth Foundry owns.
 
+## New address (18 Nov)
+
+The Worker is renamed `gf-design-review` in `wrangler.jsonc` (by request, after the old `mission-homepage-review.seo-599.workers.dev` address was flagged), so the site will be served at `gf-design-review.seo-599.workers.dev`. The name avoids the client's brand, which on a free hosting address is one of the things that looks like phishing. Cloudflare's Git builds need the Worker's name to match `wrangler.jsonc`, so the new Worker must be created with exactly this name (Workers & Pages, Create, Import a repository, this repository and branch, root directory `review-site`). The old Worker can then be deleted (its Settings, Delete); its builds would fail anyway now that the names differ.
+
