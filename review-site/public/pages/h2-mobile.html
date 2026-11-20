@@ -35,6 +35,8 @@ body{margin:0;background:#101419}
 .hero-fade,.hero-full{display:none}
 .hero-full{position:absolute;inset:0;z-index:0;overflow:hidden}
 [data-div="off"] .hero-ph{left:0 !important;clip-path:none !important}
+/* Divider "Left" (20 Nov, by request): the angled edge moves 64 px left, parallel to the default, to show more of the photo */
+[data-div="left"] .hero-ph{clip-path:polygon(35.9% 0, 100% 0, 100% 100%, 10.9% 100%) !important}
 [data-div="off"] .hero-fade{display:block}
 [data-div="off"] .hero-script{left:1133px !important}
 [data-div="off"] .hero-geo{display:none}
@@ -210,7 +212,7 @@ body{margin:0;background:#101419}
 <button type="button" class="tg-opt" aria-pressed="{{ isEcommerce }}" onClick="{{ setEcommerce }}">Ecommerce</button>
 </span></span>
 <span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Divider</span><span class="tg-group" role="group" aria-label="Hero divider">
-<button type="button" class="tg-opt" aria-pressed="{{ isDivOn }}" onClick="{{ setDivOn }}">On</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isDivOn }}" onClick="{{ setDivOn }}">Default</button><button type="button" class="tg-opt" aria-pressed="{{ isDivLeft }}" onClick="{{ setDivLeft }}">Left</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isDivOff }}" onClick="{{ setDivOff }}">Off</button>
 </span></span>
 <span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Blue</span><span class="tg-group" role="group" aria-label="Brand blue">
@@ -555,6 +557,8 @@ class Component extends DCLogic {
       isDivOff: ((this.state && this.state.div) || 'on') === 'off' ? 'true' : 'false',
       setDivOn: this.setDivOn || (this.setDivOn = () => this.setDiv('on')),
       setDivOff: this.setDivOff || (this.setDivOff = () => this.setDiv('off')),
+      isDivLeft: ((this.state && this.state.div) || 'on') === 'left' ? 'true' : 'false',
+      setDivLeft: this.setDivLeft || (this.setDivLeft = () => this.setDiv('left')),
       blueMode: (this.state && this.state.blue) || 'electric',
       isElectric: ((this.state && this.state.blue) || 'electric') === 'electric' ? 'true' : 'false',
       isMission: ((this.state && this.state.blue) || 'electric') === 'mission' ? 'true' : 'false',
