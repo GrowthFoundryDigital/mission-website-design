@@ -483,9 +483,9 @@ def build(m):
     txt = ('<div style="display: flex; flex-direction: column; gap: 18px"><p class="eb c" style="color: #FFFFFF"><span class="cp-s">Ready to take control of your books?</span><span class="cp-m">Ready for your briefing?</span></p>'
            '<h2 style="font-size: %s"><span class="cp-s">Your next chapter starts<br>with a conversation.</span><span class="cp-m">Every assignment starts<br>with a briefing.</span></h2>'
            '<p style="font-size: 17px; color: #DCE6F2; max-width: 540px">Book a free call with Bernard or Rob. Come as you are, mess and all. We\'ll tell you what we\'d fix first and what it would take.</p></div>' % ('42px' if m else '64px'))
-    a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s<div style="display: flex; flex-direction: column; gap: 12px; %s">%s<a class="btn btn-o" href="tel:+12032279475"%s>%sCall (203) 227-9475</a></div></div>'
+    a(wrap('<div style="display: %s; gap: %s; align-items: AIX">%s<div style="display: flex; flex-direction: column; gap: 12px; %s">%s</div></div>'  # the call button was removed 21 Nov, by request (all lanes)
            % ('flex; flex-direction: column; align-items: stretch' if m else 'grid; grid-template-columns: minmax(0, 7fr) auto', '28px' if m else '48px', txt, '' if m else 'align-items: stretch',
-              btn('Schedule a free consultation', extra='width: 100%' if m else ''), ' style="width: 100%"' if m else '', ic('phone', 16))))
+              btn('Schedule a free consultation', extra='width: 100%' if m else ''))))
     a('</section>')
 
     # ---------- 11b From the blog (13 Nov, by request): the three posts Lane J shows, between the call to action and the footer ----------
