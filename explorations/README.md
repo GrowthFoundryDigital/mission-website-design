@@ -404,3 +404,7 @@ Redone the same day, by request (some shapes were still close together, only one
 - **Phone button out of the header, all six lanes (by request).** The phone number link or button is gone from the desktop header on D3, G3, C3, H2, J and K, and the round phone icon from the mobile header on G3 and C3 (the other mobile headers had none). The number is still in each lane's closing call to action and footer. On H2 the nav now stays next to the logo (it would otherwise have slid right into the photo); on the other lanes the header simply has one item fewer. `tools/lane-k-gen.py` has the change; the other lanes' boards were edited directly. Heights unchanged.
 - **H2 Hero shapes: Set 3 is the default** (by request), the five black shapes spread across the blue. None, Set 1 and Set 2 are still in the switch.
 
+## H2: no lime shapes; hero shapes fixed (21 Nov)
+
+By request: no decorative shape on H2 is lime any more. The lime outlines and small squares were recoloured on desktop and mobile: light brand blue (`--eb-lt`) on the dark sections ("A specialist team", "What clients say", the footer) and black on the Electric Blue "Certified by Intuit" band, matching the black hero shapes. Lime stays on the buttons and the text hover effects, which are not shapes. The Hero shapes switch is gone: Set 3 (five black shapes, filled and outlined, spread across the blue) is now simply the hero's shapes, and the desktop review bar is back to one line (desktop 11,687, continued board 3,687). The PDF snapshots in `exports/` were deleted, unused.
+

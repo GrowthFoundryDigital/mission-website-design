@@ -31,9 +31,6 @@ body{margin:0;background:#101419}
 .lh .bl .nav a{color:#FFFFFF}
 .lh .bl .nav a:hover,.lh .bl .nav a:focus-visible{color:#FFFFFF}
 .hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
-/* Hero shapes switch (21 Nov): None by default, or one of three spaced-out sets */
-.hs{display:none}
-[data-hs="1"] .hs-1,[data-hs="2"] .hs-2,[data-hs="3"] .hs-3{display:block}
 /* Hero divider review switch (28 Oct): off = the photo full width behind the text, no blue angle, no blue-side geometry */
 .hero-fade,.hero-full{display:none}
 .hero-full{position:absolute;inset:0;z-index:0;overflow:hidden}
@@ -203,7 +200,7 @@ body{margin:0;background:#101419}
 </head>
 <body>
 <div id="dc-root"></div>
-<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" data-blue="{{ blueMode }}" data-geo="{{ geoMode }}" data-hs="{{ hsMode }}" class="lh" style="width: 1440px; background: #101419">
+<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" data-blue="{{ blueMode }}" data-geo="{{ geoMode }}" class="lh" style="width: 1440px; background: #101419">
 <div class="tg-bar" aria-label="Review control, not part of the design">
 <span class="tg-label">Review · button color</span>
 <div class="tg-group" role="group" aria-label="Button color">
@@ -229,12 +226,6 @@ body{margin:0;background:#101419}
 <button type="button" class="tg-opt" aria-pressed="{{ isGeoOn }}" onClick="{{ setGeoOn }}">On</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isGeoOff }}" onClick="{{ setGeoOff }}">Off</button>
 </span></span>
-<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Hero shapes</span><span class="tg-group" role="group" aria-label="Hero shapes">
-<button type="button" class="tg-opt" aria-pressed="{{ isHsNone }}" onClick="{{ setHsNone }}">None</button>
-<button type="button" class="tg-opt" aria-pressed="{{ isHs1 }}" onClick="{{ setHs1 }}">Set 1</button>
-<button type="button" class="tg-opt" aria-pressed="{{ isHs2 }}" onClick="{{ setHs2 }}">Set 2</button>
-<button type="button" class="tg-opt" aria-pressed="{{ isHs3 }}" onClick="{{ setHs3 }}">Set 3</button>
-</span></span>
 </div>
 
 <!-- 01 Hero: Electric Blue on the left, a photo on the right (kitchen, office or ecommerce, chosen in the review bar), three core services along the bottom -->
@@ -247,29 +238,13 @@ body{margin:0;background:#101419}
 <div class="hero-fade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16, 20, 25, .9) 0%, rgba(16, 20, 25, .78) 30%, rgba(16, 20, 25, .4) 52%, rgba(16, 20, 25, 0) 70%)"></div>
 </div>
 <div class="hero-geo">
-<!-- hero shapes (21 Nov, by request): Set 3 by default (21 Nov, by request); the "Hero shapes" switch shows None or one of three spaced-out sets, black only, filled and outlined, mixed sizes, angles and blur -->
+<!-- hero shapes (21 Nov, by request): the dot grid and five black shapes, filled and outlined, mixed sizes, angles and blur, spaced out (chosen from three sets) -->
 <div class="deco dots on-dk" aria-hidden="true" style="left: 28px; top: 150px; width: 112px; height: 288px"></div>
-<div class="hs hs-1">
-<svg class="deco" aria-hidden="true" width="140" height="140" viewBox="0 0 112 112" style="left: -60px; top: 600px; transform: rotate(-14deg); opacity: 0.75; filter: blur(8px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="46" height="46" viewBox="0 0 40 40" style="left: 70px; top: 470px; transform: rotate(10deg)"><polygon points="1,1 24.56,1 39,39 1,39" fill="none" stroke="#101419" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="26" height="26" viewBox="0 0 30 30" style="left: 330px; top: 112px; transform: rotate(-22deg)"><polygon points="0,0 30,0 18,30 0,30" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="70" height="70" viewBox="0 0 54 54" style="left: 560px; top: 676px; transform: rotate(16deg); filter: blur(2px)"><polygon points="11.88,0 54,0 54,54 0,54" fill="none" stroke="#101419" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" style="left: 760px; top: 104px; transform: rotate(-8deg); opacity: 0.9; filter: blur(1px)"><polygon points="4.84,0 22,0 22,22 0,22" fill="#101419"></polygon></svg>
-</div>
-<div class="hs hs-2">
-<svg class="deco" aria-hidden="true" width="120" height="120" viewBox="0 0 112 112" style="left: -40px; top: 520px; transform: rotate(12deg); filter: blur(3px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="none" stroke="#101419" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="34" height="34" viewBox="0 0 54 54" style="left: 120px; top: 700px; transform: rotate(-18deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="90" height="90" viewBox="0 0 112 112" style="left: 520px; top: 660px; transform: rotate(-6deg); opacity: 0.6; filter: blur(10px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="30" height="30" viewBox="0 0 30 30" style="left: 640px; top: 128px; transform: rotate(20deg)"><polygon points="0,0 30,0 18,30 0,30" fill="none" stroke="#101419" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="20" height="20" viewBox="0 0 40 40" style="left: 250px; top: 118px; transform: rotate(-30deg)"><polygon points="1,1 24.56,1 39,39 1,39" fill="#101419"></polygon></svg>
-</div>
-<div class="hs hs-3">
 <svg class="deco" aria-hidden="true" width="64" height="64" viewBox="0 0 54 54" style="left: -20px; top: 480px; transform: rotate(-10deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="28" height="28" viewBox="0 0 22 22" style="left: 60px; top: 680px; transform: rotate(24deg); filter: blur(1.5px)"><polygon points="4.84,0 22,0 22,22 0,22" fill="none" stroke="#101419" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="44" height="44" viewBox="0 0 30 30" style="left: 300px; top: 690px; transform: rotate(-16deg); opacity: 0.85; filter: blur(4px)"><polygon points="0,0 30,0 18,30 0,30" fill="#101419"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="64" height="64" viewBox="0 0 112 112" style="left: 540px; top: 98px; transform: rotate(8deg)"><polygon points="0,0 112,0 67.2,112 0,112" fill="none" stroke="#101419" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
 <svg class="deco" aria-hidden="true" width="16" height="16" viewBox="0 0 22 22" style="left: 620px; top: 700px; transform: rotate(-28deg)"><polygon points="4.84,0 22,0 22,22 0,22" fill="#101419"></polygon></svg>
-</div>
 </div>
 <header style="position: relative; z-index: 3">
 <nav aria-label="Main" class="nav" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
@@ -324,7 +299,7 @@ body{margin:0;background:#101419}
 <!-- 04 Positioning, after the style board: a specialist team, with the photography grid -->
 <section id="about" aria-label="Who we are" class="dk" style="position: relative; overflow: hidden; padding: 100px 0">
 <svg class="deco" aria-hidden="true" width="96" height="96" viewBox="0 0 96 96" style="right: 60px; top: 64px; opacity: 1"><polygon points="0,0 59.52,0 96,96 0,96" fill="var(--eb)"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" style="right: 34px; top: 120px; opacity: 1"><polygon points="1,1 63,1 63,63 24.56,63" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" style="right: 34px; top: 120px; opacity: 1"><polygon points="1,1 63,1 63,63 24.56,63" fill="none" stroke="var(--eb-lt)" stroke-width="2"></polygon></svg>
 <span class="deco" aria-hidden="true" style="right: 172px; top: 84px; width: 10px; height: 10px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="right: 150px; top: 60px; width: 7px; height: 7px; box-sizing: border-box; background: #FFFFFF"></span>
 <svg class="deco" aria-hidden="true" width="240" height="240" viewBox="0 0 240 240" style="left: -80px; bottom: -60px; opacity: 0.18"><polygon points="0.75,0.75 239.25,0.75 143.85,239.25 0.75,239.25" fill="none" stroke="#FFFFFF" stroke-width="1.5"></polygon></svg>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 64px; align-items: center"><div style="display: flex; flex-direction: column; gap: 24px"><p class="eb"><span>Who we are</span></p><h2 style="font-size: 54px; line-height: 1.02">A specialist team that knows your business.</h2><p style="font-size: 16.5px; max-width: 460px">You started a business, not a bookkeeping job. We keep your books clean and correct. You don't have to hire a full finance team or get lost at a big firm.</p>
@@ -413,7 +388,7 @@ body{margin:0;background:#101419}
 <!-- 08 Certified by Intuit, on the Electric Blue band -->
 <section aria-label="Certified by Intuit" class="bl" style="position: relative; overflow: hidden; padding: 100px 0">
 <svg class="deco" aria-hidden="true" width="180" height="180" viewBox="0 0 180 180" style="right: -60px; top: 50px; opacity: 1"><polygon points="0,0 111.6,0 180,180 0,180" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="70" height="70" viewBox="0 0 70 70" style="right: 90px; top: 30px; opacity: 1"><polygon points="1,1 69,1 69,69 26.84,69" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="70" height="70" viewBox="0 0 70 70" style="right: 90px; top: 30px; opacity: 1"><polygon points="1,1 69,1 69,69 26.84,69" fill="none" stroke="#101419" stroke-width="2"></polygon></svg>
 <span class="deco" aria-hidden="true" style="right: 60px; bottom: 70px; width: 12px; height: 12px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="right: 88px; bottom: 96px; width: 8px; height: 8px; box-sizing: border-box; background: #101419"></span><span class="deco" aria-hidden="true" style="right: 42px; bottom: 108px; width: 9px; height: 9px; box-sizing: border-box; border: 2px solid #FFFFFF"></span>
 <div aria-hidden="true" class="dots on-dk" style="position: absolute; left: 40px; bottom: 40px; width: 220px; height: 140px"></div>
 <div style="position: relative; max-width: 1160px; margin: 0 auto; padding: 0 40px; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: 72px; align-items: center">
@@ -433,7 +408,7 @@ body{margin:0;background:#101419}
 
 <!-- 09 What clients say: loyalty stats and the testimonials, word for word -->
 <section aria-label="What clients say" class="dk" style="padding: 100px 0">
-<span class="deco" aria-hidden="true" style="right: 92px; top: 100px; width: 14px; height: 14px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="right: 124px; top: 128px; width: 9px; height: 9px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="right: 70px; top: 146px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid #C1F432"></span>
+<span class="deco" aria-hidden="true" style="right: 92px; top: 100px; width: 14px; height: 14px; box-sizing: border-box; background: var(--eb)"></span><span class="deco" aria-hidden="true" style="right: 124px; top: 128px; width: 9px; height: 9px; box-sizing: border-box; background: #FFFFFF"></span><span class="deco" aria-hidden="true" style="right: 70px; top: 146px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid var(--eb-lt)"></span>
 <div class="deco dots on-dk" aria-hidden="true" style="left: 30px; bottom: 80px; width: 120px; height: 220px"></div>
 <svg class="deco" aria-hidden="true" width="160" height="160" viewBox="0 0 160 160" style="left: -60px; top: 120px; opacity: 0.6"><polygon points="0.75,0.75 159.25,0.75 95.85,159.25 0.75,159.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
 <div style="max-width: 1160px; margin: 0 auto; padding: 0 40px; display: flex; flex-direction: column; gap: 48px">
@@ -521,14 +496,14 @@ body{margin:0;background:#101419}
 <!-- 13 Footer, with the call to action and the style board's graphic elements -->
 <footer id="contact" class="dk foot" style="position: relative; overflow: hidden">
 <svg class="deco" aria-hidden="true" width="200" height="200" viewBox="0 0 200 200" style="left: -70px; top: 80px; opacity: 0.55"><polygon points="0.75,0.75 199.25,0.75 119.85,199.25 0.75,199.25" fill="none" stroke="var(--eb)" stroke-width="1.5"></polygon></svg>
-<span class="deco" aria-hidden="true" style="left: 90px; top: 300px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid #C1F432"></span><span class="deco" aria-hidden="true" style="left: 60px; top: 330px; width: 8px; height: 8px; box-sizing: border-box; background: #FFFFFF"></span>
+<span class="deco" aria-hidden="true" style="left: 90px; top: 300px; width: 10px; height: 10px; box-sizing: border-box; border: 2px solid var(--eb-lt)"></span><span class="deco" aria-hidden="true" style="left: 60px; top: 330px; width: 8px; height: 8px; box-sizing: border-box; background: #FFFFFF"></span>
 <div id="schedule" style="position: relative; max-width: 1160px; margin: 0 auto; padding-left: 40px; padding-right: 40px; padding-top: 120px; padding-bottom: 104px; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: 64px; align-items: center">
 <div style="display: flex; flex-direction: column; gap: 22px"><p class="eb"><span>Your next step</span></p><h2 style="font-size: 84px; line-height: .98; letter-spacing: -.035em">Your books.<br>In order.</h2><p style="font-size: 17px; max-width: 520px">Book a free call with Bernard or Rob. Come as you are, mess and all. We'll tell you what we'd fix first and what it would take.</p><div style="display: flex; align-items: center; gap: 12px; padding-top: 4px"><a class="btn btn-p tg-btn" href="#schedule"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16.5" rx="2"></rect><path d="M16 2.5v4"></path><path d="M8 2.5v4"></path><path d="M3 10h18"></path></svg>Schedule a free consultation</a><a class="btn btn-o" href="tel:+12032279475"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8.1 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>Call (203) 227-9475</a></div></div>
 <div aria-hidden="true" class="foot-geo" style="position: relative; width: 100%; height: 300px">
 <div style="position: absolute; left: 0; top: 0; width: 62%; height: 62%; background: var(--eb); clip-path: polygon(0 0, 100% 0, 58% 100%, 0 100%)"></div>
 <div style="position: absolute; right: 0; bottom: 0; width: 70%; height: 46%; background: #1B2029; clip-path: polygon(22% 0, 100% 0, 100% 100%, 0 100%)"></div>
 <div class="dots on-dk" style="position: absolute; right: 0; top: 0; width: 34%; height: 40%"></div>
-<svg aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" style="position: absolute; left: 66%; top: 6%"><polygon points="1,1 63,1 39,63 1,63" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>
+<svg aria-hidden="true" width="64" height="64" viewBox="0 0 64 64" style="position: absolute; left: 66%; top: 6%"><polygon points="1,1 63,1 39,63 1,63" fill="none" stroke="var(--eb-lt)" stroke-width="2"></polygon></svg>
 <span style="position: absolute; left: 8%; top: 72%; width: 12px; height: 12px; background: #FFFFFF"></span><span style="position: absolute; left: 14%; top: 80%; width: 8px; height: 8px; background: var(--eb)"></span>
 <p style="position: absolute; left: 0; bottom: 0; margin: 0; font: 600 12px/1.5 'Space Grotesk', sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #9AA3AE">Simple structure<br>for a more<br>confident business.</p>
 </div>
@@ -571,11 +546,6 @@ class Component extends DCLogic {
     this.setState({ blue: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ blue: v }); } catch (e) {}
   }
-  setHs(v) {
-    // the hero shapes switch (none, or set 1, 2 or 3), desktop only
-    this.setState({ hs: v });
-    try { if (this.btnChannel) this.btnChannel.postMessage({ hs: v }); } catch (e) {}
-  }
   setGeo(v) {
     // the geometric shapes switch (on or off), shared with the other Lane H2 board
     this.setState({ geo: v });
@@ -600,7 +570,6 @@ class Component extends DCLogic {
         if (e.data && e.data.div) this.setState({ div: e.data.div });
         if (e.data && e.data.blue) this.setState({ blue: e.data.blue });
         if (e.data && e.data.geo) this.setState({ geo: e.data.geo });
-        if (e.data && e.data.hs) this.setState({ hs: e.data.hs });
       };
     } catch (e) {}
   }
@@ -625,15 +594,6 @@ class Component extends DCLogic {
       isGeoOff: ((this.state && this.state.geo) || 'on') === 'off' ? 'true' : 'false',
       setGeoOn: this.setGeoOn || (this.setGeoOn = () => this.setGeo('on')),
       setGeoOff: this.setGeoOff || (this.setGeoOff = () => this.setGeo('off')),
-      hsMode: (this.state && this.state.hs) || '3',
-      isHsNone: ((this.state && this.state.hs) || '3') === 'none' ? 'true' : 'false',
-      isHs1: ((this.state && this.state.hs) || '3') === '1' ? 'true' : 'false',
-      isHs2: ((this.state && this.state.hs) || '3') === '2' ? 'true' : 'false',
-      isHs3: ((this.state && this.state.hs) || '3') === '3' ? 'true' : 'false',
-      setHsNone: this.setHsNone || (this.setHsNone = () => this.setHs('none')),
-      setHs1: this.setHs1 || (this.setHs1 = () => this.setHs('1')),
-      setHs2: this.setHs2 || (this.setHs2 = () => this.setHs('2')),
-      setHs3: this.setHs3 || (this.setHs3 = () => this.setHs('3')),
       divMode: (this.state && this.state.div) || 'left',
       isDivOn: ((this.state && this.state.div) || 'left') === 'on' ? 'true' : 'false',
       isDivOff: ((this.state && this.state.div) || 'left') === 'off' ? 'true' : 'false',
