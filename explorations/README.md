@@ -399,3 +399,8 @@ Heights: desktop 11,687 (continued board 3,687); mobile 17,119, which is now thr
 
 Redone the same day, by request (some shapes were still close together, only one was blurred, and lime was not wanted): each set is now five black shapes only, a mix of filled and outlined, in different sizes (16 to 140 px), angles and blur (none to 10 px), at least 165 px apart centre to centre and clear of the text. Set 1 has a large soft shape bleeding off the bottom-left corner, Set 2 a large soft outline at the left edge and a soft shape at the bottom by the photo, Set 3 a solid shape at the left edge and an outline at the top. None is the default. All sets sit inside the blue with either divider setting, and the Shapes switch (Off) still hides them. The mobile hero has only its dot grid, so the switch is desktop only. The extra switch wraps the desktop review bar to a second line: desktop height 11,731 (continued board 3,731).
 
+## No phone button in the headers; H2 hero shapes default (21 Nov)
+
+- **Phone button out of the header, all six lanes (by request).** The phone number link or button is gone from the desktop header on D3, G3, C3, H2, J and K, and the round phone icon from the mobile header on G3 and C3 (the other mobile headers had none). The number is still in each lane's closing call to action and footer. On H2 the nav now stays next to the logo (it would otherwise have slid right into the photo); on the other lanes the header simply has one item fewer. `tools/lane-k-gen.py` has the change; the other lanes' boards were edited directly. Heights unchanged.
+- **H2 Hero shapes: Set 3 is the default** (by request), the five black shapes spread across the blue. None, Set 1 and Set 2 are still in the switch.
+

@@ -245,9 +245,10 @@ def build(m):
         hdr = ('<header style="display: flex; align-items: center; justify-content: space-between; height: 92px; gap: 24px">'
                '<a href="#top" aria-label="MISSION home" style="display: flex"><img src="%s" alt="MISSION" style="height: 30px; width: auto; display: block"></a>'
                '<nav class="nav" aria-label="Main" style="display: flex; gap: 30px; white-space: nowrap">%s</nav>'
-               '<div style="display: flex; gap: 12px"><a class="btn btn-o" href="tel:+12032279475" style="height: 44px; padding: 0 18px; font-size: 14px">%s(203) 227-9475</a>'
+               # the phone button left the header on 21 Nov, by request (all lanes)
+               '<div style="display: flex; gap: 12px">'
                '<a class="btn" href="#schedule" style="height: 44px; padding: 0 18px; font-size: 14px">%sSchedule a free consultation</a></div></header>'
-               % (IMG['logo'], nav, ic('phone', 15), ic('cal', 15)))
+               % (IMG['logo'], nav, ic('cal', 15)))
     # the hero headline is 88 px on desktop and 52 px on mobile (13 Nov, by request; it was 112 / 62)
     hero = (hdr +
         '<div id="top" style="display: flex; flex-direction: column; gap: %s; max-width: %s; padding: %s">' % ('20px' if m else '24px', '100%' if m else '720px', '44px 0 0' if m else '96px 0 0') +
