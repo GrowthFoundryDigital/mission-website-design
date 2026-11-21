@@ -31,6 +31,9 @@ body{margin:0;background:#101419}
 .lh .bl .nav a{color:#FFFFFF}
 .lh .bl .nav a:hover,.lh .bl .nav a:focus-visible{color:#FFFFFF}
 .hero-bg-kitchen,.hero-bg-office,.hero-bg-ecommerce{display:none}
+/* Hero shapes switch (21 Nov): None by default, or one of three spaced-out sets */
+.hs{display:none}
+[data-hs="1"] .hs-1,[data-hs="2"] .hs-2,[data-hs="3"] .hs-3{display:block}
 /* Hero divider review switch (28 Oct): off = the photo full width behind the text, no blue angle, no blue-side geometry */
 .hero-fade,.hero-full{display:none}
 .hero-full{position:absolute;inset:0;z-index:0;overflow:hidden}
@@ -200,7 +203,7 @@ body{margin:0;background:#101419}
 </head>
 <body>
 <div id="dc-root"></div>
-<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" data-blue="{{ blueMode }}" data-geo="{{ geoMode }}" class="lh" style="width: 1440px; background: #101419">
+<template id="dc-tpl"><div data-btn="{{ btnMode }}" data-hero="{{ heroMode }}" data-div="{{ divMode }}" data-blue="{{ blueMode }}" data-geo="{{ geoMode }}" data-hs="{{ hsMode }}" class="lh" style="width: 1440px; background: #101419">
 <div class="tg-bar" aria-label="Review control, not part of the design">
 <span class="tg-label">Review · button color</span>
 <div class="tg-group" role="group" aria-label="Button color">
@@ -226,6 +229,12 @@ body{margin:0;background:#101419}
 <button type="button" class="tg-opt" aria-pressed="{{ isGeoOn }}" onClick="{{ setGeoOn }}">On</button>
 <button type="button" class="tg-opt" aria-pressed="{{ isGeoOff }}" onClick="{{ setGeoOff }}">Off</button>
 </span></span>
+<span style="display: inline-flex; align-items: center; gap: 8px"><span class="tg-label">Hero shapes</span><span class="tg-group" role="group" aria-label="Hero shapes">
+<button type="button" class="tg-opt" aria-pressed="{{ isHsNone }}" onClick="{{ setHsNone }}">None</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isHs1 }}" onClick="{{ setHs1 }}">Set 1</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isHs2 }}" onClick="{{ setHs2 }}">Set 2</button>
+<button type="button" class="tg-opt" aria-pressed="{{ isHs3 }}" onClick="{{ setHs3 }}">Set 3</button>
+</span></span>
 </div>
 
 <!-- 01 Hero: Electric Blue on the left, a photo on the right (kitchen, office or ecommerce, chosen in the review bar), three core services along the bottom -->
@@ -238,14 +247,25 @@ body{margin:0;background:#101419}
 <div class="hero-fade" style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(16, 20, 25, .9) 0%, rgba(16, 20, 25, .78) 30%, rgba(16, 20, 25, .4) 52%, rgba(16, 20, 25, 0) 70%)"></div>
 </div>
 <div class="hero-geo">
-<!-- shapes tidied (21 Nov, by request): a trail down from the dot grid on the left; the trail by the divider edge was removed (21 Nov, by request) -->
+<!-- hero shapes (21 Nov, by request): only the dot grid by default; the "Hero shapes" switch in the review bar shows one of three spaced-out sets -->
 <div class="deco dots on-dk" aria-hidden="true" style="left: 28px; top: 150px; width: 112px; height: 288px"></div>
-<svg class="deco" aria-hidden="true" width="44" height="44" viewBox="0 0 44 44" style="left: 96px; top: 466px; opacity: 0.85; transform: rotate(-12deg); filter: blur(2.5px)"><polygon points="0,0 27.28,0 44,44 0,44" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="54" height="54" viewBox="0 0 54 54" style="left: 62px; top: 532px; opacity: 1; transform: rotate(-12deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" style="left: 118px; top: 412px; opacity: 1; transform: rotate(-12deg)"><polygon points="1,1 24.56,1 39,39 1,39" fill="none" stroke="#C1F432" stroke-width="2"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="112" height="112" viewBox="0 0 112 112" style="left: -34px; top: 628px; opacity: 0.7; transform: rotate(-12deg); filter: blur(6px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="#101419"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="150" height="150" viewBox="0 0 150 150" style="left: 318px; top: 714px; opacity: 0.6; transform: rotate(-12deg); filter: blur(14px)"><polygon points="0,0 150,0 150,150 57,150" fill="var(--eb-dk)"></polygon></svg>
-<svg class="deco" aria-hidden="true" width="22" height="22" viewBox="0 0 22 22" style="left: 769px; top: 139px; opacity: 0.9; transform: rotate(-12deg); filter: blur(1.5px)"><polygon points="4.84,0 22,0 22,22 0,22" fill="#101419"></polygon></svg>
+<div class="hs hs-1">
+<svg class="deco" aria-hidden="true" width="120" height="120" viewBox="0 0 112 112" style="left: -50px; top: 640px; opacity: 0.7; transform: rotate(-12deg); filter: blur(6px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="#101419"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="24" height="24" viewBox="0 0 54 54" style="left: 770px; top: 138px; transform: rotate(-12deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="36" height="36" viewBox="0 0 40 40" style="left: 560px; top: 690px; transform: rotate(-12deg)"><polygon points="1,1 24.56,1 39,39 1,39" fill="none" stroke="#C1F432" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
+</div>
+<div class="hs hs-2">
+<svg class="deco" aria-hidden="true" width="36" height="36" viewBox="0 0 40 40" style="left: 70px; top: 470px; transform: rotate(-12deg)"><polygon points="1,1 24.56,1 39,39 1,39" fill="none" stroke="#C1F432" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="44" height="44" viewBox="0 0 54 54" style="left: 64px; top: 580px; transform: rotate(-12deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="96" height="96" viewBox="0 0 112 112" style="left: -24px; top: 690px; opacity: 0.7; transform: rotate(-12deg); filter: blur(5px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="#101419"></polygon></svg>
+</div>
+<div class="hs hs-3">
+<svg class="deco" aria-hidden="true" width="20" height="20" viewBox="0 0 54 54" style="left: 690px; top: 120px; transform: rotate(-12deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="30" height="30" viewBox="0 0 40 40" style="left: 96px; top: 500px; transform: rotate(-12deg)"><polygon points="1,1 24.56,1 39,39 1,39" fill="none" stroke="#C1F432" stroke-width="2" vector-effect="non-scaling-stroke"></polygon></svg>
+<svg class="deco" aria-hidden="true" width="48" height="48" viewBox="0 0 54 54" style="left: -14px; top: 610px; transform: rotate(-12deg)"><polygon points="11.88,0 54,0 54,54 0,54" fill="#101419"></polygon></svg>
+<span class="deco" aria-hidden="true" style="left: 620px; top: 640px; width: 10px; height: 10px; background: #FFFFFF"></span>
+<svg class="deco" aria-hidden="true" width="150" height="150" viewBox="0 0 112 112" style="left: 300px; top: 690px; opacity: 0.6; transform: rotate(-12deg); filter: blur(14px)"><polygon points="0,0 112,0 67.2,112 0,112" fill="var(--eb-dk)"></polygon></svg>
+</div>
 </div>
 <header style="position: relative; z-index: 3">
 <nav aria-label="Main" class="nav" style="max-width: 1160px; margin: 0 auto; padding: 0 40px; height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 24px">
@@ -547,6 +567,11 @@ class Component extends DCLogic {
     this.setState({ blue: v });
     try { if (this.btnChannel) this.btnChannel.postMessage({ blue: v }); } catch (e) {}
   }
+  setHs(v) {
+    // the hero shapes switch (none, or set 1, 2 or 3), desktop only
+    this.setState({ hs: v });
+    try { if (this.btnChannel) this.btnChannel.postMessage({ hs: v }); } catch (e) {}
+  }
   setGeo(v) {
     // the geometric shapes switch (on or off), shared with the other Lane H2 board
     this.setState({ geo: v });
@@ -571,6 +596,7 @@ class Component extends DCLogic {
         if (e.data && e.data.div) this.setState({ div: e.data.div });
         if (e.data && e.data.blue) this.setState({ blue: e.data.blue });
         if (e.data && e.data.geo) this.setState({ geo: e.data.geo });
+        if (e.data && e.data.hs) this.setState({ hs: e.data.hs });
       };
     } catch (e) {}
   }
@@ -595,6 +621,15 @@ class Component extends DCLogic {
       isGeoOff: ((this.state && this.state.geo) || 'on') === 'off' ? 'true' : 'false',
       setGeoOn: this.setGeoOn || (this.setGeoOn = () => this.setGeo('on')),
       setGeoOff: this.setGeoOff || (this.setGeoOff = () => this.setGeo('off')),
+      hsMode: (this.state && this.state.hs) || 'none',
+      isHsNone: ((this.state && this.state.hs) || 'none') === 'none' ? 'true' : 'false',
+      isHs1: (this.state && this.state.hs) === '1' ? 'true' : 'false',
+      isHs2: (this.state && this.state.hs) === '2' ? 'true' : 'false',
+      isHs3: (this.state && this.state.hs) === '3' ? 'true' : 'false',
+      setHsNone: this.setHsNone || (this.setHsNone = () => this.setHs('none')),
+      setHs1: this.setHs1 || (this.setHs1 = () => this.setHs('1')),
+      setHs2: this.setHs2 || (this.setHs2 = () => this.setHs('2')),
+      setHs3: this.setHs3 || (this.setHs3 = () => this.setHs('3')),
       divMode: (this.state && this.state.div) || 'left',
       isDivOn: ((this.state && this.state.div) || 'left') === 'on' ? 'true' : 'false',
       isDivOff: ((this.state && this.state.div) || 'left') === 'off' ? 'true' : 'false',

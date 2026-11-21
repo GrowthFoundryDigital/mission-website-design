@@ -390,3 +390,12 @@ From the 21 Nov meeting, by request:
 - **Blue:** Electric was already H2's default blue; no change.
 
 Heights: desktop 11,687 (continued board 3,687); mobile 17,119, which is now three boards (8,000 + 8,000 + a 1,119 px second continued board, `lane-h2-home-mobile-part3.dc.html`; the canvas caps a board at 8,000 px, so the mobile page's last 678 px were being cut off before this). `tools/lane-h2-gen.py` does not have these changes; the boards are the source for H2 now.
+
+**Hero shapes switch (21 Nov, later, by request).** The hero's blue area now shows only the dot grid by default; every other hero shape was removed because they sat too close together. A new **Hero shapes** switch in H2's desktop review bar (None · Set 1 · Set 2 · Set 3) shows one of three spaced-out arrangements to choose from, using the same shape styles:
+
+- **Set 1, corners:** three shapes far apart: a large blurred dark shape bleeding off the bottom-left corner, a small dark shape at the top by the divider, and a lime outline at the bottom between the reviews line and the photo.
+- **Set 2, left rail:** a spaced column under the dot grid: lime outline, dark shape, then a blurred dark shape at the bottom-left edge.
+- **Set 3, scattered:** five shapes spread across the blue: a small dark shape at the top by the divider, a lime outline in the left margin, a dark shape at the left edge, a small white square by the photo, and a soft blue blur under the reviews line.
+
+None is the default. All sets sit inside the blue with either divider setting, and the Shapes switch (Off) still hides them. The mobile hero has only its dot grid, so the switch is desktop only. The extra switch wraps the desktop review bar to a second line: desktop height 11,731 (continued board 3,731).
+
